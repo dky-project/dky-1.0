@@ -23,7 +23,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.wonpera.cq.business.repository.repository" />
 		<property name="annotationClass"
-			value="com.wonpera.cq.business.repository.repository.MyBatisRepository" />
+			value="com.dky.business.repository.repository.MyBatisRepository" />
 	</bean>
 
 	<!-- 事务管理器配置, Jpa单数据源事务 -->

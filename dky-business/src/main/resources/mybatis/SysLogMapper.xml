@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wonpera.cq.business.repository.repository.SysLogDao">
+<mapper namespace="com.dky.business.repository.repository.SysLogDao">
 
 	<sql id="requestAllFields">
 		<![CDATA[
@@ -32,7 +32,7 @@
 		</where>
 	</sql>
 
-	<insert id="add" useGeneratedKeys="true" parameterType="com.wonpera.cq.common.bean.SysLog" keyProperty="id">
+	<insert id="add" useGeneratedKeys="true" parameterType="com.dky.common.bean.SysLog" keyProperty="id">
 		INSERT INTO log
 		<trim prefix="(" suffix=")" prefixOverrides=",">
 			<if test="null!=orgName and ''!=orgName">,orgName</if>
@@ -59,7 +59,7 @@
 		</trim>
 	</insert>
 
-	<update id="update" parameterType="com.wonpera.cq.common.bean.SysLog">
+	<update id="update" parameterType="com.dky.common.bean.SysLog">
 		UPDATE log
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="null!=orgName and ''!=orgName">,orgName = #{orgName}</if>
@@ -76,7 +76,7 @@
 		WHERE id = #{id}
 	</update>
 
-	<select id="query" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="com.wonpera.cq.common.bean.SysLog">
+	<select id="query" parameterType="com.dky.common.bean.SysLog" resultType="com.dky.common.bean.SysLog">
 		SELECT <include refid="requestAllFields"/> FROM log
 		<include refid="whereClause" />
 		<include refid="extendedOrderByClause" />
@@ -85,17 +85,17 @@
 		</if>
 	</select>
 
-	<select id="get" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="com.wonpera.cq.common.bean.SysLog">
+	<select id="get" parameterType="com.dky.common.bean.SysLog" resultType="com.dky.common.bean.SysLog">
 		SELECT <include refid="requestAllFields"/> FROM log
 		<include refid="whereClause" />
 		LIMIT 1
 	</select>
 
-	<select id="getById" parameterType="long" resultType="com.wonpera.cq.common.bean.SysLog">
+	<select id="getById" parameterType="long" resultType="com.dky.common.bean.SysLog">
 		SELECT <include refid="requestAllFields"/> FROM log WHERE id = #{id}
 	</select>
 
-	<select id="count" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="int">
+	<select id="count" parameterType="com.dky.common.bean.SysLog" resultType="int">
 		SELECT COUNT(1) FROM log <include refid="whereClause" />
 	</select>
 
