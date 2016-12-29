@@ -23,10 +23,10 @@
 	<!-- [公共Appender] 默认 -->
 	<appender name="DEFAULT-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_HOME}/cq/cq-default.log</file>
+		<file>${LOG_HOME}/dky/dky.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 		  	<!--日志文件输出的文件名 -->  
-			<fileNamePattern>${LOG_HOME}/cq/cq-default.%d{yyyy-MM-dd}.log
+			<fileNamePattern>${LOG_HOME}/dky/dky.%d{yyyy-MM-dd}.log
 			</fileNamePattern>
 		</rollingPolicy>
 		<encoder>
@@ -36,7 +36,7 @@
 		</encoder>
 	</appender>
 
-	<!-- [公共Appender] 汇总错误 -->
+	<!-- [公共Appender] 汇总错误
 	<appender name="ERROR-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/cq/cq-error.log</file>
@@ -48,7 +48,7 @@
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
 		</encoder>
-	</appender>
+	</appender>-->
 
 	<!-- 级别定义，输出端内容输出级别，大于或等于root定义的level，方能在输出端输出 -->  
 	<!-- ===================================================================== -->
@@ -57,6 +57,6 @@
 	<root level="INFO">
 		<appender-ref ref="console" />
 		<appender-ref ref="DEFAULT-APPENDER" />
-		<appender-ref ref="ERROR-APPENDER"/>
+		<!--<appender-ref ref="ERROR-APPENDER"/>-->
 	</root>
 </configuration>

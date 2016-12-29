@@ -14,8 +14,9 @@
     <name>dky-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <tomcat.prot>8080</tomcat.prot>
-        <tomcat.uriEncoding>UTF-8</tomcat.uriEncoding>
+        <jetty.version>7.6.14.v20131031</jetty.version>
+        <webserver.port>8080</webserver.port>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
@@ -50,6 +51,7 @@
             <artifactId>dky-business</artifactId>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -64,11 +66,35 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <path>/${project.artifactId}</path>
-                    <port>${tomcat.prot}</port>
-                    <uriEncoding>${tomcat.uriEncoding}</uriEncoding>
+                    <port>${webserver.port}</port>
+                    <uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+                </configuration>
+            </plugin>
+
+            <!-- jetty插件 -->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${webserver.port}</port>
+                        </connector>
+                    </connectors>
+                    <webAppConfig>
+                        <contextPath>/${project.artifactId}</contextPath>
+                    </webAppConfig>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>org.mortbay.util.URI.charset</name>
+                            <value>${project.build.sourceEncoding}</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <stopKey/>
+                    <stopPort/>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

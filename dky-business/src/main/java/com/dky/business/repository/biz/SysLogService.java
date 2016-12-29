@@ -14,4 +14,6 @@ public interface SysLogService extends BaseService<SysLog,Integer> {
     public ReturnT<List<SysLog>> query(SysLog sysLog);
 
     public ReturnT<PageList<SysLog>> pageList(SysLog sysLog);
+
+    public ReturnT<List<SysLog>> queryList(SysLog sysLog);
 }

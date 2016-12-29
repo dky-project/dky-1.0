@@ -23,6 +23,11 @@ public class SysLogController {
         return sysLogService.query(sysLog);
     }
 
+    @RequestMapping("query")
+    public ReturnT query(SysLog sysLog){
+        return sysLogService.queryList(sysLog);
+    }
+
     @RequestMapping("page")
     public ReturnT getPage(SysLog sysLog){
         return sysLogService.pageList(sysLog);
