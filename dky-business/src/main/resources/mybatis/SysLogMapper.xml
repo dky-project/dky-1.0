@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wonpera.cq.business.repository.repository.SysLogDao">
+
+	<sql id="requestAllFields">
+		<![CDATA[
+            id,
+            orgName,
+            roleName,
+            operationType,
+            modules,
+            operationTime,
+            operation,
+            createTime,
+            remark,
+            account
+        ]]>
+	</sql>
+
+	<sql id="whereClause">
+		<where>
+			<if test="null!=id">AND id = #{id}</if>
+			<if test="null!=orgName and ''!=orgName">AND orgName = #{orgName}</if>
+			<if test="null!=roleName and ''!=roleName">AND roleName = #{roleName}</if>
+			<if test="null!=operationType and ''!=operationType">AND operationType = #{operationType}</if>
+			<if test="null!=modules and ''!=modules">AND modules = #{modules}</if>
+			<if test="null!=operation and ''!=operation">AND operation = #{operation}</if>
+			<if test="null!=remark and ''!=remark">AND remark = #{remark}</if>
+			<if test="null!=account and ''!=account">AND account = #{account}</if>
+			<include refid="extendedWhereClause" />
+		</where>
+	</sql>
+
+	<insert id="add" useGeneratedKeys="true" parameterType="com.wonpera.cq.common.bean.SysLog" keyProperty="id">
+		INSERT INTO log
+		<trim prefix="(" suffix=")" prefixOverrides=",">
+			<if test="null!=orgName and ''!=orgName">,orgName</if>
+			<if test="null!=roleName and ''!=roleName">,roleName</if>
+			<if test="null!=operationType and ''!=operationType">,operationType</if>
+			<if test="null!=modules and ''!=modules">,modules</if>
+			<if test="null!=operationTime">,operationTime</if>
+			<if test="null!=operation and ''!=operation">,operation</if>
+			<if test="null!=createTime">,createTime</if>
+			<if test="null!=remark and ''!=remark">,remark</if>
+			<if test="null!=account and ''!=account">,account</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")" prefixOverrides=",">
+			<if test="null!=orgName and ''!=orgName">,#{orgName}</if>
+			<if test="null!=roleName and ''!=roleName">,#{roleName}</if>
+			<if test="null!=operationType and ''!=operationType">,#{operationType}</if>
+			<if test="null!=modules and ''!=modules">,#{modules}</if>
+			<if test="null!=operationTime">,#{operationTime}</if>
+			<if test="null!=operation and ''!=operation">,#{operation}</if>
+			<if test="null!=createTime">,#{createTime}</if>
+			<if test="null!=remark and ''!=remark">,#{remark}</if>
+			<if test="null!=account and ''!=account">,#{account}</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.wonpera.cq.common.bean.SysLog">
+		UPDATE log
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="null!=orgName and ''!=orgName">,orgName = #{orgName}</if>
+			<if test="null!=roleName and ''!=roleName">,roleName = #{roleName}</if>
+			<if test="null!=operationType and ''!=operationType">,operationType = #{operationType}</if>
+			<if test="null!=modules and ''!=modules">,modules = #{modules}</if>
+			<if test="null!=operationTime">,operationTime = #{operationTime}</if>
+			<if test="null!=operation and ''!=operation">,operation = #{operation}</if>
+			<if test="null!=createTime">,createTime = #{createTime}</if>
+			<if test="null!=remark and ''!=remark">,remark = #{remark}</if>
+			<if test="null!=account and ''!=account">,account = #{account}</if>
+			<include refid="extendedUpdateSql" />
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+	<select id="query" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="com.wonpera.cq.common.bean.SysLog">
+		SELECT <include refid="requestAllFields"/> FROM log
+		<include refid="whereClause" />
+		<include refid="extendedOrderByClause" />
+		<if test="null!=requestOffset">
+			LIMIT #{requestOffset}, #{requestCount}
+		</if>
+	</select>
+
+	<select id="get" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="com.wonpera.cq.common.bean.SysLog">
+		SELECT <include refid="requestAllFields"/> FROM log
+		<include refid="whereClause" />
+		LIMIT 1
+	</select>
+
+	<select id="getById" parameterType="long" resultType="com.wonpera.cq.common.bean.SysLog">
+		SELECT <include refid="requestAllFields"/> FROM log WHERE id = #{id}
+	</select>
+
+	<select id="count" parameterType="com.wonpera.cq.common.bean.SysLog" resultType="int">
+		SELECT COUNT(1) FROM log <include refid="whereClause" />
+	</select>
+
+	<!-- 扩展的更新等语句（自定义）-->
+	<sql id="extendedUpdateSql">
+		<if test="null!=extendedParameter">
+
+		</if>
+	</sql>
+
+	<!-- 扩展的条件过滤语句（自定义）-->
+	<sql id="extendedWhereClause">
+		<if test="null!=extendedParameter">
+
+		</if>
+	</sql>
+
+	<!-- 扩展的排序等语句（自定义）-->
+	<sql id="extendedOrderByClause">
+		<if test="null!=extendedParameter">
+
+		</if>
+	</sql>
+
+</mapper>
