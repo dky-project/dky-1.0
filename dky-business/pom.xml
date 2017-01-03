@@ -94,6 +94,12 @@
         </dependency>
         <!-- AOP end -->
 
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.dky</groupId>
             <artifactId>dky-common</artifactId>

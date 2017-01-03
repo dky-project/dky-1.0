@@ -10,7 +10,8 @@
 		<module>dky-web</module>
 		<module>dky-common</module>
 		<module>dky-business</module>
-	</modules>
+        <!--<module>dky-generator</module>-->
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>dky</name>

@@ -12,4 +12,7 @@ public class GlobConts {
      * 默认分页大小
      */
     public static final int DEFUALT_PAGE_SIZE = 10;
+
+
+    public static final Long MAX_EXPIRE_TIME = Long.valueOf(Long.parseLong(String.valueOf(2147483647)) * 1000L);
 }
