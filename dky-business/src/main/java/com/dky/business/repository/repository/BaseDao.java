@@ -1,5 +1,6 @@
 package com.dky.business.repository.repository;
 
+
 import java.util.List;
 
 /**
@@ -20,5 +21,18 @@ public interface BaseDao<T,K> {
     int delete(K var1);
 
     int count(T var1);
+
+
+    int deleteByPrimaryKey(K id);
+
+    int insert(T record);
+
+    int insertSelective(T record);
+
+    T selectByPrimaryKey(K id);
+
+    int updateByPrimaryKeySelective(T record);
+
+    int updateByPrimaryKey(T record);
 
 }
