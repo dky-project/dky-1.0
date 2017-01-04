@@ -1,7 +1,7 @@
 package com.dky.business.repository.session;
 
 import com.dky.business.repository.cache.RedisCacheManager;
-import com.dky.common.bean.User;
+import com.dky.common.bean.SessionUser;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.utils.CookieUtils;
 import com.dky.common.utils.DkyStringUtils;
@@ -29,7 +29,7 @@ public class SessionProcess {
      * @param timeout
      * @return
      */
-    public String login(User user,HttpServletResponse response,Long timeout){
+    public String login(SessionUser user, HttpServletResponse response, Long timeout){
         if(user != null){
             String token = DkyStringUtils.uuidString();
             //存入redis
@@ -58,11 +58,11 @@ public class SessionProcess {
         }
     }
 
-    public User getSessionUser(String accessToken){
+    public SessionUser getSessionUser(String accessToken){
         if(StringUtils.isEmpty(accessToken)){
             return null;
         }
-        return (User)redisCacheManager.get(accessToken);
+        return (SessionUser)redisCacheManager.get(accessToken);
     }
 
     /**

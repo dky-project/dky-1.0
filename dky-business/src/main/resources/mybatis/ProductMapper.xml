@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.Product" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="TIMESTAMP" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="C_UOM_ID" property="cUomId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="M_SIZEGROUP_ID" property="mSizegroupId" jdbcType="DECIMAL" />
+    <result column="M_ATTRIBUTESET_ID" property="mAttributesetId" jdbcType="DECIMAL" />
+    <result column="IMAGEURL" property="imageurl" jdbcType="VARCHAR" />
+    <result column="M_DIM1_ID" property="mDim1Id" jdbcType="DECIMAL" />
+    <result column="M_DIM2_ID" property="mDim2Id" jdbcType="DECIMAL" />
+    <result column="M_DIM3_ID" property="mDim3Id" jdbcType="DECIMAL" />
+    <result column="M_DIM4_ID" property="mDim4Id" jdbcType="DECIMAL" />
+    <result column="M_DIM5_ID" property="mDim5Id" jdbcType="DECIMAL" />
+    <result column="M_DIM6_ID" property="mDim6Id" jdbcType="DECIMAL" />
+    <result column="M_DIM7_ID" property="mDim7Id" jdbcType="DECIMAL" />
+    <result column="M_DIM8_ID" property="mDim8Id" jdbcType="DECIMAL" />
+    <result column="M_DIM9_ID" property="mDim9Id" jdbcType="DECIMAL" />
+    <result column="M_DIM10_ID" property="mDim10Id" jdbcType="DECIMAL" />
+    <result column="SERIALNO" property="serialno" jdbcType="VARCHAR" />
+    <result column="PROAREA" property="proarea" jdbcType="VARCHAR" />
+    <result column="BATCHNO" property="batchno" jdbcType="VARCHAR" />
+    <result column="FLOWNO" property="flowno" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="DOCUMENTNOTE" property="documentnote" jdbcType="VARCHAR" />
+    <result column="PRECOST" property="precost" jdbcType="DECIMAL" />
+    <result column="PRICELIST" property="pricelist" jdbcType="DECIMAL" />
+    <result column="HELP" property="help" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="DESCRIPTIONURL" property="descriptionurl" jdbcType="VARCHAR" />
+    <result column="VERSIONNO" property="versionno" jdbcType="VARCHAR" />
+    <result column="M_DIM11_ID" property="mDim11Id" jdbcType="DECIMAL" />
+    <result column="M_DIM12_ID" property="mDim12Id" jdbcType="DECIMAL" />
+    <result column="ISFAIRPRO" property="isfairpro" jdbcType="CHAR" />
+    <result column="M_DIM13_ID" property="mDim13Id" jdbcType="DECIMAL" />
+    <result column="M_DIM14_ID" property="mDim14Id" jdbcType="DECIMAL" />
+    <result column="M_DIM15_ID" property="mDim15Id" jdbcType="DECIMAL" />
+    <result column="FAIRPDTTYPE" property="fairpdttype" jdbcType="VARCHAR" />
+    <result column="COLORS" property="colors" jdbcType="VARCHAR" />
+    <result column="SIZES" property="sizes" jdbcType="VARCHAR" />
+    <result column="INTSCODE" property="intscode" jdbcType="VARCHAR" />
+    <result column="STATUSTIME" property="statustime" jdbcType="TIMESTAMP" />
+    <result column="STATUSERID" property="statuserid" jdbcType="DECIMAL" />
+    <result column="AU_PI_ID" property="auPiId" jdbcType="DECIMAL" />
+    <result column="AU_STATE" property="auState" jdbcType="CHAR" />
+    <result column="M_DIM16_ID" property="mDim16Id" jdbcType="DECIMAL" />
+    <result column="M_DIM17_ID" property="mDim17Id" jdbcType="DECIMAL" />
+    <result column="M_DIM18_ID" property="mDim18Id" jdbcType="DECIMAL" />
+    <result column="M_DIM19_ID" property="mDim19Id" jdbcType="DECIMAL" />
+    <result column="M_DIM20_ID" property="mDim20Id" jdbcType="DECIMAL" />
+    <result column="ADDSDESC" property="addsdesc" jdbcType="VARCHAR" />
+    <result column="SHORTNAME" property="shortname" jdbcType="VARCHAR" />
+    <result column="STEPCODE" property="stepcode" jdbcType="VARCHAR" />
+    <result column="DATASOURCE" property="datasource" jdbcType="VARCHAR" />
+    <result column="FABCODE" property="fabcode" jdbcType="VARCHAR" />
+    <result column="FABELEMENT" property="fabelement" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+    <result column="GENERATED" property="generated" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="PROTYPE" property="protype" jdbcType="CHAR" />
+    <result column="MAINFABREMARK" property="mainfabremark" jdbcType="VARCHAR" />
+    <result column="WITHFABREMARK" property="withfabremark" jdbcType="VARCHAR" />
+    <result column="Y_FACTORY_ID" property="yFactoryId" jdbcType="DECIMAL" />
+    <result column="FABDATE" property="fabdate" jdbcType="DECIMAL" />
+    <result column="CLOTHDATE" property="clothdate" jdbcType="DECIMAL" />
+    <result column="OTCDATE" property="otcdate" jdbcType="DECIMAL" />
+    <result column="STYLEDESCRIPTION" property="styledescription" jdbcType="VARCHAR" />
+    <result column="BADICON" property="badicon" jdbcType="VARCHAR" />
+    <result column="CRAFTWORKIMG" property="craftworkimg" jdbcType="VARCHAR" />
+    <result column="PACKSTYLE" property="packstyle" jdbcType="VARCHAR" />
+    <result column="TAILORNOTICE" property="tailornotice" jdbcType="VARCHAR" />
+    <result column="METRICIMG" property="metricimg" jdbcType="VARCHAR" />
+    <result column="CRAFTWORKIMGTWO" property="craftworkimgtwo" jdbcType="VARCHAR" />
+    <result column="BATHMODE" property="bathmode" jdbcType="VARCHAR" />
+    <result column="Y_STYLE_BOM_ID" property="yStyleBomId" jdbcType="DECIMAL" />
+    <result column="CRAFTWORKIMGTHREE" property="craftworkimgthree" jdbcType="VARCHAR" />
+    <result column="Y_PROOF_ID" property="yProofId" jdbcType="DECIMAL" />
+    <result column="CONFIRMCOMMENT" property="confirmcomment" jdbcType="VARCHAR" />
+    <result column="PRICELIST2" property="pricelist2" jdbcType="DECIMAL" />
+    <result column="STANDARD" property="standard" jdbcType="VARCHAR" />
+    <result column="COMPOSITION" property="composition" jdbcType="VARCHAR" />
+    <result column="BATHAREA" property="batharea" jdbcType="VARCHAR" />
+    <result column="QUALITY" property="quality" jdbcType="VARCHAR" />
+    <result column="Y_BATHMODE_ID1" property="yBathmodeId1" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID2" property="yBathmodeId2" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID3" property="yBathmodeId3" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID4" property="yBathmodeId4" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID5" property="yBathmodeId5" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID6" property="yBathmodeId6" jdbcType="DECIMAL" />
+    <result column="Y_BATHMODE_ID7" property="yBathmodeId7" jdbcType="DECIMAL" />
+    <result column="SUGGESTMOQ" property="suggestmoq" jdbcType="DECIMAL" />
+    <result column="B_CODE_FORMAT_ID" property="bCodeFormatId" jdbcType="DECIMAL" />
+    <result column="BOX_QTY" property="boxQty" jdbcType="DECIMAL" />
+    <result column="C_SUPPLIER_ID" property="cSupplierId" jdbcType="DECIMAL" />
+    <result column="M_COLOR_ID" property="mColorId" jdbcType="DECIMAL" />
+    <result column="ACOST" property="acost" jdbcType="DECIMAL" />
+    <result column="PRICEDIS" property="pricedis" jdbcType="DECIMAL" />
+    <result column="PRICE_SUG" property="priceSug" jdbcType="DECIMAL" />
+    <result column="ORIGCOST" property="origcost" jdbcType="DECIMAL" />
+    <result column="TRANSSTATUS" property="transstatus" jdbcType="DECIMAL" />
+    <result column="E_NAME" property="eName" jdbcType="VARCHAR" />
+    <result column="MARKETDATE" property="marketdate" jdbcType="DECIMAL" />
+    <result column="ISSPECIAL" property="isspecial" jdbcType="CHAR" />
+    <result column="CATEGORYMARK" property="categorymark" jdbcType="VARCHAR" />
+    <result column="CATALOGNO" property="catalogno" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION2" property="description2" jdbcType="VARCHAR" />
+    <result column="CLOTHES" property="clothes" jdbcType="VARCHAR" />
+    <result column="ISINTERNAL" property="isinternal" jdbcType="CHAR" />
+    <result column="PDT_PAIRUP" property="pdtPairup" jdbcType="VARCHAR" />
+    <result column="C_CURRENCY_ID" property="cCurrencyId" jdbcType="DECIMAL" />
+    <result column="PRICEMEMBER" property="pricemember" jdbcType="DECIMAL" />
+    <result column="MATCHRULE" property="matchrule" jdbcType="VARCHAR" />
+    <result column="ISGIFT" property="isgift" jdbcType="CHAR" />
+    <result column="VIRTUALNAME" property="virtualname" jdbcType="VARCHAR" />
+    <result column="LOWEST_DISCOUNT" property="lowestDiscount" jdbcType="DECIMAL" />
+    <result column="M_DIM21_ID" property="mDim21Id" jdbcType="DECIMAL" />
+    <result column="ISAGT" property="isagt" jdbcType="CHAR" />
+    <result column="AGTDATE" property="agtdate" jdbcType="DECIMAL" />
+    <result column="IMP_STAND" property="impStand" jdbcType="VARCHAR" />
+    <result column="COLORSALIAS" property="colorsalias" jdbcType="VARCHAR" />
+    <result column="Y_PRICE_ACTUAL" property="yPriceActual" jdbcType="DECIMAL" />
+    <result column="ISTEUSCLR" property="isteusclr" jdbcType="CHAR" />
+    <result column="SELFWORK" property="selfwork" jdbcType="CHAR" />
+    <result column="PDT_TYPE" property="pdtType" jdbcType="CHAR" />
+    <result column="M_DIM_NEW1_ID" property="mDimNew1Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW2_ID" property="mDimNew2Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW3_ID" property="mDimNew3Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW4_ID" property="mDimNew4Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW5_ID" property="mDimNew5Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW6_ID" property="mDimNew6Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW7_ID" property="mDimNew7Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW8_ID" property="mDimNew8Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW9_ID" property="mDimNew9Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW10_ID" property="mDimNew10Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW11_ID" property="mDimNew11Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW12_ID" property="mDimNew12Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW13_ID" property="mDimNew13Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW14_ID" property="mDimNew14Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW15_ID" property="mDimNew15Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW16_ID" property="mDimNew16Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW17_ID" property="mDimNew17Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW18_ID" property="mDimNew18Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW19_ID" property="mDimNew19Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW20_ID" property="mDimNew20Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW21_ID" property="mDimNew21Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW22_ID" property="mDimNew22Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW23_ID" property="mDimNew23Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW24_ID" property="mDimNew24Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW25_ID" property="mDimNew25Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW26_ID" property="mDimNew26Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW27_ID" property="mDimNew27Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW28_ID" property="mDimNew28Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW29_ID" property="mDimNew29Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW30_ID" property="mDimNew30Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW31_ID" property="mDimNew31Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW32_ID" property="mDimNew32Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW33_ID" property="mDimNew33Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW34_ID" property="mDimNew34Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW35_ID" property="mDimNew35Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW36_ID" property="mDimNew36Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW37_ID" property="mDimNew37Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW38_ID" property="mDimNew38Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW39_ID" property="mDimNew39Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW40_ID" property="mDimNew40Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW41_ID" property="mDimNew41Id" jdbcType="DECIMAL" />
+    <result column="XW_VALUE" property="xwValue" jdbcType="VARCHAR" />
+    <result column="YC_VALUE" property="ycValue" jdbcType="VARCHAR" />
+    <result column="JK_VALUE" property="jkValue" jdbcType="DECIMAL" />
+    <result column="XC_VALUE" property="xcValue" jdbcType="DECIMAL" />
+    <result column="LBCC_VALUE" property="lbccValue" jdbcType="DECIMAL" />
+    <result column="XBCC_VALUE" property="xbccValue" jdbcType="DECIMAL" />
+    <result column="XKCC_VALUE" property="xkccValue" jdbcType="DECIMAL" />
+    <result column="DK_VALUE" property="dkValue" jdbcType="VARCHAR" />
+    <result column="DKSL_VALUE" property="dkslValue" jdbcType="DECIMAL" />
+    <result column="HZXC_VALUE" property="hzxcValue" jdbcType="DECIMAL" />
+    <result column="DC1_VALUE" property="dc1Value" jdbcType="DECIMAL" />
+    <result column="DC_VALUE" property="dcValue" jdbcType="DECIMAL" />
+    <result column="MJK_VALUE" property="mjkValue" jdbcType="DECIMAL" />
+    <result column="MJC_VALUE" property="mjcValue" jdbcType="DECIMAL" />
+    <result column="IS_RETAIL" property="isRetail" jdbcType="CHAR" />
+    <result column="NOTLIMITDIS" property="notlimitdis" jdbcType="CHAR" />
+    <result column="IS_MSCODE" property="isMscode" jdbcType="CHAR" />
+    <result column="COLORARR_DES" property="colorarrDes" jdbcType="VARCHAR" />
+    <result column="DK_NUMBER" property="dkNumber" jdbcType="VARCHAR" />
+    <result column="COLORARR" property="colorarr" jdbcType="VARCHAR" />
+    <result column="COLORVALUE" property="colorvalue" jdbcType="DECIMAL" />
+    <result column="AMJ_VALUE" property="amjValue" jdbcType="VARCHAR" />
+    <result column="QTMJ_VALUE" property="qtmjValue" jdbcType="VARCHAR" />
+    <result column="HZXC1_VALUE" property="hzxc1Value" jdbcType="DECIMAL" />
+    <result column="QTXK_VALUE" property="qtxkValue" jdbcType="VARCHAR" />
+    <result column="JZ_VALUE" property="jzValue" jdbcType="VARCHAR" />
+    <result column="QTXB_VALUE" property="qtxbValue" jdbcType="VARCHAR" />
+    <result column="TANGZ" property="tangz" jdbcType="VARCHAR" />
+    <result column="HUAX" property="huax" jdbcType="VARCHAR" />
+    <result column="LXSX2_VALUE" property="lxsx2Value" jdbcType="VARCHAR" />
+    <result column="LXSX1_VALUE" property="lxsx1Value" jdbcType="VARCHAR" />
+    <result column="QTLB_VALUE" property="qtlbValue" jdbcType="VARCHAR" />
+    <result column="LXSX3_VALUE" property="lxsx3Value" jdbcType="VARCHAR" />
+    <result column="LXSX4_VALUE" property="lxsx4Value" jdbcType="VARCHAR" />
+    <result column="LXSX5_VALUE" property="lxsx5Value" jdbcType="VARCHAR" />
+    <result column="LING_NUMBER2_VALUE" property="lingNumber2Value" jdbcType="VARCHAR" />
+    <result column="LING_NUMBER1_VALUE" property="lingNumber1Value" jdbcType="VARCHAR" />
+    <result column="LING_VALUE" property="lingValue" jdbcType="VARCHAR" />
+    <result column="QTXBZZ_VALUE" property="qtxbzzValue" jdbcType="VARCHAR" />
+    <result column="XBC_VALUE" property="xbcValue" jdbcType="DECIMAL" />
+    <result column="LING_CC_VALUE" property="lingCcValue" jdbcType="DECIMAL" />
+    <result column="XBZZ_VALUE" property="xbzzValue" jdbcType="VARCHAR" />
+    <result column="QTJX_VALUE" property="qtjxValue" jdbcType="VARCHAR" />
+    <result column="QTXX_VALUE" property="qtxxValue" jdbcType="VARCHAR" />
+    <result column="XB_VALUE" property="xbValue" jdbcType="VARCHAR" />
+    <result column="SIZE_TYPE" property="sizeType" jdbcType="CHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="PRICE1" property="price1" jdbcType="DECIMAL" />
+    <result column="JL_PRICE" property="jlPrice" jdbcType="DECIMAL" />
+    <result column="APPROVE_ID" property="approveId" jdbcType="DECIMAL" />
+    <result column="RETAIL_PRICE" property="retailPrice" jdbcType="DECIMAL" />
+    <result column="RETAIL_PRICE1" property="retailPrice1" jdbcType="DECIMAL" />
+    <result column="MPTBELONGTYPE" property="mptbelongtype" jdbcType="CHAR" />
+    <result column="M_BASEMPTSIZE_ID" property="mBasemptsizeId" jdbcType="DECIMAL" />
+    <result column="XWOLD_VALUE" property="xwoldValue" jdbcType="VARCHAR" />
+    <result column="YCOLD_VALUE" property="ycoldValue" jdbcType="VARCHAR" />
+    <result column="JKOLD_VALUE" property="jkoldValue" jdbcType="VARCHAR" />
+    <result column="XCOLD_VALUE" property="xcoldValue" jdbcType="VARCHAR" />
+    <result column="SHOWPIC" property="showpic" jdbcType="VARCHAR" />
+    <result column="CZ_DATE" property="czDate" jdbcType="VARCHAR" />
+    <result column="NO" property="no" jdbcType="VARCHAR" />
+    <result column="CUSTOMER" property="customer" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION3" property="description3" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION5" property="description5" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION4" property="description4" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION6" property="description6" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION7" property="description7" jdbcType="VARCHAR" />
+    <result column="C_CUSTOMER_ID1" property="cCustomerId1" jdbcType="DECIMAL" />
+    <result column="M_DIM22_ID" property="mDim22Id" jdbcType="DECIMAL" />
+    <result column="TO_STOREID" property="toStoreid" jdbcType="DECIMAL" />
+    <result column="ACTUALPRICE" property="actualprice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, ISACTIVE, CREATIONDATE, OWNERID, MODIFIEDDATE, MODIFIERID, 
+    C_UOM_ID, NAME, VALUE, M_SIZEGROUP_ID, M_ATTRIBUTESET_ID, IMAGEURL, M_DIM1_ID, M_DIM2_ID, 
+    M_DIM3_ID, M_DIM4_ID, M_DIM5_ID, M_DIM6_ID, M_DIM7_ID, M_DIM8_ID, M_DIM9_ID, M_DIM10_ID, 
+    SERIALNO, PROAREA, BATCHNO, FLOWNO, UNIT, DOCUMENTNOTE, PRECOST, PRICELIST, HELP, 
+    DESCRIPTION, DESCRIPTIONURL, VERSIONNO, M_DIM11_ID, M_DIM12_ID, ISFAIRPRO, M_DIM13_ID, 
+    M_DIM14_ID, M_DIM15_ID, FAIRPDTTYPE, COLORS, SIZES, INTSCODE, STATUSTIME, STATUSERID, 
+    AU_PI_ID, AU_STATE, M_DIM16_ID, M_DIM17_ID, M_DIM18_ID, M_DIM19_ID, M_DIM20_ID, ADDSDESC, 
+    SHORTNAME, STEPCODE, DATASOURCE, FABCODE, FABELEMENT, WEIGHT, GENERATED, STATUS, 
+    PROTYPE, MAINFABREMARK, WITHFABREMARK, Y_FACTORY_ID, FABDATE, CLOTHDATE, OTCDATE, 
+    STYLEDESCRIPTION, BADICON, CRAFTWORKIMG, PACKSTYLE, TAILORNOTICE, METRICIMG, CRAFTWORKIMGTWO, 
+    BATHMODE, Y_STYLE_BOM_ID, CRAFTWORKIMGTHREE, Y_PROOF_ID, CONFIRMCOMMENT, PRICELIST2, 
+    STANDARD, COMPOSITION, BATHAREA, QUALITY, Y_BATHMODE_ID1, Y_BATHMODE_ID2, Y_BATHMODE_ID3, 
+    Y_BATHMODE_ID4, Y_BATHMODE_ID5, Y_BATHMODE_ID6, Y_BATHMODE_ID7, SUGGESTMOQ, B_CODE_FORMAT_ID, 
+    BOX_QTY, C_SUPPLIER_ID, M_COLOR_ID, ACOST, PRICEDIS, PRICE_SUG, ORIGCOST, TRANSSTATUS, 
+    E_NAME, MARKETDATE, ISSPECIAL, CATEGORYMARK, CATALOGNO, DESCRIPTION2, CLOTHES, ISINTERNAL, 
+    PDT_PAIRUP, C_CURRENCY_ID, PRICEMEMBER, MATCHRULE, ISGIFT, VIRTUALNAME, LOWEST_DISCOUNT, 
+    M_DIM21_ID, ISAGT, AGTDATE, IMP_STAND, COLORSALIAS, Y_PRICE_ACTUAL, ISTEUSCLR, SELFWORK, 
+    PDT_TYPE, M_DIM_NEW1_ID, M_DIM_NEW2_ID, M_DIM_NEW3_ID, M_DIM_NEW4_ID, M_DIM_NEW5_ID, 
+    M_DIM_NEW6_ID, M_DIM_NEW7_ID, M_DIM_NEW8_ID, M_DIM_NEW9_ID, M_DIM_NEW10_ID, M_DIM_NEW11_ID, 
+    M_DIM_NEW12_ID, M_DIM_NEW13_ID, M_DIM_NEW14_ID, M_DIM_NEW15_ID, M_DIM_NEW16_ID, M_DIM_NEW17_ID, 
+    M_DIM_NEW18_ID, M_DIM_NEW19_ID, M_DIM_NEW20_ID, M_DIM_NEW21_ID, M_DIM_NEW22_ID, M_DIM_NEW23_ID, 
+    M_DIM_NEW24_ID, M_DIM_NEW25_ID, M_DIM_NEW26_ID, M_DIM_NEW27_ID, M_DIM_NEW28_ID, M_DIM_NEW29_ID, 
+    M_DIM_NEW30_ID, M_DIM_NEW31_ID, M_DIM_NEW32_ID, M_DIM_NEW33_ID, M_DIM_NEW34_ID, M_DIM_NEW35_ID, 
+    M_DIM_NEW36_ID, M_DIM_NEW37_ID, M_DIM_NEW38_ID, M_DIM_NEW39_ID, M_DIM_NEW40_ID, M_DIM_NEW41_ID, 
+    XW_VALUE, YC_VALUE, JK_VALUE, XC_VALUE, LBCC_VALUE, XBCC_VALUE, XKCC_VALUE, DK_VALUE, 
+    DKSL_VALUE, HZXC_VALUE, DC1_VALUE, DC_VALUE, MJK_VALUE, MJC_VALUE, IS_RETAIL, NOTLIMITDIS, 
+    IS_MSCODE, COLORARR_DES, DK_NUMBER, COLORARR, COLORVALUE, AMJ_VALUE, QTMJ_VALUE, 
+    HZXC1_VALUE, QTXK_VALUE, JZ_VALUE, QTXB_VALUE, TANGZ, HUAX, LXSX2_VALUE, LXSX1_VALUE, 
+    QTLB_VALUE, LXSX3_VALUE, LXSX4_VALUE, LXSX5_VALUE, LING_NUMBER2_VALUE, LING_NUMBER1_VALUE, 
+    LING_VALUE, QTXBZZ_VALUE, XBC_VALUE, LING_CC_VALUE, XBZZ_VALUE, QTJX_VALUE, QTXX_VALUE, 
+    XB_VALUE, SIZE_TYPE, PRICE, PRICE1, JL_PRICE, APPROVE_ID, RETAIL_PRICE, RETAIL_PRICE1, 
+    MPTBELONGTYPE, M_BASEMPTSIZE_ID, XWOLD_VALUE, YCOLD_VALUE, JKOLD_VALUE, XCOLD_VALUE, 
+    SHOWPIC, CZ_DATE, NO, CUSTOMER, DESCRIPTION3, DESCRIPTION5, DESCRIPTION4, DESCRIPTION6, 
+    DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
+  </sql>
+
+  <select id="queryViewList" resultMap="BaseResultMap" parameterType="com.dky.common.bean.Product" >
+    select 
+    <include refid="Base_Column_List" />
+    from M_PRODUCT
+    where ID = #{id,jdbcType=DECIMAL}
+    and (PDT_TYPE='YY' or PDT_TYPE='PT')
+  </select>
+
+</mapper>

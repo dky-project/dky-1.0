@@ -2,11 +2,10 @@ package com.dky.web.aspect;
 
 
 import com.dky.business.repository.session.SessionProcess;
-import com.dky.common.bean.User;
+import com.dky.common.bean.SessionUser;
 import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.response.ReturnT;
 import com.dky.common.session.SessionParameter;
-import com.dky.common.session.SessionUser;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -50,7 +49,7 @@ public class SessionAspect implements Ordered {
         if(StringUtils.isEmpty(accessToken)){
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
-        User user = sessionProcess.getSessionUser(accessToken);
+        SessionUser user = sessionProcess.getSessionUser(accessToken);
         if(user == null){
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
@@ -60,7 +59,7 @@ public class SessionAspect implements Ordered {
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
                 if(user != null){
-                    SessionUser sessionUser = new SessionUser();
+                    com.dky.common.session.SessionUser sessionUser = new com.dky.common.session.SessionUser();
                     BeanUtils.copyProperties(user,sessionUser);
                     sessionParameter.setSessionUser(sessionUser);
                 }

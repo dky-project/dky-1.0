@@ -67,6 +67,11 @@ public class ReturnT<T> {
         return this;
     }
 
+    public ReturnT successDefault(){
+        this.assignEnums(ResultCodeEnum.SUCCESS);
+        return this;
+    }
+
 
 
     private void assignEnums(ResultCodeEnum codeEnum){
