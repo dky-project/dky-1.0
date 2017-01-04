@@ -21,7 +21,7 @@
 	<!-- Appenders 														       -->
 	<!-- ===================================================================== -->
 	<!-- [公共Appender] 默认 -->
-	<appender name="DEFAULT-APPENDER"
+	<appender name="STDOUT_LOGGING"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/dky/dky.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -56,7 +56,7 @@
     <!-- ===================================================================== -->
 	<root level="INFO">
 		<appender-ref ref="console" />
-		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="STDOUT_LOGGING" />
 		<!--<appender-ref ref="ERROR-APPENDER"/>-->
 	</root>
 </configuration>
