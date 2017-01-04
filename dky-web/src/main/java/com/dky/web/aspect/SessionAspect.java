@@ -36,7 +36,7 @@ public class SessionAspect implements Ordered {
     @Autowired
     private SessionProcess sessionProcess;
 
-    @Around("execution(* com.dexingworld.hanfu.web.controller..*.*(..))")
+    @Around("execution(* com.dky.web.controller..*.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
         Object[] args = pjp.getArgs();
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -44,6 +44,9 @@ public class SessionAspect implements Ordered {
             return pjp.proceed();
         }
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();//登陆方法
+        if(method.getName().equals("loginUser")){
+            return pjp.proceed();
+        }
         HttpServletRequest request = requestAttributes.getRequest();//获取request
         String accessToken = sessionProcess.getAcessToken(request);
         if(StringUtils.isEmpty(accessToken)){
@@ -59,7 +62,7 @@ public class SessionAspect implements Ordered {
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
                 if(user != null){
-                    com.dky.common.session.SessionUser sessionUser = new com.dky.common.session.SessionUser();
+                    SessionUser sessionUser = new SessionUser();
                     BeanUtils.copyProperties(user,sessionUser);
                     sessionParameter.setSessionUser(sessionUser);
                 }

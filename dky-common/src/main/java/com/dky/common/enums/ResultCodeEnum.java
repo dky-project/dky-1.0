@@ -10,6 +10,7 @@ public enum  ResultCodeEnum {
     FAILURE(500,false,"失败"),
     NOLOGIN(400,false,"未登陆"),
     USER_LOGIN_ERROR(1001,false,"用户不存在"),
+    LOGIN_PASSWORD_ERROR(1002,false,"登录密码错误"),
     ;
 
 

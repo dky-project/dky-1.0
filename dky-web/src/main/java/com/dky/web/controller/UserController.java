@@ -22,6 +22,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SessionProcess sessionProcess;
+
     @RequestMapping(value = "loginUser", name = "登录")
     public ReturnT loginUser(LoginUserParam param, HttpServletResponse response) {
         ReturnT<Users> returnT = userService.loginUser(param);
@@ -32,8 +35,7 @@ public class UserController {
         sessionUser.setEmail(returnT.getData().getEmail());
         sessionUser.setcCustomerId(returnT.getData().getcCustomerId());
         sessionUser.setcStoreId(returnT.getData().getcStoreId());
-        SessionProcess sessionProcess = new SessionProcess();
-        sessionProcess.login(sessionUser, response, 60 * 60 * 24 * 7 * 1000L);
-        return new ReturnT().successDefault();
+        String token = sessionProcess.login(sessionUser, response, 60 * 60 * 24 * 7 * 1000L);
+        return new ReturnT().sucessData(token);
     }
 }

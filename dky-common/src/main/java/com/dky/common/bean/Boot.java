@@ -29,6 +29,8 @@ public class Boot extends PojoObjectBase {
 
     private String isactive;
 
+    private String jumpurl;
+
     public Long getId() {
         return id;
     }
@@ -115,5 +117,13 @@ public class Boot extends PojoObjectBase {
 
     public void setIsactive(String isactive) {
         this.isactive = isactive == null ? null : isactive.trim();
+    }
+
+    public String getJumpurl() {
+        return jumpurl;
+    }
+
+    public void setJumpurl(String jumpurl) {
+        this.jumpurl = jumpurl == null ? null : jumpurl.trim();
     }
 }

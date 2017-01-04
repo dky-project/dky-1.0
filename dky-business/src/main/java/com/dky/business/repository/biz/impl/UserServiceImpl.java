@@ -25,10 +25,13 @@ public class UserServiceImpl implements UserService {
     public ReturnT<Users> loginUser(LoginUserParam param) {
         ReturnT<Users> result = new ReturnT<>();
         Users users = usersMapper.selectByEmail(param.getEmail());
+        if(users == null){
+            return result.failureData(ResultCodeEnum.USER_LOGIN_ERROR);
+        }
         if (users == null || !users.getPassword().equals(param.getPassword())){
-            return result.failureData(ResultCodeEnum.USER_LOGIN_ERROR.getCode(),ResultCodeEnum.USER_LOGIN_ERROR.getMessage());
+            return result.failureData(ResultCodeEnum.LOGIN_PASSWORD_ERROR);
         }
         result.setData(users);
-        return new ReturnT().successDefault();
+        return result.successDefault();
     }
 }

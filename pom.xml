@@ -24,7 +24,7 @@
 		<spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
 		<spring-data-redis.version>1.4.2.RELEASE</spring-data-redis.version>
 		<tomcat-jdbc.version>7.0.57</tomcat-jdbc.version>
-		<hibernate-validator.version>5.2.3.Final</hibernate-validator.version>
+		<hibernate-validator.version>4.3.1.Final</hibernate-validator.version>
 		<aspectj.version>1.8.6</aspectj.version>
 		<shiro.version>1.2.3</shiro.version>
 		<mybatis.version>3.2.2</mybatis.version>
@@ -52,7 +52,7 @@
 		<!-- 项目属性 -->
 		<jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
 		<jdbc.driver.artifactId>ojdbc14</jdbc.driver.artifactId>
-		<jdbc.driver.version>10.2.0.4.0</jdbc.driver.version>
+		<jdbc.driver.version>10.2.0.1.0</jdbc.driver.version>
 		<poi.version>3.9</poi.version>
 		<freemarker.version>2.3.20</freemarker.version>
 	</properties>

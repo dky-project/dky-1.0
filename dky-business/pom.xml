@@ -37,11 +37,6 @@
             <artifactId>mybatis-spring</artifactId>
         </dependency>
 
-        <!-- JSR303 BeanValidator
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency> -->
         <!-- LOGGING begin -->
         <dependency>
             <groupId>org.slf4j</groupId>

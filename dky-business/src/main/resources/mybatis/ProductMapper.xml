@@ -281,7 +281,7 @@
     DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
   </sql>
 
-  <select id="getProductInfo" resultMap="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
+  <select id="getProductInfo" resultType="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
     select 
       t1.name,
       t2.ATTRIBNAME as mDimNew11Text,

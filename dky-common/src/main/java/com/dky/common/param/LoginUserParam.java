@@ -1,5 +1,7 @@
 package com.dky.common.param;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 /**
@@ -11,6 +13,7 @@ public class LoginUserParam implements Serializable {
     /**
      * 登录邮箱
      */
+    @NotEmpty(message = "不能为空")
     private String email;
     /**
      * 登录密码

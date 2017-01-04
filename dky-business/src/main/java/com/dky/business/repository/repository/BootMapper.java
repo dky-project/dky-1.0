@@ -2,6 +2,8 @@ package com.dky.business.repository.repository;
 
 import com.dky.common.bean.Boot;
 
+import java.util.List;
+
 @MyBatisRepository
 public interface BootMapper {
     int deleteByPrimaryKey(Long id);
@@ -15,4 +17,12 @@ public interface BootMapper {
     int updateByPrimaryKeySelective(Boot record);
 
     int updateByPrimaryKey(Boot record);
+
+
+    /**
+     * 查询可用的启动页
+     * @param boot
+     * @return
+     */
+    List<Boot> queryValid(Boot boot);
 }
