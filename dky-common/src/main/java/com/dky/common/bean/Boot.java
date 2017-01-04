@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 启动页
  */
-public class Boot {
+public class Boot extends PojoObjectBase {
     private Long id;
 
     private Long adClientId;

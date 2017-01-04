@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.Users" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="SUPERVISOR_ID" property="supervisorId" jdbcType="DECIMAL" />
+    <result column="PA_GOALPRIVATE_ID" property="paGoalprivateId" jdbcType="DECIMAL" />
+    <result column="C_BPARTNER_ID" property="cBpartnerId" jdbcType="DECIMAL" />
+    <result column="PROCESSING" property="processing" jdbcType="CHAR" />
+    <result column="C_BPARTNER_LOCATION_ID" property="cBpartnerLocationId" jdbcType="DECIMAL" />
+    <result column="C_GREETING_ID" property="cGreetingId" jdbcType="DECIMAL" />
+    <result column="LASTCONTACT" property="lastcontact" jdbcType="DECIMAL" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DECIMAL" />
+    <result column="AD_ORGTRX_ID" property="adOrgtrxId" jdbcType="DECIMAL" />
+    <result column="ISLDAPAUTHORIZED" property="isldapauthorized" jdbcType="CHAR" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="TIMESTAMP" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="PASSWORDHASH" property="passwordhash" jdbcType="VARCHAR" />
+    <result column="ISENABLED" property="isenabled" jdbcType="DECIMAL" />
+    <result column="ISEMPLOYEE" property="isemployee" jdbcType="DECIMAL" />
+    <result column="ISADMIN" property="isadmin" jdbcType="DECIMAL" />
+    <result column="USERTYPE" property="usertype" jdbcType="DECIMAL" />
+    <result column="TRUENAME" property="truename" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="EMAILUSER" property="emailuser" jdbcType="VARCHAR" />
+    <result column="EMAILUSERPW" property="emailuserpw" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="PHONE2" property="phone2" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="LASTRESULT" property="lastresult" jdbcType="VARCHAR" />
+    <result column="EMAILVERIFY" property="emailverify" jdbcType="VARCHAR" />
+    <result column="C_DEPARTMENT_ID" property="cDepartmentId" jdbcType="DECIMAL" />
+    <result column="LANGUAGE" property="language" jdbcType="VARCHAR" />
+    <result column="IS_OTP" property="isOtp" jdbcType="CHAR" />
+    <result column="OTP_LENGTH" property="otpLength" jdbcType="DECIMAL" />
+    <result column="OTP_SECONDS" property="otpSeconds" jdbcType="DECIMAL" />
+    <result column="OTP_SECRET" property="otpSecret" jdbcType="VARCHAR" />
+    <result column="OTP_COUNTER" property="otpCounter" jdbcType="DECIMAL" />
+    <result column="IS_OTP_ONLY" property="isOtpOnly" jdbcType="CHAR" />
+    <result column="OTP_CDATE" property="otpCdate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_IP_RULE" property="loginIpRule" jdbcType="VARCHAR" />
+    <result column="ISSMS" property="issms" jdbcType="CHAR" />
+    <result column="IS_OUT" property="isOut" jdbcType="CHAR" />
+    <result column="ASSIGNEE_ID" property="assigneeId" jdbcType="DECIMAL" />
+    <result column="ISSALER" property="issaler" jdbcType="CHAR" />
+    <result column="C_STORE_ID" property="cStoreId" jdbcType="DECIMAL" />
+    <result column="DISCOUNTLIMIT" property="discountlimit" jdbcType="DECIMAL" />
+    <result column="ISOPR" property="isopr" jdbcType="CHAR" />
+    <result column="SAASVENDOR" property="saasvendor" jdbcType="VARCHAR" />
+    <result column="SAASUSER" property="saasuser" jdbcType="VARCHAR" />
+    <result column="HR_EMPLOYEE_ID" property="hrEmployeeId" jdbcType="DECIMAL" />
+    <result column="C_CUSTOMER_ID" property="cCustomerId" jdbcType="DECIMAL" />
+    <result column="C_CUSTOMERUP_ID" property="cCustomerupId" jdbcType="DECIMAL" />
+    <result column="AREAMNG_ID" property="areamngId" jdbcType="DECIMAL" />
+    <result column="SGRADE" property="sgrade" jdbcType="DECIMAL" />
+    <result column="C_PRICEREGION_ID" property="cPriceregionId" jdbcType="DECIMAL" />
+    <result column="C_SUPPLIER_ID" property="cSupplierId" jdbcType="DECIMAL" />
+    <result column="SUBSYSTEMS" property="subsystems" jdbcType="VARCHAR" />
+    <result column="PASSWORDEXPIRATIONDATE" property="passwordexpirationdate" jdbcType="TIMESTAMP" />
+    <result column="PASSWORDRESET" property="passwordreset" jdbcType="CHAR" />
+    <result column="ISRET" property="isret" jdbcType="CHAR" />
+    <result column="WEBPOS_PER" property="webposPer" jdbcType="VARCHAR" />
+    <result column="HR_POST_ID" property="hrPostId" jdbcType="DECIMAL" />
+    <result column="ISSYS" property="issys" jdbcType="CHAR" />
+    <result column="IS_SYS_USER" property="isSysUser" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dky.common.bean.Users" extends="BaseResultMap" >
+    <result column="MAC" property="mac" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, ISACTIVE, SUPERVISOR_ID, PA_GOALPRIVATE_ID, C_BPARTNER_ID, 
+    PROCESSING, C_BPARTNER_LOCATION_ID, C_GREETING_ID, LASTCONTACT, BIRTHDAY, AD_ORGTRX_ID, 
+    ISLDAPAUTHORIZED, MODIFIERID, CREATIONDATE, MODIFIEDDATE, OWNERID, PASSWORDHASH, 
+    ISENABLED, ISEMPLOYEE, ISADMIN, USERTYPE, TRUENAME, NAME, DESCRIPTION, PASSWORD, 
+    EMAIL, EMAILUSER, EMAILUSERPW, TITLE, COMMENTS, PHONE, PHONE2, FAX, LASTRESULT, EMAILVERIFY, 
+    C_DEPARTMENT_ID, LANGUAGE, IS_OTP, OTP_LENGTH, OTP_SECONDS, OTP_SECRET, OTP_COUNTER, 
+    IS_OTP_ONLY, OTP_CDATE, LOGIN_IP_RULE, ISSMS, IS_OUT, ASSIGNEE_ID, ISSALER, C_STORE_ID, 
+    DISCOUNTLIMIT, ISOPR, SAASVENDOR, SAASUSER, HR_EMPLOYEE_ID, C_CUSTOMER_ID, C_CUSTOMERUP_ID, 
+    AREAMNG_ID, SGRADE, C_PRICEREGION_ID, C_SUPPLIER_ID, SUBSYSTEMS, PASSWORDEXPIRATIONDATE, 
+    PASSWORDRESET, ISRET, WEBPOS_PER, HR_POST_ID, ISSYS, IS_SYS_USER
+  </sql>
+  <sql id="Blob_Column_List" >
+    MAC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from USERS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from USERS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.dky.common.bean.Users" >
+    insert into USERS (ID, AD_CLIENT_ID, AD_ORG_ID, 
+      ISACTIVE, SUPERVISOR_ID, PA_GOALPRIVATE_ID, 
+      C_BPARTNER_ID, PROCESSING, C_BPARTNER_LOCATION_ID, 
+      C_GREETING_ID, LASTCONTACT, BIRTHDAY, 
+      AD_ORGTRX_ID, ISLDAPAUTHORIZED, MODIFIERID, 
+      CREATIONDATE, MODIFIEDDATE, OWNERID, 
+      PASSWORDHASH, ISENABLED, ISEMPLOYEE, 
+      ISADMIN, USERTYPE, TRUENAME, 
+      NAME, DESCRIPTION, PASSWORD, 
+      EMAIL, EMAILUSER, EMAILUSERPW, 
+      TITLE, COMMENTS, PHONE, 
+      PHONE2, FAX, LASTRESULT, 
+      EMAILVERIFY, C_DEPARTMENT_ID, LANGUAGE, 
+      IS_OTP, OTP_LENGTH, OTP_SECONDS, 
+      OTP_SECRET, OTP_COUNTER, IS_OTP_ONLY, 
+      OTP_CDATE, LOGIN_IP_RULE, ISSMS, 
+      IS_OUT, ASSIGNEE_ID, ISSALER, 
+      C_STORE_ID, DISCOUNTLIMIT, ISOPR, 
+      SAASVENDOR, SAASUSER, HR_EMPLOYEE_ID, 
+      C_CUSTOMER_ID, C_CUSTOMERUP_ID, AREAMNG_ID, 
+      SGRADE, C_PRICEREGION_ID, C_SUPPLIER_ID, 
+      SUBSYSTEMS, PASSWORDEXPIRATIONDATE, PASSWORDRESET, 
+      ISRET, WEBPOS_PER, HR_POST_ID, 
+      ISSYS, IS_SYS_USER, MAC)
+    values (#{id,jdbcType=DECIMAL}, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL}, 
+      #{isactive,jdbcType=CHAR}, #{supervisorId,jdbcType=DECIMAL}, #{paGoalprivateId,jdbcType=DECIMAL}, 
+      #{cBpartnerId,jdbcType=DECIMAL}, #{processing,jdbcType=CHAR}, #{cBpartnerLocationId,jdbcType=DECIMAL}, 
+      #{cGreetingId,jdbcType=DECIMAL}, #{lastcontact,jdbcType=DECIMAL}, #{birthday,jdbcType=DECIMAL}, 
+      #{adOrgtrxId,jdbcType=DECIMAL}, #{isldapauthorized,jdbcType=CHAR}, #{modifierid,jdbcType=DECIMAL}, 
+      #{creationdate,jdbcType=TIMESTAMP}, #{modifieddate,jdbcType=TIMESTAMP}, #{ownerid,jdbcType=DECIMAL}, 
+      #{passwordhash,jdbcType=VARCHAR}, #{isenabled,jdbcType=DECIMAL}, #{isemployee,jdbcType=DECIMAL}, 
+      #{isadmin,jdbcType=DECIMAL}, #{usertype,jdbcType=DECIMAL}, #{truename,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{emailuser,jdbcType=VARCHAR}, #{emailuserpw,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{phone2,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{lastresult,jdbcType=VARCHAR}, 
+      #{emailverify,jdbcType=VARCHAR}, #{cDepartmentId,jdbcType=DECIMAL}, #{language,jdbcType=VARCHAR}, 
+      #{isOtp,jdbcType=CHAR}, #{otpLength,jdbcType=DECIMAL}, #{otpSeconds,jdbcType=DECIMAL}, 
+      #{otpSecret,jdbcType=VARCHAR}, #{otpCounter,jdbcType=DECIMAL}, #{isOtpOnly,jdbcType=CHAR}, 
+      #{otpCdate,jdbcType=TIMESTAMP}, #{loginIpRule,jdbcType=VARCHAR}, #{issms,jdbcType=CHAR}, 
+      #{isOut,jdbcType=CHAR}, #{assigneeId,jdbcType=DECIMAL}, #{issaler,jdbcType=CHAR}, 
+      #{cStoreId,jdbcType=DECIMAL}, #{discountlimit,jdbcType=DECIMAL}, #{isopr,jdbcType=CHAR}, 
+      #{saasvendor,jdbcType=VARCHAR}, #{saasuser,jdbcType=VARCHAR}, #{hrEmployeeId,jdbcType=DECIMAL}, 
+      #{cCustomerId,jdbcType=DECIMAL}, #{cCustomerupId,jdbcType=DECIMAL}, #{areamngId,jdbcType=DECIMAL}, 
+      #{sgrade,jdbcType=DECIMAL}, #{cPriceregionId,jdbcType=DECIMAL}, #{cSupplierId,jdbcType=DECIMAL}, 
+      #{subsystems,jdbcType=VARCHAR}, #{passwordexpirationdate,jdbcType=TIMESTAMP}, #{passwordreset,jdbcType=CHAR}, 
+      #{isret,jdbcType=CHAR}, #{webposPer,jdbcType=VARCHAR}, #{hrPostId,jdbcType=DECIMAL}, 
+      #{issys,jdbcType=CHAR}, #{isSysUser,jdbcType=CHAR}, #{mac,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dky.common.bean.Users" >
+    insert into USERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="supervisorId != null" >
+        SUPERVISOR_ID,
+      </if>
+      <if test="paGoalprivateId != null" >
+        PA_GOALPRIVATE_ID,
+      </if>
+      <if test="cBpartnerId != null" >
+        C_BPARTNER_ID,
+      </if>
+      <if test="processing != null" >
+        PROCESSING,
+      </if>
+      <if test="cBpartnerLocationId != null" >
+        C_BPARTNER_LOCATION_ID,
+      </if>
+      <if test="cGreetingId != null" >
+        C_GREETING_ID,
+      </if>
+      <if test="lastcontact != null" >
+        LASTCONTACT,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="adOrgtrxId != null" >
+        AD_ORGTRX_ID,
+      </if>
+      <if test="isldapauthorized != null" >
+        ISLDAPAUTHORIZED,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="passwordhash != null" >
+        PASSWORDHASH,
+      </if>
+      <if test="isenabled != null" >
+        ISENABLED,
+      </if>
+      <if test="isemployee != null" >
+        ISEMPLOYEE,
+      </if>
+      <if test="isadmin != null" >
+        ISADMIN,
+      </if>
+      <if test="usertype != null" >
+        USERTYPE,
+      </if>
+      <if test="truename != null" >
+        TRUENAME,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="emailuser != null" >
+        EMAILUSER,
+      </if>
+      <if test="emailuserpw != null" >
+        EMAILUSERPW,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="phone2 != null" >
+        PHONE2,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="lastresult != null" >
+        LASTRESULT,
+      </if>
+      <if test="emailverify != null" >
+        EMAILVERIFY,
+      </if>
+      <if test="cDepartmentId != null" >
+        C_DEPARTMENT_ID,
+      </if>
+      <if test="language != null" >
+        LANGUAGE,
+      </if>
+      <if test="isOtp != null" >
+        IS_OTP,
+      </if>
+      <if test="otpLength != null" >
+        OTP_LENGTH,
+      </if>
+      <if test="otpSeconds != null" >
+        OTP_SECONDS,
+      </if>
+      <if test="otpSecret != null" >
+        OTP_SECRET,
+      </if>
+      <if test="otpCounter != null" >
+        OTP_COUNTER,
+      </if>
+      <if test="isOtpOnly != null" >
+        IS_OTP_ONLY,
+      </if>
+      <if test="otpCdate != null" >
+        OTP_CDATE,
+      </if>
+      <if test="loginIpRule != null" >
+        LOGIN_IP_RULE,
+      </if>
+      <if test="issms != null" >
+        ISSMS,
+      </if>
+      <if test="isOut != null" >
+        IS_OUT,
+      </if>
+      <if test="assigneeId != null" >
+        ASSIGNEE_ID,
+      </if>
+      <if test="issaler != null" >
+        ISSALER,
+      </if>
+      <if test="cStoreId != null" >
+        C_STORE_ID,
+      </if>
+      <if test="discountlimit != null" >
+        DISCOUNTLIMIT,
+      </if>
+      <if test="isopr != null" >
+        ISOPR,
+      </if>
+      <if test="saasvendor != null" >
+        SAASVENDOR,
+      </if>
+      <if test="saasuser != null" >
+        SAASUSER,
+      </if>
+      <if test="hrEmployeeId != null" >
+        HR_EMPLOYEE_ID,
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID,
+      </if>
+      <if test="cCustomerupId != null" >
+        C_CUSTOMERUP_ID,
+      </if>
+      <if test="areamngId != null" >
+        AREAMNG_ID,
+      </if>
+      <if test="sgrade != null" >
+        SGRADE,
+      </if>
+      <if test="cPriceregionId != null" >
+        C_PRICEREGION_ID,
+      </if>
+      <if test="cSupplierId != null" >
+        C_SUPPLIER_ID,
+      </if>
+      <if test="subsystems != null" >
+        SUBSYSTEMS,
+      </if>
+      <if test="passwordexpirationdate != null" >
+        PASSWORDEXPIRATIONDATE,
+      </if>
+      <if test="passwordreset != null" >
+        PASSWORDRESET,
+      </if>
+      <if test="isret != null" >
+        ISRET,
+      </if>
+      <if test="webposPer != null" >
+        WEBPOS_PER,
+      </if>
+      <if test="hrPostId != null" >
+        HR_POST_ID,
+      </if>
+      <if test="issys != null" >
+        ISSYS,
+      </if>
+      <if test="isSysUser != null" >
+        IS_SYS_USER,
+      </if>
+      <if test="mac != null" >
+        MAC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="supervisorId != null" >
+        #{supervisorId,jdbcType=DECIMAL},
+      </if>
+      <if test="paGoalprivateId != null" >
+        #{paGoalprivateId,jdbcType=DECIMAL},
+      </if>
+      <if test="cBpartnerId != null" >
+        #{cBpartnerId,jdbcType=DECIMAL},
+      </if>
+      <if test="processing != null" >
+        #{processing,jdbcType=CHAR},
+      </if>
+      <if test="cBpartnerLocationId != null" >
+        #{cBpartnerLocationId,jdbcType=DECIMAL},
+      </if>
+      <if test="cGreetingId != null" >
+        #{cGreetingId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastcontact != null" >
+        #{lastcontact,jdbcType=DECIMAL},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgtrxId != null" >
+        #{adOrgtrxId,jdbcType=DECIMAL},
+      </if>
+      <if test="isldapauthorized != null" >
+        #{isldapauthorized,jdbcType=CHAR},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="passwordhash != null" >
+        #{passwordhash,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null" >
+        #{isenabled,jdbcType=DECIMAL},
+      </if>
+      <if test="isemployee != null" >
+        #{isemployee,jdbcType=DECIMAL},
+      </if>
+      <if test="isadmin != null" >
+        #{isadmin,jdbcType=DECIMAL},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=DECIMAL},
+      </if>
+      <if test="truename != null" >
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailuser != null" >
+        #{emailuser,jdbcType=VARCHAR},
+      </if>
+      <if test="emailuserpw != null" >
+        #{emailuserpw,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="lastresult != null" >
+        #{lastresult,jdbcType=VARCHAR},
+      </if>
+      <if test="emailverify != null" >
+        #{emailverify,jdbcType=VARCHAR},
+      </if>
+      <if test="cDepartmentId != null" >
+        #{cDepartmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtp != null" >
+        #{isOtp,jdbcType=CHAR},
+      </if>
+      <if test="otpLength != null" >
+        #{otpLength,jdbcType=DECIMAL},
+      </if>
+      <if test="otpSeconds != null" >
+        #{otpSeconds,jdbcType=DECIMAL},
+      </if>
+      <if test="otpSecret != null" >
+        #{otpSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="otpCounter != null" >
+        #{otpCounter,jdbcType=DECIMAL},
+      </if>
+      <if test="isOtpOnly != null" >
+        #{isOtpOnly,jdbcType=CHAR},
+      </if>
+      <if test="otpCdate != null" >
+        #{otpCdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIpRule != null" >
+        #{loginIpRule,jdbcType=VARCHAR},
+      </if>
+      <if test="issms != null" >
+        #{issms,jdbcType=CHAR},
+      </if>
+      <if test="isOut != null" >
+        #{isOut,jdbcType=CHAR},
+      </if>
+      <if test="assigneeId != null" >
+        #{assigneeId,jdbcType=DECIMAL},
+      </if>
+      <if test="issaler != null" >
+        #{issaler,jdbcType=CHAR},
+      </if>
+      <if test="cStoreId != null" >
+        #{cStoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="discountlimit != null" >
+        #{discountlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="isopr != null" >
+        #{isopr,jdbcType=CHAR},
+      </if>
+      <if test="saasvendor != null" >
+        #{saasvendor,jdbcType=VARCHAR},
+      </if>
+      <if test="saasuser != null" >
+        #{saasuser,jdbcType=VARCHAR},
+      </if>
+      <if test="hrEmployeeId != null" >
+        #{hrEmployeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerId != null" >
+        #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerupId != null" >
+        #{cCustomerupId,jdbcType=DECIMAL},
+      </if>
+      <if test="areamngId != null" >
+        #{areamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="sgrade != null" >
+        #{sgrade,jdbcType=DECIMAL},
+      </if>
+      <if test="cPriceregionId != null" >
+        #{cPriceregionId,jdbcType=DECIMAL},
+      </if>
+      <if test="cSupplierId != null" >
+        #{cSupplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="subsystems != null" >
+        #{subsystems,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordexpirationdate != null" >
+        #{passwordexpirationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passwordreset != null" >
+        #{passwordreset,jdbcType=CHAR},
+      </if>
+      <if test="isret != null" >
+        #{isret,jdbcType=CHAR},
+      </if>
+      <if test="webposPer != null" >
+        #{webposPer,jdbcType=VARCHAR},
+      </if>
+      <if test="hrPostId != null" >
+        #{hrPostId,jdbcType=DECIMAL},
+      </if>
+      <if test="issys != null" >
+        #{issys,jdbcType=CHAR},
+      </if>
+      <if test="isSysUser != null" >
+        #{isSysUser,jdbcType=CHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dky.common.bean.Users" >
+    update USERS
+    <set >
+      <if test="adClientId != null" >
+        AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="supervisorId != null" >
+        SUPERVISOR_ID = #{supervisorId,jdbcType=DECIMAL},
+      </if>
+      <if test="paGoalprivateId != null" >
+        PA_GOALPRIVATE_ID = #{paGoalprivateId,jdbcType=DECIMAL},
+      </if>
+      <if test="cBpartnerId != null" >
+        C_BPARTNER_ID = #{cBpartnerId,jdbcType=DECIMAL},
+      </if>
+      <if test="processing != null" >
+        PROCESSING = #{processing,jdbcType=CHAR},
+      </if>
+      <if test="cBpartnerLocationId != null" >
+        C_BPARTNER_LOCATION_ID = #{cBpartnerLocationId,jdbcType=DECIMAL},
+      </if>
+      <if test="cGreetingId != null" >
+        C_GREETING_ID = #{cGreetingId,jdbcType=DECIMAL},
+      </if>
+      <if test="lastcontact != null" >
+        LASTCONTACT = #{lastcontact,jdbcType=DECIMAL},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgtrxId != null" >
+        AD_ORGTRX_ID = #{adOrgtrxId,jdbcType=DECIMAL},
+      </if>
+      <if test="isldapauthorized != null" >
+        ISLDAPAUTHORIZED = #{isldapauthorized,jdbcType=CHAR},
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE = #{modifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerid != null" >
+        OWNERID = #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="passwordhash != null" >
+        PASSWORDHASH = #{passwordhash,jdbcType=VARCHAR},
+      </if>
+      <if test="isenabled != null" >
+        ISENABLED = #{isenabled,jdbcType=DECIMAL},
+      </if>
+      <if test="isemployee != null" >
+        ISEMPLOYEE = #{isemployee,jdbcType=DECIMAL},
+      </if>
+      <if test="isadmin != null" >
+        ISADMIN = #{isadmin,jdbcType=DECIMAL},
+      </if>
+      <if test="usertype != null" >
+        USERTYPE = #{usertype,jdbcType=DECIMAL},
+      </if>
+      <if test="truename != null" >
+        TRUENAME = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailuser != null" >
+        EMAILUSER = #{emailuser,jdbcType=VARCHAR},
+      </if>
+      <if test="emailuserpw != null" >
+        EMAILUSERPW = #{emailuserpw,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        PHONE2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="lastresult != null" >
+        LASTRESULT = #{lastresult,jdbcType=VARCHAR},
+      </if>
+      <if test="emailverify != null" >
+        EMAILVERIFY = #{emailverify,jdbcType=VARCHAR},
+      </if>
+      <if test="cDepartmentId != null" >
+        C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="language != null" >
+        LANGUAGE = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtp != null" >
+        IS_OTP = #{isOtp,jdbcType=CHAR},
+      </if>
+      <if test="otpLength != null" >
+        OTP_LENGTH = #{otpLength,jdbcType=DECIMAL},
+      </if>
+      <if test="otpSeconds != null" >
+        OTP_SECONDS = #{otpSeconds,jdbcType=DECIMAL},
+      </if>
+      <if test="otpSecret != null" >
+        OTP_SECRET = #{otpSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="otpCounter != null" >
+        OTP_COUNTER = #{otpCounter,jdbcType=DECIMAL},
+      </if>
+      <if test="isOtpOnly != null" >
+        IS_OTP_ONLY = #{isOtpOnly,jdbcType=CHAR},
+      </if>
+      <if test="otpCdate != null" >
+        OTP_CDATE = #{otpCdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIpRule != null" >
+        LOGIN_IP_RULE = #{loginIpRule,jdbcType=VARCHAR},
+      </if>
+      <if test="issms != null" >
+        ISSMS = #{issms,jdbcType=CHAR},
+      </if>
+      <if test="isOut != null" >
+        IS_OUT = #{isOut,jdbcType=CHAR},
+      </if>
+      <if test="assigneeId != null" >
+        ASSIGNEE_ID = #{assigneeId,jdbcType=DECIMAL},
+      </if>
+      <if test="issaler != null" >
+        ISSALER = #{issaler,jdbcType=CHAR},
+      </if>
+      <if test="cStoreId != null" >
+        C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="discountlimit != null" >
+        DISCOUNTLIMIT = #{discountlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="isopr != null" >
+        ISOPR = #{isopr,jdbcType=CHAR},
+      </if>
+      <if test="saasvendor != null" >
+        SAASVENDOR = #{saasvendor,jdbcType=VARCHAR},
+      </if>
+      <if test="saasuser != null" >
+        SAASUSER = #{saasuser,jdbcType=VARCHAR},
+      </if>
+      <if test="hrEmployeeId != null" >
+        HR_EMPLOYEE_ID = #{hrEmployeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerupId != null" >
+        C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      </if>
+      <if test="areamngId != null" >
+        AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="sgrade != null" >
+        SGRADE = #{sgrade,jdbcType=DECIMAL},
+      </if>
+      <if test="cPriceregionId != null" >
+        C_PRICEREGION_ID = #{cPriceregionId,jdbcType=DECIMAL},
+      </if>
+      <if test="cSupplierId != null" >
+        C_SUPPLIER_ID = #{cSupplierId,jdbcType=DECIMAL},
+      </if>
+      <if test="subsystems != null" >
+        SUBSYSTEMS = #{subsystems,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordexpirationdate != null" >
+        PASSWORDEXPIRATIONDATE = #{passwordexpirationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passwordreset != null" >
+        PASSWORDRESET = #{passwordreset,jdbcType=CHAR},
+      </if>
+      <if test="isret != null" >
+        ISRET = #{isret,jdbcType=CHAR},
+      </if>
+      <if test="webposPer != null" >
+        WEBPOS_PER = #{webposPer,jdbcType=VARCHAR},
+      </if>
+      <if test="hrPostId != null" >
+        HR_POST_ID = #{hrPostId,jdbcType=DECIMAL},
+      </if>
+      <if test="issys != null" >
+        ISSYS = #{issys,jdbcType=CHAR},
+      </if>
+      <if test="isSysUser != null" >
+        IS_SYS_USER = #{isSysUser,jdbcType=CHAR},
+      </if>
+      <if test="mac != null" >
+        MAC = #{mac,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dky.common.bean.Users" >
+    update USERS
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      SUPERVISOR_ID = #{supervisorId,jdbcType=DECIMAL},
+      PA_GOALPRIVATE_ID = #{paGoalprivateId,jdbcType=DECIMAL},
+      C_BPARTNER_ID = #{cBpartnerId,jdbcType=DECIMAL},
+      PROCESSING = #{processing,jdbcType=CHAR},
+      C_BPARTNER_LOCATION_ID = #{cBpartnerLocationId,jdbcType=DECIMAL},
+      C_GREETING_ID = #{cGreetingId,jdbcType=DECIMAL},
+      LASTCONTACT = #{lastcontact,jdbcType=DECIMAL},
+      BIRTHDAY = #{birthday,jdbcType=DECIMAL},
+      AD_ORGTRX_ID = #{adOrgtrxId,jdbcType=DECIMAL},
+      ISLDAPAUTHORIZED = #{isldapauthorized,jdbcType=CHAR},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=TIMESTAMP},
+      MODIFIEDDATE = #{modifieddate,jdbcType=TIMESTAMP},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      PASSWORDHASH = #{passwordhash,jdbcType=VARCHAR},
+      ISENABLED = #{isenabled,jdbcType=DECIMAL},
+      ISEMPLOYEE = #{isemployee,jdbcType=DECIMAL},
+      ISADMIN = #{isadmin,jdbcType=DECIMAL},
+      USERTYPE = #{usertype,jdbcType=DECIMAL},
+      TRUENAME = #{truename,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      EMAILUSER = #{emailuser,jdbcType=VARCHAR},
+      EMAILUSERPW = #{emailuserpw,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PHONE2 = #{phone2,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      LASTRESULT = #{lastresult,jdbcType=VARCHAR},
+      EMAILVERIFY = #{emailverify,jdbcType=VARCHAR},
+      C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      LANGUAGE = #{language,jdbcType=VARCHAR},
+      IS_OTP = #{isOtp,jdbcType=CHAR},
+      OTP_LENGTH = #{otpLength,jdbcType=DECIMAL},
+      OTP_SECONDS = #{otpSeconds,jdbcType=DECIMAL},
+      OTP_SECRET = #{otpSecret,jdbcType=VARCHAR},
+      OTP_COUNTER = #{otpCounter,jdbcType=DECIMAL},
+      IS_OTP_ONLY = #{isOtpOnly,jdbcType=CHAR},
+      OTP_CDATE = #{otpCdate,jdbcType=TIMESTAMP},
+      LOGIN_IP_RULE = #{loginIpRule,jdbcType=VARCHAR},
+      ISSMS = #{issms,jdbcType=CHAR},
+      IS_OUT = #{isOut,jdbcType=CHAR},
+      ASSIGNEE_ID = #{assigneeId,jdbcType=DECIMAL},
+      ISSALER = #{issaler,jdbcType=CHAR},
+      C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      DISCOUNTLIMIT = #{discountlimit,jdbcType=DECIMAL},
+      ISOPR = #{isopr,jdbcType=CHAR},
+      SAASVENDOR = #{saasvendor,jdbcType=VARCHAR},
+      SAASUSER = #{saasuser,jdbcType=VARCHAR},
+      HR_EMPLOYEE_ID = #{hrEmployeeId,jdbcType=DECIMAL},
+      C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      SGRADE = #{sgrade,jdbcType=DECIMAL},
+      C_PRICEREGION_ID = #{cPriceregionId,jdbcType=DECIMAL},
+      C_SUPPLIER_ID = #{cSupplierId,jdbcType=DECIMAL},
+      SUBSYSTEMS = #{subsystems,jdbcType=VARCHAR},
+      PASSWORDEXPIRATIONDATE = #{passwordexpirationdate,jdbcType=TIMESTAMP},
+      PASSWORDRESET = #{passwordreset,jdbcType=CHAR},
+      ISRET = #{isret,jdbcType=CHAR},
+      WEBPOS_PER = #{webposPer,jdbcType=VARCHAR},
+      HR_POST_ID = #{hrPostId,jdbcType=DECIMAL},
+      ISSYS = #{issys,jdbcType=CHAR},
+      IS_SYS_USER = #{isSysUser,jdbcType=CHAR},
+      MAC = #{mac,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dky.common.bean.Users" >
+    update USERS
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      SUPERVISOR_ID = #{supervisorId,jdbcType=DECIMAL},
+      PA_GOALPRIVATE_ID = #{paGoalprivateId,jdbcType=DECIMAL},
+      C_BPARTNER_ID = #{cBpartnerId,jdbcType=DECIMAL},
+      PROCESSING = #{processing,jdbcType=CHAR},
+      C_BPARTNER_LOCATION_ID = #{cBpartnerLocationId,jdbcType=DECIMAL},
+      C_GREETING_ID = #{cGreetingId,jdbcType=DECIMAL},
+      LASTCONTACT = #{lastcontact,jdbcType=DECIMAL},
+      BIRTHDAY = #{birthday,jdbcType=DECIMAL},
+      AD_ORGTRX_ID = #{adOrgtrxId,jdbcType=DECIMAL},
+      ISLDAPAUTHORIZED = #{isldapauthorized,jdbcType=CHAR},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=TIMESTAMP},
+      MODIFIEDDATE = #{modifieddate,jdbcType=TIMESTAMP},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      PASSWORDHASH = #{passwordhash,jdbcType=VARCHAR},
+      ISENABLED = #{isenabled,jdbcType=DECIMAL},
+      ISEMPLOYEE = #{isemployee,jdbcType=DECIMAL},
+      ISADMIN = #{isadmin,jdbcType=DECIMAL},
+      USERTYPE = #{usertype,jdbcType=DECIMAL},
+      TRUENAME = #{truename,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      EMAILUSER = #{emailuser,jdbcType=VARCHAR},
+      EMAILUSERPW = #{emailuserpw,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PHONE2 = #{phone2,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      LASTRESULT = #{lastresult,jdbcType=VARCHAR},
+      EMAILVERIFY = #{emailverify,jdbcType=VARCHAR},
+      C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      LANGUAGE = #{language,jdbcType=VARCHAR},
+      IS_OTP = #{isOtp,jdbcType=CHAR},
+      OTP_LENGTH = #{otpLength,jdbcType=DECIMAL},
+      OTP_SECONDS = #{otpSeconds,jdbcType=DECIMAL},
+      OTP_SECRET = #{otpSecret,jdbcType=VARCHAR},
+      OTP_COUNTER = #{otpCounter,jdbcType=DECIMAL},
+      IS_OTP_ONLY = #{isOtpOnly,jdbcType=CHAR},
+      OTP_CDATE = #{otpCdate,jdbcType=TIMESTAMP},
+      LOGIN_IP_RULE = #{loginIpRule,jdbcType=VARCHAR},
+      ISSMS = #{issms,jdbcType=CHAR},
+      IS_OUT = #{isOut,jdbcType=CHAR},
+      ASSIGNEE_ID = #{assigneeId,jdbcType=DECIMAL},
+      ISSALER = #{issaler,jdbcType=CHAR},
+      C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      DISCOUNTLIMIT = #{discountlimit,jdbcType=DECIMAL},
+      ISOPR = #{isopr,jdbcType=CHAR},
+      SAASVENDOR = #{saasvendor,jdbcType=VARCHAR},
+      SAASUSER = #{saasuser,jdbcType=VARCHAR},
+      HR_EMPLOYEE_ID = #{hrEmployeeId,jdbcType=DECIMAL},
+      C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      SGRADE = #{sgrade,jdbcType=DECIMAL},
+      C_PRICEREGION_ID = #{cPriceregionId,jdbcType=DECIMAL},
+      C_SUPPLIER_ID = #{cSupplierId,jdbcType=DECIMAL},
+      SUBSYSTEMS = #{subsystems,jdbcType=VARCHAR},
+      PASSWORDEXPIRATIONDATE = #{passwordexpirationdate,jdbcType=TIMESTAMP},
+      PASSWORDRESET = #{passwordreset,jdbcType=CHAR},
+      ISRET = #{isret,jdbcType=CHAR},
+      WEBPOS_PER = #{webposPer,jdbcType=VARCHAR},
+      HR_POST_ID = #{hrPostId,jdbcType=DECIMAL},
+      ISSYS = #{issys,jdbcType=CHAR},
+      IS_SYS_USER = #{isSysUser,jdbcType=CHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <select id="selectByEmail" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from USERS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+</mapper>
