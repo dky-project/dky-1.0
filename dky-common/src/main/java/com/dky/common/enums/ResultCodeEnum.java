@@ -8,6 +8,8 @@ public enum  ResultCodeEnum {
 
     SUCCESS(200,true,"成功"),
     FAILURE(500,false,"失败"),
+
+    USER_LOGIN_ERROR(1001,false,"用户不存在"),
     ;
 
 
