@@ -18,6 +18,11 @@
             <artifactId>validation-api</artifactId>
             <version>1.0.0.GA</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>

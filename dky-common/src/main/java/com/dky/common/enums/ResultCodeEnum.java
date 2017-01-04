@@ -8,6 +8,7 @@ public enum  ResultCodeEnum {
 
     SUCCESS(200,true,"成功"),
     FAILURE(500,false,"失败"),
+    NOLOGIN(400,false,"未登陆"),
     ;
 
 

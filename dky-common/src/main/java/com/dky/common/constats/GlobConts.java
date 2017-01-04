@@ -15,4 +15,13 @@ public class GlobConts {
 
 
     public static final Long MAX_EXPIRE_TIME = Long.valueOf(Long.parseLong(String.valueOf(2147483647)) * 1000L);
+
+
+    /**
+     * cookie前缀
+     */
+    public static final String COOKIE_PREFIX = "Bearer ";
+
+
+    public static final String SESSION_COOKIE_KEY = "Authorization";
 }
