@@ -15,5 +15,21 @@ public class ProductView extends ResultObjectBase {
     /**
      * 大类
      */
-    private Long mDimNew11Id;
+    private String mDimNew11Text;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getmDimNew11Text() {
+        return mDimNew11Text;
+    }
+
+    public void setmDimNew11Text(String mDimNew11Text) {
+        this.mDimNew11Text = mDimNew11Text;
+    }
 }

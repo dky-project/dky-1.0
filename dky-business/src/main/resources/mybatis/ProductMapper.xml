@@ -281,12 +281,25 @@
     DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
   </sql>
 
-  <select id="queryViewList" resultMap="BaseResultMap" parameterType="com.dky.common.bean.Product" >
+  <select id="getProductInfo" resultMap="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
     select 
-    <include refid="Base_Column_List" />
-    from M_PRODUCT
-    where ID = #{id,jdbcType=DECIMAL}
-    and (PDT_TYPE='YY' or PDT_TYPE='PT')
+      t1.name,
+      t2.ATTRIBNAME as mDimNew11Text,
+      t3.ATTRIBNAME as mDimNew13Text,
+      t4.XW_VALUE as xwValue,
+      t4.YC_VALUE as ycValue,
+      t4.JK_VALUE as jkValue,
+      t4.XC_VALUE as xcValue,
+      (select b.description from AD_LIMITVALUE_GROUP a,AD_LIMITVALUE b
+      where a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText
+    from M_PRODUCT t1
+    LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW11_ID = t2.id
+    LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW13_ID = t3.id
+    LEFT JOIN V_CUSMPTCATEITEM t4 on t1.id = t4.M_PRODUCT_ID
+    WHERE t2.DIMFLAG='DIMFLAG_NEW11'
+    and t3.DIMFLAG='DIMFLAG_NEW13'
+    and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
+    and ID = #{id,jdbcType=DECIMAL}
   </select>
 
 </mapper>
