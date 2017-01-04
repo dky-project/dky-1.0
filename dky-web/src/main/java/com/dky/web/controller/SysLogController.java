@@ -1,6 +1,7 @@
 package com.dky.web.controller;
 
 import com.dky.business.repository.biz.SysLogService;
+import com.dky.business.repository.cache.RedisCacheManager;
 import com.dky.common.bean.SysLog;
 import com.dky.common.response.ReturnT;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,27 @@ public class SysLogController {
 
     @Autowired
     private SysLogService sysLogService;
+
+    @Autowired
+    private RedisCacheManager redisCacheManager;
+
+
+    private static final String CACHE_KEY = "redis_test";
+
+
+    @RequestMapping("putRedis")
+    public ReturnT putRedis(){
+        long time  = System.currentTimeMillis();
+        redisCacheManager.put(CACHE_KEY,time);
+        return new ReturnT().sucessData(time);
+    }
+
+
+    @RequestMapping("getRedis")
+    public ReturnT getRedis(){
+        Long time = redisCacheManager.getLong(CACHE_KEY);
+        return  new ReturnT().sucessData(time);
+    }
 
 
     @RequestMapping("list")

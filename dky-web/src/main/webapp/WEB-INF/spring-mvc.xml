@@ -21,12 +21,17 @@
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters register-defaults="true">
             <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+           <!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
-            </bean>
+            </bean>-->
             <!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
+            </bean>-->
+
+            <!--使用gson转换json -->
+            <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+                <property name="gson" ref="gsonFormatter"></property>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
