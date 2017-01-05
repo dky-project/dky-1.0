@@ -48,6 +48,38 @@ public class ProductInfoView extends ResultObjectBase {
      * 所属类别
      */
     private String mptbelongtypeText;
+    /**
+     * 图片1
+     */
+    private String imgUrl1;
+    /**
+     * 图片2
+     */
+    private String imgUrl2;
+    /**
+     * 图片3
+     */
+    private String imgUrl3;
+    /**
+     * 图片4
+     */
+    private String imgUrl4;
+    /**
+     * 图片5
+     */
+    private String imgUrl5;
+    /**
+     * 图片6
+     */
+    private String imgUrl6;
+    /**
+     * 图片7
+     */
+    private String imgUrl7;
+    /**
+     * 图片8
+     */
+    private String imgUrl8;
 
     public String getName() {
         return name;
@@ -127,5 +159,69 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setMptbelongtypeText(String mptbelongtypeText) {
         this.mptbelongtypeText = mptbelongtypeText;
+    }
+
+    public String getImgUrl1() {
+        return imgUrl1;
+    }
+
+    public void setImgUrl1(String imgUrl1) {
+        this.imgUrl1 = imgUrl1;
+    }
+
+    public String getImgUrl2() {
+        return imgUrl2;
+    }
+
+    public void setImgUrl2(String imgUrl2) {
+        this.imgUrl2 = imgUrl2;
+    }
+
+    public String getImgUrl3() {
+        return imgUrl3;
+    }
+
+    public void setImgUrl3(String imgUrl3) {
+        this.imgUrl3 = imgUrl3;
+    }
+
+    public String getImgUrl4() {
+        return imgUrl4;
+    }
+
+    public void setImgUrl4(String imgUrl4) {
+        this.imgUrl4 = imgUrl4;
+    }
+
+    public String getImgUrl5() {
+        return imgUrl5;
+    }
+
+    public void setImgUrl5(String imgUrl5) {
+        this.imgUrl5 = imgUrl5;
+    }
+
+    public String getImgUrl6() {
+        return imgUrl6;
+    }
+
+    public void setImgUrl6(String imgUrl6) {
+        this.imgUrl6 = imgUrl6;
+    }
+
+    public String getImgUrl7() {
+        return imgUrl7;
+    }
+
+    public void setImgUrl7(String imgUrl7) {
+        this.imgUrl7 = imgUrl7;
+    }
+
+    public String getImgUrl8() {
+        return imgUrl8;
+    }
+
+    public void setImgUrl8(String imgUrl8) {
+        this.imgUrl8 = imgUrl8;
     }
 }

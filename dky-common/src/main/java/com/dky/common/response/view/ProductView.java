@@ -16,6 +16,10 @@ public class ProductView extends ResultObjectBase {
      * 大类
      */
     private String mDimNew11Text;
+    /**
+     * 图片1
+     */
+    private String imgUrl1;
 
     public String getName() {
         return name;
@@ -31,5 +35,13 @@ public class ProductView extends ResultObjectBase {
 
     public void setmDimNew11Text(String mDimNew11Text) {
         this.mDimNew11Text = mDimNew11Text;
+    }
+
+    public String getImgUrl1() {
+        return imgUrl1;
+    }
+
+    public void setImgUrl1(String imgUrl1) {
+        this.imgUrl1 = imgUrl1;
     }
 }
