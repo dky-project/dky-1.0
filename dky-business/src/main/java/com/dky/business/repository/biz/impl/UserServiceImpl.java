@@ -1,7 +1,6 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.UserService;
-import com.dky.business.repository.cache.RedisCacheManager;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.Users;
 import com.dky.common.enums.ResultCodeEnum;
@@ -18,8 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UsersMapper usersMapper;
-    @Autowired
-    private RedisCacheManager redisCacheManager;
+
 
     @Override
     public ReturnT<Users> loginUser(LoginUserParam param) {
@@ -28,7 +26,7 @@ public class UserServiceImpl implements UserService {
         if(users == null){
             return result.failureData(ResultCodeEnum.USER_LOGIN_ERROR);
         }
-        if (users == null || !users.getPassword().equals(param.getPassword())){
+        if (users == null || !users.getPasswordhash().equals(param.getPassword())){
             return result.failureData(ResultCodeEnum.LOGIN_PASSWORD_ERROR);
         }
         result.setData(users);
