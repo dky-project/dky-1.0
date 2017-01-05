@@ -18,6 +18,7 @@ public class LoginUserParam implements Serializable {
     /**
      * 登录密码
      */
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
     public String getEmail() {

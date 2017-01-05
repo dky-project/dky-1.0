@@ -1,5 +1,7 @@
 package com.dky.common.utils;
 
+import com.dky.common.exception.ValidatorException;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ValidatorFactory;
 import javax.validation.Validator;
@@ -22,14 +24,10 @@ public class ValidatorUtils {
         validator = factory.getValidator();
     }
 
-    public static <T> void validator(T t){
+    public static <T> void validator(T t)throws ValidatorException{
         Set violations = validator.validate(t, new Class[0]);
         if(!violations.isEmpty()){
-            try {
-                throw new Exception(buildErrorMsg(violations));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new ValidatorException(buildErrorMsg(violations));
         }
     }
 

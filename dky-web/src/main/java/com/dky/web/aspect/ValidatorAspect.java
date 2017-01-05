@@ -1,5 +1,6 @@
 package com.dky.web.aspect;
 
+import com.dky.common.exception.ValidatorException;
 import com.dky.common.response.ReturnT;
 import com.dky.common.utils.ValidatorUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,7 +31,7 @@ public class ValidatorAspect implements Ordered {
                     ValidatorUtils.validator(obj);
                 }
             }
-        } catch (Exception e) {
+        } catch (ValidatorException e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
         }
