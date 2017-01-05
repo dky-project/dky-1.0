@@ -299,12 +299,23 @@
       t5.IMGURL7,
       t5.IMGURL8,
       (select b.description from AD_LIMITVALUE_GROUP a,AD_LIMITVALUE b
-      where a.ISACTIVE = 'Y' and b.ISACTIVE = 'Y' and a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText
+      where a.ISACTIVE = 'Y' and b.ISACTIVE = 'Y' and a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText,
+      t6.*
     from M_PRODUCT t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW11_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW13_ID = t3.id
     LEFT JOIN V_CUSMPTCATEITEM t4 on t1.id = t4.M_PRODUCT_ID
     LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+    LEFT JOIN
+      (select a.M_PRODUCT_ID,
+              a.CLR_RANGE,
+              b.ATTRIBNAME as mDimNew14Text,
+              b.ATTRIBNAME as mDimNew16Text,
+              a.XW_VALUE as defaultXwValue,
+              a.YC_VALUE as defaultYcValue,
+              a.XC_VALUE as defaultXcValue
+      FROM M_PRODUCT_DIM a,M_DIM_NEW b,M_DIM_NEW c
+      WHERE a.M_DIM_NEW14_ID = b.id and a.M_DIM_NEW16_ID = c.id and a.isdefault = 'Y' and a.ISACTIVE = 'Y' and a.M_PRODUCT_ID = #{id,jdbcType=DECIMAL}) t6 on t1.id = t6.M_PRODUCT_ID
     WHERE t2.DIMFLAG='DIMFLAG_NEW11'
     and t2.ISACTIVE = 'Y'
     and t3.DIMFLAG='DIMFLAG_NEW13'

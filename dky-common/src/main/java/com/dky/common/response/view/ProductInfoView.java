@@ -81,6 +81,33 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String imgUrl8;
 
+    //以下为样衣默认项
+    /**
+     * 品种
+     */
+    private String mDimNew14Text;
+    /**
+     * 针型
+     */
+    private String mDimNew16Text;
+    /**
+     * 颜色
+     */
+    private String clrRange;
+    /**
+     * 胸围
+     */
+    private String defaultXwValue;
+    /**
+     * 衣长
+     */
+    private String defaultYcValue;
+    /**
+     * 袖长
+     */
+    private String defaultXcValue;
+    //样衣默认项end
+
     public String getName() {
         return name;
     }
@@ -223,5 +250,53 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setImgUrl8(String imgUrl8) {
         this.imgUrl8 = imgUrl8;
+    }
+
+    public String getmDimNew14Text() {
+        return mDimNew14Text;
+    }
+
+    public void setmDimNew14Text(String mDimNew14Text) {
+        this.mDimNew14Text = mDimNew14Text;
+    }
+
+    public String getmDimNew16Text() {
+        return mDimNew16Text;
+    }
+
+    public void setmDimNew16Text(String mDimNew16Text) {
+        this.mDimNew16Text = mDimNew16Text;
+    }
+
+    public String getClrRange() {
+        return clrRange;
+    }
+
+    public void setClrRange(String clrRange) {
+        this.clrRange = clrRange;
+    }
+
+    public String getDefaultXwValue() {
+        return defaultXwValue;
+    }
+
+    public void setDefaultXwValue(String defaultXwValue) {
+        this.defaultXwValue = defaultXwValue;
+    }
+
+    public String getDefaultYcValue() {
+        return defaultYcValue;
+    }
+
+    public void setDefaultYcValue(String defaultYcValue) {
+        this.defaultYcValue = defaultYcValue;
+    }
+
+    public String getDefaultXcValue() {
+        return defaultXcValue;
+    }
+
+    public void setDefaultXcValue(String defaultXcValue) {
+        this.defaultXcValue = defaultXcValue;
     }
 }
