@@ -157,8 +157,22 @@
 
     <!--订单分页查询 -->
     <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
+        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,mDimNew16Text,mDimNew17Text,xwValue,ycValue
+       FROM (
         SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
-        mDimNew16Text,mDimNew17Text,xwValue,ycValue FROM (
+        mDimNew16Text,mDimNew17Text,xwValue,ycValue,ROWNUM RN FROM (
+          <include refid="queryTmpl"></include>
+        ) WHERE 1=1
+        <if test="null!=requestOffset">
+            AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+        </if>  ) A WHERE 1=1
+        <if test="null!=requestOffset">
+            AND RN <![CDATA[ >= ]]> #{requestOffset}
+        </if>
+
+    </select>
+
+    <sql id="queryTmpl">
         SELECT
         t1.ID,
         t1.NO1,
@@ -170,21 +184,21 @@
         t4.ATTRIBNAME as mDimNew16Text,
         t5.ATTRIBNAME as mDimNew17Text,
         t1.XW_VALUE as xwValue,
-        t1.YC_VALUE as ycValue,
-        ROWNUM RN
+        t1.YC_VALUE as ycValue
         from M_PRODUCT_APPROVE t1
         LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW12_ID = t2.id
         LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW15_ID = t3.id
         LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
         LEFT JOIN M_DIM_NEW t5 on t1.M_DIM_NEW17_ID = t5.id
+        <include refid="whereClause"></include>
         ORDER by t1.NO1 DESC
-        ) A WHERE 1=1
-        <if test="null!=requestOffset">
-            AND RN <![CDATA[ >= ]]> #{requestOffset}
-            AND RN <![CDATA[ <= ]]>#{requestCount}
-        </if>
+    </sql>
 
-    </select>
+    <sql id="whereClause">
+      <where>
+
+      </where>
+    </sql>
 
     <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
      select count(1) from M_PRODUCT_APPROVE t1
