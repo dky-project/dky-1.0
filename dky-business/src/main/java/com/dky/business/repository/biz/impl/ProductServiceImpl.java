@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService  {
             product.setRequestOffset(0);
             product.setRequestCount(GlobConts.DEFUALT_PAGE_SIZE);
         }
-        return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), 0, 0);
+        return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
 }

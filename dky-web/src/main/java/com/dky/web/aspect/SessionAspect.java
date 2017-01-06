@@ -7,6 +7,7 @@ import com.dky.common.constats.GlobConts;
 import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.response.ReturnT;
 import com.dky.common.session.SessionParameter;
+import com.dky.common.session.WebPageParameter;
 import com.dky.common.utils.DkyUtils;
 import com.dky.common.utils.ThreadLocalUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -66,6 +67,11 @@ public class SessionAspect implements Ordered {
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
                 sessionParameter.setSessionUser(user);
+            }
+            if(arg instanceof WebPageParameter){//分页
+                WebPageParameter webPageParameter = (WebPageParameter)arg;
+                //计算分页起始行数
+                webPageParameter.calculatePageLimit();
             }
         }
         return pjp.proceed();
