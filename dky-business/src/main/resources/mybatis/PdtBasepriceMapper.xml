@@ -27,7 +27,7 @@
     XW_VALUE, YC_VALUE, STATUS, CLOSE_STATUS, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, 
     ISACTIVE, FLOAT_RATE, PRICE1, PRICE
   </sql>
-  <select id="queryPriceListByProductId" resultType="com.dky.common.response.view.PdtPriceView" parameterType="java.lang.Long" >
+  <select id="queryPriceListByProductId" resultType="PdtPriceView" parameterType="java.lang.Long" >
     SELECT
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
