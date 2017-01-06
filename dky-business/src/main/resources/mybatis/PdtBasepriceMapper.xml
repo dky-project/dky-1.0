@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.PdtBasepriceMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.PdtBaseprice" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="M_PRODUCT_ID" property="mProductId" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW13_ID" property="mDimNew13Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW14_ID" property="mDimNew14Id" jdbcType="DECIMAL" />
+    <result column="M_DIM_NEW16_ID" property="mDimNew16Id" jdbcType="DECIMAL" />
+    <result column="XW_VALUE" property="xwValue" jdbcType="VARCHAR" />
+    <result column="YC_VALUE" property="ycValue" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CLOSE_STATUS" property="closeStatus" jdbcType="DECIMAL" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="FLOAT_RATE" property="floatRate" jdbcType="DECIMAL" />
+    <result column="PRICE1" property="price1" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, M_PRODUCT_ID, M_DIM_NEW13_ID, M_DIM_NEW14_ID, M_DIM_NEW16_ID, 
+    XW_VALUE, YC_VALUE, STATUS, CLOSE_STATUS, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, 
+    ISACTIVE, FLOAT_RATE, PRICE1, PRICE
+  </sql>
+  <select id="queryPriceListByProductId" resultType="com.dky.common.response.view.PdtPriceView" parameterType="java.lang.Long" >
+    SELECT
+      t2.ATTRIBNAME as mDimNew13Text,
+      t3.ATTRIBNAME as mDimNew14Text,
+      t4.ATTRIBNAME as mDimNew16Text,
+      t1.price,
+      t1.FLOAT_RATE as floatRate,
+      t1.price1
+    FROM M_PDT_BASEPRICE1 t1
+    LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
+    LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
+    LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
+    where t1.STATUS = 2
+    AND t1.CLOSE_STATUS = 1
+    AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+  </select>
+
+</mapper>
