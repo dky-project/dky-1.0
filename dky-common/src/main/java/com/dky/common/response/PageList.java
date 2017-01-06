@@ -1,5 +1,7 @@
 package com.dky.common.response;
 
+import com.dky.common.constats.GlobConts;
+
 import java.util.List;
 
 /**
@@ -11,9 +13,9 @@ public class PageList<T> {
 
     private Integer total;
 
-    private Integer pageIndex;
+    private Integer pageIndex = 0;
 
-    private Integer pageSize;
+    private Integer pageSize = GlobConts.DEFUALT_PAGE_SIZE;
 
     public PageList(List<T> items, Integer total, Integer pageIndex, Integer pageSize) {
         this.items = items;

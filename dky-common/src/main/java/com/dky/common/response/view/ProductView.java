@@ -8,6 +8,12 @@ import com.dky.common.response.ResultObjectBase;
  */
 public class ProductView extends ResultObjectBase {
 
+
+    /**
+     * productId
+     */
+    private Long mProductId;
+
     /**
      * 款号
      */
@@ -43,5 +49,13 @@ public class ProductView extends ResultObjectBase {
 
     public void setImgUrl1(String imgUrl1) {
         this.imgUrl1 = imgUrl1;
+    }
+
+    public Long getmProductId() {
+        return mProductId;
+    }
+
+    public void setmProductId(Long mProductId) {
+        this.mProductId = mProductId;
     }
 }

@@ -281,8 +281,31 @@
     DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
   </sql>
 
+    <!--样衣列表查询 -->
+    <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
+       SELECT mProductId,name,imgUrl1 FROM (
+            SELECT
+              t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1,ROWNUM RN
+            from M_PRODUCT t1
+            LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+          WHERE 1=1
+            <if test="null!=requestOffset">
+                AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+            </if>
+        ) A
+        WHERE 1=1
+        <if test="null!=requestOffset">
+            AND RN <![CDATA[ >= ]]> #{requestOffset}
+        </if>
+    </select>
+
+    <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
+        SELECT COUNT(1) from M_PRODUCT t1 LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+    </select>
+
   <select id="getProductInfo" resultType="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
-    select 
+    select
+      t1.id,
       t1.name,
       t2.ATTRIBNAME as mDimNew11Text,
       t3.ATTRIBNAME as mDimNew13Text,
