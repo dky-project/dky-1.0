@@ -286,6 +286,7 @@
         FROM M_PRODUCT t1
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
         WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
+        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
     </sql>
 
     <sql id="whereClause">
@@ -311,7 +312,9 @@
     </select>
 
     <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
-        SELECT COUNT(1) from M_PRODUCT t1 LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+        SELECT COUNT(1) from M_PRODUCT t1 LEFT JOIN B_PDT_MEDIA t5 ON t1.id = t5.M_PRODUCT_ID
+        WHERE t5.ISACTIVE = 'Y' AND t1.ISACTIVE = 'Y'
+        AND (t1.PDT_TYPE='YY' OR t1.PDT_TYPE='PT')
     </select>
 
   <select id="getProductInfo" resultType="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
@@ -352,7 +355,7 @@
     and t5.ISACTIVE = 'Y'
     and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
     and t1.ISACTIVE = 'Y'
-    and ID = #{id,jdbcType=DECIMAL}
+    and t1.ID = #{id,jdbcType=DECIMAL}
   </select>
 
   <select id="queryValueList" parameterType="java.lang.Long" resultType="ProductValueView">

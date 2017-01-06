@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * 统一异常处理
@@ -39,6 +40,22 @@ public class SpringExceptionHandler {
     public @ResponseBody ReturnT handleException(ValidatorException e, HttpServletRequest request, HttpServletResponse response)throws IOException{
         printLog(e,request,response);
         return new ReturnT().failureData(ResultCodeEnum.VALIDATOR_ERROR.getCode(),e.getMessage());
+    }
+
+
+    /**
+     * 处理SQL异常
+     * @param e
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(SQLException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody ReturnT handleException(SQLException e, HttpServletRequest request, HttpServletResponse response)throws IOException{
+        printLog(e,request,response);
+        return new ReturnT().failureData(ResultCodeEnum.SQL_ERROR);
     }
 
 

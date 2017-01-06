@@ -13,6 +13,7 @@ public enum  ResultCodeEnum {
     LOGIN_PASSWORD_ERROR(1002,false,"登录密码错误"),
     SYSTEM_ERROR(501,false,"系统错误"),
     VALIDATOR_ERROR(502,false,"校验错误"),
+    SQL_ERROR(503,false,"数据库查询异常")
     ;
 
 
