@@ -11,6 +11,8 @@ public enum  ResultCodeEnum {
     NOLOGIN(400,false,"未登陆"),
     USER_LOGIN_ERROR(1001,false,"用户不存在"),
     LOGIN_PASSWORD_ERROR(1002,false,"登录密码错误"),
+    SYSTEM_ERROR(501,false,"系统错误"),
+    VALIDATOR_ERROR(502,false,"校验错误"),
     ;
 
 

@@ -54,4 +54,10 @@ public class SysLogController {
     public ReturnT getPage(SysLog sysLog){
         return sysLogService.pageList(sysLog);
     }
+
+
+    @RequestMapping("/exception")
+    public void exception() throws Exception {
+        throw new Exception("testException");
+    }
 }

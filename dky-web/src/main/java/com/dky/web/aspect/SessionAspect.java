@@ -56,18 +56,16 @@ public class SessionAspect implements Ordered {
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
         SessionUser user = sessionProcess.getSessionUser(accessToken);
-        DkyUtils.putCurrentUser(user);//加入当前登陆用户
         if(user == null){
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
+        DkyUtils.putCurrentUser(user);//加入当前登陆用户
         for (int i = 0; i< args.length;i++){//请求参数
             Object arg = args[i];
             if(arg instanceof SessionParameter){
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
-                if(user != null){
-                    sessionParameter.setSessionUser(user);
-                }
+                sessionParameter.setSessionUser(user);
             }
         }
         return pjp.proceed();
