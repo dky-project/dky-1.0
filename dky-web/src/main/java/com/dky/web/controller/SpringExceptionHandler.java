@@ -8,6 +8,7 @@ import com.dky.common.utils.DkyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,22 +45,6 @@ public class SpringExceptionHandler {
 
 
     /**
-     * 处理SQL异常
-     * @param e
-     * @param request
-     * @param response
-     * @return
-     * @throws IOException
-     */
-    @ExceptionHandler(SQLException.class)
-    @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody ReturnT handleException(SQLException e, HttpServletRequest request, HttpServletResponse response)throws IOException{
-        printLog(e,request,response);
-        return new ReturnT().failureData(ResultCodeEnum.SQL_ERROR);
-    }
-
-
-    /**
      * 统一异常处理
      * @param e
      * @param request
@@ -73,8 +58,6 @@ public class SpringExceptionHandler {
         printLog(e,request,response);
         return new ReturnT().failureData(ResultCodeEnum.SYSTEM_ERROR);
     }
-
-
 
     private void printLog(Exception e, HttpServletRequest request, HttpServletResponse response){
         SessionUser sessionUser = DkyUtils.getCurrentUser();//获取当前登陆
