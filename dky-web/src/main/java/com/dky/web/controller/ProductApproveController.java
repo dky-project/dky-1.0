@@ -4,12 +4,15 @@ import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 订单controller
@@ -33,5 +36,11 @@ public class ProductApproveController {
     @RequestMapping(value = "page",name = "订单分页查询")
     public ReturnT<PageList<ProductApproveView>> page(ProductApproveQueryParam param){
         return approveService.findByPage(param);
+    }
+
+
+    @RequestMapping(value = "productApproveInfoList",name = "查询订单详情")
+    public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids){
+        return approveService.queryProductApproveInfoList(ids);
     }
 }

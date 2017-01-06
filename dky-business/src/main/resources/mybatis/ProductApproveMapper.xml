@@ -224,7 +224,7 @@
     AND t5.ISACTIVE = 'Y'
     </select>
 
-  <select id="queryProductApproveInfoList" resultType="ProductApproveInfoView">
+  <select id="queryProductApproveInfoList"  resultType="ProductApproveInfoView">
     select
       t1.NO1 as no1,
       t1.JGNO as jgNo,

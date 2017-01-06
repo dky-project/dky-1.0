@@ -3,6 +3,7 @@ package com.dky.business.repository.repository;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveView;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface ProductApproveMapper {
 
     int count(ProductApprove productApprove);
 
-    List<ProductApproveInfoView> queryProductApproveInfoList(Long[] ids);
+    List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids);
 }
