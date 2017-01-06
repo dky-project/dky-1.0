@@ -9,41 +9,29 @@ import com.dky.common.response.ResultObjectBase;
 public class ProductApproveInfoView extends ResultObjectBase {
 
     /**
-     * 序号
-     */
-    private Long id;
-    /**
      * 编号
      */
     private Long no1;
     /**
-     * 来源样衣
+     * 机构
      */
-    private String pdt;
+    private String jgNo;
+    /**
+     * 交期
+     */
+    private String fhDate;
+    /**
+     * 品名
+     */
+    private String productValue;
     /**
      * 客户
      */
     private String customer;
     /**
-     * 传真日期
+     * 颜色
      */
-    private String czDate;
-    /**
-     * 式样
-     */
-    private String mDimNew12Text;
-    /**
-     * 组织
-     */
-    private String mDimNew15Text;
-    /**
-     * 针型
-     */
-    private String mDimNew16Text;
-    /**
-     * 支别
-     */
-    private String mDimNew17Text;
+    private String colorArr;
     /**
      * 大
      */
@@ -52,14 +40,58 @@ public class ProductApproveInfoView extends ResultObjectBase {
      * 长
      */
     private String ycValue;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    /**
+     * 肩
+     */
+    private String jkValue;
+    /**
+     * 袖
+     */
+    private String xcValue;
+    /**
+     * 下边
+     */
+    private String mDimNew10Text;
+    /**
+     * 袖口
+     */
+    private String mDimNew32Text;
+    /**
+     * 领
+     */
+    private String lingValue;
+    /**
+     * 式样
+     */
+    private String mDimNew12Text;
+    /**
+     * 附件
+     */
+    private String fuj;
+    /**
+     * 袖型
+     */
+    private String xxTxt;
+    /**
+     * 袋
+     */
+    private String dTxt;
+    /**
+     * 后道
+     */
+    private String hdTxt;
+    /**
+     * 净胸围
+     */
+    private String jxwValue;
+    /**
+     * 实际袖长
+     */
+    private String sjxcValue;
+    /**
+     * 备注
+     */
+    private String remark;
 
     public Long getNo1() {
         return no1;
@@ -69,12 +101,28 @@ public class ProductApproveInfoView extends ResultObjectBase {
         this.no1 = no1;
     }
 
-    public String getPdt() {
-        return pdt;
+    public String getJgNo() {
+        return jgNo;
     }
 
-    public void setPdt(String pdt) {
-        this.pdt = pdt;
+    public void setJgNo(String jgNo) {
+        this.jgNo = jgNo;
+    }
+
+    public String getFhDate() {
+        return fhDate;
+    }
+
+    public void setFhDate(String fhDate) {
+        this.fhDate = fhDate;
+    }
+
+    public String getProductValue() {
+        return productValue;
+    }
+
+    public void setProductValue(String productValue) {
+        this.productValue = productValue;
     }
 
     public String getCustomer() {
@@ -85,44 +133,12 @@ public class ProductApproveInfoView extends ResultObjectBase {
         this.customer = customer;
     }
 
-    public String getCzDate() {
-        return czDate;
+    public String getColorArr() {
+        return colorArr;
     }
 
-    public void setCzDate(String czDate) {
-        this.czDate = czDate;
-    }
-
-    public String getmDimNew12Text() {
-        return mDimNew12Text;
-    }
-
-    public void setmDimNew12Text(String mDimNew12Text) {
-        this.mDimNew12Text = mDimNew12Text;
-    }
-
-    public String getmDimNew15Text() {
-        return mDimNew15Text;
-    }
-
-    public void setmDimNew15Text(String mDimNew15Text) {
-        this.mDimNew15Text = mDimNew15Text;
-    }
-
-    public String getmDimNew16Text() {
-        return mDimNew16Text;
-    }
-
-    public void setmDimNew16Text(String mDimNew16Text) {
-        this.mDimNew16Text = mDimNew16Text;
-    }
-
-    public String getmDimNew17Text() {
-        return mDimNew17Text;
-    }
-
-    public void setmDimNew17Text(String mDimNew17Text) {
-        this.mDimNew17Text = mDimNew17Text;
+    public void setColorArr(String colorArr) {
+        this.colorArr = colorArr;
     }
 
     public String getXwValue() {
@@ -139,5 +155,109 @@ public class ProductApproveInfoView extends ResultObjectBase {
 
     public void setYcValue(String ycValue) {
         this.ycValue = ycValue;
+    }
+
+    public String getJkValue() {
+        return jkValue;
+    }
+
+    public void setJkValue(String jkValue) {
+        this.jkValue = jkValue;
+    }
+
+    public String getXcValue() {
+        return xcValue;
+    }
+
+    public void setXcValue(String xcValue) {
+        this.xcValue = xcValue;
+    }
+
+    public String getmDimNew10Text() {
+        return mDimNew10Text;
+    }
+
+    public void setmDimNew10Text(String mDimNew10Text) {
+        this.mDimNew10Text = mDimNew10Text;
+    }
+
+    public String getmDimNew32Text() {
+        return mDimNew32Text;
+    }
+
+    public void setmDimNew32Text(String mDimNew32Text) {
+        this.mDimNew32Text = mDimNew32Text;
+    }
+
+    public String getLingValue() {
+        return lingValue;
+    }
+
+    public void setLingValue(String lingValue) {
+        this.lingValue = lingValue;
+    }
+
+    public String getmDimNew12Text() {
+        return mDimNew12Text;
+    }
+
+    public void setmDimNew12Text(String mDimNew12Text) {
+        this.mDimNew12Text = mDimNew12Text;
+    }
+
+    public String getFuj() {
+        return fuj;
+    }
+
+    public void setFuj(String fuj) {
+        this.fuj = fuj;
+    }
+
+    public String getXxTxt() {
+        return xxTxt;
+    }
+
+    public void setXxTxt(String xxTxt) {
+        this.xxTxt = xxTxt;
+    }
+
+    public String getdTxt() {
+        return dTxt;
+    }
+
+    public void setdTxt(String dTxt) {
+        this.dTxt = dTxt;
+    }
+
+    public String getHdTxt() {
+        return hdTxt;
+    }
+
+    public void setHdTxt(String hdTxt) {
+        this.hdTxt = hdTxt;
+    }
+
+    public String getJxwValue() {
+        return jxwValue;
+    }
+
+    public void setJxwValue(String jxwValue) {
+        this.jxwValue = jxwValue;
+    }
+
+    public String getSjxcValue() {
+        return sjxcValue;
+    }
+
+    public void setSjxcValue(String sjxcValue) {
+        this.sjxcValue = sjxcValue;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }
