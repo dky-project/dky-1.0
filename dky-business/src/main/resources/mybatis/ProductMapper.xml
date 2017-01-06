@@ -288,7 +288,7 @@
               t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1,ROWNUM RN
             from M_PRODUCT t1
             LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
-          WHERE 1=1
+          WHERE t1.ISACTIVE = 'Y' AND t5.ISACTIVE = 'Y'
             <if test="null!=requestOffset">
                 AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
             </if>

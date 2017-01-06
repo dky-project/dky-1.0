@@ -39,8 +39,14 @@
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
     LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
-    where t1.STATUS = 2
+    WHERE t1.STATUS = 2
     AND t1.CLOSE_STATUS = 1
+    AND t2.DIMFLAG='DIMFLAG_NEW13'
+    AND t2.ISACTIVE = 'Y'
+    AND t3.DIMFLAG='DIMFLAG_NEW14'
+    AND t3.ISACTIVE = 'Y'
+    AND t4.DIMFLAG='DIMFLAG_NEW16'
+    AND t4.ISACTIVE = 'Y'
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
