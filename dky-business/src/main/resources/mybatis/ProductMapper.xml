@@ -309,10 +309,6 @@
       t1.name,
       t2.ATTRIBNAME as mDimNew11Text,
       t3.ATTRIBNAME as mDimNew13Text,
-      t4.XW_VALUE as xwValue,
-      t4.YC_VALUE as ycValue,
-      t4.JK_VALUE as jkValue,
-      t4.XC_VALUE as xcValue,
       t5.IMGURL1,
       t5.IMGURL2,
       t5.IMGURL3,
@@ -327,7 +323,6 @@
     from M_PRODUCT t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW11_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW13_ID = t3.id
-    LEFT JOIN V_CUSMPTCATEITEM t4 on t1.id = t4.M_PRODUCT_ID
     LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
     LEFT JOIN
       (select a.M_PRODUCT_ID,
@@ -347,6 +342,16 @@
     and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
     and t1.ISACTIVE = 'Y'
     and ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+  <select id="queryValueList" parameterType="java.lang.Long" resultType="ProductValueView">
+    select
+      t.XW_VALUE as xwValue,
+      t.YC_VALUE as ycValue,
+      t.JK_VALUE as jkValue,
+      t.XC_VALUE as xcValue
+    from V_CUSMPTCATEITEM t
+    where t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
 </mapper>

@@ -29,22 +29,6 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String description5;
     /**
-     * 胸围
-     */
-    private String xwValue;
-    /**
-     * 衣长
-     */
-    private String ycValue;
-    /**
-     * 肩宽
-     */
-    private String jkValue;
-    /**
-     * 袖长
-     */
-    private String xcValue;
-    /**
      * 所属类别
      */
     private String mptbelongtypeText;
@@ -146,38 +130,6 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setDescription5(String description5) {
         this.description5 = description5;
-    }
-
-    public String getXwValue() {
-        return xwValue;
-    }
-
-    public void setXwValue(String xwValue) {
-        this.xwValue = xwValue;
-    }
-
-    public String getYcValue() {
-        return ycValue;
-    }
-
-    public void setYcValue(String ycValue) {
-        this.ycValue = ycValue;
-    }
-
-    public String getJkValue() {
-        return jkValue;
-    }
-
-    public void setJkValue(String jkValue) {
-        this.jkValue = jkValue;
-    }
-
-    public String getXcValue() {
-        return xcValue;
-    }
-
-    public void setXcValue(String xcValue) {
-        this.xcValue = xcValue;
     }
 
     public String getMptbelongtypeText() {
