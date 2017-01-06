@@ -4,7 +4,7 @@ import com.dky.common.response.ResultObjectBase;
 
 /**
  * Created by hang on 2017/1/4 0004.
- * @decription 样衣查询列表
+ * @decription 定制款零售基础价
  */
 public class PdtPriceView extends ResultObjectBase {
 
