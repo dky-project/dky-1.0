@@ -153,7 +153,48 @@
     SJXC_VALUE, XX_TXT, D_TXT, HD_TXT, Z_TXT, KOUD, FUJ, TESGY, M_PRODUCT_ID, XB_VALUE, 
     XBZZ_VALUE, C_CUSTOMER_ID, DOCNO, SH_REMARK, NO1, EXPRESSTYPE, DCTIME, NOERID, NOTIME
   </sql>
-  <select id="queryProductApproveList" resultType="ProductApproveView">
+
+
+    <!--订单分页查询 -->
+    <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
+        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
+        mDimNew16Text,mDimNew17Text,xwValue,ycValue FROM (
+        SELECT
+        t1.ID,
+        t1.NO1,
+        t1.PDT,
+        t1.CUSTOMER,
+        t1.CZ_DATE as czDate,
+        t2.ATTRIBNAME as mDimNew12Text,
+        t3.ATTRIBNAME as mDimNew15Text,
+        t4.ATTRIBNAME as mDimNew16Text,
+        t5.ATTRIBNAME as mDimNew17Text,
+        t1.XW_VALUE as xwValue,
+        t1.YC_VALUE as ycValue,
+        ROWNUM RN
+        from M_PRODUCT_APPROVE t1
+        LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW12_ID = t2.id
+        LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW15_ID = t3.id
+        LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
+        LEFT JOIN M_DIM_NEW t5 on t1.M_DIM_NEW17_ID = t5.id
+        ORDER by t1.NO1 DESC
+        ) A WHERE 1=1
+        <if test="null!=requestOffset">
+            AND RN <![CDATA[ >= ]]> #{requestOffset}
+            AND RN <![CDATA[ <= ]]>#{requestCount}
+        </if>
+
+    </select>
+
+    <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
+     select count(1) from M_PRODUCT_APPROVE t1
+    LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW12_ID = t2.id
+    LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW15_ID = t3.id
+    LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
+    LEFT JOIN M_DIM_NEW t5 on t1.M_DIM_NEW17_ID = t5.id
+    </select>
+
+  <select id="queryProductApproveList" resultType="com.dky.common.response.view.ProductApproveView">
     select
       t1.ID,
       t1.NO1,
@@ -173,7 +214,7 @@
     LEFT JOIN M_DIM_NEW t5 on t1.M_DIM_NEW17_ID = t5.id
   </select>
 
-  <select id="getProductApproveInfo" resultType="ProductApproveInfoView" parameterType="java.lang.Long">
+  <select id="getProductApproveInfo" resultType="com.dky.common.response.view.ProductApproveView" parameterType="java.lang.Long">
     select
     t1.ID,
     t1.NO1,

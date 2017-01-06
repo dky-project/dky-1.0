@@ -11,6 +11,9 @@ public class PageObjectBase implements Serializable {
     public Integer requestOffset;
     public Integer requestCount;
 
+    private Integer pageNo;
+    private Integer pageSize;
+
     public Integer getRequestOffset() {
         return requestOffset;
     }
@@ -25,5 +28,21 @@ public class PageObjectBase implements Serializable {
 
     public void setRequestCount(Integer requestCount) {
         this.requestCount = requestCount;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }

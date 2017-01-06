@@ -1,5 +1,7 @@
 package com.dky.common.constats;
 
+import com.dky.common.utils.PropertieUtils;
+
 /**
  * 全局常量
  * Created by wangpeng on 2016/12/13.
@@ -30,4 +32,10 @@ public class GlobConts {
      * 当前登陆session
      */
     public static final String CURRENT_SESSION_KEY = "current_session";
+
+
+    /**
+     * 图片跟路径
+     */
+    public static final String IMAGE_ROOT_URL = PropertieUtils.getString("imageRootUrl");
 }

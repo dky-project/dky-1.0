@@ -5,7 +5,10 @@ import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductInfoView;
+import com.dky.common.response.view.ProductValueView;
 import com.dky.common.response.view.ProductView;
+
+import java.util.List;
 
 /**
  * Created by wangpeng on 2017/1/5.
@@ -21,4 +24,6 @@ public interface ProductService{
     ReturnT<ProductInfoView> getProductInfo(Long id);
 
     ReturnT<PageList<ProductView>> findByPage(ProductQueryParam productQueryParam);
+
+    ReturnT<List<ProductValueView>> queryValueList(Long mProductId);
 }

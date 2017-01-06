@@ -3,7 +3,7 @@ package com.dky.common.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ProductApprove {
+public class ProductApprove extends PojoObjectBase {
     private Long id;
 
     private Long adClientId;

@@ -9,12 +9,15 @@ import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductInfoView;
+import com.dky.common.response.view.ProductValueView;
 import com.dky.common.response.view.ProductView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 样衣查询服务
@@ -46,13 +49,20 @@ public class ProductServiceImpl implements ProductService  {
         return new ReturnT<>().sucessData(findPage(productQueryParam));
     }
 
+
+    /**
+     * 查询胸围、衣长、肩宽、袖长
+     * @param mProductId
+     * @return
+     */
+    @Override
+    public ReturnT<List<ProductValueView>> queryValueList(Long mProductId) {
+        return new ReturnT<>().sucessData(mapper.queryValueList(mProductId));
+    }
+
     private PageList<ProductView> findPage(ProductQueryParam productQueryParam) {
         Product product = new Product();
         BeanUtils.copyProperties(productQueryParam,product);
-        if(product.getRequestOffset() == null && product.getRequestCount() == null){
-            product.setRequestOffset(0);
-            product.setRequestCount(GlobConts.DEFUALT_PAGE_SIZE);
-        }
         return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
