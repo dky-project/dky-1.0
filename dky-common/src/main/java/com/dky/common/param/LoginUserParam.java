@@ -13,7 +13,7 @@ public class LoginUserParam implements Serializable {
     /**
      * 登录邮箱
      */
-    @NotEmpty(message = "不能为空")
+    @NotEmpty(message = "登录邮箱不能为空")
     private String email;
     /**
      * 登录密码

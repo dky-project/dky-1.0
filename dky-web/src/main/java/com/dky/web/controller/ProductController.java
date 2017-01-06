@@ -19,6 +19,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
+    /**
+     * 样衣详细信息查询
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/getProductInfo/{id}" ,name="样衣详细信息查询")
     public ReturnT<ProductInfoView> getProductInfo(@PathVariable(value = "id") Long id){
         return productService.getProductInfo(id);

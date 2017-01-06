@@ -24,4 +24,10 @@ public class GlobConts {
 
 
     public static final String SESSION_COOKIE_KEY = "Authorization";
+
+
+    /**
+     * 当前登陆session
+     */
+    public static final String CURRENT_SESSION_KEY = "current_session";
 }

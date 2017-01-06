@@ -21,6 +21,11 @@ public class BootController {
     private BootService bootService;
 
 
+    /**
+     * 查询有效的启动页
+     * @param param
+     * @return
+     */
     @RequestMapping(value = "queryValid",name = "查询有效的启动页")
     public ReturnT<List<Boot>> queryValid(BootQueryParam param){
         return bootService.queryValid(param);

@@ -3,9 +3,12 @@ package com.dky.web.aspect;
 
 import com.dky.business.repository.session.SessionProcess;
 import com.dky.common.bean.SessionUser;
+import com.dky.common.constats.GlobConts;
 import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.response.ReturnT;
 import com.dky.common.session.SessionParameter;
+import com.dky.common.utils.DkyUtils;
+import com.dky.common.utils.ThreadLocalUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -53,6 +56,7 @@ public class SessionAspect implements Ordered {
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
         SessionUser user = sessionProcess.getSessionUser(accessToken);
+        DkyUtils.putCurrentUser(user);//加入当前登陆用户
         if(user == null){
             return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
         }
@@ -62,14 +66,10 @@ public class SessionAspect implements Ordered {
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
                 if(user != null){
-                    SessionUser sessionUser = new SessionUser();
-                    BeanUtils.copyProperties(user,sessionUser);
-                    sessionParameter.setSessionUser(sessionUser);
+                    sessionParameter.setSessionUser(user);
                 }
             }
         }
-
-
         return pjp.proceed();
     }
 
