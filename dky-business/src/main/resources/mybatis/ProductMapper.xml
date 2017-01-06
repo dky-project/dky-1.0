@@ -285,7 +285,7 @@
         SELECT t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1,ROWNUM RN
         FROM M_PRODUCT t1
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
-        <include refid="whereClause"></include>
+        WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
     </sql>
 
     <sql id="whereClause">

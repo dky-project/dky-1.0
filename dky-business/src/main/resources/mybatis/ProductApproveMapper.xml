@@ -190,9 +190,6 @@
         LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW15_ID = t3.id
         LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
         LEFT JOIN M_DIM_NEW t5 on t1.M_DIM_NEW17_ID = t5.id
-<<<<<<< HEAD
-        <include refid="whereClause"></include>
-=======
         WHERE t2.DIMFLAG='DIMFLAG_NEW12'
         AND t2.ISACTIVE = 'Y'
         AND t3.DIMFLAG='DIMFLAG_NEW15'
@@ -201,7 +198,6 @@
         AND t4.ISACTIVE = 'Y'
         AND t5.DIMFLAG='DIMFLAG_NEW17'
         AND t5.ISACTIVE = 'Y'
->>>>>>> 1513a6efae09a98755929281578d68a7987bcf0e
         ORDER by t1.NO1 DESC
     </sql>
 
