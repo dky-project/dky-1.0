@@ -146,7 +146,7 @@ public class ProductApprove extends PojoObjectBase {
 
     private String tangz;
 
-    private Short isapprove;
+    private Integer isapprove;
 
     private String colorvalue;
 
@@ -834,11 +834,11 @@ public class ProductApprove extends PojoObjectBase {
         this.tangz = tangz == null ? null : tangz.trim();
     }
 
-    public Short getIsapprove() {
+    public Integer getIsapprove() {
         return isapprove;
     }
 
-    public void setIsapprove(Short isapprove) {
+    public void setIsapprove(Integer isapprove) {
         this.isapprove = isapprove;
     }
 

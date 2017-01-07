@@ -10,6 +10,9 @@ public class GlobConts {
 
     public static final String DEFAULT_FORMATTER_YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
 
+
+    public static final String DEFAULT_FORMATTER_YYYY_MM_DD = "yyyy-MM-dd";
+
     /**
      * 默认分页大小
      */

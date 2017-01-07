@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * Created by wangpeng on 2016/12/13.
  */
@@ -59,5 +61,10 @@ public class SysLogController {
     @RequestMapping("/exception")
     public void exception() throws Exception {
         throw new Exception("testException");
+    }
+
+    @RequestMapping("/date")
+    public ReturnT<Date> dateReturnT(Date date){
+        return new ReturnT<>().sucessData(date);
     }
 }

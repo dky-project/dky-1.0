@@ -282,17 +282,23 @@
   </sql>
 
     <sql id="queryTmpl">
-        SELECT t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1,ROWNUM RN
+        SELECT t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1
         FROM M_PRODUCT t1
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+        LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW11_ID = t2.id
+        LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW13_ID = t3.id
         WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
         and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
+        and t2.DIMFLAG='DIMFLAG_NEW11'
+        and t2.ISACTIVE = 'Y'
+        and t3.DIMFLAG='DIMFLAG_NEW13'
+        and t3.ISACTIVE = 'Y'
+        <include refid="whereClause"></include>
     </sql>
 
     <sql id="whereClause">
-        <where>
-
-        </where>
+        <if test="null!=mDimNew11Id">AND t2.id = #{mDimNew11Id}</if>
+        <if test="null!=mDimNew13Id"> AND t3.id = #{mDimNew13Id}</if>
     </sql>
 
     <!--样衣列表查询 -->
@@ -312,9 +318,18 @@
     </select>
 
     <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
-        SELECT COUNT(1) from M_PRODUCT t1 LEFT JOIN B_PDT_MEDIA t5 ON t1.id = t5.M_PRODUCT_ID
-        WHERE t5.ISACTIVE = 'Y' AND t1.ISACTIVE = 'Y'
-        AND (t1.PDT_TYPE='YY' OR t1.PDT_TYPE='PT')
+        SELECT count(1)
+        FROM M_PRODUCT t1
+        LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+        LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW11_ID = t2.id
+        LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW13_ID = t3.id
+        WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
+        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
+        and t2.DIMFLAG='DIMFLAG_NEW11'
+        and t2.ISACTIVE = 'Y'
+        and t3.DIMFLAG='DIMFLAG_NEW13'
+        and t3.ISACTIVE = 'Y'
+        <include refid="whereClause"></include>
     </select>
 
   <select id="getProductInfo" resultType="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >

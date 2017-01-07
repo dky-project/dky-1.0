@@ -17,7 +17,7 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String mDimNew11Text;
     /**
-     * 领子
+     * 性别
      */
     private String mDimNew13Text;
     /**
