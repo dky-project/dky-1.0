@@ -36,4 +36,14 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 mapper.queryByPage(approve),mapper.count(approve),
                 approve.getPageNo(),approve.getPageSize());
     }
+
+    @Override
+    public ReturnT insertProductApprove() {
+        return null;
+    }
+
+    @Override
+    public ReturnT updateProductApprove() {
+        return null;
+    }
 }

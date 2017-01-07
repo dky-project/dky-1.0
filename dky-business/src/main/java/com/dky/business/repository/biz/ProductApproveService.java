@@ -11,4 +11,8 @@ import com.dky.common.response.view.ProductApproveView;
 public interface ProductApproveService {
 
     ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param);
+
+    ReturnT insertProductApprove();
+
+    ReturnT updateProductApprove();
 }

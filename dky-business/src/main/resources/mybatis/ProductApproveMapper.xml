@@ -253,4 +253,1193 @@
     ORDER BY t1.NO1 DESC
   </select>
 
+  <insert id="insertProductApprove" parameterType="com.dky.common.bean.ProductApprove" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_M_PRODUCT_APPROVE.NEXTVAL from dual
+    </selectKey>
+    insert into M_PRODUCT_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="mDimNew11Id != null" >
+        M_DIM_NEW11_ID,
+      </if>
+      <if test="mDimNew12Id != null" >
+        M_DIM_NEW12_ID,
+      </if>
+      <if test="mDimNew13Id != null" >
+        M_DIM_NEW13_ID,
+      </if>
+      <if test="mDimNew14Id != null" >
+        M_DIM_NEW14_ID,
+      </if>
+      <if test="mDimNew15Id != null" >
+        M_DIM_NEW15_ID,
+      </if>
+      <if test="mDimNew16Id != null" >
+        M_DIM_NEW16_ID,
+      </if>
+      <if test="mDimNew17Id != null" >
+        M_DIM_NEW17_ID,
+      </if>
+      <if test="mDimNew18Id != null" >
+        M_DIM_NEW18_ID,
+      </if>
+      <if test="mDimNew19Id != null" >
+        M_DIM_NEW19_ID,
+      </if>
+      <if test="mDimNew22Id != null" >
+        M_DIM_NEW22_ID,
+      </if>
+      <if test="mDimNew25Id != null" >
+        M_DIM_NEW25_ID,
+      </if>
+      <if test="mDimNew26Id != null" >
+        M_DIM_NEW26_ID,
+      </if>
+      <if test="mDimNew28Id != null" >
+        M_DIM_NEW28_ID,
+      </if>
+      <if test="mDimNew10Id != null" >
+        M_DIM_NEW10_ID,
+      </if>
+      <if test="mDimNew32Id != null" >
+        M_DIM_NEW32_ID,
+      </if>
+      <if test="mDimNew37Id != null" >
+        M_DIM_NEW37_ID,
+      </if>
+      <if test="mDimNew38Id != null" >
+        M_DIM_NEW38_ID,
+      </if>
+      <if test="mDimNew39Id != null" >
+        M_DIM_NEW39_ID,
+      </if>
+      <if test="mDimNew1Id != null" >
+        M_DIM_NEW1_ID,
+      </if>
+      <if test="mDimNew3Id != null" >
+        M_DIM_NEW3_ID,
+      </if>
+      <if test="mDimNew4Id != null" >
+        M_DIM_NEW4_ID,
+      </if>
+      <if test="mDimNew6Id != null" >
+        M_DIM_NEW6_ID,
+      </if>
+      <if test="mDimNew7Id != null" >
+        M_DIM_NEW7_ID,
+      </if>
+      <if test="mDimNew41Id != null" >
+        M_DIM_NEW41_ID,
+      </if>
+      <if test="mDimNew9Id != null" >
+        M_DIM_NEW9_ID,
+      </if>
+      <if test="ycValue != null" >
+        YC_VALUE,
+      </if>
+      <if test="jkValue != null" >
+        JK_VALUE,
+      </if>
+      <if test="xcValue != null" >
+        XC_VALUE,
+      </if>
+      <if test="xbcValue != null" >
+        XBC_VALUE,
+      </if>
+      <if test="lingCcValue != null" >
+        LING_CC_VALUE,
+      </if>
+      <if test="lbccValue != null" >
+        LBCC_VALUE,
+      </if>
+      <if test="xbccValue != null" >
+        XBCC_VALUE,
+      </if>
+      <if test="xkccValue != null" >
+        XKCC_VALUE,
+      </if>
+      <if test="dkslValue != null" >
+        DKSL_VALUE,
+      </if>
+      <if test="hzxcValue != null" >
+        HZXC_VALUE,
+      </if>
+      <if test="hzxc1Value != null" >
+        HZXC1_VALUE,
+      </if>
+      <if test="dc1Value != null" >
+        DC1_VALUE,
+      </if>
+      <if test="dcValue != null" >
+        DC_VALUE,
+      </if>
+      <if test="mjkValue != null" >
+        MJK_VALUE,
+      </if>
+      <if test="mjcValue != null" >
+        MJC_VALUE,
+      </if>
+      <if test="qtxxValue != null" >
+        QTXX_VALUE,
+      </if>
+      <if test="qtjxValue != null" >
+        QTJX_VALUE,
+      </if>
+      <if test="lingNumber2Value != null" >
+        LING_NUMBER2_VALUE,
+      </if>
+      <if test="lingNumber1Value != null" >
+        LING_NUMBER1_VALUE,
+      </if>
+      <if test="lingValue != null" >
+        LING_VALUE,
+      </if>
+      <if test="qtxbzzValue != null" >
+        QTXBZZ_VALUE,
+      </if>
+      <if test="lxsx5Value != null" >
+        LXSX5_VALUE,
+      </if>
+      <if test="lxsx2Value != null" >
+        LXSX2_VALUE,
+      </if>
+      <if test="lxsx1Value != null" >
+        LXSX1_VALUE,
+      </if>
+      <if test="lxsx4Value != null" >
+        LXSX4_VALUE,
+      </if>
+      <if test="lxsx3Value != null" >
+        LXSX3_VALUE,
+      </if>
+      <if test="qtlbValue != null" >
+        QTLB_VALUE,
+      </if>
+      <if test="qtxbValue != null" >
+        QTXB_VALUE,
+      </if>
+      <if test="qtxkValue != null" >
+        QTXK_VALUE,
+      </if>
+      <if test="dkValue != null" >
+        DK_VALUE,
+      </if>
+      <if test="qtmjValue != null" >
+        QTMJ_VALUE,
+      </if>
+      <if test="amjValue != null" >
+        AMJ_VALUE,
+      </if>
+      <if test="colorarr != null" >
+        COLORARR,
+      </if>
+      <if test="dkNumber != null" >
+        DK_NUMBER,
+      </if>
+      <if test="colorarrDes != null" >
+        COLORARR_DES,
+      </if>
+      <if test="jzValue != null" >
+        JZ_VALUE,
+      </if>
+      <if test="huax != null" >
+        HUAX,
+      </if>
+      <if test="tangz != null" >
+        TANGZ,
+      </if>
+      <if test="isapprove != null" >
+        ISAPPROVE,
+      </if>
+      <if test="colorvalue != null" >
+        COLORVALUE,
+      </if>
+      <if test="pdt != null" >
+        PDT,
+      </if>
+      <if test="jgno != null" >
+        JGNO,
+      </if>
+      <if test="customer != null" >
+        CUSTOMER,
+      </if>
+      <if test="ghPrice1 != null" >
+        GH_PRICE1,
+      </if>
+      <if test="ghPrice != null" >
+        GH_PRICE,
+      </if>
+      <if test="fdRate != null" >
+        FD_RATE,
+      </if>
+      <if test="jlPrice != null" >
+        JL_PRICE,
+      </if>
+      <if test="jxTxt != null" >
+        JX_TXT,
+      </if>
+      <if test="xTxt != null" >
+        X_TXT,
+      </if>
+      <if test="lTxt != null" >
+        L_TXT,
+      </if>
+      <if test="syTxt != null" >
+        SY_TXT,
+      </if>
+      <if test="xbTxt != null" >
+        XB_TXT,
+      </if>
+      <if test="xkTxt != null" >
+        XK_TXT,
+      </if>
+      <if test="no != null" >
+        NO,
+      </if>
+      <if test="czDate != null" >
+        CZ_DATE,
+      </if>
+      <if test="fhDate != null" >
+        FH_DATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="lsPrice != null" >
+        LS_PRICE,
+      </if>
+      <if test="lsPrice1 != null" >
+        LS_PRICE1,
+      </if>
+      <if test="fdRate1 != null" >
+        FD_RATE1,
+      </if>
+      <if test="isMore != null" >
+        IS_MORE,
+      </if>
+      <if test="xfType != null" >
+        XF_TYPE,
+      </if>
+      <if test="xfValue != null" >
+        XF_VALUE,
+      </if>
+      <if test="mDimNew9Id1 != null" >
+        M_DIM_NEW9_ID1,
+      </if>
+      <if test="qtxxValue1 != null" >
+        QTXX_VALUE1,
+      </if>
+      <if test="mDimNew9Id2 != null" >
+        M_DIM_NEW9_ID2,
+      </if>
+      <if test="qtxxValue2 != null" >
+        QTXX_VALUE2,
+      </if>
+      <if test="hkTxt != null" >
+        HK_TXT,
+      </if>
+      <if test="zkTxt != null" >
+        ZK_TXT,
+      </if>
+      <if test="hhkTxt != null" >
+        HHK_TXT,
+      </if>
+      <if test="hzkTxt != null" >
+        HZK_TXT,
+      </if>
+      <if test="xfTxt != null" >
+        XF_TXT,
+      </if>
+      <if test="gjTxt != null" >
+        GJ_TXT,
+      </if>
+      <if test="qtlingother != null" >
+        QTLINGOTHER,
+      </if>
+      <if test="xwValue != null" >
+        XW_VALUE,
+      </if>
+      <if test="scIsdc != null" >
+        SC_ISDC,
+      </if>
+      <if test="sepLing != null" >
+        SEP_LING,
+      </if>
+      <if test="jxwValue != null" >
+        JXW_VALUE,
+      </if>
+      <if test="sjxcValue != null" >
+        SJXC_VALUE,
+      </if>
+      <if test="xxTxt != null" >
+        XX_TXT,
+      </if>
+      <if test="dTxt != null" >
+        D_TXT,
+      </if>
+      <if test="hdTxt != null" >
+        HD_TXT,
+      </if>
+      <if test="zTxt != null" >
+        Z_TXT,
+      </if>
+      <if test="koud != null" >
+        KOUD,
+      </if>
+      <if test="fuj != null" >
+        FUJ,
+      </if>
+      <if test="tesgy != null" >
+        TESGY,
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID,
+      </if>
+      <if test="xbValue != null" >
+        XB_VALUE,
+      </if>
+      <if test="xbzzValue != null" >
+        XBZZ_VALUE,
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID,
+      </if>
+      <if test="docno != null" >
+        DOCNO,
+      </if>
+      <if test="shRemark != null" >
+        SH_REMARK,
+      </if>
+      <if test="no1 != null" >
+        NO1,
+      </if>
+      <if test="expresstype != null" >
+        EXPRESSTYPE,
+      </if>
+      <if test="dctime != null" >
+        DCTIME,
+      </if>
+      <if test="noerid != null" >
+        NOERID,
+      </if>
+      <if test="notime != null" >
+        NOTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="mDimNew11Id != null" >
+        #{mDimNew11Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew12Id != null" >
+        #{mDimNew12Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew13Id != null" >
+        #{mDimNew13Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew14Id != null" >
+        #{mDimNew14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew15Id != null" >
+        #{mDimNew15Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew16Id != null" >
+        #{mDimNew16Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew17Id != null" >
+        #{mDimNew17Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew18Id != null" >
+        #{mDimNew18Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew19Id != null" >
+        #{mDimNew19Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew22Id != null" >
+        #{mDimNew22Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew25Id != null" >
+        #{mDimNew25Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew26Id != null" >
+        #{mDimNew26Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew28Id != null" >
+        #{mDimNew28Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew10Id != null" >
+        #{mDimNew10Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew32Id != null" >
+        #{mDimNew32Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew37Id != null" >
+        #{mDimNew37Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew38Id != null" >
+        #{mDimNew38Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew39Id != null" >
+        #{mDimNew39Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew1Id != null" >
+        #{mDimNew1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew3Id != null" >
+        #{mDimNew3Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew4Id != null" >
+        #{mDimNew4Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew6Id != null" >
+        #{mDimNew6Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew7Id != null" >
+        #{mDimNew7Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew41Id != null" >
+        #{mDimNew41Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew9Id != null" >
+        #{mDimNew9Id,jdbcType=DECIMAL},
+      </if>
+      <if test="ycValue != null" >
+        #{ycValue,jdbcType=VARCHAR},
+      </if>
+      <if test="jkValue != null" >
+        #{jkValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xcValue != null" >
+        #{xcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbcValue != null" >
+        #{xbcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lingCcValue != null" >
+        #{lingCcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lbccValue != null" >
+        #{lbccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbccValue != null" >
+        #{xbccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xkccValue != null" >
+        #{xkccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="dkslValue != null" >
+        #{dkslValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hzxcValue != null" >
+        #{hzxcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hzxc1Value != null" >
+        #{hzxc1Value,jdbcType=DECIMAL},
+      </if>
+      <if test="dc1Value != null" >
+        #{dc1Value,jdbcType=DECIMAL},
+      </if>
+      <if test="dcValue != null" >
+        #{dcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mjkValue != null" >
+        #{mjkValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mjcValue != null" >
+        #{mjcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue != null" >
+        #{qtxxValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtjxValue != null" >
+        #{qtjxValue,jdbcType=VARCHAR},
+      </if>
+      <if test="lingNumber2Value != null" >
+        #{lingNumber2Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lingNumber1Value != null" >
+        #{lingNumber1Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lingValue != null" >
+        #{lingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxbzzValue != null" >
+        #{qtxbzzValue,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx5Value != null" >
+        #{lxsx5Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx2Value != null" >
+        #{lxsx2Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx1Value != null" >
+        #{lxsx1Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx4Value != null" >
+        #{lxsx4Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx3Value != null" >
+        #{lxsx3Value,jdbcType=VARCHAR},
+      </if>
+      <if test="qtlbValue != null" >
+        #{qtlbValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxbValue != null" >
+        #{qtxbValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxkValue != null" >
+        #{qtxkValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dkValue != null" >
+        #{dkValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtmjValue != null" >
+        #{qtmjValue,jdbcType=VARCHAR},
+      </if>
+      <if test="amjValue != null" >
+        #{amjValue,jdbcType=VARCHAR},
+      </if>
+      <if test="colorarr != null" >
+        #{colorarr,jdbcType=VARCHAR},
+      </if>
+      <if test="dkNumber != null" >
+        #{dkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="colorarrDes != null" >
+        #{colorarrDes,jdbcType=VARCHAR},
+      </if>
+      <if test="jzValue != null" >
+        #{jzValue,jdbcType=VARCHAR},
+      </if>
+      <if test="huax != null" >
+        #{huax,jdbcType=VARCHAR},
+      </if>
+      <if test="tangz != null" >
+        #{tangz,jdbcType=VARCHAR},
+      </if>
+      <if test="isapprove != null" >
+        #{isapprove,jdbcType=DECIMAL},
+      </if>
+      <if test="colorvalue != null" >
+        #{colorvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pdt != null" >
+        #{pdt,jdbcType=VARCHAR},
+      </if>
+      <if test="jgno != null" >
+        #{jgno,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="ghPrice1 != null" >
+        #{ghPrice1,jdbcType=DECIMAL},
+      </if>
+      <if test="ghPrice != null" >
+        #{ghPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fdRate != null" >
+        #{fdRate,jdbcType=DECIMAL},
+      </if>
+      <if test="jlPrice != null" >
+        #{jlPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="jxTxt != null" >
+        #{jxTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xTxt != null" >
+        #{xTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="lTxt != null" >
+        #{lTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="syTxt != null" >
+        #{syTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xbTxt != null" >
+        #{xbTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xkTxt != null" >
+        #{xkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="czDate != null" >
+        #{czDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fhDate != null" >
+        #{fhDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lsPrice != null" >
+        #{lsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lsPrice1 != null" >
+        #{lsPrice1,jdbcType=DECIMAL},
+      </if>
+      <if test="fdRate1 != null" >
+        #{fdRate1,jdbcType=DECIMAL},
+      </if>
+      <if test="isMore != null" >
+        #{isMore,jdbcType=CHAR},
+      </if>
+      <if test="xfType != null" >
+        #{xfType,jdbcType=VARCHAR},
+      </if>
+      <if test="xfValue != null" >
+        #{xfValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimNew9Id1 != null" >
+        #{mDimNew9Id1,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue1 != null" >
+        #{qtxxValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimNew9Id2 != null" >
+        #{mDimNew9Id2,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue2 != null" >
+        #{qtxxValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="hkTxt != null" >
+        #{hkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zkTxt != null" >
+        #{zkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hhkTxt != null" >
+        #{hhkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hzkTxt != null" >
+        #{hzkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xfTxt != null" >
+        #{xfTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="gjTxt != null" >
+        #{gjTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="qtlingother != null" >
+        #{qtlingother,jdbcType=VARCHAR},
+      </if>
+      <if test="xwValue != null" >
+        #{xwValue,jdbcType=VARCHAR},
+      </if>
+      <if test="scIsdc != null" >
+        #{scIsdc,jdbcType=DECIMAL},
+      </if>
+      <if test="sepLing != null" >
+        #{sepLing,jdbcType=VARCHAR},
+      </if>
+      <if test="jxwValue != null" >
+        #{jxwValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxcValue != null" >
+        #{sjxcValue,jdbcType=VARCHAR},
+      </if>
+      <if test="xxTxt != null" >
+        #{xxTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="dTxt != null" >
+        #{dTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hdTxt != null" >
+        #{hdTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zTxt != null" >
+        #{zTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="koud != null" >
+        #{koud,jdbcType=VARCHAR},
+      </if>
+      <if test="fuj != null" >
+        #{fuj,jdbcType=VARCHAR},
+      </if>
+      <if test="tesgy != null" >
+        #{tesgy,jdbcType=VARCHAR},
+      </if>
+      <if test="mProductId != null" >
+        #{mProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="xbValue != null" >
+        #{xbValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbzzValue != null" >
+        #{xbzzValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerId != null" >
+        #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="docno != null" >
+        #{docno,jdbcType=VARCHAR},
+      </if>
+      <if test="shRemark != null" >
+        #{shRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="no1 != null" >
+        #{no1,jdbcType=DECIMAL},
+      </if>
+      <if test="expresstype != null" >
+        #{expresstype,jdbcType=CHAR},
+      </if>
+      <if test="dctime != null" >
+        #{dctime,jdbcType=DATE},
+      </if>
+      <if test="noerid != null" >
+        #{noerid,jdbcType=DECIMAL},
+      </if>
+      <if test="notime != null" >
+        #{notime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateProductApproveById" parameterType="com.dky.common.bean.ProductApprove" >
+    update M_PRODUCT_APPROVE
+    <set >
+      <if test="adClientId != null" >
+        AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerid != null" >
+        OWNERID = #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="mDimNew11Id != null" >
+        M_DIM_NEW11_ID = #{mDimNew11Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew12Id != null" >
+        M_DIM_NEW12_ID = #{mDimNew12Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew13Id != null" >
+        M_DIM_NEW13_ID = #{mDimNew13Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew14Id != null" >
+        M_DIM_NEW14_ID = #{mDimNew14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew15Id != null" >
+        M_DIM_NEW15_ID = #{mDimNew15Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew16Id != null" >
+        M_DIM_NEW16_ID = #{mDimNew16Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew17Id != null" >
+        M_DIM_NEW17_ID = #{mDimNew17Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew18Id != null" >
+        M_DIM_NEW18_ID = #{mDimNew18Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew19Id != null" >
+        M_DIM_NEW19_ID = #{mDimNew19Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew22Id != null" >
+        M_DIM_NEW22_ID = #{mDimNew22Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew25Id != null" >
+        M_DIM_NEW25_ID = #{mDimNew25Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew26Id != null" >
+        M_DIM_NEW26_ID = #{mDimNew26Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew28Id != null" >
+        M_DIM_NEW28_ID = #{mDimNew28Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew10Id != null" >
+        M_DIM_NEW10_ID = #{mDimNew10Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew32Id != null" >
+        M_DIM_NEW32_ID = #{mDimNew32Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew37Id != null" >
+        M_DIM_NEW37_ID = #{mDimNew37Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew38Id != null" >
+        M_DIM_NEW38_ID = #{mDimNew38Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew39Id != null" >
+        M_DIM_NEW39_ID = #{mDimNew39Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew1Id != null" >
+        M_DIM_NEW1_ID = #{mDimNew1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew3Id != null" >
+        M_DIM_NEW3_ID = #{mDimNew3Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew4Id != null" >
+        M_DIM_NEW4_ID = #{mDimNew4Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew6Id != null" >
+        M_DIM_NEW6_ID = #{mDimNew6Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew7Id != null" >
+        M_DIM_NEW7_ID = #{mDimNew7Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew41Id != null" >
+        M_DIM_NEW41_ID = #{mDimNew41Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew9Id != null" >
+        M_DIM_NEW9_ID = #{mDimNew9Id,jdbcType=DECIMAL},
+      </if>
+      <if test="ycValue != null" >
+        YC_VALUE = #{ycValue,jdbcType=VARCHAR},
+      </if>
+      <if test="jkValue != null" >
+        JK_VALUE = #{jkValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xcValue != null" >
+        XC_VALUE = #{xcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbcValue != null" >
+        XBC_VALUE = #{xbcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lingCcValue != null" >
+        LING_CC_VALUE = #{lingCcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lbccValue != null" >
+        LBCC_VALUE = #{lbccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbccValue != null" >
+        XBCC_VALUE = #{xbccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xkccValue != null" >
+        XKCC_VALUE = #{xkccValue,jdbcType=DECIMAL},
+      </if>
+      <if test="dkslValue != null" >
+        DKSL_VALUE = #{dkslValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hzxcValue != null" >
+        HZXC_VALUE = #{hzxcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hzxc1Value != null" >
+        HZXC1_VALUE = #{hzxc1Value,jdbcType=DECIMAL},
+      </if>
+      <if test="dc1Value != null" >
+        DC1_VALUE = #{dc1Value,jdbcType=DECIMAL},
+      </if>
+      <if test="dcValue != null" >
+        DC_VALUE = #{dcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mjkValue != null" >
+        MJK_VALUE = #{mjkValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mjcValue != null" >
+        MJC_VALUE = #{mjcValue,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue != null" >
+        QTXX_VALUE = #{qtxxValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtjxValue != null" >
+        QTJX_VALUE = #{qtjxValue,jdbcType=VARCHAR},
+      </if>
+      <if test="lingNumber2Value != null" >
+        LING_NUMBER2_VALUE = #{lingNumber2Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lingNumber1Value != null" >
+        LING_NUMBER1_VALUE = #{lingNumber1Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lingValue != null" >
+        LING_VALUE = #{lingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxbzzValue != null" >
+        QTXBZZ_VALUE = #{qtxbzzValue,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx5Value != null" >
+        LXSX5_VALUE = #{lxsx5Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx2Value != null" >
+        LXSX2_VALUE = #{lxsx2Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx1Value != null" >
+        LXSX1_VALUE = #{lxsx1Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx4Value != null" >
+        LXSX4_VALUE = #{lxsx4Value,jdbcType=VARCHAR},
+      </if>
+      <if test="lxsx3Value != null" >
+        LXSX3_VALUE = #{lxsx3Value,jdbcType=VARCHAR},
+      </if>
+      <if test="qtlbValue != null" >
+        QTLB_VALUE = #{qtlbValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxbValue != null" >
+        QTXB_VALUE = #{qtxbValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxkValue != null" >
+        QTXK_VALUE = #{qtxkValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dkValue != null" >
+        DK_VALUE = #{dkValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtmjValue != null" >
+        QTMJ_VALUE = #{qtmjValue,jdbcType=VARCHAR},
+      </if>
+      <if test="amjValue != null" >
+        AMJ_VALUE = #{amjValue,jdbcType=VARCHAR},
+      </if>
+      <if test="colorarr != null" >
+        COLORARR = #{colorarr,jdbcType=VARCHAR},
+      </if>
+      <if test="dkNumber != null" >
+        DK_NUMBER = #{dkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="colorarrDes != null" >
+        COLORARR_DES = #{colorarrDes,jdbcType=VARCHAR},
+      </if>
+      <if test="jzValue != null" >
+        JZ_VALUE = #{jzValue,jdbcType=VARCHAR},
+      </if>
+      <if test="huax != null" >
+        HUAX = #{huax,jdbcType=VARCHAR},
+      </if>
+      <if test="tangz != null" >
+        TANGZ = #{tangz,jdbcType=VARCHAR},
+      </if>
+      <if test="isapprove != null" >
+        ISAPPROVE = #{isapprove,jdbcType=DECIMAL},
+      </if>
+      <if test="colorvalue != null" >
+        COLORVALUE = #{colorvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pdt != null" >
+        PDT = #{pdt,jdbcType=VARCHAR},
+      </if>
+      <if test="jgno != null" >
+        JGNO = #{jgno,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        CUSTOMER = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="ghPrice1 != null" >
+        GH_PRICE1 = #{ghPrice1,jdbcType=DECIMAL},
+      </if>
+      <if test="ghPrice != null" >
+        GH_PRICE = #{ghPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fdRate != null" >
+        FD_RATE = #{fdRate,jdbcType=DECIMAL},
+      </if>
+      <if test="jlPrice != null" >
+        JL_PRICE = #{jlPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="jxTxt != null" >
+        JX_TXT = #{jxTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xTxt != null" >
+        X_TXT = #{xTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="lTxt != null" >
+        L_TXT = #{lTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="syTxt != null" >
+        SY_TXT = #{syTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xbTxt != null" >
+        XB_TXT = #{xbTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xkTxt != null" >
+        XK_TXT = #{xkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        NO = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="czDate != null" >
+        CZ_DATE = #{czDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fhDate != null" >
+        FH_DATE = #{fhDate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lsPrice != null" >
+        LS_PRICE = #{lsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lsPrice1 != null" >
+        LS_PRICE1 = #{lsPrice1,jdbcType=DECIMAL},
+      </if>
+      <if test="fdRate1 != null" >
+        FD_RATE1 = #{fdRate1,jdbcType=DECIMAL},
+      </if>
+      <if test="isMore != null" >
+        IS_MORE = #{isMore,jdbcType=CHAR},
+      </if>
+      <if test="xfType != null" >
+        XF_TYPE = #{xfType,jdbcType=VARCHAR},
+      </if>
+      <if test="xfValue != null" >
+        XF_VALUE = #{xfValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimNew9Id1 != null" >
+        M_DIM_NEW9_ID1 = #{mDimNew9Id1,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue1 != null" >
+        QTXX_VALUE1 = #{qtxxValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimNew9Id2 != null" >
+        M_DIM_NEW9_ID2 = #{mDimNew9Id2,jdbcType=DECIMAL},
+      </if>
+      <if test="qtxxValue2 != null" >
+        QTXX_VALUE2 = #{qtxxValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="hkTxt != null" >
+        HK_TXT = #{hkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zkTxt != null" >
+        ZK_TXT = #{zkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hhkTxt != null" >
+        HHK_TXT = #{hhkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hzkTxt != null" >
+        HZK_TXT = #{hzkTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xfTxt != null" >
+        XF_TXT = #{xfTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="gjTxt != null" >
+        GJ_TXT = #{gjTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="qtlingother != null" >
+        QTLINGOTHER = #{qtlingother,jdbcType=VARCHAR},
+      </if>
+      <if test="xwValue != null" >
+        XW_VALUE = #{xwValue,jdbcType=VARCHAR},
+      </if>
+      <if test="scIsdc != null" >
+        SC_ISDC = #{scIsdc,jdbcType=DECIMAL},
+      </if>
+      <if test="sepLing != null" >
+        SEP_LING = #{sepLing,jdbcType=VARCHAR},
+      </if>
+      <if test="jxwValue != null" >
+        JXW_VALUE = #{jxwValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxcValue != null" >
+        SJXC_VALUE = #{sjxcValue,jdbcType=VARCHAR},
+      </if>
+      <if test="xxTxt != null" >
+        XX_TXT = #{xxTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="dTxt != null" >
+        D_TXT = #{dTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="hdTxt != null" >
+        HD_TXT = #{hdTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zTxt != null" >
+        Z_TXT = #{zTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="koud != null" >
+        KOUD = #{koud,jdbcType=VARCHAR},
+      </if>
+      <if test="fuj != null" >
+        FUJ = #{fuj,jdbcType=VARCHAR},
+      </if>
+      <if test="tesgy != null" >
+        TESGY = #{tesgy,jdbcType=VARCHAR},
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="xbValue != null" >
+        XB_VALUE = #{xbValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xbzzValue != null" >
+        XBZZ_VALUE = #{xbzzValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="docno != null" >
+        DOCNO = #{docno,jdbcType=VARCHAR},
+      </if>
+      <if test="shRemark != null" >
+        SH_REMARK = #{shRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="no1 != null" >
+        NO1 = #{no1,jdbcType=DECIMAL},
+      </if>
+      <if test="expresstype != null" >
+        EXPRESSTYPE = #{expresstype,jdbcType=CHAR},
+      </if>
+      <if test="dctime != null" >
+        DCTIME = #{dctime,jdbcType=DATE},
+      </if>
+      <if test="noerid != null" >
+        NOERID = #{noerid,jdbcType=DECIMAL},
+      </if>
+      <if test="notime != null" >
+        NOTIME = #{notime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
 </mapper>
