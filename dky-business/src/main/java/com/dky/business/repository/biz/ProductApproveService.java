@@ -15,6 +15,9 @@ public interface ProductApproveService {
 
     ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param);
 
+    ReturnT insertProductApprove();
+
+    ReturnT updateProductApprove();
 
     ReturnT<List<ProductApproveInfoView>>  queryProductApproveInfoList(Long[] ids);
 }

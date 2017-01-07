@@ -14,4 +14,8 @@ public interface ProductApproveMapper {
     int count(ProductApprove productApprove);
 
     List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids);
+
+    Long insertProductApprove(ProductApprove productApprove);
+
+    int updateProductApproveById(ProductApprove productApprove);
 }
