@@ -41,4 +41,10 @@ public class GlobConts {
      * 图片跟路径
      */
     public static final String IMAGE_ROOT_URL = PropertieUtils.getString("imageRootUrl");
+
+
+    /**
+     * 替换图片字段开头、结尾
+     */
+    public static final String[] PREFIX = {"imageurl","imageUrl","imgUrl","imgurl"};
 }
