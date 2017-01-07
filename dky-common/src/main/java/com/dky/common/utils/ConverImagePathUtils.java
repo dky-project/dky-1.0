@@ -87,6 +87,9 @@ public class ConverImagePathUtils {
     }
 
     private static String appendImageUrl(String root,String path){
+        if(StringUtils.isEmpty(path)){
+            return null;
+        }
         if(StringUtils.isEmpty(root)){
             root = GlobConts.IMAGE_ROOT_URL;
         }
@@ -96,7 +99,6 @@ public class ConverImagePathUtils {
         if(path.startsWith(URL_SPERATOR)){
             path = StringUtils.removeStart(path,URL_SPERATOR);
         }
-
         return root+URL_SPERATOR+path;
     }
 

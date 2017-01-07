@@ -6,6 +6,7 @@ import com.dky.common.param.BootQueryParam;
 import com.dky.common.response.ReturnT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,12 +32,7 @@ public class BootController {
         return bootService.queryValid(param);
     }
 
-    @RequestMapping("getById")
-    public ReturnT<Boot> getById(){
-        return new ReturnT<>().sucessData(bootService.selectByPrimaryKey(1L));
-    }
-
-    @RequestMapping(value = "insert",name = "新增启动页")
+    @RequestMapping(value = "insert",name = "新增启动页",method = RequestMethod.POST)
     public ReturnT inert(Boot boot){
         bootService.insertSelective(boot);
         return new ReturnT().sucessData(boot);

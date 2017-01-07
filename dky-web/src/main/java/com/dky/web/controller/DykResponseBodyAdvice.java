@@ -1,13 +1,7 @@
 package com.dky.web.controller;
 
-import com.dky.common.bean.Product;
-import com.dky.common.constats.GlobConts;
-import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.utils.ConverImagePathUtils;
-import com.google.gson.Gson;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -19,19 +13,11 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wonpera on 2017/1/7.
  */
-@Order(1)
+@Order(Integer.MAX_VALUE)
 @ControllerAdvice(basePackages = "com.dky.web.controller")
 public class DykResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 

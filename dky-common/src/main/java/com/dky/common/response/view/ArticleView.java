@@ -1,8 +1,14 @@
-package com.dky.common.bean;
+package com.dky.common.response.view;
+
+import com.dky.common.response.ResultObjectBase;
 
 import java.util.Date;
 
-public class Article extends PojoObjectBase {
+/**
+ * Created by wonpera on 2017/1/7.
+ */
+public class ArticleView extends ResultObjectBase {
+
     private Long id;
 
     private Long adClientId;
@@ -88,7 +94,7 @@ public class Article extends PojoObjectBase {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getDecription() {
@@ -96,7 +102,7 @@ public class Article extends PojoObjectBase {
     }
 
     public void setDecription(String decription) {
-        this.decription = decription == null ? null : decription.trim();
+        this.decription = decription;
     }
 
     public String getIsactive() {
@@ -104,7 +110,7 @@ public class Article extends PojoObjectBase {
     }
 
     public void setIsactive(String isactive) {
-        this.isactive = isactive == null ? null : isactive.trim();
+        this.isactive = isactive;
     }
 
     public String getJumpurl() {
@@ -112,7 +118,7 @@ public class Article extends PojoObjectBase {
     }
 
     public void setJumpurl(String jumpurl) {
-        this.jumpurl = jumpurl == null ? null : jumpurl.trim();
+        this.jumpurl = jumpurl;
     }
 
     public String getImageurl() {
@@ -120,6 +126,6 @@ public class Article extends PojoObjectBase {
     }
 
     public void setImageurl(String imageurl) {
-        this.imageurl = imageurl == null ? null : imageurl.trim();
+        this.imageurl = imageurl;
     }
 }

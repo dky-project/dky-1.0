@@ -19,6 +19,40 @@
     ID, AD_CLIENT_ID, AD_ORG_ID, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, TITLE, 
     DECRIPTION, ISACTIVE, JUMPURL, IMAGEURL
   </sql>
+
+    <sql id="queryTmpl">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM M_ARTICLE
+        <include refid="whereClause"></include>
+    </sql>
+
+    <sql id="whereClause">
+        <where>
+
+        </where>
+    </sql>
+
+    <select id="queryByPage" resultType="com.dky.common.response.view.ArticleView" parameterType="com.dky.common.bean.Article" >
+        SELECT  <include refid="Base_Column_List" /> FROM (
+            SELECT <include refid="Base_Column_List" />,ROWNUM RN FROM
+            ( <include refid="queryTmpl"></include> )
+            WHERE 1=1
+            <if test="null!=requestOffset">
+                AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+            </if>
+        ) A WHERE 1=1
+        <if test="null!=requestOffset">
+            AND RN <![CDATA[ >= ]]> #{requestOffset}
+        </if>
+    </select>
+
+    <select id="count" resultType="int" parameterType="com.dky.common.bean.Article">
+        SELECT count(1)
+        FROM M_ARTICLE
+        <include refid="whereClause"></include>
+    </select>
+
   <select id="queryArticleList" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
