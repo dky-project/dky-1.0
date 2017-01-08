@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -34,9 +35,33 @@ public class ConverImagePathUtils {
                 proccessList((List) data);
             }else if(data instanceof Map) {
                 processMap((Map)data);
-            }else {
+            }else if(data instanceof Set){//set
+                processSet((Set)data);
+            }else if(data.getClass().isArray()){//数组
+                processArray((Object[]) data);
+            }
+            else {
                 processNormalBean(data);
             }
+        }
+    }
+
+
+    private static void processArray(Object[] objects){
+        if(objects == null || objects.length == 0){
+            return;
+        }
+        for(Object obj : objects){
+            processNormalBean(obj);
+        }
+    }
+
+    private static void processSet(Set set){
+        if(set == null || set.size() == 0){
+            return;
+        }
+        for(Object obj : set){
+            processNormalBean(obj);
         }
     }
 
