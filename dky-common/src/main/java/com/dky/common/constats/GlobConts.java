@@ -47,4 +47,9 @@ public class GlobConts {
      * 替换图片字段开头、结尾
      */
     public static final String[] PREFIX = {"imageurl","imageUrl","imgUrl","imgurl"};
+
+    /**
+     * 不需要登录的URL
+     */
+    public static final String[] EXCLUDER_URLS = {"/user/loginUser","/boot/queryValid"};
 }

@@ -3,6 +3,7 @@ package com.dky.web.aspect;
 
 import com.dky.business.repository.session.SessionProcess;
 import com.dky.common.bean.SessionUser;
+import com.dky.common.constats.GlobConts;
 import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.response.ReturnT;
 import com.dky.common.session.SessionParameter;
@@ -12,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
 
 /**
  * 用户会话切面
@@ -44,23 +43,25 @@ public class SessionAspect implements Ordered {
         if(requestAttributes == null) {
             return pjp.proceed();
         }
-        Method method = ((MethodSignature) pjp.getSignature()).getMethod();//登陆方法
-        if(method.getName().equals("loginUser")){
-            return pjp.proceed();
+        HttpServletRequest request = requestAttributes.getRequest();//获取request
+        String url = request.getRequestURI();
+        for (String excluderUrl : GlobConts.EXCLUDER_URLS){//过滤不需要登录的url，直接处理
+            if(url.endsWith(excluderUrl)){
+                return pjp.proceed();
+            }
         }
+        String accessToken = sessionProcess.getAcessToken(request);
+        if(StringUtils.isEmpty(accessToken)){
+            return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
+        }
+        SessionUser user = sessionProcess.getSessionUser(accessToken);
+        if(user == null){
+            return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
+        }
+        DkyUtils.putCurrentUser(user);//加入当前登陆用户
         for (int i = 0; i< args.length;i++){//请求参数
             Object arg = args[i];
             if(arg instanceof SessionParameter){
-                HttpServletRequest request = requestAttributes.getRequest();//获取request
-                String accessToken = sessionProcess.getAcessToken(request);
-                if(StringUtils.isEmpty(accessToken)){
-                    return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
-                }
-                SessionUser user = sessionProcess.getSessionUser(accessToken);
-                if(user == null){
-                    return new ReturnT<>().failureData(ResultCodeEnum.NOLOGIN);
-                }
-                DkyUtils.putCurrentUser(user);//加入当前登陆用户
                 SessionParameter sessionParameter = (SessionParameter)arg;
                 sessionParameter.setAccessToken(accessToken);
                 sessionParameter.setSessionUser(user);
