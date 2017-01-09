@@ -6,9 +6,9 @@
     <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
     <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
     <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
-    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="TIMESTAMP" />
     <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
-    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="TIMESTAMP" />
     <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
     <result column="M_DIM_NEW11_ID" property="mDimNew11Id" jdbcType="DECIMAL" />
     <result column="M_DIM_NEW12_ID" property="mDimNew12Id" jdbcType="DECIMAL" />
@@ -130,9 +130,9 @@
     <result column="SH_REMARK" property="shRemark" jdbcType="VARCHAR" />
     <result column="NO1" property="no1" jdbcType="DECIMAL" />
     <result column="EXPRESSTYPE" property="expresstype" jdbcType="CHAR" />
-    <result column="DCTIME" property="dctime" jdbcType="DATE" />
+    <result column="DCTIME" property="dctime" jdbcType="TIMESTAMP" />
     <result column="NOERID" property="noerid" jdbcType="DECIMAL" />
-    <result column="NOTIME" property="notime" jdbcType="DATE" />
+    <result column="NOTIME" property="notime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, AD_CLIENT_ID, AD_ORG_ID, OWNERID, CREATIONDATE, MODIFIERID, MODIFIEDDATE, ISACTIVE, 

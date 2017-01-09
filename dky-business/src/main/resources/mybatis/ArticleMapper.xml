@@ -7,8 +7,8 @@
     <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
     <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
     <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
-    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
-    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="TIMESTAMP" />
     <result column="TITLE" property="title" jdbcType="VARCHAR" />
     <result column="DECRIPTION" property="decription" jdbcType="VARCHAR" />
     <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
