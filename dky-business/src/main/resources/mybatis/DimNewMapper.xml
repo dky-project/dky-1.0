@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.DimNewMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.DimNew" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="ATTRIBCODE" property="attribcode" jdbcType="VARCHAR" />
+    <result column="ATTRIBNAME" property="attribname" jdbcType="VARCHAR" />
+    <result column="ATTRIB_ENAME" property="attribEname" jdbcType="VARCHAR" />
+    <result column="M_DIMDEF_NEW_ID" property="mDimdefNewId" jdbcType="DECIMAL" />
+    <result column="DIMFLAG" property="dimflag" jdbcType="VARCHAR" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="TIMESTAMP" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="SORTING" property="sorting" jdbcType="DECIMAL" />
+    <result column="SECURITYTYPE" property="securitytype" jdbcType="VARCHAR" />
+    <result column="DOSTANDARD" property="dostandard" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, ATTRIBCODE, ATTRIBNAME, ATTRIB_ENAME, M_DIMDEF_NEW_ID, 
+    DIMFLAG, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, ISACTIVE, SORTING, SECURITYTYPE, 
+    DOSTANDARD, CODE
+  </sql>
+
+  <select id="queryByDimFlag" resultType="DimNewView">
+    SELECT id,attribcode,attribname FROM M_DIM_NEW
+    WHERE ISACTIVE = 'Y' AND DIMFLAG = #{dimFlag}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from M_DIM_NEW
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from M_DIM_NEW
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.dky.common.bean.DimNew" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_M_DIM.nextval from dual
+    </selectKey>
+    insert into M_DIM_NEW (ID, AD_CLIENT_ID, AD_ORG_ID, 
+      ATTRIBCODE, ATTRIBNAME, ATTRIB_ENAME, 
+      M_DIMDEF_NEW_ID, DIMFLAG, OWNERID, 
+      MODIFIERID, CREATIONDATE, MODIFIEDDATE, 
+      ISACTIVE, SORTING, SECURITYTYPE, 
+      DOSTANDARD, CODE)
+    values (#{id,jdbcType=DECIMAL}, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL}, 
+      #{attribcode,jdbcType=VARCHAR}, #{attribname,jdbcType=VARCHAR}, #{attribEname,jdbcType=VARCHAR}, 
+      #{mDimdefNewId,jdbcType=DECIMAL}, #{dimflag,jdbcType=VARCHAR}, #{ownerid,jdbcType=DECIMAL}, 
+      #{modifierid,jdbcType=DECIMAL}, #{creationdate,jdbcType=TIMESTAMP}, #{modifieddate,jdbcType=TIMESTAMP}, 
+      #{isactive,jdbcType=CHAR}, #{sorting,jdbcType=DECIMAL}, #{securitytype,jdbcType=VARCHAR}, 
+      #{dostandard,jdbcType=VARCHAR}, #{code,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dky.common.bean.DimNew" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_M_DIM.nextval from dual
+    </selectKey>
+    insert into M_DIM_NEW
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="attribcode != null" >
+        ATTRIBCODE,
+      </if>
+      <if test="attribname != null" >
+        ATTRIBNAME,
+      </if>
+      <if test="attribEname != null" >
+        ATTRIB_ENAME,
+      </if>
+      <if test="mDimdefNewId != null" >
+        M_DIMDEF_NEW_ID,
+      </if>
+      <if test="dimflag != null" >
+        DIMFLAG,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="sorting != null" >
+        SORTING,
+      </if>
+      <if test="securitytype != null" >
+        SECURITYTYPE,
+      </if>
+      <if test="dostandard != null" >
+        DOSTANDARD,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="attribcode != null" >
+        #{attribcode,jdbcType=VARCHAR},
+      </if>
+      <if test="attribname != null" >
+        #{attribname,jdbcType=VARCHAR},
+      </if>
+      <if test="attribEname != null" >
+        #{attribEname,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimdefNewId != null" >
+        #{mDimdefNewId,jdbcType=DECIMAL},
+      </if>
+      <if test="dimflag != null" >
+        #{dimflag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="sorting != null" >
+        #{sorting,jdbcType=DECIMAL},
+      </if>
+      <if test="securitytype != null" >
+        #{securitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="dostandard != null" >
+        #{dostandard,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dky.common.bean.DimNew" >
+    update M_DIM_NEW
+    <set >
+      <if test="adClientId != null" >
+        AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="attribcode != null" >
+        ATTRIBCODE = #{attribcode,jdbcType=VARCHAR},
+      </if>
+      <if test="attribname != null" >
+        ATTRIBNAME = #{attribname,jdbcType=VARCHAR},
+      </if>
+      <if test="attribEname != null" >
+        ATTRIB_ENAME = #{attribEname,jdbcType=VARCHAR},
+      </if>
+      <if test="mDimdefNewId != null" >
+        M_DIMDEF_NEW_ID = #{mDimdefNewId,jdbcType=DECIMAL},
+      </if>
+      <if test="dimflag != null" >
+        DIMFLAG = #{dimflag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        OWNERID = #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE = #{modifieddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="sorting != null" >
+        SORTING = #{sorting,jdbcType=DECIMAL},
+      </if>
+      <if test="securitytype != null" >
+        SECURITYTYPE = #{securitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="dostandard != null" >
+        DOSTANDARD = #{dostandard,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dky.common.bean.DimNew" >
+    update M_DIM_NEW
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      ATTRIBCODE = #{attribcode,jdbcType=VARCHAR},
+      ATTRIBNAME = #{attribname,jdbcType=VARCHAR},
+      ATTRIB_ENAME = #{attribEname,jdbcType=VARCHAR},
+      M_DIMDEF_NEW_ID = #{mDimdefNewId,jdbcType=DECIMAL},
+      DIMFLAG = #{dimflag,jdbcType=VARCHAR},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=TIMESTAMP},
+      MODIFIEDDATE = #{modifieddate,jdbcType=TIMESTAMP},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      SORTING = #{sorting,jdbcType=DECIMAL},
+      SECURITYTYPE = #{securitytype,jdbcType=VARCHAR},
+      DOSTANDARD = #{dostandard,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

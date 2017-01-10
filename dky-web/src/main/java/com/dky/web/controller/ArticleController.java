@@ -9,6 +9,7 @@ import com.dky.common.response.view.ArticleView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,8 +36,8 @@ public class ArticleController {
     }
 
 
-    @RequestMapping(value = "getById/{id}",name = "文章详细信息")
-    public ReturnT<Article> getById(@PathVariable(value = "id") Long id){
+    @RequestMapping(value = "getById",name = "文章详细信息")
+    public ReturnT<Article> getById(@RequestParam(value = "id",required = false) Long id){
         if(id == null){
             return new ReturnT<>().failureData("文章id不能为空");
         }

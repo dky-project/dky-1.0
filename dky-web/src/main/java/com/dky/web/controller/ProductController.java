@@ -12,6 +12,7 @@ import com.dky.common.response.view.ProductView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -42,8 +43,11 @@ public class ProductController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/getProductInfo/{id}" ,name="样衣详细信息查询")
-    public ReturnT<ProductInfoView> getProductInfo(@PathVariable(value = "id") Long id){
+    @RequestMapping(value = "/getProductInfo" ,name="样衣详细信息查询")
+    public ReturnT<ProductInfoView> getProductInfo(@RequestParam(value = "id",required = false) Long id){
+        if(id == null){
+            return new ReturnT<>().failureData("id不能为空");
+        }
         return productService.getProductInfo(id);
     }
 
@@ -53,8 +57,11 @@ public class ProductController {
      * @param mProductId
      * @return
      */
-    @RequestMapping(value = "/queryValueList/{mProductId}",name = "查询胸围、衣长、肩宽、袖长列表")
-    public ReturnT<List<ProductValueView>> getProductValue(@PathVariable(value = "mProductId")Long mProductId){
+    @RequestMapping(value = "/queryValueList",name = "查询胸围、衣长、肩宽、袖长列表")
+    public ReturnT<List<ProductValueView>> getProductValue(@RequestParam(value = "mProductId",required = false)Long mProductId){
+        if(mProductId == null){
+            return new ReturnT<>().failureData("mProductId不能为空");
+        }
         return productService.queryValueList(mProductId);
     }
 
@@ -64,8 +71,11 @@ public class ProductController {
      * @param mProductId
      * @return
      */
-    @RequestMapping(value = "/queryPriceList/{mProductId}",name = "查询价格列表")
-    public ReturnT<List<PdtBaseprice>> queryPriceListByProductId(@PathVariable(value = "mProductId")Long mProductId){
+    @RequestMapping(value = "/queryPriceList",name = "查询价格列表")
+    public ReturnT<List<PdtBaseprice>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
+        if(mProductId == null){
+            return new ReturnT<>().failureData("mProductId不能为空");
+        }
         return pdtBasepriceService.queryPriceListByProductId(mProductId);
     }
 }

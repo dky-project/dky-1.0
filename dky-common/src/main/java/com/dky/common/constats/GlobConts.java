@@ -55,5 +55,5 @@ public class GlobConts {
     /**
      * 不需要登录的URL
      */
-    public static final String[] EXCLUDER_URLS = {"/user/loginUser","/boot/queryValid"};
+    public static final String[] EXCLUDER_URLS = {"/user/loginUser","/boot/queryValid","/dimNew/getSexEnum","/dimNew/getBigClassEnum"};
 }
