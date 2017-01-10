@@ -17,6 +17,14 @@ public class DkyUtils {
         ThreadLocalUtils.put(GlobConts.CURRENT_SESSION_KEY,sessionUser);
     }
 
+    public static void putCurrentToken(String token){
+        ThreadLocalUtils.put(GlobConts.CURRENT_TOKEN_KEY,token);
+    }
+
+    public static String getCuurentToken(){
+        return ThreadLocalUtils.getString(GlobConts.CURRENT_TOKEN_KEY);
+    }
+
     /**
      * 获取当前登陆用户
      * @return

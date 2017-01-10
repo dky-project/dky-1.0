@@ -13,6 +13,8 @@ public class GlobConts {
 
     public static final String DEFAULT_FORMATTER_YYYY_MM_DD = "yyyy-MM-dd";
 
+    public static final String DEFUAL_CHARSET = "UTF-8";
+
     /**
      * 默认分页大小
      */
@@ -35,6 +37,8 @@ public class GlobConts {
      * 当前登陆session
      */
     public static final String CURRENT_SESSION_KEY = "current_session";
+
+    public static final String CURRENT_TOKEN_KEY = "current_token";
 
 
     /**
