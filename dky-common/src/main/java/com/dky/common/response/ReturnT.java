@@ -2,11 +2,15 @@ package com.dky.common.response;
 
 import com.dky.common.enums.ResultCodeEnum;
 
+import java.io.Serializable;
+
 /**
  * 响应返回对象
  * Created by wangpeng on 2016/12/13.
  */
-public class ReturnT<T> {
+public class ReturnT<T> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int code;
     private String msg;

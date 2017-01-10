@@ -18,10 +18,4 @@ public class WebConfig {
     public Gson getFormatterGson(){
         return new GsonBuilder().setDateFormat(GlobConts.DEFAULT_FORMATTER_YYYYMMDDHHMMSS).create();
     }
-
-    public static void main(String[] args) {
-        Date date = new Date();
-        Gson gson = new GsonBuilder().setDateFormat(GlobConts.DEFAULT_FORMATTER_YYYYMMDDHHMMSS).create();
-        System.out.println(gson.toJson(date));
-    }
 }

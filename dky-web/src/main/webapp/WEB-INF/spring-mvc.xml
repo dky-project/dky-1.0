@@ -27,7 +27,7 @@
 
     <!-- 定义aspectj -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-    
+
     <mvc:annotation-driven conversion-service="dkyDataFormatter" content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters register-defaults="true">
             <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
@@ -50,7 +50,7 @@
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
         <property name="mediaTypes">
             <value>
-                json=application/json
+               json=application/json
                 xml=application/xml
             </value>
         </property>
@@ -61,8 +61,17 @@
     <mvc:default-servlet-handler/>
 
     <mvc:interceptors>
-        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
-        <bean class="com.dky.web.interceptor.SessionInterceptor"/>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求
+        <bean class="com.dky.web.interceptor.SessionInterceptor"/>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/*/**"/>
+            <!--不需要登陆的不拦截 -->
+            <mvc:exclude-mapping path="/user/loginUser"/>
+            <mvc:exclude-mapping path="/dimNew/*"/>
+            <mvc:exclude-mapping path="/boot/queryValid"/>
+            <bean class="com.dky.web.interceptor.SessionInterceptor"/>
+        </mvc:interceptor>
+
     </mvc:interceptors>
 
 </beans>

@@ -1,5 +1,6 @@
 package com.dky.web.aspect;
 
+import com.dky.common.session.BaseParameter;
 import com.dky.common.utils.ValidatorUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -25,7 +26,9 @@ public class ValidatorAspect implements Ordered {
         Object[] parameters = pjp.getArgs();
         if (parameters != null && parameters.length > 0) {
             for (Object obj : parameters) {
-                ValidatorUtils.validator(obj);
+                if(obj instanceof BaseParameter){
+                    ValidatorUtils.validator(obj);
+                }
             }
         }
         return pjp.proceed();

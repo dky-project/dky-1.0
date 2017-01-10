@@ -2,8 +2,6 @@ package com.dky.web.controller;
 
 import com.dky.common.response.ReturnT;
 import com.dky.common.utils.ConverImagePathUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
@@ -21,8 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @ControllerAdvice(basePackages = "com.dky.web.controller")
 public class DykResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DykResponseBodyAdvice.class);
 
 
     @Override

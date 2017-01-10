@@ -1,13 +1,13 @@
 package com.dky.common.param;
 
+import com.dky.common.session.BaseParameter;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
 
 /**
  * Created by hang on 2017/1/4 0004.
  */
-public class LoginUserParam implements Serializable {
+public class LoginUserParam extends BaseParameter {
 
     private static final long serialVersionUID = 1L;
     /**
