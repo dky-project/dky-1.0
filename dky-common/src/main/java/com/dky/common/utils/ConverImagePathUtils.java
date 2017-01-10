@@ -3,6 +3,8 @@ package com.dky.common.utils;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.ProductInfoView;
+import com.google.common.collect.Lists;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -93,6 +95,7 @@ public class ConverImagePathUtils {
 
 
     private static void processNormalBean(Object object){
+        boolean flag = object instanceof ProductInfoView;
         Class clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for(Field field : fields){
@@ -102,7 +105,21 @@ public class ConverImagePathUtils {
                     try {
                         Object oldValue = PropertyUtils.getProperty(object, name);
                         String path = oldValue == null ? "" : String.valueOf(oldValue);
-                        PropertyUtils.setProperty(object,name,appendImageUrl( GlobConts.IMAGE_ROOT_URL,path));
+                        if(flag){//组装imgList数组
+                            String imageUrl = appendImageUrl( GlobConts.IMAGE_ROOT_URL,path);
+                            if(StringUtils.isEmpty(imageUrl)){
+                                continue;
+                            }
+                            List<String> imgList = ( List<String>) PropertyUtils.getProperty(object,GlobConts.IMAGE_LIST_COLUMN);
+                            if(imgList == null || imgList.size() == 0){
+                                imgList = Lists.newArrayList();
+                            }
+                            imgList.add(imageUrl);
+                            PropertyUtils.setProperty(object,GlobConts.IMAGE_LIST_COLUMN,imgList);
+                            PropertyUtils.setProperty(object,name,null);
+                        }else {
+                            PropertyUtils.setProperty(object,name,appendImageUrl( GlobConts.IMAGE_ROOT_URL,path));
+                        }
                     } catch (Exception e) {
                     }
                 }

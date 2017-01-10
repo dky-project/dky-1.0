@@ -2,6 +2,8 @@ package com.dky.common.response.view;
 
 import com.dky.common.response.ResultObjectBase;
 
+import java.util.List;
+
 /**
  * Created by hang on 2017/1/4 0004.
  * @decription 样衣详情
@@ -65,6 +67,7 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String imgUrl8;
 
+
     //以下为样衣默认项
     /**
      * 品种
@@ -91,6 +94,9 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String defaultXcValue;
     //样衣默认项end
+
+
+    private List<String> imgList;
 
     public String getName() {
         return name;
@@ -250,5 +256,14 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setDefaultXcValue(String defaultXcValue) {
         this.defaultXcValue = defaultXcValue;
+    }
+
+
+    public List<String> getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(List<String> imgList) {
+        this.imgList = imgList;
     }
 }

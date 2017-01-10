@@ -26,12 +26,12 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String accessToken = sessionProcess.getAcessToken(request);
         if(StringUtils.isEmpty(accessToken)){
-            throw new NoLoginException(ResultCodeEnum.SYSTEM_ERROR.getMessage());
+            throw new NoLoginException(ResultCodeEnum.NOLOGIN.getMessage());
         }
         DkyUtils.putCurrentToken(accessToken);
         SessionUser user = sessionProcess.getSessionUser(accessToken);
         if(user == null){
-            throw new NoLoginException(ResultCodeEnum.SYSTEM_ERROR.getMessage());
+            throw new NoLoginException(ResultCodeEnum.NOLOGIN.getMessage());
         }
         DkyUtils.putCurrentUser(user);//加入当前登陆用户
         return super.preHandle(request, response, handler);

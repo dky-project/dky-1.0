@@ -47,6 +47,9 @@ public class GlobConts {
     public static final String IMAGE_ROOT_URL = PropertieUtils.getString("imageRootUrl");
 
 
+    public static final String IMAGE_LIST_COLUMN = "imgList";
+
+
     /**
      * 替换图片字段开头、结尾
      */
