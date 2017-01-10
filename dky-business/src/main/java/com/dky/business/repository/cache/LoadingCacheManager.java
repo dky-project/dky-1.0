@@ -15,7 +15,7 @@ public class LoadingCacheManager {
      * 不需要延迟处理(泛型的方式封装)
      * @return
      */
-    public  <K , V> LoadingCache<K , V> cached(CacheLoader<K , V> cacheLoader) {
+    public static  <K , V> LoadingCache<K , V> cached(CacheLoader<K , V> cacheLoader) {
         LoadingCache<K , V> cache = CacheBuilder
                 .newBuilder()
                 .maximumSize(2)
