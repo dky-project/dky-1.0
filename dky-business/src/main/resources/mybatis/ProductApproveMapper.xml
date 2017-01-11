@@ -203,7 +203,7 @@
     </sql>
 
     <sql id="whereClause">
-        <if test="null!=czDate and ''!=czDate">AND t1.czDate = #{czDate}</if>
+        <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
         <if test="null!=pdt and ''!=pdt">AND t1.pdt = #{pdt}</if>
         <if test="null!=customer and ''!=customer">AND t1.customer = #{customer}</if>
         <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
