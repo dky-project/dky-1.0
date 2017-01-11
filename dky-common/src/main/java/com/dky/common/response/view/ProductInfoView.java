@@ -27,6 +27,10 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String description3;
     /**
+     * 领子
+     */
+    private String description4;
+    /**
      * 设计说明
      */
     private String description5;
@@ -128,6 +132,14 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setDescription3(String description3) {
         this.description3 = description3;
+    }
+
+    public String getDescription4() {
+        return description4;
+    }
+
+    public void setDescription4(String description4) {
+        this.description4 = description4;
     }
 
     public String getDescription5() {
