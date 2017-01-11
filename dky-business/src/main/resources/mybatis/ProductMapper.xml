@@ -336,6 +336,9 @@
     select
       t1.id,
       t1.name,
+      t1.DESCRIPTION3,
+      t1.DESCRIPTION4,
+      t1.DESCRIPTION5,
       t2.ATTRIBNAME as mDimNew11Text,
       t3.ATTRIBNAME as mDimNew13Text,
       t5.IMGURL1,

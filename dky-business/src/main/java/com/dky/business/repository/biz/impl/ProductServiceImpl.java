@@ -1,10 +1,8 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductService;
-import com.dky.business.repository.repository.BaseDao;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.common.bean.Product;
-import com.dky.common.constats.GlobConts;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -39,6 +37,7 @@ public class ProductServiceImpl implements ProductService  {
             productInfoView = mapper.getProductInfo(id);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
+            e.printStackTrace();
             return new ReturnT<>().failureData(e.getMessage());
         }
         return new ReturnT<>().sucessData(productInfoView);
