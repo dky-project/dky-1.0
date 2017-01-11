@@ -37,7 +37,6 @@ public class ProductServiceImpl implements ProductService  {
             productInfoView = mapper.getProductInfo(id);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
-            e.printStackTrace();
             return new ReturnT<>().failureData(e.getMessage());
         }
         return new ReturnT<>().sucessData(productInfoView);
