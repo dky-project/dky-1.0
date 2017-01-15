@@ -294,6 +294,7 @@
         and t3.DIMFLAG='DIMFLAG_NEW13'
         and t3.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
+        order by t1.MODIFIEDDATE desc
     </sql>
 
     <sql id="whereClause">
