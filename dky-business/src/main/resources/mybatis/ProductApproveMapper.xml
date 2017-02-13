@@ -198,6 +198,7 @@
         AND t4.ISACTIVE = 'Y'
         AND t5.DIMFLAG='DIMFLAG_NEW17'
         AND t5.ISACTIVE = 'Y'
+        AND t1.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
         ORDER by t1.NO1 DESC
     </sql>
