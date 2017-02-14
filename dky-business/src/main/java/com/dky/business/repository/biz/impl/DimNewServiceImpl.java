@@ -3,8 +3,11 @@ package com.dky.business.repository.biz.impl;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.cache.LoadingCacheManager;
 import com.dky.business.repository.repository.DimNewMapper;
+import com.dky.business.repository.repository.UsersMapper;
+import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
+import com.dky.common.response.view.ProductApproveTitleView;
 import com.google.common.cache.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -27,6 +31,8 @@ public class DimNewServiceImpl implements DimNewService {
 
     @Autowired
     private DimNewMapper mapper;
+    @Autowired
+    private UsersMapper usersMapper;
 
     @PostConstruct
     public void init(){
@@ -55,4 +61,15 @@ public class DimNewServiceImpl implements DimNewService {
         }
     }
 
+    @Override
+    public ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param) {
+        ProductApproveTitleView view = new ProductApproveTitleView();
+        view.setSendDate(mapper.getSendDate());
+        Map<String,String> map = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        view.setCode(map.get("code"));
+        view.setUserName(map.get("userName"));
+        ReturnT<ProductApproveTitleView> returnT = new ReturnT<>();
+        returnT.setData(view);
+        return returnT.successDefault();
+    }
 }

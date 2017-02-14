@@ -109,4 +109,11 @@
     from USERS
     where EMAIL = #{email,jdbcType=VARCHAR} and isactive = 'Y'
   </select>
+
+  <select id="getStoreCodeByEmail" resultType="java.util.Map" parameterType="java.lang.String" >
+    select nvl(max(a.name),'') as userName,nvl(max(b.code),'') as code
+    from users a,c_store b
+    where b.id = a.c_store_id and a.EMAIL =#{email,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

@@ -21,4 +21,6 @@ public interface DimNewMapper {
     int updateByPrimaryKey(DimNew record);
 
     List<DimNewView> queryByDimFlag(@Param(value = "dimFlag")String dimFlag);
+
+    String getSendDate();
 }
