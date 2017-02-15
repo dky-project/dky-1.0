@@ -1,10 +1,13 @@
 package com.dky.web.controller;
 
+import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.ProductApproveService;
+import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
+import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.response.view.ProductApproveView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,8 @@ public class ProductApproveController {
 
     @Autowired
     private ProductApproveService approveService;
+    @Autowired
+    private DimNewService dimNewService;
 
 
     /**
@@ -42,5 +47,10 @@ public class ProductApproveController {
     @RequestMapping(value = "productApproveInfoList",name = "查询订单详情")
     public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids){
         return approveService.queryProductApproveInfoList(ids);
+    }
+
+    @RequestMapping(value = "getProductApproveTitle",name = "定制页面第一步")
+    public ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param){
+        return dimNewService.getProductApproveTitle(param);
     }
 }

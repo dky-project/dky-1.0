@@ -241,8 +241,8 @@
   </update>
   
   <select id="getSendDate" resultType="java.lang.String">
-    select g.t_day_day from (SELECT t.t_day_day FROM t_day t
-    WHERE t.t_day_date >=  to_number(to_char((to_date(sysdate 'yyyy-MM-dd')+9),'yyyyMMdd'))
-    AND t.t_day_day_of_week = 2 order by t.t_day_date)g where rownum < 2
+    <![CDATA[ select to_char(g.t_day_day,'yyyy-MM-dd') from (SELECT t.t_day_day FROM t_day t
+    WHERE t.t_day_date >=  to_number(to_char(sysdate+9,'yyyyMMdd'))
+    AND t.t_day_day_of_week = 2 order by t.t_day_date)g where rownum < 2  ]]>
   </select>
 </mapper>
