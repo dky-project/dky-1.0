@@ -18,6 +18,8 @@ public class ProductQueryParam extends WebPageParameter {
      */
     private Long mDimNew13Id;
 
+    private String name;
+
 
     public Long getmDimNew11Id() {
         return mDimNew11Id;
@@ -33,5 +35,13 @@ public class ProductQueryParam extends WebPageParameter {
 
     public void setmDimNew13Id(Long mDimNew13Id) {
         this.mDimNew13Id = mDimNew13Id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

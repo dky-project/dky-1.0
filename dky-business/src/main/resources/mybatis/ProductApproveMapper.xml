@@ -200,13 +200,13 @@
         AND t5.ISACTIVE = 'Y'
         AND t1.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
-        ORDER by t1.NO1 DESC
+        ORDER BY t1.CZ_DATE DESC
     </sql>
 
     <sql id="whereClause">
         <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
-        <if test="null!=pdt and ''!=pdt">AND t1.pdt = #{pdt}</if>
-        <if test="null!=customer and ''!=customer">AND t1.customer = #{customer}</if>
+        <if test="null!=pdt and ''!=pdt">AND t1.pdt like CONCAT('%',#{pdt},'%')</if>
+        <if test="null!=customer and ''!=customer">AND t1.customer like CONCAT('%',#{customer},'%')</if>
         <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
     </sql>
 
@@ -267,7 +267,7 @@
     <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
       #{item}
     </foreach>
-    ORDER BY t1.NO1 DESC
+    ORDER BY t1.CZ_DATE DESC
   </select>
 
   <insert id="insertProductApprove" parameterType="com.dky.common.bean.ProductApprove" >
