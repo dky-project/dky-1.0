@@ -388,4 +388,122 @@
     where t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
+  <select id="getMadeInfoByProductId" parameterType="java.lang.Long" resultType="ProductMadeInfoView">
+    SELECT
+      a.size_type AS sizeType,
+      t.M_DIM_NEW13_ID AS mDimNew13Id,
+      t.ct,
+      t.c as ct1,
+      t.M_DIM_NEW14_ID AS mDimNew14Id,
+      t.M_DIM_NEW15_ID AS mDimNew15Id,
+      t.M_DIM_NEW16_ID AS mDimNew16Id,
+      t.M_DIM_NEW17_ID AS mDimNew17Id,
+      t.M_DIM_NEW12_ID AS mDimNew12Id,
+      t.M_DIM_NEW18_ID AS mDimNew18Id,
+      t.M_DIM_NEW45_ID AS mDimNew45Id,
+      t.XBC_VALUE,
+      t.M_DIM_NEW19_ID AS mDimNew19Id,
+      t.M_DIM_NEW22_ID AS mDimNew22Id,
+      t.M_DIM_NEW9_ID AS mDimNew9Id,
+      t.M_DIM_NEW9_ID2 AS mDimNew9Id2,
+      t.M_DIM_NEW9_ID3 AS mDimNew9Id3,
+      t.QTX_REMARK AS qtxRemark,
+      t.QTX_REMARK2 AS qtxRemark2,
+      t.QTX_REMARK3 AS qtxRemark3,
+      t.M_DIM_NEW26_ID AS mDimNew26Id,
+      t.M_DIM_NEW28_ID AS mDimNew28Id,
+      t.M_DIM_NEW25_ID AS mDimNew25Id,
+      t.M_DIM_NEW10_ID AS mDimNew10Id,
+      t.M_DIM_NEW32_ID AS mDimNew32Id,
+      t.M_DIM_NEW41_ID AS mDimNew41Id,
+      t.M_DIM_NEW46_ID AS mDimNew46Id,
+      t.XB_REMARK AS xbRemark,
+      t.M_DIM_NEW4_ID AS mDimNew4Id,
+      t.M_DIM_NEW6_ID AS mDimNew6Id,
+      t.M_DIM_NEW7_ID AS mDimNew7Id,
+      t.M_DIM_NEW37_ID AS mDimNew37Id,
+      t.M_DIM_NEW38_ID AS mDimNew38Id,
+      t.M_DIM_NEW39_ID AS mDimNew39Id,
+      t.M_DIM_NEW1_ID AS mDimNew1Id,
+      t.M_DIM_NEW3_ID AS mDimNew3Id,
+      t.LBCC_VALUE AS lbccValue,
+      t.HX_SHOW AS hxShow,
+      t.LB_REMARK AS lbqt,
+      t.M_PRODUCT_ID2 AS lwqt,
+      t.M_LBLX_SET_ID1 AS lbt,
+      t.M_LBLX_SET_ID2 AS lxt,
+      t.QTKD_REMARK AS qtkdRemark,
+      t.QTFJ_REMARK AS qtfjRemark,
+      t.QTTSGY_REMARK AS qttsgyRemark,
+      t.DESCRIPTION AS lxRemark,
+      t.JZ_VALUE AS jzValue,
+      t.DKSL_VALUE AS dkslValue,
+      t.MJK_VALUE AS mjkValue,
+      t.DC1_VALUE AS dc1Value,
+      t.HZXC_VALUE AS hzxcValue,
+      t.MJC_VALUE AS mjcValue,
+      t.XW_VALUE AS xwValue,
+      t.TZ_SHOW AS tzShow,
+      t.TZ_REMARK AS tzRemark,
+      t.TZ_REMARK1 AS tzRemark1,
+      t.TZ_REMARK2 AS tzRemark2,
+      t.KD_SHOW AS kdShow,
+      t.FJ_SHOW AS fjShow,
+      t.TSGY_SHOW AS tsgyShow,
+      t.XK_REMARK AS xkRemark,
+      t.XXB_REMARK AS xxbRemark,
+      t.DK_VALUE AS dkValue,
+      t.YC_VALUE AS ycValue,
+      t.JK_VALUE AS jkValue,
+      t.XC_VALUE AS xcValue,
+      t.XKCC_VALUE AS xkccValue,
+      t.CLR_RANGE AS clrRange,
+      t.QTL_REMARK AS qtlRemark,
+    (select nvl(max(g.attribname),'') from M_DIM_NEW g
+    where g.id = t.M_DIM_NEW29_ID) as huax
+    FROM M_PRODUCT_DIM t, M_PRODUCT a
+    WHERE  T.M_PRODUCT_ID = A.ID
+      and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      AND ROWNUM = 1 and t.isactive = 'Y' and ISDEFAULT = 'Y'
+  </select>
+
+  <select id="getProductColorList" parameterType="java.lang.Long" resultType="ProductColorView">
+    select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, b.DESCRIPTION AS colorDesc
+    from m_product_alias t, m_product a, m_color b, m_attributesetinstance c
+   where t.m_product_id = a.id
+     and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+     and t.m_attributesetinstance_id = c.id
+     and c.value1_id = b.ID
+   group by b.NAME, b.id, b.value, b.DESCRIPTION
+  </select>
+
+  <select id="getProductSizeList" parameterType="java.lang.Long" resultType="ProductColorView">
+    select b.NAME AS sizeName, b.id AS sizeId
+    from m_product_alias t, m_product a, m_size b, m_attributesetinstance c
+   where t.m_product_id = a.id
+     and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+     and t.m_attributesetinstance_id = c.id
+     and c.value2_id = b.ID
+   group by b.NAME, b.id
+  </select>
+
+  <select id="getProductCusmptcateInfo" parameterType="java.lang.Long" resultType="ProductCusmptcateView">
+    SELECT
+      a.GJXF_SHOW AS gjxfShow,
+      a.XB_SHOW AS xbShow,
+      a.XK_SHOW AS xkShow,
+      a.MJZZ_SHOW AS mjzzShow,
+      a.LB_SHOW AS lbShow,
+      (select '[' || WM_CONCAT('{''value'':''' || g.xw_value || ''' }') || ']' from B_CUSMPTCATEITEM t WHERE t.B_CUSMPTCATE_ID = a.id) as xwArray,
+      a.LX_SHOW AS lxShow,
+      a.JX_SHOW AS jxShow,
+      a.SY_SHOW AS syShow,
+      a.XX_SHOW AS xxShow,
+      a.IS_YCAFFIX AS isYcAffix,
+      a.IS_JKAFFIX AS isJkAffix,
+      a.IS_XCAFFIX AS isXcAffix,
+      a.IS_HXAFFIX AS isHxAffix,
+    FROM B_CUSMPTCATE a
+     WHERE a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+  </select>
 </mapper>

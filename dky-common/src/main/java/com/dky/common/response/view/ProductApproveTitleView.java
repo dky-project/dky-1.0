@@ -8,15 +8,30 @@ import com.dky.common.response.ResultObjectBase;
  */
 public class ProductApproveTitleView extends ResultObjectBase {
 
+    /**
+     * 机构号
+     */
     private String code;
-
+    /**
+     * 传真日期
+     */
     private String czDate;
-
+    /**
+     * 发货日期
+     */
     private String sendDate;
-
+    /**
+     * 操作者
+     */
     private String userName;
-
+    /**
+     * 订单号
+     */
     private String orderNo;
+    /**
+     * 下拉框json字符串
+     */
+    private String dimList;
 
     public String getCode() {
         return code;
@@ -56,5 +71,13 @@ public class ProductApproveTitleView extends ResultObjectBase {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public String getDimList() {
+        return dimList;
+    }
+
+    public void setDimList(String dimList) {
+        this.dimList = dimList;
     }
 }

@@ -23,4 +23,6 @@ public interface DimNewMapper {
     List<DimNewView> queryByDimFlag(@Param(value = "dimFlag")String dimFlag);
 
     String getSendDate();
+
+    String getDimClob();
 }

@@ -71,6 +71,7 @@ public class DimNewServiceImpl implements DimNewService {
         view.setUserName(map.get("USERNAME"));
         view.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         view.setOrderNo(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+        view.setDimList(mapper.getDimClob());
         ReturnT<ProductApproveTitleView> returnT = new ReturnT<>();
         returnT.setData(view);
         return returnT.successDefault();
