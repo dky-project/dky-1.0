@@ -2,13 +2,16 @@ package com.dky.web.controller;
 
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.ProductApproveService;
+import com.dky.business.repository.biz.ProductService;
 import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.param.ProductApproveQueryParam;
+import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.response.view.ProductApproveView;
+import com.dky.common.response.view.ProductMadePageView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,8 @@ public class ProductApproveController {
     private ProductApproveService approveService;
     @Autowired
     private DimNewService dimNewService;
+    @Autowired
+    private ProductService productService;
 
 
     /**
@@ -52,5 +57,10 @@ public class ProductApproveController {
     @RequestMapping(value = "getProductApproveTitle",name = "定制页面第一步")
     public ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param){
         return dimNewService.getProductApproveTitle(param);
+    }
+
+    @RequestMapping(value = "getMadeInfoByProductName",name = "定制页面第一步")
+    public ReturnT<ProductMadePageView> getMadeInfoByProductName(ProductMadeQueryParam param){
+        return productService.getMadeInfoByProductName(param);
     }
 }

@@ -3,12 +3,11 @@ package com.dky.business.repository.biz.impl;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.common.bean.Product;
+import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.ProductInfoView;
-import com.dky.common.response.view.ProductValueView;
-import com.dky.common.response.view.ProductView;
+import com.dky.common.response.view.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -64,4 +63,32 @@ public class ProductServiceImpl implements ProductService  {
         return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
+    @Override
+    public ReturnT<ProductMadePageView> getMadeInfoByProductName(ProductMadeQueryParam param) {
+        Product product = new Product();
+        product.setName(param.getProductName());
+        product = mapper.get(product);
+        if (product == null){
+            return new ReturnT<>().failureData("没有查到该款号");
+        }
+        ProductMadePageView view = new ProductMadePageView();
+        //商品所属类别为大货
+        if ("C".equals(product.getMptbelongtype())){
+            List<ProductColorView> colorList = mapper.getProductColorList(product.getId());
+            List<ProductSizeView> sizeList = mapper.getProductSizeList(product.getId());
+            view.setColorViewList(colorList);
+            view.setSizeViewList(sizeList);
+        //商品类别为基础款
+        }else if("A".equals(product.getMptbelongtype())){
+            ProductMadeInfoView madeInfoView = mapper.getMadeInfoByProductId(product.getId());
+            view.setProductMadeInfoView(madeInfoView);
+            ProductCusmptcateView cusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
+            view.setProductCusmptcateView(cusmptcateView);
+        }else{
+            return new ReturnT<>().failureData("没有查到该款号");
+        }
+        ReturnT<ProductMadePageView> result = new ReturnT<>();
+        result.setData(view);
+        return result.successDefault();
+    }
 }

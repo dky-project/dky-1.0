@@ -78,4 +78,12 @@ public class ProductController {
         }
         return pdtBasepriceService.queryPriceListByProductId(mProductId);
     }
+
+    @RequestMapping(value = "/getMadeInfoByProductName",name = "根据款号查询对应定制内容")
+    public ReturnT<ProductInfoView> getMadeInfoByName(@RequestParam(value = "productName",required = false)String productName){
+        if(productName == null){
+            return new ReturnT<>().failureData("款号不能为空");
+        }
+        return pdtBasepriceService.queryPriceListByProductId(mProductId);
+    }
 }
