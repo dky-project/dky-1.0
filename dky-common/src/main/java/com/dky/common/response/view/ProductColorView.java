@@ -9,6 +9,10 @@ import com.dky.common.response.ResultObjectBase;
 public class ProductColorView extends ResultObjectBase {
 
     /**
+     * 品种ID
+     */
+    private Long mDimNew14Id;
+    /**
      * 颜色ID
      */
     private Long colorId;
@@ -24,6 +28,14 @@ public class ProductColorView extends ResultObjectBase {
      * 颜色描述
      */
     private String colorDesc;
+
+    public Long getmDimNew14Id() {
+        return mDimNew14Id;
+    }
+
+    public void setmDimNew14Id(Long mDimNew14Id) {
+        this.mDimNew14Id = mDimNew14Id;
+    }
 
     public Long getColorId() {
         return colorId;

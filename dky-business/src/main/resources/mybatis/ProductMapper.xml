@@ -459,29 +459,47 @@
       t.XKCC_VALUE AS xkccValue,
       t.CLR_RANGE AS clrRange,
       t.QTL_REMARK AS qtlRemark,
-    (select nvl(max(g.attribname),'') from M_DIM_NEW g
-    where g.id = t.M_DIM_NEW29_ID) as huax
+      (select nvl(max(g.attribname),'') from M_DIM_NEW g
+      where g.id = t.M_DIM_NEW29_ID) as huax,
+      GET_PZSJSON(1,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
+      GET_PZSJSON(2,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
+      GET_PZSJSON(3,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
+      GET_PZSJSON(4,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
     FROM M_PRODUCT_DIM t, M_PRODUCT a
-    WHERE  T.M_PRODUCT_ID = A.ID
-      and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    WHERE  T.M_PRODUCT_ID = a.ID
+      and a.ID = #{mProductId,jdbcType=DECIMAL}
       AND ROWNUM = 1 and t.isactive = 'Y' and ISDEFAULT = 'Y'
   </select>
 
-  <select id="getProductColorList" parameterType="java.lang.Long" resultType="ProductColorView">
-    select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, b.DESCRIPTION AS colorDesc
+  <select id="getProductColorListByProductId" parameterType="java.lang.Long" resultType="ProductColorView">
+    select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, nvl(b.DESCRIPTION,'') AS colorDesc
     from m_product_alias t, m_product a, m_color b, m_attributesetinstance c
-   where t.m_product_id = a.id
-     and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+   where t.m_product_id = a.ID
+     and a.ID = #{mProductId,jdbcType=DECIMAL}
      and t.m_attributesetinstance_id = c.id
      and c.value1_id = b.ID
    group by b.NAME, b.id, b.value, b.DESCRIPTION
   </select>
 
-  <select id="getProductSizeList" parameterType="java.lang.Long" resultType="ProductColorView">
+  <select id="getProductColorListByDimId" parameterType="java.lang.Long" resultType="ProductColorView">
+    SELECT
+      t.m_dim_new14_id,
+      a.NAME AS colorName,
+      a.id AS colorId,
+      a.value AS colorValue,
+      nvl(a.DESCRIPTION,'') AS colorDesc
+    FROM COLOR_MANAGE t, m_color a
+    WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
+    AND a.id = t.m_color_id
+    and t.isactive = 'Y'
+    order by a.NAME
+  </select>
+
+  <select id="getProductSizeList" parameterType="java.lang.Long" resultType="ProductSizeView">
     select b.NAME AS sizeName, b.id AS sizeId
     from m_product_alias t, m_product a, m_size b, m_attributesetinstance c
-   where t.m_product_id = a.id
-     and a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+   where t.m_product_id = a.ID
+     and a.ID = #{mProductId,jdbcType=DECIMAL}
      and t.m_attributesetinstance_id = c.id
      and c.value2_id = b.ID
    group by b.NAME, b.id
@@ -494,7 +512,7 @@
       a.XK_SHOW AS xkShow,
       a.MJZZ_SHOW AS mjzzShow,
       a.LB_SHOW AS lbShow,
-      (select '[' || WM_CONCAT('{''value'':''' || g.xw_value || ''' }') || ']' from B_CUSMPTCATEITEM t WHERE t.B_CUSMPTCATE_ID = a.id) as xwArray,
+      (select '[' || WM_CONCAT('{''value'':''' || t.xw_value || ''' }') || ']' from B_CUSMPTCATEITEM t WHERE t.B_CUSMPTCATE_ID = a.id) as xwArray,
       a.LX_SHOW AS lxShow,
       a.JX_SHOW AS jxShow,
       a.SY_SHOW AS syShow,
@@ -502,8 +520,14 @@
       a.IS_YCAFFIX AS isYcAffix,
       a.IS_JKAFFIX AS isJkAffix,
       a.IS_XCAFFIX AS isXcAffix,
-      a.IS_HXAFFIX AS isHxAffix,
+      a.IS_HXAFFIX AS isHxAffix
     FROM B_CUSMPTCATE a
      WHERE a.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+  </select>
+
+  <select id="get" parameterType="Product" resultType="Product">
+    select <include refid="Base_Column_List"></include>
+    from M_PRODUCT
+    WHERE name = #{name,jdbcType=VARCHAR}
   </select>
 </mapper>

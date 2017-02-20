@@ -10,7 +10,6 @@ import com.dky.common.response.view.ProductInfoView;
 import com.dky.common.response.view.ProductValueView;
 import com.dky.common.response.view.ProductView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,14 +74,6 @@ public class ProductController {
     public ReturnT<List<PdtBaseprice>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
         if(mProductId == null){
             return new ReturnT<>().failureData("mProductId不能为空");
-        }
-        return pdtBasepriceService.queryPriceListByProductId(mProductId);
-    }
-
-    @RequestMapping(value = "/getMadeInfoByProductName",name = "根据款号查询对应定制内容")
-    public ReturnT<ProductInfoView> getMadeInfoByName(@RequestParam(value = "productName",required = false)String productName){
-        if(productName == null){
-            return new ReturnT<>().failureData("款号不能为空");
         }
         return pdtBasepriceService.queryPriceListByProductId(mProductId);
     }

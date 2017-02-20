@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService  {
         ProductMadePageView view = new ProductMadePageView();
         //商品所属类别为大货
         if ("C".equals(product.getMptbelongtype())){
-            List<ProductColorView> colorList = mapper.getProductColorList(product.getId());
+            List<ProductColorView> colorList = mapper.getProductColorListByProductId(product.getId());
             List<ProductSizeView> sizeList = mapper.getProductSizeList(product.getId());
             view.setColorViewList(colorList);
             view.setSizeViewList(sizeList);
@@ -82,8 +82,8 @@ public class ProductServiceImpl implements ProductService  {
         }else if("A".equals(product.getMptbelongtype())){
             ProductMadeInfoView madeInfoView = mapper.getMadeInfoByProductId(product.getId());
             view.setProductMadeInfoView(madeInfoView);
-            ProductCusmptcateView cusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
-            view.setProductCusmptcateView(cusmptcateView);
+            view.setProductCusmptcateView(mapper.getProductCusmptcateInfo(product.getId()));
+            view.setColorViewList(mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id()));
         }else{
             return new ReturnT<>().failureData("没有查到该款号");
         }

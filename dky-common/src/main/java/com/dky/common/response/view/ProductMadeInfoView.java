@@ -297,6 +297,22 @@ public class ProductMadeInfoView extends ResultObjectBase {
      * 粒扣 备注
      */
     private String qtlRemark;
+    /**
+     * 品种json字符串
+     */
+    private String pzJsonstr;
+    /**
+     * 组织json字符串
+     */
+    private String zzJsonstr;
+    /**
+     * 针型json字符串
+     */
+    private String zxJsonstr;
+    /**
+     * 支别json字符串
+     */
+    private String zbJsonstr;
 
     public Long getProductId() {
         return productId;
@@ -872,5 +888,37 @@ public class ProductMadeInfoView extends ResultObjectBase {
 
     public void setQtlRemark(String qtlRemark) {
         this.qtlRemark = qtlRemark;
+    }
+
+    public String getPzJsonstr() {
+        return pzJsonstr;
+    }
+
+    public void setPzJsonstr(String pzJsonstr) {
+        this.pzJsonstr = pzJsonstr;
+    }
+
+    public String getZzJsonstr() {
+        return zzJsonstr;
+    }
+
+    public void setZzJsonstr(String zzJsonstr) {
+        this.zzJsonstr = zzJsonstr;
+    }
+
+    public String getZxJsonstr() {
+        return zxJsonstr;
+    }
+
+    public void setZxJsonstr(String zxJsonstr) {
+        this.zxJsonstr = zxJsonstr;
+    }
+
+    public String getZbJsonstr() {
+        return zbJsonstr;
+    }
+
+    public void setZbJsonstr(String zbJsonstr) {
+        this.zbJsonstr = zbJsonstr;
     }
 }

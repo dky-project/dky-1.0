@@ -32,11 +32,18 @@ public interface ProductMapper extends BaseDao<Product,Long> {
     ProductMadeInfoView getMadeInfoByProductId(Long mProductId);
 
     /**
-     * 查询定制款号颜色列表
+     * 根据款号查询定制款号颜色列表
      * @param mProductId
      * @return
      */
-    List<ProductColorView> getProductColorList(Long mProductId);
+    List<ProductColorView> getProductColorListByProductId(Long mProductId);
+
+    /**
+     * 根据品种查询定制款号颜色列表
+     * @param mDimNew14Id
+     * @return
+     */
+    List<ProductColorView> getProductColorListByDimId(Long mDimNew14Id);
 
     /**
      * 查询定制款号尺寸列表
