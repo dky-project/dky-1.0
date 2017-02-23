@@ -115,7 +115,7 @@ public class ProductCusmptcateView extends ResultObjectBase {
     }
 
     public void setXwArray(String xwArray) {
-        this.xwArray = xwArray;
+        this.xwArray = xwArray.replaceAll("'","\"");
     }
 
     public String[] getLxShow() {

@@ -895,7 +895,7 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public void setPzJsonstr(String pzJsonstr) {
-        this.pzJsonstr = pzJsonstr;
+        this.pzJsonstr = pzJsonstr.replaceAll("'","\"");
     }
 
     public String getZzJsonstr() {
@@ -903,7 +903,7 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public void setZzJsonstr(String zzJsonstr) {
-        this.zzJsonstr = zzJsonstr;
+        this.zzJsonstr = zzJsonstr.replaceAll("'","\"");
     }
 
     public String getZxJsonstr() {
@@ -911,7 +911,7 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public void setZxJsonstr(String zxJsonstr) {
-        this.zxJsonstr = zxJsonstr;
+        this.zxJsonstr = zxJsonstr.replaceAll("'","\"");
     }
 
     public String getZbJsonstr() {
@@ -919,6 +919,6 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public void setZbJsonstr(String zbJsonstr) {
-        this.zbJsonstr = zbJsonstr;
+        this.zbJsonstr = zbJsonstr.replaceAll("'","\"");
     }
 }

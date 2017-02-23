@@ -300,7 +300,7 @@
     <sql id="whereClause">
         <if test="null!=mDimNew11Id">AND t2.id = #{mDimNew11Id}</if>
         <if test="null!=mDimNew13Id">AND t3.id = #{mDimNew13Id}</if>
-        <if test="null!=name">AND t1.name like CONCAT('%',#{name},'%')</if>
+        <if test="null!=name">AND t1.name = #{name}</if>
     </sql>
 
     <!--样衣列表查询 -->
@@ -391,6 +391,7 @@
   <select id="getMadeInfoByProductId" parameterType="java.lang.Long" resultType="ProductMadeInfoView">
     SELECT
       a.size_type AS sizeType,
+      a.mptbelongtype,
       t.M_DIM_NEW13_ID AS mDimNew13Id,
       t.ct,
       t.c as ct1,

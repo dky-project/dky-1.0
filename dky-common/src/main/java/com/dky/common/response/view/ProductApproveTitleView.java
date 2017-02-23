@@ -78,6 +78,6 @@ public class ProductApproveTitleView extends ResultObjectBase {
     }
 
     public void setDimList(String dimList) {
-        this.dimList = dimList;
+        this.dimList = dimList.replaceAll("'","\"");
     }
 }
