@@ -137,11 +137,11 @@ public class ProductMadeInfoView extends ResultObjectBase {
      */
     private Long mDimNew4Id;
     /**
-     * 门禁1
+     * 门襟
      */
     private Long mDimNew6Id;
     /**
-     * 门禁2
+     * 门襟组织
      */
     private Long mDimNew7Id;
     /**
