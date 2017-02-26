@@ -8,15 +8,7 @@ import com.dky.common.session.SessionParameter;
 public class AddProductApproveParam extends SessionParameter {
 
     /**
-     * 下单备注
+     * 式样
      */
-    private String shRemark;
-    /**
-     * 编号
-     */
-    private Long no1;
-    /**
-     * 客户
-     */
-    private String customer;
+    private Long mDimNew12Id;
 }
