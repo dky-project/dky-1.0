@@ -1,0 +1,2811 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.Store" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="C_AREA_ID" property="cAreaId" jdbcType="DECIMAL" />
+    <result column="LOCKCASH" property="lockcash" jdbcType="DECIMAL" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="CONTACTOR_ID" property="contactorId" jdbcType="DECIMAL" />
+    <result column="MONTHFEE" property="monthfee" jdbcType="DECIMAL" />
+    <result column="ISSTOP" property="isstop" jdbcType="CHAR" />
+    <result column="RENTBEGIN" property="rentbegin" jdbcType="DECIMAL" />
+    <result column="RENTEND" property="rentend" jdbcType="DECIMAL" />
+    <result column="PROPORTION" property="proportion" jdbcType="DECIMAL" />
+    <result column="EMPCNT" property="empcnt" jdbcType="DECIMAL" />
+    <result column="CHECKDATE" property="checkdate" jdbcType="DECIMAL" />
+    <result column="ISCENTER" property="iscenter" jdbcType="CHAR" />
+    <result column="ISRETAIL" property="isretail" jdbcType="CHAR" />
+    <result column="MOBIL" property="mobil" jdbcType="VARCHAR" />
+    <result column="SNAME" property="sname" jdbcType="VARCHAR" />
+    <result column="POSTCAL" property="postcal" jdbcType="DECIMAL" />
+    <result column="CALCULATION" property="calculation" jdbcType="CHAR" />
+    <result column="C_CUSTOMER_ID" property="cCustomerId" jdbcType="DECIMAL" />
+    <result column="C_CUSTOMERUP_ID" property="cCustomerupId" jdbcType="DECIMAL" />
+    <result column="C_PRICEAREA_ID" property="cPriceareaId" jdbcType="DECIMAL" />
+    <result column="ISFAIRORIG" property="isfairorig" jdbcType="CHAR" />
+    <result column="AREAMNG_ID" property="areamngId" jdbcType="DECIMAL" />
+    <result column="LIMITQTY" property="limitqty" jdbcType="DECIMAL" />
+    <result column="LIMITAMT" property="limitamt" jdbcType="DECIMAL" />
+    <result column="LIMITMO" property="limitmo" jdbcType="CHAR" />
+    <result column="MARKDIS" property="markdis" jdbcType="DECIMAL" />
+    <result column="DATEBLOCK" property="dateblock" jdbcType="DECIMAL" />
+    <result column="C_STORETYPE_JZ_ID" property="cStoretypeJzId" jdbcType="DECIMAL" />
+    <result column="IMGURL1" property="imgurl1" jdbcType="VARCHAR" />
+    <result column="IMGURL2" property="imgurl2" jdbcType="VARCHAR" />
+    <result column="IMGURL3" property="imgurl3" jdbcType="VARCHAR" />
+    <result column="IMGURL4" property="imgurl4" jdbcType="VARCHAR" />
+    <result column="IMGURL5" property="imgurl5" jdbcType="VARCHAR" />
+    <result column="BIGAREAMNG_ID" property="bigareamngId" jdbcType="DECIMAL" />
+    <result column="C_PROVINCE_ID" property="cProvinceId" jdbcType="DECIMAL" />
+    <result column="C_CITY_ID" property="cCityId" jdbcType="DECIMAL" />
+    <result column="STORESIGN" property="storesign" jdbcType="DECIMAL" />
+    <result column="C_STORETYPE" property="cStoretype" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="ISUFSTORE" property="isufstore" jdbcType="CHAR" />
+    <result column="C_STORE_ID" property="cStoreId" jdbcType="DECIMAL" />
+    <result column="C_DEPARTMENT_ID" property="cDepartmentId" jdbcType="DECIMAL" />
+    <result column="C_CLASSCODE_ID" property="cClasscodeId" jdbcType="DECIMAL" />
+    <result column="BILLDATE_FRIST" property="billdateFrist" jdbcType="DECIMAL" />
+    <result column="PRIORITY" property="priority" jdbcType="DECIMAL" />
+    <result column="C_BLOCK_ID" property="cBlockId" jdbcType="DECIMAL" />
+    <result column="ISFICTITIOUS" property="isfictitious" jdbcType="CHAR" />
+    <result column="SHOP_RECEIVE_TYPE" property="shopReceiveType" jdbcType="DECIMAL" />
+    <result column="POSPW" property="pospw" jdbcType="VARCHAR" />
+    <result column="ISBLOCK" property="isblock" jdbcType="CHAR" />
+    <result column="DISCOUNT" property="discount" jdbcType="DECIMAL" />
+    <result column="ISGIFT" property="isgift" jdbcType="CHAR" />
+    <result column="ISDISCOM" property="isdiscom" jdbcType="CHAR" />
+    <result column="C_DEPART_ID" property="cDepartId" jdbcType="DECIMAL" />
+    <result column="IMP_MONTH" property="impMonth" jdbcType="DECIMAL" />
+    <result column="IMP_TYPE1" property="impType1" jdbcType="DECIMAL" />
+    <result column="IMP_TYPE2" property="impType2" jdbcType="DECIMAL" />
+    <result column="IMP_TYPE3" property="impType3" jdbcType="DECIMAL" />
+    <result column="TAXRATE" property="taxrate" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB1_ID" property="cStoreattrib1Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB2_ID" property="cStoreattrib2Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB3_ID" property="cStoreattrib3Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB4_ID" property="cStoreattrib4Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB5_ID" property="cStoreattrib5Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB6_ID" property="cStoreattrib6Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB7_ID" property="cStoreattrib7Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB8_ID" property="cStoreattrib8Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB9_ID" property="cStoreattrib9Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB10_ID" property="cStoreattrib10Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB11_ID" property="cStoreattrib11Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB12_ID" property="cStoreattrib12Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB13_ID" property="cStoreattrib13Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB14_ID" property="cStoreattrib14Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB15_ID" property="cStoreattrib15Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB16_ID" property="cStoreattrib16Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB17_ID" property="cStoreattrib17Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB18_ID" property="cStoreattrib18Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB19_ID" property="cStoreattrib19Id" jdbcType="DECIMAL" />
+    <result column="C_STOREATTRIB20_ID" property="cStoreattrib20Id" jdbcType="DECIMAL" />
+    <result column="ISNEGATIVE" property="isnegative" jdbcType="CHAR" />
+    <result column="TDEFDOWNTYPE_ID" property="tdefdowntypeId" jdbcType="DECIMAL" />
+    <result column="USBKEY" property="usbkey" jdbcType="VARCHAR" />
+    <result column="CONTACTOR" property="contactor" jdbcType="VARCHAR" />
+    <result column="C_STOREGRADE_ID" property="cStoregradeId" jdbcType="DECIMAL" />
+    <result column="COMRENTEND" property="comrentend" jdbcType="DECIMAL" />
+    <result column="C_STOREKIND_ID" property="cStorekindId" jdbcType="DECIMAL" />
+    <result column="M_DIM1_ID" property="mDim1Id" jdbcType="DECIMAL" />
+    <result column="ISTAX" property="istax" jdbcType="CHAR" />
+    <result column="CARRIER" property="carrier" jdbcType="VARCHAR" />
+    <result column="CHKDAY" property="chkday" jdbcType="DECIMAL" />
+    <result column="DRAW_INVOICE_EMPID" property="drawInvoiceEmpid" jdbcType="DECIMAL" />
+    <result column="INVOICE_COM" property="invoiceCom" jdbcType="VARCHAR" />
+    <result column="INVOICE_ADDR" property="invoiceAddr" jdbcType="VARCHAR" />
+    <result column="INVOICE_BANK" property="invoiceBank" jdbcType="VARCHAR" />
+    <result column="INVOICE_PHONE" property="invoicePhone" jdbcType="VARCHAR" />
+    <result column="INVOICE_TAXNO" property="invoiceTaxno" jdbcType="VARCHAR" />
+    <result column="INVOICE_ACCOUNT" property="invoiceAccount" jdbcType="VARCHAR" />
+    <result column="ORDERLIMITDATE" property="orderlimitdate" jdbcType="DECIMAL" />
+    <result column="IFORDERSTORE" property="iforderstore" jdbcType="CHAR" />
+    <result column="COMPTYPE" property="comptype" jdbcType="DECIMAL" />
+    <result column="WEBPOSLOGINURL" property="webposloginurl" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="C_CLASS_ID" property="cClassId" jdbcType="DECIMAL" />
+    <result column="C_STAND_ID" property="cStandId" jdbcType="DECIMAL" />
+    <result column="C_ADDRESS_ID" property="cAddressId" jdbcType="DECIMAL" />
+    <result column="IFEFFECT" property="ifeffect" jdbcType="CHAR" />
+    <result column="STATE1" property="state1" jdbcType="DECIMAL" />
+    <result column="STATE2" property="state2" jdbcType="DECIMAL" />
+    <result column="STATE3" property="state3" jdbcType="DECIMAL" />
+    <result column="MOVSTATE" property="movstate" jdbcType="DECIMAL" />
+    <result column="CONSTATE" property="constate" jdbcType="DECIMAL" />
+    <result column="C_LISTORE_ID" property="cListoreId" jdbcType="DECIMAL" />
+    <result column="C_BIGAREA_ID" property="cBigareaId" jdbcType="DECIMAL" />
+    <result column="SRCCODE" property="srccode" jdbcType="VARCHAR" />
+    <result column="ISFLAG" property="isflag" jdbcType="CHAR" />
+    <result column="COUNTERCODE" property="countercode" jdbcType="VARCHAR" />
+    <result column="INSIDECODE" property="insidecode" jdbcType="VARCHAR" />
+    <result column="REGISTERNAME" property="registername" jdbcType="VARCHAR" />
+    <result column="REGISTERADDR" property="registeraddr" jdbcType="VARCHAR" />
+    <result column="ACCPERIOD" property="accperiod" jdbcType="VARCHAR" />
+    <result column="CHECKPERIOD" property="checkperiod" jdbcType="VARCHAR" />
+    <result column="ACCDATE" property="accdate" jdbcType="VARCHAR" />
+    <result column="INVOICEDATE" property="invoicedate" jdbcType="VARCHAR" />
+    <result column="M_BREAKEVEN" property="mBreakeven" jdbcType="DECIMAL" />
+    <result column="BREAKEVEN" property="breakeven" jdbcType="DECIMAL" />
+    <result column="BREAKEVEN_INFO" property="breakevenInfo" jdbcType="VARCHAR" />
+    <result column="BILLPERIOD" property="billperiod" jdbcType="VARCHAR" />
+    <result column="POS_CNT" property="posCnt" jdbcType="DECIMAL" />
+    <result column="CATALOGCODE" property="catalogcode" jdbcType="VARCHAR" />
+    <result column="CATALOGNAME" property="catalogname" jdbcType="VARCHAR" />
+    <result column="CATALOGUP" property="catalogup" jdbcType="VARCHAR" />
+    <result column="CLIENTTYPE" property="clienttype" jdbcType="VARCHAR" />
+    <result column="UPID" property="upid" jdbcType="VARCHAR" />
+    <result column="C_STORE_SQL" property="cStoreSql" jdbcType="VARCHAR" />
+    <result column="IFSTOCK" property="ifstock" jdbcType="CHAR" />
+    <result column="C_BIGCITY_ID" property="cBigcityId" jdbcType="DECIMAL" />
+    <result column="LICENSE" property="license" jdbcType="VARCHAR" />
+    <result column="MIN_STORAGE" property="minStorage" jdbcType="DECIMAL" />
+    <result column="MAX_STORAGE" property="maxStorage" jdbcType="DECIMAL" />
+    <result column="PROFITCENTER" property="profitcenter" jdbcType="VARCHAR" />
+    <result column="C_UFBLOCK_ID" property="cUfblockId" jdbcType="DECIMAL" />
+    <result column="ISJOIN" property="isjoin" jdbcType="CHAR" />
+    <result column="OLD_STORENAME" property="oldStorename" jdbcType="VARCHAR" />
+    <result column="C_INTEGRALAREA_ID" property="cIntegralareaId" jdbcType="DECIMAL" />
+    <result column="OPENREMARK" property="openremark" jdbcType="VARCHAR" />
+    <result column="IS_TOWMS" property="isTowms" jdbcType="CHAR" />
+    <result column="IS_ICHIBAN" property="isIchiban" jdbcType="CHAR" />
+    <result column="IS_WMSSTORE" property="isWmsstore" jdbcType="CHAR" />
+    <result column="WMS_CONTROLSTORE_ID" property="wmsControlstoreId" jdbcType="DECIMAL" />
+    <result column="CARRIER2" property="carrier2" jdbcType="VARCHAR" />
+    <result column="WMS_CONTRAN_STORE" property="wmsContranStore" jdbcType="DECIMAL" />
+    <result column="RETCHKORG" property="retchkorg" jdbcType="CHAR" />
+    <result column="MARKET" property="market" jdbcType="VARCHAR" />
+    <result column="B_STORECODE_FORMAT_ID" property="bStorecodeFormatId" jdbcType="DECIMAL" />
+    <result column="TOT_AMT_BOND" property="totAmtBond" jdbcType="DECIMAL" />
+    <result column="WMS_STORECODE" property="wmsStorecode" jdbcType="VARCHAR" />
+    <result column="PURAUTOSTAY" property="purautostay" jdbcType="CHAR" />
+    <result column="IS_CONSIGN" property="isConsign" jdbcType="CHAR" />
+    <result column="ISMARK" property="ismark" jdbcType="CHAR" />
+    <result column="VIRTUAL_PERIODATE" property="virtualPeriodate" jdbcType="DECIMAL" />
+    <result column="WEBPOS_OFFLINE" property="webposOffline" jdbcType="VARCHAR" />
+    <result column="C_PERIODAREA_ID" property="cPeriodareaId" jdbcType="DECIMAL" />
+    <result column="AREAMNG" property="areamng" jdbcType="VARCHAR" />
+    <result column="C_EXPRESSCOMPANY_ID" property="cExpresscompanyId" jdbcType="DECIMAL" />
+    <result column="C_EXPRESSCITY_ID" property="cExpresscityId" jdbcType="DECIMAL" />
+    <result column="C_CLOSEREASON_ID" property="cClosereasonId" jdbcType="DECIMAL" />
+    <result column="CAPACITY" property="capacity" jdbcType="VARCHAR" />
+    <result column="IS_RET" property="isRet" jdbcType="CHAR" />
+    <result column="LOWEST_DISCOUNT" property="lowestDiscount" jdbcType="CHAR" />
+    <result column="ISONLYCARD" property="isonlycard" jdbcType="CHAR" />
+    <result column="C_PAYWAY_DEFAULT" property="cPaywayDefault" jdbcType="DECIMAL" />
+    <result column="CHK_OVERDAYS" property="chkOverdays" jdbcType="DECIMAL" />
+    <result column="C_MARKBALTYPE_ID" property="cMarkbaltypeId" jdbcType="DECIMAL" />
+    <result column="ISVIPINTL" property="isvipintl" jdbcType="CHAR" />
+    <result column="ISVIPDIS" property="isvipdis" jdbcType="CHAR" />
+    <result column="IS_MORESALESREP" property="isMoresalesrep" jdbcType="CHAR" />
+    <result column="C_POSADDR_ID" property="cPosaddrId" jdbcType="DECIMAL" />
+    <result column="POSPRINT" property="posprint" jdbcType="VARCHAR" />
+    <result column="IS_MODIFYPAYAMT" property="isModifypayamt" jdbcType="CHAR" />
+    <result column="IS_MANUALINT" property="isManualint" jdbcType="CHAR" />
+    <result column="IS_MARKETNO" property="isMarketno" jdbcType="CHAR" />
+    <result column="IS_TAOBAO" property="isTaobao" jdbcType="CHAR" />
+    <result column="ALIPAY_KEY" property="alipayKey" jdbcType="VARCHAR" />
+    <result column="ALIPAY_PARTNERID" property="alipayPartnerid" jdbcType="VARCHAR" />
+    <result column="ALIPAY_SELL_MAIL" property="alipaySellMail" jdbcType="VARCHAR" />
+    <result column="NC_ACCOUNT_ID" property="ncAccountId" jdbcType="DECIMAL" />
+    <result column="NC_ACCOUNTUP_ID" property="ncAccountupId" jdbcType="DECIMAL" />
+    <result column="IS_CREATEDATA" property="isCreatedata" jdbcType="CHAR" />
+    <result column="BILLDATERANGE" property="billdaterange" jdbcType="VARCHAR" />
+    <result column="C_CONSUMEAREA_ID" property="cConsumeareaId" jdbcType="DECIMAL" />
+    <result column="IS_CHECKALIAS" property="isCheckalias" jdbcType="CHAR" />
+    <result column="IS_COUNTER" property="isCounter" jdbcType="CHAR" />
+    <result column="IS_EXCSTORE" property="isExcstore" jdbcType="CHAR" />
+    <result column="ORGMODIFYPER" property="orgmodifyper" jdbcType="CHAR" />
+    <result column="RETAIL_TYPE" property="retailType" jdbcType="CHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ISMUTLIPRICE" property="ismutliprice" jdbcType="CHAR" />
+    <result column="C_MARKETER" property="cMarketer" jdbcType="VARCHAR" />
+    <result column="B_PRICEUPSET_ID" property="bPriceupsetId" jdbcType="DECIMAL" />
+    <result column="EARNEST" property="earnest" jdbcType="DECIMAL" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dky.common.bean.Store" extends="BaseResultMap" >
+    <result column="DIM1_FILTER" property="dim1Filter" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, ISACTIVE, MODIFIERID, CREATIONDATE, MODIFIEDDATE, OWNERID, 
+    NAME, DESCRIPTION, C_AREA_ID, LOCKCASH, ADDRESS, PHONE, FAX, CONTACTOR_ID, MONTHFEE, 
+    ISSTOP, RENTBEGIN, RENTEND, PROPORTION, EMPCNT, CHECKDATE, ISCENTER, ISRETAIL, MOBIL, 
+    SNAME, POSTCAL, CALCULATION, C_CUSTOMER_ID, C_CUSTOMERUP_ID, C_PRICEAREA_ID, ISFAIRORIG, 
+    AREAMNG_ID, LIMITQTY, LIMITAMT, LIMITMO, MARKDIS, DATEBLOCK, C_STORETYPE_JZ_ID, IMGURL1, 
+    IMGURL2, IMGURL3, IMGURL4, IMGURL5, BIGAREAMNG_ID, C_PROVINCE_ID, C_CITY_ID, STORESIGN, 
+    C_STORETYPE, REMARK, CODE, ISUFSTORE, C_STORE_ID, C_DEPARTMENT_ID, C_CLASSCODE_ID, 
+    BILLDATE_FRIST, PRIORITY, C_BLOCK_ID, ISFICTITIOUS, SHOP_RECEIVE_TYPE, POSPW, ISBLOCK, 
+    DISCOUNT, ISGIFT, ISDISCOM, C_DEPART_ID, IMP_MONTH, IMP_TYPE1, IMP_TYPE2, IMP_TYPE3, 
+    TAXRATE, C_STOREATTRIB1_ID, C_STOREATTRIB2_ID, C_STOREATTRIB3_ID, C_STOREATTRIB4_ID, 
+    C_STOREATTRIB5_ID, C_STOREATTRIB6_ID, C_STOREATTRIB7_ID, C_STOREATTRIB8_ID, C_STOREATTRIB9_ID, 
+    C_STOREATTRIB10_ID, C_STOREATTRIB11_ID, C_STOREATTRIB12_ID, C_STOREATTRIB13_ID, C_STOREATTRIB14_ID, 
+    C_STOREATTRIB15_ID, C_STOREATTRIB16_ID, C_STOREATTRIB17_ID, C_STOREATTRIB18_ID, C_STOREATTRIB19_ID, 
+    C_STOREATTRIB20_ID, ISNEGATIVE, TDEFDOWNTYPE_ID, USBKEY, CONTACTOR, C_STOREGRADE_ID, 
+    COMRENTEND, C_STOREKIND_ID, M_DIM1_ID, ISTAX, CARRIER, CHKDAY, DRAW_INVOICE_EMPID, 
+    INVOICE_COM, INVOICE_ADDR, INVOICE_BANK, INVOICE_PHONE, INVOICE_TAXNO, INVOICE_ACCOUNT, 
+    ORDERLIMITDATE, IFORDERSTORE, COMPTYPE, WEBPOSLOGINURL, STATE, C_CLASS_ID, C_STAND_ID, 
+    C_ADDRESS_ID, IFEFFECT, STATE1, STATE2, STATE3, MOVSTATE, CONSTATE, C_LISTORE_ID, 
+    C_BIGAREA_ID, SRCCODE, ISFLAG, COUNTERCODE, INSIDECODE, REGISTERNAME, REGISTERADDR, 
+    ACCPERIOD, CHECKPERIOD, ACCDATE, INVOICEDATE, M_BREAKEVEN, BREAKEVEN, BREAKEVEN_INFO, 
+    BILLPERIOD, POS_CNT, CATALOGCODE, CATALOGNAME, CATALOGUP, CLIENTTYPE, UPID, C_STORE_SQL, 
+    IFSTOCK, C_BIGCITY_ID, LICENSE, MIN_STORAGE, MAX_STORAGE, PROFITCENTER, C_UFBLOCK_ID, 
+    ISJOIN, OLD_STORENAME, C_INTEGRALAREA_ID, OPENREMARK, IS_TOWMS, IS_ICHIBAN, IS_WMSSTORE, 
+    WMS_CONTROLSTORE_ID, CARRIER2, WMS_CONTRAN_STORE, RETCHKORG, MARKET, B_STORECODE_FORMAT_ID, 
+    TOT_AMT_BOND, WMS_STORECODE, PURAUTOSTAY, IS_CONSIGN, ISMARK, VIRTUAL_PERIODATE, 
+    WEBPOS_OFFLINE, C_PERIODAREA_ID, AREAMNG, C_EXPRESSCOMPANY_ID, C_EXPRESSCITY_ID, 
+    C_CLOSEREASON_ID, CAPACITY, IS_RET, LOWEST_DISCOUNT, ISONLYCARD, C_PAYWAY_DEFAULT, 
+    CHK_OVERDAYS, C_MARKBALTYPE_ID, ISVIPINTL, ISVIPDIS, IS_MORESALESREP, C_POSADDR_ID, 
+    POSPRINT, IS_MODIFYPAYAMT, IS_MANUALINT, IS_MARKETNO, IS_TAOBAO, ALIPAY_KEY, ALIPAY_PARTNERID, 
+    ALIPAY_SELL_MAIL, NC_ACCOUNT_ID, NC_ACCOUNTUP_ID, IS_CREATEDATA, BILLDATERANGE, C_CONSUMEAREA_ID, 
+    IS_CHECKALIAS, IS_COUNTER, IS_EXCSTORE, ORGMODIFYPER, RETAIL_TYPE, EMAIL, ISMUTLIPRICE, 
+    C_MARKETER, B_PRICEUPSET_ID, EARNEST, PASSWORD
+  </sql>
+  <sql id="Blob_Column_List" >
+    DIM1_FILTER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from C_STORE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from C_STORE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.dky.common.bean.Store" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_C_STORE.nextval from dual
+    </selectKey>
+    insert into C_STORE (ID, AD_CLIENT_ID, AD_ORG_ID, 
+      ISACTIVE, MODIFIERID, CREATIONDATE, 
+      MODIFIEDDATE, OWNERID, NAME, 
+      DESCRIPTION, C_AREA_ID, LOCKCASH, 
+      ADDRESS, PHONE, FAX, 
+      CONTACTOR_ID, MONTHFEE, ISSTOP, 
+      RENTBEGIN, RENTEND, PROPORTION, 
+      EMPCNT, CHECKDATE, ISCENTER, 
+      ISRETAIL, MOBIL, SNAME, 
+      POSTCAL, CALCULATION, C_CUSTOMER_ID, 
+      C_CUSTOMERUP_ID, C_PRICEAREA_ID, ISFAIRORIG, 
+      AREAMNG_ID, LIMITQTY, LIMITAMT, 
+      LIMITMO, MARKDIS, DATEBLOCK, 
+      C_STORETYPE_JZ_ID, IMGURL1, IMGURL2, 
+      IMGURL3, IMGURL4, IMGURL5, 
+      BIGAREAMNG_ID, C_PROVINCE_ID, C_CITY_ID, 
+      STORESIGN, C_STORETYPE, REMARK, 
+      CODE, ISUFSTORE, C_STORE_ID, 
+      C_DEPARTMENT_ID, C_CLASSCODE_ID, BILLDATE_FRIST, 
+      PRIORITY, C_BLOCK_ID, ISFICTITIOUS, 
+      SHOP_RECEIVE_TYPE, POSPW, ISBLOCK, 
+      DISCOUNT, ISGIFT, ISDISCOM, 
+      C_DEPART_ID, IMP_MONTH, IMP_TYPE1, 
+      IMP_TYPE2, IMP_TYPE3, TAXRATE, 
+      C_STOREATTRIB1_ID, C_STOREATTRIB2_ID, C_STOREATTRIB3_ID, 
+      C_STOREATTRIB4_ID, C_STOREATTRIB5_ID, C_STOREATTRIB6_ID, 
+      C_STOREATTRIB7_ID, C_STOREATTRIB8_ID, C_STOREATTRIB9_ID, 
+      C_STOREATTRIB10_ID, C_STOREATTRIB11_ID, C_STOREATTRIB12_ID, 
+      C_STOREATTRIB13_ID, C_STOREATTRIB14_ID, C_STOREATTRIB15_ID, 
+      C_STOREATTRIB16_ID, C_STOREATTRIB17_ID, C_STOREATTRIB18_ID, 
+      C_STOREATTRIB19_ID, C_STOREATTRIB20_ID, ISNEGATIVE, 
+      TDEFDOWNTYPE_ID, USBKEY, CONTACTOR, 
+      C_STOREGRADE_ID, COMRENTEND, C_STOREKIND_ID, 
+      M_DIM1_ID, ISTAX, CARRIER, 
+      CHKDAY, DRAW_INVOICE_EMPID, INVOICE_COM, 
+      INVOICE_ADDR, INVOICE_BANK, INVOICE_PHONE, 
+      INVOICE_TAXNO, INVOICE_ACCOUNT, ORDERLIMITDATE, 
+      IFORDERSTORE, COMPTYPE, WEBPOSLOGINURL, 
+      STATE, C_CLASS_ID, C_STAND_ID, 
+      C_ADDRESS_ID, IFEFFECT, STATE1, 
+      STATE2, STATE3, MOVSTATE, 
+      CONSTATE, C_LISTORE_ID, C_BIGAREA_ID, 
+      SRCCODE, ISFLAG, COUNTERCODE, 
+      INSIDECODE, REGISTERNAME, REGISTERADDR, 
+      ACCPERIOD, CHECKPERIOD, ACCDATE, 
+      INVOICEDATE, M_BREAKEVEN, BREAKEVEN, 
+      BREAKEVEN_INFO, BILLPERIOD, POS_CNT, 
+      CATALOGCODE, CATALOGNAME, CATALOGUP, 
+      CLIENTTYPE, UPID, C_STORE_SQL, 
+      IFSTOCK, C_BIGCITY_ID, LICENSE, 
+      MIN_STORAGE, MAX_STORAGE, PROFITCENTER, 
+      C_UFBLOCK_ID, ISJOIN, OLD_STORENAME, 
+      C_INTEGRALAREA_ID, OPENREMARK, IS_TOWMS, 
+      IS_ICHIBAN, IS_WMSSTORE, WMS_CONTROLSTORE_ID, 
+      CARRIER2, WMS_CONTRAN_STORE, RETCHKORG, 
+      MARKET, B_STORECODE_FORMAT_ID, TOT_AMT_BOND, 
+      WMS_STORECODE, PURAUTOSTAY, IS_CONSIGN, 
+      ISMARK, VIRTUAL_PERIODATE, WEBPOS_OFFLINE, 
+      C_PERIODAREA_ID, AREAMNG, C_EXPRESSCOMPANY_ID, 
+      C_EXPRESSCITY_ID, C_CLOSEREASON_ID, CAPACITY, 
+      IS_RET, LOWEST_DISCOUNT, ISONLYCARD, 
+      C_PAYWAY_DEFAULT, CHK_OVERDAYS, C_MARKBALTYPE_ID, 
+      ISVIPINTL, ISVIPDIS, IS_MORESALESREP, 
+      C_POSADDR_ID, POSPRINT, IS_MODIFYPAYAMT, 
+      IS_MANUALINT, IS_MARKETNO, IS_TAOBAO, 
+      ALIPAY_KEY, ALIPAY_PARTNERID, ALIPAY_SELL_MAIL, 
+      NC_ACCOUNT_ID, NC_ACCOUNTUP_ID, IS_CREATEDATA, 
+      BILLDATERANGE, C_CONSUMEAREA_ID, IS_CHECKALIAS, 
+      IS_COUNTER, IS_EXCSTORE, ORGMODIFYPER, 
+      RETAIL_TYPE, EMAIL, ISMUTLIPRICE, 
+      C_MARKETER, B_PRICEUPSET_ID, EARNEST, 
+      PASSWORD, DIM1_FILTER)
+    values (#{id,jdbcType=DECIMAL}, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL}, 
+      #{isactive,jdbcType=CHAR}, #{modifierid,jdbcType=DECIMAL}, #{creationdate,jdbcType=DATE}, 
+      #{modifieddate,jdbcType=DATE}, #{ownerid,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{cAreaId,jdbcType=DECIMAL}, #{lockcash,jdbcType=DECIMAL}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{contactorId,jdbcType=DECIMAL}, #{monthfee,jdbcType=DECIMAL}, #{isstop,jdbcType=CHAR}, 
+      #{rentbegin,jdbcType=DECIMAL}, #{rentend,jdbcType=DECIMAL}, #{proportion,jdbcType=DECIMAL}, 
+      #{empcnt,jdbcType=DECIMAL}, #{checkdate,jdbcType=DECIMAL}, #{iscenter,jdbcType=CHAR}, 
+      #{isretail,jdbcType=CHAR}, #{mobil,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{postcal,jdbcType=DECIMAL}, #{calculation,jdbcType=CHAR}, #{cCustomerId,jdbcType=DECIMAL}, 
+      #{cCustomerupId,jdbcType=DECIMAL}, #{cPriceareaId,jdbcType=DECIMAL}, #{isfairorig,jdbcType=CHAR}, 
+      #{areamngId,jdbcType=DECIMAL}, #{limitqty,jdbcType=DECIMAL}, #{limitamt,jdbcType=DECIMAL}, 
+      #{limitmo,jdbcType=CHAR}, #{markdis,jdbcType=DECIMAL}, #{dateblock,jdbcType=DECIMAL}, 
+      #{cStoretypeJzId,jdbcType=DECIMAL}, #{imgurl1,jdbcType=VARCHAR}, #{imgurl2,jdbcType=VARCHAR}, 
+      #{imgurl3,jdbcType=VARCHAR}, #{imgurl4,jdbcType=VARCHAR}, #{imgurl5,jdbcType=VARCHAR}, 
+      #{bigareamngId,jdbcType=DECIMAL}, #{cProvinceId,jdbcType=DECIMAL}, #{cCityId,jdbcType=DECIMAL}, 
+      #{storesign,jdbcType=DECIMAL}, #{cStoretype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{isufstore,jdbcType=CHAR}, #{cStoreId,jdbcType=DECIMAL}, 
+      #{cDepartmentId,jdbcType=DECIMAL}, #{cClasscodeId,jdbcType=DECIMAL}, #{billdateFrist,jdbcType=DECIMAL}, 
+      #{priority,jdbcType=DECIMAL}, #{cBlockId,jdbcType=DECIMAL}, #{isfictitious,jdbcType=CHAR}, 
+      #{shopReceiveType,jdbcType=DECIMAL}, #{pospw,jdbcType=VARCHAR}, #{isblock,jdbcType=CHAR}, 
+      #{discount,jdbcType=DECIMAL}, #{isgift,jdbcType=CHAR}, #{isdiscom,jdbcType=CHAR}, 
+      #{cDepartId,jdbcType=DECIMAL}, #{impMonth,jdbcType=DECIMAL}, #{impType1,jdbcType=DECIMAL}, 
+      #{impType2,jdbcType=DECIMAL}, #{impType3,jdbcType=DECIMAL}, #{taxrate,jdbcType=DECIMAL}, 
+      #{cStoreattrib1Id,jdbcType=DECIMAL}, #{cStoreattrib2Id,jdbcType=DECIMAL}, #{cStoreattrib3Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib4Id,jdbcType=DECIMAL}, #{cStoreattrib5Id,jdbcType=DECIMAL}, #{cStoreattrib6Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib7Id,jdbcType=DECIMAL}, #{cStoreattrib8Id,jdbcType=DECIMAL}, #{cStoreattrib9Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib10Id,jdbcType=DECIMAL}, #{cStoreattrib11Id,jdbcType=DECIMAL}, #{cStoreattrib12Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib13Id,jdbcType=DECIMAL}, #{cStoreattrib14Id,jdbcType=DECIMAL}, #{cStoreattrib15Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib16Id,jdbcType=DECIMAL}, #{cStoreattrib17Id,jdbcType=DECIMAL}, #{cStoreattrib18Id,jdbcType=DECIMAL}, 
+      #{cStoreattrib19Id,jdbcType=DECIMAL}, #{cStoreattrib20Id,jdbcType=DECIMAL}, #{isnegative,jdbcType=CHAR}, 
+      #{tdefdowntypeId,jdbcType=DECIMAL}, #{usbkey,jdbcType=VARCHAR}, #{contactor,jdbcType=VARCHAR}, 
+      #{cStoregradeId,jdbcType=DECIMAL}, #{comrentend,jdbcType=DECIMAL}, #{cStorekindId,jdbcType=DECIMAL}, 
+      #{mDim1Id,jdbcType=DECIMAL}, #{istax,jdbcType=CHAR}, #{carrier,jdbcType=VARCHAR}, 
+      #{chkday,jdbcType=DECIMAL}, #{drawInvoiceEmpid,jdbcType=DECIMAL}, #{invoiceCom,jdbcType=VARCHAR}, 
+      #{invoiceAddr,jdbcType=VARCHAR}, #{invoiceBank,jdbcType=VARCHAR}, #{invoicePhone,jdbcType=VARCHAR}, 
+      #{invoiceTaxno,jdbcType=VARCHAR}, #{invoiceAccount,jdbcType=VARCHAR}, #{orderlimitdate,jdbcType=DECIMAL}, 
+      #{iforderstore,jdbcType=CHAR}, #{comptype,jdbcType=DECIMAL}, #{webposloginurl,jdbcType=VARCHAR}, 
+      #{state,jdbcType=CHAR}, #{cClassId,jdbcType=DECIMAL}, #{cStandId,jdbcType=DECIMAL}, 
+      #{cAddressId,jdbcType=DECIMAL}, #{ifeffect,jdbcType=CHAR}, #{state1,jdbcType=DECIMAL}, 
+      #{state2,jdbcType=DECIMAL}, #{state3,jdbcType=DECIMAL}, #{movstate,jdbcType=DECIMAL}, 
+      #{constate,jdbcType=DECIMAL}, #{cListoreId,jdbcType=DECIMAL}, #{cBigareaId,jdbcType=DECIMAL}, 
+      #{srccode,jdbcType=VARCHAR}, #{isflag,jdbcType=CHAR}, #{countercode,jdbcType=VARCHAR}, 
+      #{insidecode,jdbcType=VARCHAR}, #{registername,jdbcType=VARCHAR}, #{registeraddr,jdbcType=VARCHAR}, 
+      #{accperiod,jdbcType=VARCHAR}, #{checkperiod,jdbcType=VARCHAR}, #{accdate,jdbcType=VARCHAR}, 
+      #{invoicedate,jdbcType=VARCHAR}, #{mBreakeven,jdbcType=DECIMAL}, #{breakeven,jdbcType=DECIMAL}, 
+      #{breakevenInfo,jdbcType=VARCHAR}, #{billperiod,jdbcType=VARCHAR}, #{posCnt,jdbcType=DECIMAL}, 
+      #{catalogcode,jdbcType=VARCHAR}, #{catalogname,jdbcType=VARCHAR}, #{catalogup,jdbcType=VARCHAR}, 
+      #{clienttype,jdbcType=VARCHAR}, #{upid,jdbcType=VARCHAR}, #{cStoreSql,jdbcType=VARCHAR}, 
+      #{ifstock,jdbcType=CHAR}, #{cBigcityId,jdbcType=DECIMAL}, #{license,jdbcType=VARCHAR}, 
+      #{minStorage,jdbcType=DECIMAL}, #{maxStorage,jdbcType=DECIMAL}, #{profitcenter,jdbcType=VARCHAR}, 
+      #{cUfblockId,jdbcType=DECIMAL}, #{isjoin,jdbcType=CHAR}, #{oldStorename,jdbcType=VARCHAR}, 
+      #{cIntegralareaId,jdbcType=DECIMAL}, #{openremark,jdbcType=VARCHAR}, #{isTowms,jdbcType=CHAR}, 
+      #{isIchiban,jdbcType=CHAR}, #{isWmsstore,jdbcType=CHAR}, #{wmsControlstoreId,jdbcType=DECIMAL}, 
+      #{carrier2,jdbcType=VARCHAR}, #{wmsContranStore,jdbcType=DECIMAL}, #{retchkorg,jdbcType=CHAR}, 
+      #{market,jdbcType=VARCHAR}, #{bStorecodeFormatId,jdbcType=DECIMAL}, #{totAmtBond,jdbcType=DECIMAL}, 
+      #{wmsStorecode,jdbcType=VARCHAR}, #{purautostay,jdbcType=CHAR}, #{isConsign,jdbcType=CHAR}, 
+      #{ismark,jdbcType=CHAR}, #{virtualPeriodate,jdbcType=DECIMAL}, #{webposOffline,jdbcType=VARCHAR}, 
+      #{cPeriodareaId,jdbcType=DECIMAL}, #{areamng,jdbcType=VARCHAR}, #{cExpresscompanyId,jdbcType=DECIMAL}, 
+      #{cExpresscityId,jdbcType=DECIMAL}, #{cClosereasonId,jdbcType=DECIMAL}, #{capacity,jdbcType=VARCHAR}, 
+      #{isRet,jdbcType=CHAR}, #{lowestDiscount,jdbcType=CHAR}, #{isonlycard,jdbcType=CHAR}, 
+      #{cPaywayDefault,jdbcType=DECIMAL}, #{chkOverdays,jdbcType=DECIMAL}, #{cMarkbaltypeId,jdbcType=DECIMAL}, 
+      #{isvipintl,jdbcType=CHAR}, #{isvipdis,jdbcType=CHAR}, #{isMoresalesrep,jdbcType=CHAR}, 
+      #{cPosaddrId,jdbcType=DECIMAL}, #{posprint,jdbcType=VARCHAR}, #{isModifypayamt,jdbcType=CHAR}, 
+      #{isManualint,jdbcType=CHAR}, #{isMarketno,jdbcType=CHAR}, #{isTaobao,jdbcType=CHAR}, 
+      #{alipayKey,jdbcType=VARCHAR}, #{alipayPartnerid,jdbcType=VARCHAR}, #{alipaySellMail,jdbcType=VARCHAR}, 
+      #{ncAccountId,jdbcType=DECIMAL}, #{ncAccountupId,jdbcType=DECIMAL}, #{isCreatedata,jdbcType=CHAR}, 
+      #{billdaterange,jdbcType=VARCHAR}, #{cConsumeareaId,jdbcType=DECIMAL}, #{isCheckalias,jdbcType=CHAR}, 
+      #{isCounter,jdbcType=CHAR}, #{isExcstore,jdbcType=CHAR}, #{orgmodifyper,jdbcType=CHAR}, 
+      #{retailType,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{ismutliprice,jdbcType=CHAR}, 
+      #{cMarketer,jdbcType=VARCHAR}, #{bPriceupsetId,jdbcType=DECIMAL}, #{earnest,jdbcType=DECIMAL}, 
+      #{password,jdbcType=VARCHAR}, #{dim1Filter,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dky.common.bean.Store" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_C_STORE.nextval from dual
+    </selectKey>
+    insert into C_STORE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="cAreaId != null" >
+        C_AREA_ID,
+      </if>
+      <if test="lockcash != null" >
+        LOCKCASH,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="contactorId != null" >
+        CONTACTOR_ID,
+      </if>
+      <if test="monthfee != null" >
+        MONTHFEE,
+      </if>
+      <if test="isstop != null" >
+        ISSTOP,
+      </if>
+      <if test="rentbegin != null" >
+        RENTBEGIN,
+      </if>
+      <if test="rentend != null" >
+        RENTEND,
+      </if>
+      <if test="proportion != null" >
+        PROPORTION,
+      </if>
+      <if test="empcnt != null" >
+        EMPCNT,
+      </if>
+      <if test="checkdate != null" >
+        CHECKDATE,
+      </if>
+      <if test="iscenter != null" >
+        ISCENTER,
+      </if>
+      <if test="isretail != null" >
+        ISRETAIL,
+      </if>
+      <if test="mobil != null" >
+        MOBIL,
+      </if>
+      <if test="sname != null" >
+        SNAME,
+      </if>
+      <if test="postcal != null" >
+        POSTCAL,
+      </if>
+      <if test="calculation != null" >
+        CALCULATION,
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID,
+      </if>
+      <if test="cCustomerupId != null" >
+        C_CUSTOMERUP_ID,
+      </if>
+      <if test="cPriceareaId != null" >
+        C_PRICEAREA_ID,
+      </if>
+      <if test="isfairorig != null" >
+        ISFAIRORIG,
+      </if>
+      <if test="areamngId != null" >
+        AREAMNG_ID,
+      </if>
+      <if test="limitqty != null" >
+        LIMITQTY,
+      </if>
+      <if test="limitamt != null" >
+        LIMITAMT,
+      </if>
+      <if test="limitmo != null" >
+        LIMITMO,
+      </if>
+      <if test="markdis != null" >
+        MARKDIS,
+      </if>
+      <if test="dateblock != null" >
+        DATEBLOCK,
+      </if>
+      <if test="cStoretypeJzId != null" >
+        C_STORETYPE_JZ_ID,
+      </if>
+      <if test="imgurl1 != null" >
+        IMGURL1,
+      </if>
+      <if test="imgurl2 != null" >
+        IMGURL2,
+      </if>
+      <if test="imgurl3 != null" >
+        IMGURL3,
+      </if>
+      <if test="imgurl4 != null" >
+        IMGURL4,
+      </if>
+      <if test="imgurl5 != null" >
+        IMGURL5,
+      </if>
+      <if test="bigareamngId != null" >
+        BIGAREAMNG_ID,
+      </if>
+      <if test="cProvinceId != null" >
+        C_PROVINCE_ID,
+      </if>
+      <if test="cCityId != null" >
+        C_CITY_ID,
+      </if>
+      <if test="storesign != null" >
+        STORESIGN,
+      </if>
+      <if test="cStoretype != null" >
+        C_STORETYPE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="isufstore != null" >
+        ISUFSTORE,
+      </if>
+      <if test="cStoreId != null" >
+        C_STORE_ID,
+      </if>
+      <if test="cDepartmentId != null" >
+        C_DEPARTMENT_ID,
+      </if>
+      <if test="cClasscodeId != null" >
+        C_CLASSCODE_ID,
+      </if>
+      <if test="billdateFrist != null" >
+        BILLDATE_FRIST,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="cBlockId != null" >
+        C_BLOCK_ID,
+      </if>
+      <if test="isfictitious != null" >
+        ISFICTITIOUS,
+      </if>
+      <if test="shopReceiveType != null" >
+        SHOP_RECEIVE_TYPE,
+      </if>
+      <if test="pospw != null" >
+        POSPW,
+      </if>
+      <if test="isblock != null" >
+        ISBLOCK,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="isgift != null" >
+        ISGIFT,
+      </if>
+      <if test="isdiscom != null" >
+        ISDISCOM,
+      </if>
+      <if test="cDepartId != null" >
+        C_DEPART_ID,
+      </if>
+      <if test="impMonth != null" >
+        IMP_MONTH,
+      </if>
+      <if test="impType1 != null" >
+        IMP_TYPE1,
+      </if>
+      <if test="impType2 != null" >
+        IMP_TYPE2,
+      </if>
+      <if test="impType3 != null" >
+        IMP_TYPE3,
+      </if>
+      <if test="taxrate != null" >
+        TAXRATE,
+      </if>
+      <if test="cStoreattrib1Id != null" >
+        C_STOREATTRIB1_ID,
+      </if>
+      <if test="cStoreattrib2Id != null" >
+        C_STOREATTRIB2_ID,
+      </if>
+      <if test="cStoreattrib3Id != null" >
+        C_STOREATTRIB3_ID,
+      </if>
+      <if test="cStoreattrib4Id != null" >
+        C_STOREATTRIB4_ID,
+      </if>
+      <if test="cStoreattrib5Id != null" >
+        C_STOREATTRIB5_ID,
+      </if>
+      <if test="cStoreattrib6Id != null" >
+        C_STOREATTRIB6_ID,
+      </if>
+      <if test="cStoreattrib7Id != null" >
+        C_STOREATTRIB7_ID,
+      </if>
+      <if test="cStoreattrib8Id != null" >
+        C_STOREATTRIB8_ID,
+      </if>
+      <if test="cStoreattrib9Id != null" >
+        C_STOREATTRIB9_ID,
+      </if>
+      <if test="cStoreattrib10Id != null" >
+        C_STOREATTRIB10_ID,
+      </if>
+      <if test="cStoreattrib11Id != null" >
+        C_STOREATTRIB11_ID,
+      </if>
+      <if test="cStoreattrib12Id != null" >
+        C_STOREATTRIB12_ID,
+      </if>
+      <if test="cStoreattrib13Id != null" >
+        C_STOREATTRIB13_ID,
+      </if>
+      <if test="cStoreattrib14Id != null" >
+        C_STOREATTRIB14_ID,
+      </if>
+      <if test="cStoreattrib15Id != null" >
+        C_STOREATTRIB15_ID,
+      </if>
+      <if test="cStoreattrib16Id != null" >
+        C_STOREATTRIB16_ID,
+      </if>
+      <if test="cStoreattrib17Id != null" >
+        C_STOREATTRIB17_ID,
+      </if>
+      <if test="cStoreattrib18Id != null" >
+        C_STOREATTRIB18_ID,
+      </if>
+      <if test="cStoreattrib19Id != null" >
+        C_STOREATTRIB19_ID,
+      </if>
+      <if test="cStoreattrib20Id != null" >
+        C_STOREATTRIB20_ID,
+      </if>
+      <if test="isnegative != null" >
+        ISNEGATIVE,
+      </if>
+      <if test="tdefdowntypeId != null" >
+        TDEFDOWNTYPE_ID,
+      </if>
+      <if test="usbkey != null" >
+        USBKEY,
+      </if>
+      <if test="contactor != null" >
+        CONTACTOR,
+      </if>
+      <if test="cStoregradeId != null" >
+        C_STOREGRADE_ID,
+      </if>
+      <if test="comrentend != null" >
+        COMRENTEND,
+      </if>
+      <if test="cStorekindId != null" >
+        C_STOREKIND_ID,
+      </if>
+      <if test="mDim1Id != null" >
+        M_DIM1_ID,
+      </if>
+      <if test="istax != null" >
+        ISTAX,
+      </if>
+      <if test="carrier != null" >
+        CARRIER,
+      </if>
+      <if test="chkday != null" >
+        CHKDAY,
+      </if>
+      <if test="drawInvoiceEmpid != null" >
+        DRAW_INVOICE_EMPID,
+      </if>
+      <if test="invoiceCom != null" >
+        INVOICE_COM,
+      </if>
+      <if test="invoiceAddr != null" >
+        INVOICE_ADDR,
+      </if>
+      <if test="invoiceBank != null" >
+        INVOICE_BANK,
+      </if>
+      <if test="invoicePhone != null" >
+        INVOICE_PHONE,
+      </if>
+      <if test="invoiceTaxno != null" >
+        INVOICE_TAXNO,
+      </if>
+      <if test="invoiceAccount != null" >
+        INVOICE_ACCOUNT,
+      </if>
+      <if test="orderlimitdate != null" >
+        ORDERLIMITDATE,
+      </if>
+      <if test="iforderstore != null" >
+        IFORDERSTORE,
+      </if>
+      <if test="comptype != null" >
+        COMPTYPE,
+      </if>
+      <if test="webposloginurl != null" >
+        WEBPOSLOGINURL,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="cClassId != null" >
+        C_CLASS_ID,
+      </if>
+      <if test="cStandId != null" >
+        C_STAND_ID,
+      </if>
+      <if test="cAddressId != null" >
+        C_ADDRESS_ID,
+      </if>
+      <if test="ifeffect != null" >
+        IFEFFECT,
+      </if>
+      <if test="state1 != null" >
+        STATE1,
+      </if>
+      <if test="state2 != null" >
+        STATE2,
+      </if>
+      <if test="state3 != null" >
+        STATE3,
+      </if>
+      <if test="movstate != null" >
+        MOVSTATE,
+      </if>
+      <if test="constate != null" >
+        CONSTATE,
+      </if>
+      <if test="cListoreId != null" >
+        C_LISTORE_ID,
+      </if>
+      <if test="cBigareaId != null" >
+        C_BIGAREA_ID,
+      </if>
+      <if test="srccode != null" >
+        SRCCODE,
+      </if>
+      <if test="isflag != null" >
+        ISFLAG,
+      </if>
+      <if test="countercode != null" >
+        COUNTERCODE,
+      </if>
+      <if test="insidecode != null" >
+        INSIDECODE,
+      </if>
+      <if test="registername != null" >
+        REGISTERNAME,
+      </if>
+      <if test="registeraddr != null" >
+        REGISTERADDR,
+      </if>
+      <if test="accperiod != null" >
+        ACCPERIOD,
+      </if>
+      <if test="checkperiod != null" >
+        CHECKPERIOD,
+      </if>
+      <if test="accdate != null" >
+        ACCDATE,
+      </if>
+      <if test="invoicedate != null" >
+        INVOICEDATE,
+      </if>
+      <if test="mBreakeven != null" >
+        M_BREAKEVEN,
+      </if>
+      <if test="breakeven != null" >
+        BREAKEVEN,
+      </if>
+      <if test="breakevenInfo != null" >
+        BREAKEVEN_INFO,
+      </if>
+      <if test="billperiod != null" >
+        BILLPERIOD,
+      </if>
+      <if test="posCnt != null" >
+        POS_CNT,
+      </if>
+      <if test="catalogcode != null" >
+        CATALOGCODE,
+      </if>
+      <if test="catalogname != null" >
+        CATALOGNAME,
+      </if>
+      <if test="catalogup != null" >
+        CATALOGUP,
+      </if>
+      <if test="clienttype != null" >
+        CLIENTTYPE,
+      </if>
+      <if test="upid != null" >
+        UPID,
+      </if>
+      <if test="cStoreSql != null" >
+        C_STORE_SQL,
+      </if>
+      <if test="ifstock != null" >
+        IFSTOCK,
+      </if>
+      <if test="cBigcityId != null" >
+        C_BIGCITY_ID,
+      </if>
+      <if test="license != null" >
+        LICENSE,
+      </if>
+      <if test="minStorage != null" >
+        MIN_STORAGE,
+      </if>
+      <if test="maxStorage != null" >
+        MAX_STORAGE,
+      </if>
+      <if test="profitcenter != null" >
+        PROFITCENTER,
+      </if>
+      <if test="cUfblockId != null" >
+        C_UFBLOCK_ID,
+      </if>
+      <if test="isjoin != null" >
+        ISJOIN,
+      </if>
+      <if test="oldStorename != null" >
+        OLD_STORENAME,
+      </if>
+      <if test="cIntegralareaId != null" >
+        C_INTEGRALAREA_ID,
+      </if>
+      <if test="openremark != null" >
+        OPENREMARK,
+      </if>
+      <if test="isTowms != null" >
+        IS_TOWMS,
+      </if>
+      <if test="isIchiban != null" >
+        IS_ICHIBAN,
+      </if>
+      <if test="isWmsstore != null" >
+        IS_WMSSTORE,
+      </if>
+      <if test="wmsControlstoreId != null" >
+        WMS_CONTROLSTORE_ID,
+      </if>
+      <if test="carrier2 != null" >
+        CARRIER2,
+      </if>
+      <if test="wmsContranStore != null" >
+        WMS_CONTRAN_STORE,
+      </if>
+      <if test="retchkorg != null" >
+        RETCHKORG,
+      </if>
+      <if test="market != null" >
+        MARKET,
+      </if>
+      <if test="bStorecodeFormatId != null" >
+        B_STORECODE_FORMAT_ID,
+      </if>
+      <if test="totAmtBond != null" >
+        TOT_AMT_BOND,
+      </if>
+      <if test="wmsStorecode != null" >
+        WMS_STORECODE,
+      </if>
+      <if test="purautostay != null" >
+        PURAUTOSTAY,
+      </if>
+      <if test="isConsign != null" >
+        IS_CONSIGN,
+      </if>
+      <if test="ismark != null" >
+        ISMARK,
+      </if>
+      <if test="virtualPeriodate != null" >
+        VIRTUAL_PERIODATE,
+      </if>
+      <if test="webposOffline != null" >
+        WEBPOS_OFFLINE,
+      </if>
+      <if test="cPeriodareaId != null" >
+        C_PERIODAREA_ID,
+      </if>
+      <if test="areamng != null" >
+        AREAMNG,
+      </if>
+      <if test="cExpresscompanyId != null" >
+        C_EXPRESSCOMPANY_ID,
+      </if>
+      <if test="cExpresscityId != null" >
+        C_EXPRESSCITY_ID,
+      </if>
+      <if test="cClosereasonId != null" >
+        C_CLOSEREASON_ID,
+      </if>
+      <if test="capacity != null" >
+        CAPACITY,
+      </if>
+      <if test="isRet != null" >
+        IS_RET,
+      </if>
+      <if test="lowestDiscount != null" >
+        LOWEST_DISCOUNT,
+      </if>
+      <if test="isonlycard != null" >
+        ISONLYCARD,
+      </if>
+      <if test="cPaywayDefault != null" >
+        C_PAYWAY_DEFAULT,
+      </if>
+      <if test="chkOverdays != null" >
+        CHK_OVERDAYS,
+      </if>
+      <if test="cMarkbaltypeId != null" >
+        C_MARKBALTYPE_ID,
+      </if>
+      <if test="isvipintl != null" >
+        ISVIPINTL,
+      </if>
+      <if test="isvipdis != null" >
+        ISVIPDIS,
+      </if>
+      <if test="isMoresalesrep != null" >
+        IS_MORESALESREP,
+      </if>
+      <if test="cPosaddrId != null" >
+        C_POSADDR_ID,
+      </if>
+      <if test="posprint != null" >
+        POSPRINT,
+      </if>
+      <if test="isModifypayamt != null" >
+        IS_MODIFYPAYAMT,
+      </if>
+      <if test="isManualint != null" >
+        IS_MANUALINT,
+      </if>
+      <if test="isMarketno != null" >
+        IS_MARKETNO,
+      </if>
+      <if test="isTaobao != null" >
+        IS_TAOBAO,
+      </if>
+      <if test="alipayKey != null" >
+        ALIPAY_KEY,
+      </if>
+      <if test="alipayPartnerid != null" >
+        ALIPAY_PARTNERID,
+      </if>
+      <if test="alipaySellMail != null" >
+        ALIPAY_SELL_MAIL,
+      </if>
+      <if test="ncAccountId != null" >
+        NC_ACCOUNT_ID,
+      </if>
+      <if test="ncAccountupId != null" >
+        NC_ACCOUNTUP_ID,
+      </if>
+      <if test="isCreatedata != null" >
+        IS_CREATEDATA,
+      </if>
+      <if test="billdaterange != null" >
+        BILLDATERANGE,
+      </if>
+      <if test="cConsumeareaId != null" >
+        C_CONSUMEAREA_ID,
+      </if>
+      <if test="isCheckalias != null" >
+        IS_CHECKALIAS,
+      </if>
+      <if test="isCounter != null" >
+        IS_COUNTER,
+      </if>
+      <if test="isExcstore != null" >
+        IS_EXCSTORE,
+      </if>
+      <if test="orgmodifyper != null" >
+        ORGMODIFYPER,
+      </if>
+      <if test="retailType != null" >
+        RETAIL_TYPE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="ismutliprice != null" >
+        ISMUTLIPRICE,
+      </if>
+      <if test="cMarketer != null" >
+        C_MARKETER,
+      </if>
+      <if test="bPriceupsetId != null" >
+        B_PRICEUPSET_ID,
+      </if>
+      <if test="earnest != null" >
+        EARNEST,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="dim1Filter != null" >
+        DIM1_FILTER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cAreaId != null" >
+        #{cAreaId,jdbcType=DECIMAL},
+      </if>
+      <if test="lockcash != null" >
+        #{lockcash,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactorId != null" >
+        #{contactorId,jdbcType=DECIMAL},
+      </if>
+      <if test="monthfee != null" >
+        #{monthfee,jdbcType=DECIMAL},
+      </if>
+      <if test="isstop != null" >
+        #{isstop,jdbcType=CHAR},
+      </if>
+      <if test="rentbegin != null" >
+        #{rentbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="rentend != null" >
+        #{rentend,jdbcType=DECIMAL},
+      </if>
+      <if test="proportion != null" >
+        #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="empcnt != null" >
+        #{empcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="checkdate != null" >
+        #{checkdate,jdbcType=DECIMAL},
+      </if>
+      <if test="iscenter != null" >
+        #{iscenter,jdbcType=CHAR},
+      </if>
+      <if test="isretail != null" >
+        #{isretail,jdbcType=CHAR},
+      </if>
+      <if test="mobil != null" >
+        #{mobil,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="postcal != null" >
+        #{postcal,jdbcType=DECIMAL},
+      </if>
+      <if test="calculation != null" >
+        #{calculation,jdbcType=CHAR},
+      </if>
+      <if test="cCustomerId != null" >
+        #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerupId != null" >
+        #{cCustomerupId,jdbcType=DECIMAL},
+      </if>
+      <if test="cPriceareaId != null" >
+        #{cPriceareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="isfairorig != null" >
+        #{isfairorig,jdbcType=CHAR},
+      </if>
+      <if test="areamngId != null" >
+        #{areamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="limitqty != null" >
+        #{limitqty,jdbcType=DECIMAL},
+      </if>
+      <if test="limitamt != null" >
+        #{limitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="limitmo != null" >
+        #{limitmo,jdbcType=CHAR},
+      </if>
+      <if test="markdis != null" >
+        #{markdis,jdbcType=DECIMAL},
+      </if>
+      <if test="dateblock != null" >
+        #{dateblock,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoretypeJzId != null" >
+        #{cStoretypeJzId,jdbcType=DECIMAL},
+      </if>
+      <if test="imgurl1 != null" >
+        #{imgurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl2 != null" >
+        #{imgurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl3 != null" >
+        #{imgurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl4 != null" >
+        #{imgurl4,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl5 != null" >
+        #{imgurl5,jdbcType=VARCHAR},
+      </if>
+      <if test="bigareamngId != null" >
+        #{bigareamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="cProvinceId != null" >
+        #{cProvinceId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCityId != null" >
+        #{cCityId,jdbcType=DECIMAL},
+      </if>
+      <if test="storesign != null" >
+        #{storesign,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoretype != null" >
+        #{cStoretype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isufstore != null" >
+        #{isufstore,jdbcType=CHAR},
+      </if>
+      <if test="cStoreId != null" >
+        #{cStoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="cDepartmentId != null" >
+        #{cDepartmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="cClasscodeId != null" >
+        #{cClasscodeId,jdbcType=DECIMAL},
+      </if>
+      <if test="billdateFrist != null" >
+        #{billdateFrist,jdbcType=DECIMAL},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="cBlockId != null" >
+        #{cBlockId,jdbcType=DECIMAL},
+      </if>
+      <if test="isfictitious != null" >
+        #{isfictitious,jdbcType=CHAR},
+      </if>
+      <if test="shopReceiveType != null" >
+        #{shopReceiveType,jdbcType=DECIMAL},
+      </if>
+      <if test="pospw != null" >
+        #{pospw,jdbcType=VARCHAR},
+      </if>
+      <if test="isblock != null" >
+        #{isblock,jdbcType=CHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="isgift != null" >
+        #{isgift,jdbcType=CHAR},
+      </if>
+      <if test="isdiscom != null" >
+        #{isdiscom,jdbcType=CHAR},
+      </if>
+      <if test="cDepartId != null" >
+        #{cDepartId,jdbcType=DECIMAL},
+      </if>
+      <if test="impMonth != null" >
+        #{impMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="impType1 != null" >
+        #{impType1,jdbcType=DECIMAL},
+      </if>
+      <if test="impType2 != null" >
+        #{impType2,jdbcType=DECIMAL},
+      </if>
+      <if test="impType3 != null" >
+        #{impType3,jdbcType=DECIMAL},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib1Id != null" >
+        #{cStoreattrib1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib2Id != null" >
+        #{cStoreattrib2Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib3Id != null" >
+        #{cStoreattrib3Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib4Id != null" >
+        #{cStoreattrib4Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib5Id != null" >
+        #{cStoreattrib5Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib6Id != null" >
+        #{cStoreattrib6Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib7Id != null" >
+        #{cStoreattrib7Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib8Id != null" >
+        #{cStoreattrib8Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib9Id != null" >
+        #{cStoreattrib9Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib10Id != null" >
+        #{cStoreattrib10Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib11Id != null" >
+        #{cStoreattrib11Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib12Id != null" >
+        #{cStoreattrib12Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib13Id != null" >
+        #{cStoreattrib13Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib14Id != null" >
+        #{cStoreattrib14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib15Id != null" >
+        #{cStoreattrib15Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib16Id != null" >
+        #{cStoreattrib16Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib17Id != null" >
+        #{cStoreattrib17Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib18Id != null" >
+        #{cStoreattrib18Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib19Id != null" >
+        #{cStoreattrib19Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib20Id != null" >
+        #{cStoreattrib20Id,jdbcType=DECIMAL},
+      </if>
+      <if test="isnegative != null" >
+        #{isnegative,jdbcType=CHAR},
+      </if>
+      <if test="tdefdowntypeId != null" >
+        #{tdefdowntypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="usbkey != null" >
+        #{usbkey,jdbcType=VARCHAR},
+      </if>
+      <if test="contactor != null" >
+        #{contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="cStoregradeId != null" >
+        #{cStoregradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="comrentend != null" >
+        #{comrentend,jdbcType=DECIMAL},
+      </if>
+      <if test="cStorekindId != null" >
+        #{cStorekindId,jdbcType=DECIMAL},
+      </if>
+      <if test="mDim1Id != null" >
+        #{mDim1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="istax != null" >
+        #{istax,jdbcType=CHAR},
+      </if>
+      <if test="carrier != null" >
+        #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="chkday != null" >
+        #{chkday,jdbcType=DECIMAL},
+      </if>
+      <if test="drawInvoiceEmpid != null" >
+        #{drawInvoiceEmpid,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceCom != null" >
+        #{invoiceCom,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAddr != null" >
+        #{invoiceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBank != null" >
+        #{invoiceBank,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePhone != null" >
+        #{invoicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTaxno != null" >
+        #{invoiceTaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAccount != null" >
+        #{invoiceAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderlimitdate != null" >
+        #{orderlimitdate,jdbcType=DECIMAL},
+      </if>
+      <if test="iforderstore != null" >
+        #{iforderstore,jdbcType=CHAR},
+      </if>
+      <if test="comptype != null" >
+        #{comptype,jdbcType=DECIMAL},
+      </if>
+      <if test="webposloginurl != null" >
+        #{webposloginurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="cClassId != null" >
+        #{cClassId,jdbcType=DECIMAL},
+      </if>
+      <if test="cStandId != null" >
+        #{cStandId,jdbcType=DECIMAL},
+      </if>
+      <if test="cAddressId != null" >
+        #{cAddressId,jdbcType=DECIMAL},
+      </if>
+      <if test="ifeffect != null" >
+        #{ifeffect,jdbcType=CHAR},
+      </if>
+      <if test="state1 != null" >
+        #{state1,jdbcType=DECIMAL},
+      </if>
+      <if test="state2 != null" >
+        #{state2,jdbcType=DECIMAL},
+      </if>
+      <if test="state3 != null" >
+        #{state3,jdbcType=DECIMAL},
+      </if>
+      <if test="movstate != null" >
+        #{movstate,jdbcType=DECIMAL},
+      </if>
+      <if test="constate != null" >
+        #{constate,jdbcType=DECIMAL},
+      </if>
+      <if test="cListoreId != null" >
+        #{cListoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="cBigareaId != null" >
+        #{cBigareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="srccode != null" >
+        #{srccode,jdbcType=VARCHAR},
+      </if>
+      <if test="isflag != null" >
+        #{isflag,jdbcType=CHAR},
+      </if>
+      <if test="countercode != null" >
+        #{countercode,jdbcType=VARCHAR},
+      </if>
+      <if test="insidecode != null" >
+        #{insidecode,jdbcType=VARCHAR},
+      </if>
+      <if test="registername != null" >
+        #{registername,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddr != null" >
+        #{registeraddr,jdbcType=VARCHAR},
+      </if>
+      <if test="accperiod != null" >
+        #{accperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperiod != null" >
+        #{checkperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="accdate != null" >
+        #{accdate,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicedate != null" >
+        #{invoicedate,jdbcType=VARCHAR},
+      </if>
+      <if test="mBreakeven != null" >
+        #{mBreakeven,jdbcType=DECIMAL},
+      </if>
+      <if test="breakeven != null" >
+        #{breakeven,jdbcType=DECIMAL},
+      </if>
+      <if test="breakevenInfo != null" >
+        #{breakevenInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="billperiod != null" >
+        #{billperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="posCnt != null" >
+        #{posCnt,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogcode != null" >
+        #{catalogcode,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogname != null" >
+        #{catalogname,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogup != null" >
+        #{catalogup,jdbcType=VARCHAR},
+      </if>
+      <if test="clienttype != null" >
+        #{clienttype,jdbcType=VARCHAR},
+      </if>
+      <if test="upid != null" >
+        #{upid,jdbcType=VARCHAR},
+      </if>
+      <if test="cStoreSql != null" >
+        #{cStoreSql,jdbcType=VARCHAR},
+      </if>
+      <if test="ifstock != null" >
+        #{ifstock,jdbcType=CHAR},
+      </if>
+      <if test="cBigcityId != null" >
+        #{cBigcityId,jdbcType=DECIMAL},
+      </if>
+      <if test="license != null" >
+        #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="minStorage != null" >
+        #{minStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="maxStorage != null" >
+        #{maxStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="profitcenter != null" >
+        #{profitcenter,jdbcType=VARCHAR},
+      </if>
+      <if test="cUfblockId != null" >
+        #{cUfblockId,jdbcType=DECIMAL},
+      </if>
+      <if test="isjoin != null" >
+        #{isjoin,jdbcType=CHAR},
+      </if>
+      <if test="oldStorename != null" >
+        #{oldStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="cIntegralareaId != null" >
+        #{cIntegralareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="openremark != null" >
+        #{openremark,jdbcType=VARCHAR},
+      </if>
+      <if test="isTowms != null" >
+        #{isTowms,jdbcType=CHAR},
+      </if>
+      <if test="isIchiban != null" >
+        #{isIchiban,jdbcType=CHAR},
+      </if>
+      <if test="isWmsstore != null" >
+        #{isWmsstore,jdbcType=CHAR},
+      </if>
+      <if test="wmsControlstoreId != null" >
+        #{wmsControlstoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="carrier2 != null" >
+        #{carrier2,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsContranStore != null" >
+        #{wmsContranStore,jdbcType=DECIMAL},
+      </if>
+      <if test="retchkorg != null" >
+        #{retchkorg,jdbcType=CHAR},
+      </if>
+      <if test="market != null" >
+        #{market,jdbcType=VARCHAR},
+      </if>
+      <if test="bStorecodeFormatId != null" >
+        #{bStorecodeFormatId,jdbcType=DECIMAL},
+      </if>
+      <if test="totAmtBond != null" >
+        #{totAmtBond,jdbcType=DECIMAL},
+      </if>
+      <if test="wmsStorecode != null" >
+        #{wmsStorecode,jdbcType=VARCHAR},
+      </if>
+      <if test="purautostay != null" >
+        #{purautostay,jdbcType=CHAR},
+      </if>
+      <if test="isConsign != null" >
+        #{isConsign,jdbcType=CHAR},
+      </if>
+      <if test="ismark != null" >
+        #{ismark,jdbcType=CHAR},
+      </if>
+      <if test="virtualPeriodate != null" >
+        #{virtualPeriodate,jdbcType=DECIMAL},
+      </if>
+      <if test="webposOffline != null" >
+        #{webposOffline,jdbcType=VARCHAR},
+      </if>
+      <if test="cPeriodareaId != null" >
+        #{cPeriodareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="areamng != null" >
+        #{areamng,jdbcType=VARCHAR},
+      </if>
+      <if test="cExpresscompanyId != null" >
+        #{cExpresscompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="cExpresscityId != null" >
+        #{cExpresscityId,jdbcType=DECIMAL},
+      </if>
+      <if test="cClosereasonId != null" >
+        #{cClosereasonId,jdbcType=DECIMAL},
+      </if>
+      <if test="capacity != null" >
+        #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isRet != null" >
+        #{isRet,jdbcType=CHAR},
+      </if>
+      <if test="lowestDiscount != null" >
+        #{lowestDiscount,jdbcType=CHAR},
+      </if>
+      <if test="isonlycard != null" >
+        #{isonlycard,jdbcType=CHAR},
+      </if>
+      <if test="cPaywayDefault != null" >
+        #{cPaywayDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="chkOverdays != null" >
+        #{chkOverdays,jdbcType=DECIMAL},
+      </if>
+      <if test="cMarkbaltypeId != null" >
+        #{cMarkbaltypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="isvipintl != null" >
+        #{isvipintl,jdbcType=CHAR},
+      </if>
+      <if test="isvipdis != null" >
+        #{isvipdis,jdbcType=CHAR},
+      </if>
+      <if test="isMoresalesrep != null" >
+        #{isMoresalesrep,jdbcType=CHAR},
+      </if>
+      <if test="cPosaddrId != null" >
+        #{cPosaddrId,jdbcType=DECIMAL},
+      </if>
+      <if test="posprint != null" >
+        #{posprint,jdbcType=VARCHAR},
+      </if>
+      <if test="isModifypayamt != null" >
+        #{isModifypayamt,jdbcType=CHAR},
+      </if>
+      <if test="isManualint != null" >
+        #{isManualint,jdbcType=CHAR},
+      </if>
+      <if test="isMarketno != null" >
+        #{isMarketno,jdbcType=CHAR},
+      </if>
+      <if test="isTaobao != null" >
+        #{isTaobao,jdbcType=CHAR},
+      </if>
+      <if test="alipayKey != null" >
+        #{alipayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayPartnerid != null" >
+        #{alipayPartnerid,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaySellMail != null" >
+        #{alipaySellMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ncAccountId != null" >
+        #{ncAccountId,jdbcType=DECIMAL},
+      </if>
+      <if test="ncAccountupId != null" >
+        #{ncAccountupId,jdbcType=DECIMAL},
+      </if>
+      <if test="isCreatedata != null" >
+        #{isCreatedata,jdbcType=CHAR},
+      </if>
+      <if test="billdaterange != null" >
+        #{billdaterange,jdbcType=VARCHAR},
+      </if>
+      <if test="cConsumeareaId != null" >
+        #{cConsumeareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="isCheckalias != null" >
+        #{isCheckalias,jdbcType=CHAR},
+      </if>
+      <if test="isCounter != null" >
+        #{isCounter,jdbcType=CHAR},
+      </if>
+      <if test="isExcstore != null" >
+        #{isExcstore,jdbcType=CHAR},
+      </if>
+      <if test="orgmodifyper != null" >
+        #{orgmodifyper,jdbcType=CHAR},
+      </if>
+      <if test="retailType != null" >
+        #{retailType,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ismutliprice != null" >
+        #{ismutliprice,jdbcType=CHAR},
+      </if>
+      <if test="cMarketer != null" >
+        #{cMarketer,jdbcType=VARCHAR},
+      </if>
+      <if test="bPriceupsetId != null" >
+        #{bPriceupsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="earnest != null" >
+        #{earnest,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="dim1Filter != null" >
+        #{dim1Filter,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dky.common.bean.Store" >
+    update C_STORE
+    <set >
+      <if test="adClientId != null" >
+        AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="ownerid != null" >
+        OWNERID = #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cAreaId != null" >
+        C_AREA_ID = #{cAreaId,jdbcType=DECIMAL},
+      </if>
+      <if test="lockcash != null" >
+        LOCKCASH = #{lockcash,jdbcType=DECIMAL},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactorId != null" >
+        CONTACTOR_ID = #{contactorId,jdbcType=DECIMAL},
+      </if>
+      <if test="monthfee != null" >
+        MONTHFEE = #{monthfee,jdbcType=DECIMAL},
+      </if>
+      <if test="isstop != null" >
+        ISSTOP = #{isstop,jdbcType=CHAR},
+      </if>
+      <if test="rentbegin != null" >
+        RENTBEGIN = #{rentbegin,jdbcType=DECIMAL},
+      </if>
+      <if test="rentend != null" >
+        RENTEND = #{rentend,jdbcType=DECIMAL},
+      </if>
+      <if test="proportion != null" >
+        PROPORTION = #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="empcnt != null" >
+        EMPCNT = #{empcnt,jdbcType=DECIMAL},
+      </if>
+      <if test="checkdate != null" >
+        CHECKDATE = #{checkdate,jdbcType=DECIMAL},
+      </if>
+      <if test="iscenter != null" >
+        ISCENTER = #{iscenter,jdbcType=CHAR},
+      </if>
+      <if test="isretail != null" >
+        ISRETAIL = #{isretail,jdbcType=CHAR},
+      </if>
+      <if test="mobil != null" >
+        MOBIL = #{mobil,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        SNAME = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="postcal != null" >
+        POSTCAL = #{postcal,jdbcType=DECIMAL},
+      </if>
+      <if test="calculation != null" >
+        CALCULATION = #{calculation,jdbcType=CHAR},
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCustomerupId != null" >
+        C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      </if>
+      <if test="cPriceareaId != null" >
+        C_PRICEAREA_ID = #{cPriceareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="isfairorig != null" >
+        ISFAIRORIG = #{isfairorig,jdbcType=CHAR},
+      </if>
+      <if test="areamngId != null" >
+        AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="limitqty != null" >
+        LIMITQTY = #{limitqty,jdbcType=DECIMAL},
+      </if>
+      <if test="limitamt != null" >
+        LIMITAMT = #{limitamt,jdbcType=DECIMAL},
+      </if>
+      <if test="limitmo != null" >
+        LIMITMO = #{limitmo,jdbcType=CHAR},
+      </if>
+      <if test="markdis != null" >
+        MARKDIS = #{markdis,jdbcType=DECIMAL},
+      </if>
+      <if test="dateblock != null" >
+        DATEBLOCK = #{dateblock,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoretypeJzId != null" >
+        C_STORETYPE_JZ_ID = #{cStoretypeJzId,jdbcType=DECIMAL},
+      </if>
+      <if test="imgurl1 != null" >
+        IMGURL1 = #{imgurl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl2 != null" >
+        IMGURL2 = #{imgurl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl3 != null" >
+        IMGURL3 = #{imgurl3,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl4 != null" >
+        IMGURL4 = #{imgurl4,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl5 != null" >
+        IMGURL5 = #{imgurl5,jdbcType=VARCHAR},
+      </if>
+      <if test="bigareamngId != null" >
+        BIGAREAMNG_ID = #{bigareamngId,jdbcType=DECIMAL},
+      </if>
+      <if test="cProvinceId != null" >
+        C_PROVINCE_ID = #{cProvinceId,jdbcType=DECIMAL},
+      </if>
+      <if test="cCityId != null" >
+        C_CITY_ID = #{cCityId,jdbcType=DECIMAL},
+      </if>
+      <if test="storesign != null" >
+        STORESIGN = #{storesign,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoretype != null" >
+        C_STORETYPE = #{cStoretype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isufstore != null" >
+        ISUFSTORE = #{isufstore,jdbcType=CHAR},
+      </if>
+      <if test="cStoreId != null" >
+        C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="cDepartmentId != null" >
+        C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="cClasscodeId != null" >
+        C_CLASSCODE_ID = #{cClasscodeId,jdbcType=DECIMAL},
+      </if>
+      <if test="billdateFrist != null" >
+        BILLDATE_FRIST = #{billdateFrist,jdbcType=DECIMAL},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=DECIMAL},
+      </if>
+      <if test="cBlockId != null" >
+        C_BLOCK_ID = #{cBlockId,jdbcType=DECIMAL},
+      </if>
+      <if test="isfictitious != null" >
+        ISFICTITIOUS = #{isfictitious,jdbcType=CHAR},
+      </if>
+      <if test="shopReceiveType != null" >
+        SHOP_RECEIVE_TYPE = #{shopReceiveType,jdbcType=DECIMAL},
+      </if>
+      <if test="pospw != null" >
+        POSPW = #{pospw,jdbcType=VARCHAR},
+      </if>
+      <if test="isblock != null" >
+        ISBLOCK = #{isblock,jdbcType=CHAR},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="isgift != null" >
+        ISGIFT = #{isgift,jdbcType=CHAR},
+      </if>
+      <if test="isdiscom != null" >
+        ISDISCOM = #{isdiscom,jdbcType=CHAR},
+      </if>
+      <if test="cDepartId != null" >
+        C_DEPART_ID = #{cDepartId,jdbcType=DECIMAL},
+      </if>
+      <if test="impMonth != null" >
+        IMP_MONTH = #{impMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="impType1 != null" >
+        IMP_TYPE1 = #{impType1,jdbcType=DECIMAL},
+      </if>
+      <if test="impType2 != null" >
+        IMP_TYPE2 = #{impType2,jdbcType=DECIMAL},
+      </if>
+      <if test="impType3 != null" >
+        IMP_TYPE3 = #{impType3,jdbcType=DECIMAL},
+      </if>
+      <if test="taxrate != null" >
+        TAXRATE = #{taxrate,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib1Id != null" >
+        C_STOREATTRIB1_ID = #{cStoreattrib1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib2Id != null" >
+        C_STOREATTRIB2_ID = #{cStoreattrib2Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib3Id != null" >
+        C_STOREATTRIB3_ID = #{cStoreattrib3Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib4Id != null" >
+        C_STOREATTRIB4_ID = #{cStoreattrib4Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib5Id != null" >
+        C_STOREATTRIB5_ID = #{cStoreattrib5Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib6Id != null" >
+        C_STOREATTRIB6_ID = #{cStoreattrib6Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib7Id != null" >
+        C_STOREATTRIB7_ID = #{cStoreattrib7Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib8Id != null" >
+        C_STOREATTRIB8_ID = #{cStoreattrib8Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib9Id != null" >
+        C_STOREATTRIB9_ID = #{cStoreattrib9Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib10Id != null" >
+        C_STOREATTRIB10_ID = #{cStoreattrib10Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib11Id != null" >
+        C_STOREATTRIB11_ID = #{cStoreattrib11Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib12Id != null" >
+        C_STOREATTRIB12_ID = #{cStoreattrib12Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib13Id != null" >
+        C_STOREATTRIB13_ID = #{cStoreattrib13Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib14Id != null" >
+        C_STOREATTRIB14_ID = #{cStoreattrib14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib15Id != null" >
+        C_STOREATTRIB15_ID = #{cStoreattrib15Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib16Id != null" >
+        C_STOREATTRIB16_ID = #{cStoreattrib16Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib17Id != null" >
+        C_STOREATTRIB17_ID = #{cStoreattrib17Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib18Id != null" >
+        C_STOREATTRIB18_ID = #{cStoreattrib18Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib19Id != null" >
+        C_STOREATTRIB19_ID = #{cStoreattrib19Id,jdbcType=DECIMAL},
+      </if>
+      <if test="cStoreattrib20Id != null" >
+        C_STOREATTRIB20_ID = #{cStoreattrib20Id,jdbcType=DECIMAL},
+      </if>
+      <if test="isnegative != null" >
+        ISNEGATIVE = #{isnegative,jdbcType=CHAR},
+      </if>
+      <if test="tdefdowntypeId != null" >
+        TDEFDOWNTYPE_ID = #{tdefdowntypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="usbkey != null" >
+        USBKEY = #{usbkey,jdbcType=VARCHAR},
+      </if>
+      <if test="contactor != null" >
+        CONTACTOR = #{contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="cStoregradeId != null" >
+        C_STOREGRADE_ID = #{cStoregradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="comrentend != null" >
+        COMRENTEND = #{comrentend,jdbcType=DECIMAL},
+      </if>
+      <if test="cStorekindId != null" >
+        C_STOREKIND_ID = #{cStorekindId,jdbcType=DECIMAL},
+      </if>
+      <if test="mDim1Id != null" >
+        M_DIM1_ID = #{mDim1Id,jdbcType=DECIMAL},
+      </if>
+      <if test="istax != null" >
+        ISTAX = #{istax,jdbcType=CHAR},
+      </if>
+      <if test="carrier != null" >
+        CARRIER = #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="chkday != null" >
+        CHKDAY = #{chkday,jdbcType=DECIMAL},
+      </if>
+      <if test="drawInvoiceEmpid != null" >
+        DRAW_INVOICE_EMPID = #{drawInvoiceEmpid,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceCom != null" >
+        INVOICE_COM = #{invoiceCom,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAddr != null" >
+        INVOICE_ADDR = #{invoiceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBank != null" >
+        INVOICE_BANK = #{invoiceBank,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePhone != null" >
+        INVOICE_PHONE = #{invoicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTaxno != null" >
+        INVOICE_TAXNO = #{invoiceTaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceAccount != null" >
+        INVOICE_ACCOUNT = #{invoiceAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderlimitdate != null" >
+        ORDERLIMITDATE = #{orderlimitdate,jdbcType=DECIMAL},
+      </if>
+      <if test="iforderstore != null" >
+        IFORDERSTORE = #{iforderstore,jdbcType=CHAR},
+      </if>
+      <if test="comptype != null" >
+        COMPTYPE = #{comptype,jdbcType=DECIMAL},
+      </if>
+      <if test="webposloginurl != null" >
+        WEBPOSLOGINURL = #{webposloginurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=CHAR},
+      </if>
+      <if test="cClassId != null" >
+        C_CLASS_ID = #{cClassId,jdbcType=DECIMAL},
+      </if>
+      <if test="cStandId != null" >
+        C_STAND_ID = #{cStandId,jdbcType=DECIMAL},
+      </if>
+      <if test="cAddressId != null" >
+        C_ADDRESS_ID = #{cAddressId,jdbcType=DECIMAL},
+      </if>
+      <if test="ifeffect != null" >
+        IFEFFECT = #{ifeffect,jdbcType=CHAR},
+      </if>
+      <if test="state1 != null" >
+        STATE1 = #{state1,jdbcType=DECIMAL},
+      </if>
+      <if test="state2 != null" >
+        STATE2 = #{state2,jdbcType=DECIMAL},
+      </if>
+      <if test="state3 != null" >
+        STATE3 = #{state3,jdbcType=DECIMAL},
+      </if>
+      <if test="movstate != null" >
+        MOVSTATE = #{movstate,jdbcType=DECIMAL},
+      </if>
+      <if test="constate != null" >
+        CONSTATE = #{constate,jdbcType=DECIMAL},
+      </if>
+      <if test="cListoreId != null" >
+        C_LISTORE_ID = #{cListoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="cBigareaId != null" >
+        C_BIGAREA_ID = #{cBigareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="srccode != null" >
+        SRCCODE = #{srccode,jdbcType=VARCHAR},
+      </if>
+      <if test="isflag != null" >
+        ISFLAG = #{isflag,jdbcType=CHAR},
+      </if>
+      <if test="countercode != null" >
+        COUNTERCODE = #{countercode,jdbcType=VARCHAR},
+      </if>
+      <if test="insidecode != null" >
+        INSIDECODE = #{insidecode,jdbcType=VARCHAR},
+      </if>
+      <if test="registername != null" >
+        REGISTERNAME = #{registername,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddr != null" >
+        REGISTERADDR = #{registeraddr,jdbcType=VARCHAR},
+      </if>
+      <if test="accperiod != null" >
+        ACCPERIOD = #{accperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperiod != null" >
+        CHECKPERIOD = #{checkperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="accdate != null" >
+        ACCDATE = #{accdate,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicedate != null" >
+        INVOICEDATE = #{invoicedate,jdbcType=VARCHAR},
+      </if>
+      <if test="mBreakeven != null" >
+        M_BREAKEVEN = #{mBreakeven,jdbcType=DECIMAL},
+      </if>
+      <if test="breakeven != null" >
+        BREAKEVEN = #{breakeven,jdbcType=DECIMAL},
+      </if>
+      <if test="breakevenInfo != null" >
+        BREAKEVEN_INFO = #{breakevenInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="billperiod != null" >
+        BILLPERIOD = #{billperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="posCnt != null" >
+        POS_CNT = #{posCnt,jdbcType=DECIMAL},
+      </if>
+      <if test="catalogcode != null" >
+        CATALOGCODE = #{catalogcode,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogname != null" >
+        CATALOGNAME = #{catalogname,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogup != null" >
+        CATALOGUP = #{catalogup,jdbcType=VARCHAR},
+      </if>
+      <if test="clienttype != null" >
+        CLIENTTYPE = #{clienttype,jdbcType=VARCHAR},
+      </if>
+      <if test="upid != null" >
+        UPID = #{upid,jdbcType=VARCHAR},
+      </if>
+      <if test="cStoreSql != null" >
+        C_STORE_SQL = #{cStoreSql,jdbcType=VARCHAR},
+      </if>
+      <if test="ifstock != null" >
+        IFSTOCK = #{ifstock,jdbcType=CHAR},
+      </if>
+      <if test="cBigcityId != null" >
+        C_BIGCITY_ID = #{cBigcityId,jdbcType=DECIMAL},
+      </if>
+      <if test="license != null" >
+        LICENSE = #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="minStorage != null" >
+        MIN_STORAGE = #{minStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="maxStorage != null" >
+        MAX_STORAGE = #{maxStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="profitcenter != null" >
+        PROFITCENTER = #{profitcenter,jdbcType=VARCHAR},
+      </if>
+      <if test="cUfblockId != null" >
+        C_UFBLOCK_ID = #{cUfblockId,jdbcType=DECIMAL},
+      </if>
+      <if test="isjoin != null" >
+        ISJOIN = #{isjoin,jdbcType=CHAR},
+      </if>
+      <if test="oldStorename != null" >
+        OLD_STORENAME = #{oldStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="cIntegralareaId != null" >
+        C_INTEGRALAREA_ID = #{cIntegralareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="openremark != null" >
+        OPENREMARK = #{openremark,jdbcType=VARCHAR},
+      </if>
+      <if test="isTowms != null" >
+        IS_TOWMS = #{isTowms,jdbcType=CHAR},
+      </if>
+      <if test="isIchiban != null" >
+        IS_ICHIBAN = #{isIchiban,jdbcType=CHAR},
+      </if>
+      <if test="isWmsstore != null" >
+        IS_WMSSTORE = #{isWmsstore,jdbcType=CHAR},
+      </if>
+      <if test="wmsControlstoreId != null" >
+        WMS_CONTROLSTORE_ID = #{wmsControlstoreId,jdbcType=DECIMAL},
+      </if>
+      <if test="carrier2 != null" >
+        CARRIER2 = #{carrier2,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsContranStore != null" >
+        WMS_CONTRAN_STORE = #{wmsContranStore,jdbcType=DECIMAL},
+      </if>
+      <if test="retchkorg != null" >
+        RETCHKORG = #{retchkorg,jdbcType=CHAR},
+      </if>
+      <if test="market != null" >
+        MARKET = #{market,jdbcType=VARCHAR},
+      </if>
+      <if test="bStorecodeFormatId != null" >
+        B_STORECODE_FORMAT_ID = #{bStorecodeFormatId,jdbcType=DECIMAL},
+      </if>
+      <if test="totAmtBond != null" >
+        TOT_AMT_BOND = #{totAmtBond,jdbcType=DECIMAL},
+      </if>
+      <if test="wmsStorecode != null" >
+        WMS_STORECODE = #{wmsStorecode,jdbcType=VARCHAR},
+      </if>
+      <if test="purautostay != null" >
+        PURAUTOSTAY = #{purautostay,jdbcType=CHAR},
+      </if>
+      <if test="isConsign != null" >
+        IS_CONSIGN = #{isConsign,jdbcType=CHAR},
+      </if>
+      <if test="ismark != null" >
+        ISMARK = #{ismark,jdbcType=CHAR},
+      </if>
+      <if test="virtualPeriodate != null" >
+        VIRTUAL_PERIODATE = #{virtualPeriodate,jdbcType=DECIMAL},
+      </if>
+      <if test="webposOffline != null" >
+        WEBPOS_OFFLINE = #{webposOffline,jdbcType=VARCHAR},
+      </if>
+      <if test="cPeriodareaId != null" >
+        C_PERIODAREA_ID = #{cPeriodareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="areamng != null" >
+        AREAMNG = #{areamng,jdbcType=VARCHAR},
+      </if>
+      <if test="cExpresscompanyId != null" >
+        C_EXPRESSCOMPANY_ID = #{cExpresscompanyId,jdbcType=DECIMAL},
+      </if>
+      <if test="cExpresscityId != null" >
+        C_EXPRESSCITY_ID = #{cExpresscityId,jdbcType=DECIMAL},
+      </if>
+      <if test="cClosereasonId != null" >
+        C_CLOSEREASON_ID = #{cClosereasonId,jdbcType=DECIMAL},
+      </if>
+      <if test="capacity != null" >
+        CAPACITY = #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="isRet != null" >
+        IS_RET = #{isRet,jdbcType=CHAR},
+      </if>
+      <if test="lowestDiscount != null" >
+        LOWEST_DISCOUNT = #{lowestDiscount,jdbcType=CHAR},
+      </if>
+      <if test="isonlycard != null" >
+        ISONLYCARD = #{isonlycard,jdbcType=CHAR},
+      </if>
+      <if test="cPaywayDefault != null" >
+        C_PAYWAY_DEFAULT = #{cPaywayDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="chkOverdays != null" >
+        CHK_OVERDAYS = #{chkOverdays,jdbcType=DECIMAL},
+      </if>
+      <if test="cMarkbaltypeId != null" >
+        C_MARKBALTYPE_ID = #{cMarkbaltypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="isvipintl != null" >
+        ISVIPINTL = #{isvipintl,jdbcType=CHAR},
+      </if>
+      <if test="isvipdis != null" >
+        ISVIPDIS = #{isvipdis,jdbcType=CHAR},
+      </if>
+      <if test="isMoresalesrep != null" >
+        IS_MORESALESREP = #{isMoresalesrep,jdbcType=CHAR},
+      </if>
+      <if test="cPosaddrId != null" >
+        C_POSADDR_ID = #{cPosaddrId,jdbcType=DECIMAL},
+      </if>
+      <if test="posprint != null" >
+        POSPRINT = #{posprint,jdbcType=VARCHAR},
+      </if>
+      <if test="isModifypayamt != null" >
+        IS_MODIFYPAYAMT = #{isModifypayamt,jdbcType=CHAR},
+      </if>
+      <if test="isManualint != null" >
+        IS_MANUALINT = #{isManualint,jdbcType=CHAR},
+      </if>
+      <if test="isMarketno != null" >
+        IS_MARKETNO = #{isMarketno,jdbcType=CHAR},
+      </if>
+      <if test="isTaobao != null" >
+        IS_TAOBAO = #{isTaobao,jdbcType=CHAR},
+      </if>
+      <if test="alipayKey != null" >
+        ALIPAY_KEY = #{alipayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayPartnerid != null" >
+        ALIPAY_PARTNERID = #{alipayPartnerid,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaySellMail != null" >
+        ALIPAY_SELL_MAIL = #{alipaySellMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ncAccountId != null" >
+        NC_ACCOUNT_ID = #{ncAccountId,jdbcType=DECIMAL},
+      </if>
+      <if test="ncAccountupId != null" >
+        NC_ACCOUNTUP_ID = #{ncAccountupId,jdbcType=DECIMAL},
+      </if>
+      <if test="isCreatedata != null" >
+        IS_CREATEDATA = #{isCreatedata,jdbcType=CHAR},
+      </if>
+      <if test="billdaterange != null" >
+        BILLDATERANGE = #{billdaterange,jdbcType=VARCHAR},
+      </if>
+      <if test="cConsumeareaId != null" >
+        C_CONSUMEAREA_ID = #{cConsumeareaId,jdbcType=DECIMAL},
+      </if>
+      <if test="isCheckalias != null" >
+        IS_CHECKALIAS = #{isCheckalias,jdbcType=CHAR},
+      </if>
+      <if test="isCounter != null" >
+        IS_COUNTER = #{isCounter,jdbcType=CHAR},
+      </if>
+      <if test="isExcstore != null" >
+        IS_EXCSTORE = #{isExcstore,jdbcType=CHAR},
+      </if>
+      <if test="orgmodifyper != null" >
+        ORGMODIFYPER = #{orgmodifyper,jdbcType=CHAR},
+      </if>
+      <if test="retailType != null" >
+        RETAIL_TYPE = #{retailType,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="ismutliprice != null" >
+        ISMUTLIPRICE = #{ismutliprice,jdbcType=CHAR},
+      </if>
+      <if test="cMarketer != null" >
+        C_MARKETER = #{cMarketer,jdbcType=VARCHAR},
+      </if>
+      <if test="bPriceupsetId != null" >
+        B_PRICEUPSET_ID = #{bPriceupsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="earnest != null" >
+        EARNEST = #{earnest,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="dim1Filter != null" >
+        DIM1_FILTER = #{dim1Filter,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dky.common.bean.Store" >
+    update C_STORE
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=DATE},
+      MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      C_AREA_ID = #{cAreaId,jdbcType=DECIMAL},
+      LOCKCASH = #{lockcash,jdbcType=DECIMAL},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      CONTACTOR_ID = #{contactorId,jdbcType=DECIMAL},
+      MONTHFEE = #{monthfee,jdbcType=DECIMAL},
+      ISSTOP = #{isstop,jdbcType=CHAR},
+      RENTBEGIN = #{rentbegin,jdbcType=DECIMAL},
+      RENTEND = #{rentend,jdbcType=DECIMAL},
+      PROPORTION = #{proportion,jdbcType=DECIMAL},
+      EMPCNT = #{empcnt,jdbcType=DECIMAL},
+      CHECKDATE = #{checkdate,jdbcType=DECIMAL},
+      ISCENTER = #{iscenter,jdbcType=CHAR},
+      ISRETAIL = #{isretail,jdbcType=CHAR},
+      MOBIL = #{mobil,jdbcType=VARCHAR},
+      SNAME = #{sname,jdbcType=VARCHAR},
+      POSTCAL = #{postcal,jdbcType=DECIMAL},
+      CALCULATION = #{calculation,jdbcType=CHAR},
+      C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      C_PRICEAREA_ID = #{cPriceareaId,jdbcType=DECIMAL},
+      ISFAIRORIG = #{isfairorig,jdbcType=CHAR},
+      AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      LIMITQTY = #{limitqty,jdbcType=DECIMAL},
+      LIMITAMT = #{limitamt,jdbcType=DECIMAL},
+      LIMITMO = #{limitmo,jdbcType=CHAR},
+      MARKDIS = #{markdis,jdbcType=DECIMAL},
+      DATEBLOCK = #{dateblock,jdbcType=DECIMAL},
+      C_STORETYPE_JZ_ID = #{cStoretypeJzId,jdbcType=DECIMAL},
+      IMGURL1 = #{imgurl1,jdbcType=VARCHAR},
+      IMGURL2 = #{imgurl2,jdbcType=VARCHAR},
+      IMGURL3 = #{imgurl3,jdbcType=VARCHAR},
+      IMGURL4 = #{imgurl4,jdbcType=VARCHAR},
+      IMGURL5 = #{imgurl5,jdbcType=VARCHAR},
+      BIGAREAMNG_ID = #{bigareamngId,jdbcType=DECIMAL},
+      C_PROVINCE_ID = #{cProvinceId,jdbcType=DECIMAL},
+      C_CITY_ID = #{cCityId,jdbcType=DECIMAL},
+      STORESIGN = #{storesign,jdbcType=DECIMAL},
+      C_STORETYPE = #{cStoretype,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      ISUFSTORE = #{isufstore,jdbcType=CHAR},
+      C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      C_CLASSCODE_ID = #{cClasscodeId,jdbcType=DECIMAL},
+      BILLDATE_FRIST = #{billdateFrist,jdbcType=DECIMAL},
+      PRIORITY = #{priority,jdbcType=DECIMAL},
+      C_BLOCK_ID = #{cBlockId,jdbcType=DECIMAL},
+      ISFICTITIOUS = #{isfictitious,jdbcType=CHAR},
+      SHOP_RECEIVE_TYPE = #{shopReceiveType,jdbcType=DECIMAL},
+      POSPW = #{pospw,jdbcType=VARCHAR},
+      ISBLOCK = #{isblock,jdbcType=CHAR},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      ISGIFT = #{isgift,jdbcType=CHAR},
+      ISDISCOM = #{isdiscom,jdbcType=CHAR},
+      C_DEPART_ID = #{cDepartId,jdbcType=DECIMAL},
+      IMP_MONTH = #{impMonth,jdbcType=DECIMAL},
+      IMP_TYPE1 = #{impType1,jdbcType=DECIMAL},
+      IMP_TYPE2 = #{impType2,jdbcType=DECIMAL},
+      IMP_TYPE3 = #{impType3,jdbcType=DECIMAL},
+      TAXRATE = #{taxrate,jdbcType=DECIMAL},
+      C_STOREATTRIB1_ID = #{cStoreattrib1Id,jdbcType=DECIMAL},
+      C_STOREATTRIB2_ID = #{cStoreattrib2Id,jdbcType=DECIMAL},
+      C_STOREATTRIB3_ID = #{cStoreattrib3Id,jdbcType=DECIMAL},
+      C_STOREATTRIB4_ID = #{cStoreattrib4Id,jdbcType=DECIMAL},
+      C_STOREATTRIB5_ID = #{cStoreattrib5Id,jdbcType=DECIMAL},
+      C_STOREATTRIB6_ID = #{cStoreattrib6Id,jdbcType=DECIMAL},
+      C_STOREATTRIB7_ID = #{cStoreattrib7Id,jdbcType=DECIMAL},
+      C_STOREATTRIB8_ID = #{cStoreattrib8Id,jdbcType=DECIMAL},
+      C_STOREATTRIB9_ID = #{cStoreattrib9Id,jdbcType=DECIMAL},
+      C_STOREATTRIB10_ID = #{cStoreattrib10Id,jdbcType=DECIMAL},
+      C_STOREATTRIB11_ID = #{cStoreattrib11Id,jdbcType=DECIMAL},
+      C_STOREATTRIB12_ID = #{cStoreattrib12Id,jdbcType=DECIMAL},
+      C_STOREATTRIB13_ID = #{cStoreattrib13Id,jdbcType=DECIMAL},
+      C_STOREATTRIB14_ID = #{cStoreattrib14Id,jdbcType=DECIMAL},
+      C_STOREATTRIB15_ID = #{cStoreattrib15Id,jdbcType=DECIMAL},
+      C_STOREATTRIB16_ID = #{cStoreattrib16Id,jdbcType=DECIMAL},
+      C_STOREATTRIB17_ID = #{cStoreattrib17Id,jdbcType=DECIMAL},
+      C_STOREATTRIB18_ID = #{cStoreattrib18Id,jdbcType=DECIMAL},
+      C_STOREATTRIB19_ID = #{cStoreattrib19Id,jdbcType=DECIMAL},
+      C_STOREATTRIB20_ID = #{cStoreattrib20Id,jdbcType=DECIMAL},
+      ISNEGATIVE = #{isnegative,jdbcType=CHAR},
+      TDEFDOWNTYPE_ID = #{tdefdowntypeId,jdbcType=DECIMAL},
+      USBKEY = #{usbkey,jdbcType=VARCHAR},
+      CONTACTOR = #{contactor,jdbcType=VARCHAR},
+      C_STOREGRADE_ID = #{cStoregradeId,jdbcType=DECIMAL},
+      COMRENTEND = #{comrentend,jdbcType=DECIMAL},
+      C_STOREKIND_ID = #{cStorekindId,jdbcType=DECIMAL},
+      M_DIM1_ID = #{mDim1Id,jdbcType=DECIMAL},
+      ISTAX = #{istax,jdbcType=CHAR},
+      CARRIER = #{carrier,jdbcType=VARCHAR},
+      CHKDAY = #{chkday,jdbcType=DECIMAL},
+      DRAW_INVOICE_EMPID = #{drawInvoiceEmpid,jdbcType=DECIMAL},
+      INVOICE_COM = #{invoiceCom,jdbcType=VARCHAR},
+      INVOICE_ADDR = #{invoiceAddr,jdbcType=VARCHAR},
+      INVOICE_BANK = #{invoiceBank,jdbcType=VARCHAR},
+      INVOICE_PHONE = #{invoicePhone,jdbcType=VARCHAR},
+      INVOICE_TAXNO = #{invoiceTaxno,jdbcType=VARCHAR},
+      INVOICE_ACCOUNT = #{invoiceAccount,jdbcType=VARCHAR},
+      ORDERLIMITDATE = #{orderlimitdate,jdbcType=DECIMAL},
+      IFORDERSTORE = #{iforderstore,jdbcType=CHAR},
+      COMPTYPE = #{comptype,jdbcType=DECIMAL},
+      WEBPOSLOGINURL = #{webposloginurl,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR},
+      C_CLASS_ID = #{cClassId,jdbcType=DECIMAL},
+      C_STAND_ID = #{cStandId,jdbcType=DECIMAL},
+      C_ADDRESS_ID = #{cAddressId,jdbcType=DECIMAL},
+      IFEFFECT = #{ifeffect,jdbcType=CHAR},
+      STATE1 = #{state1,jdbcType=DECIMAL},
+      STATE2 = #{state2,jdbcType=DECIMAL},
+      STATE3 = #{state3,jdbcType=DECIMAL},
+      MOVSTATE = #{movstate,jdbcType=DECIMAL},
+      CONSTATE = #{constate,jdbcType=DECIMAL},
+      C_LISTORE_ID = #{cListoreId,jdbcType=DECIMAL},
+      C_BIGAREA_ID = #{cBigareaId,jdbcType=DECIMAL},
+      SRCCODE = #{srccode,jdbcType=VARCHAR},
+      ISFLAG = #{isflag,jdbcType=CHAR},
+      COUNTERCODE = #{countercode,jdbcType=VARCHAR},
+      INSIDECODE = #{insidecode,jdbcType=VARCHAR},
+      REGISTERNAME = #{registername,jdbcType=VARCHAR},
+      REGISTERADDR = #{registeraddr,jdbcType=VARCHAR},
+      ACCPERIOD = #{accperiod,jdbcType=VARCHAR},
+      CHECKPERIOD = #{checkperiod,jdbcType=VARCHAR},
+      ACCDATE = #{accdate,jdbcType=VARCHAR},
+      INVOICEDATE = #{invoicedate,jdbcType=VARCHAR},
+      M_BREAKEVEN = #{mBreakeven,jdbcType=DECIMAL},
+      BREAKEVEN = #{breakeven,jdbcType=DECIMAL},
+      BREAKEVEN_INFO = #{breakevenInfo,jdbcType=VARCHAR},
+      BILLPERIOD = #{billperiod,jdbcType=VARCHAR},
+      POS_CNT = #{posCnt,jdbcType=DECIMAL},
+      CATALOGCODE = #{catalogcode,jdbcType=VARCHAR},
+      CATALOGNAME = #{catalogname,jdbcType=VARCHAR},
+      CATALOGUP = #{catalogup,jdbcType=VARCHAR},
+      CLIENTTYPE = #{clienttype,jdbcType=VARCHAR},
+      UPID = #{upid,jdbcType=VARCHAR},
+      C_STORE_SQL = #{cStoreSql,jdbcType=VARCHAR},
+      IFSTOCK = #{ifstock,jdbcType=CHAR},
+      C_BIGCITY_ID = #{cBigcityId,jdbcType=DECIMAL},
+      LICENSE = #{license,jdbcType=VARCHAR},
+      MIN_STORAGE = #{minStorage,jdbcType=DECIMAL},
+      MAX_STORAGE = #{maxStorage,jdbcType=DECIMAL},
+      PROFITCENTER = #{profitcenter,jdbcType=VARCHAR},
+      C_UFBLOCK_ID = #{cUfblockId,jdbcType=DECIMAL},
+      ISJOIN = #{isjoin,jdbcType=CHAR},
+      OLD_STORENAME = #{oldStorename,jdbcType=VARCHAR},
+      C_INTEGRALAREA_ID = #{cIntegralareaId,jdbcType=DECIMAL},
+      OPENREMARK = #{openremark,jdbcType=VARCHAR},
+      IS_TOWMS = #{isTowms,jdbcType=CHAR},
+      IS_ICHIBAN = #{isIchiban,jdbcType=CHAR},
+      IS_WMSSTORE = #{isWmsstore,jdbcType=CHAR},
+      WMS_CONTROLSTORE_ID = #{wmsControlstoreId,jdbcType=DECIMAL},
+      CARRIER2 = #{carrier2,jdbcType=VARCHAR},
+      WMS_CONTRAN_STORE = #{wmsContranStore,jdbcType=DECIMAL},
+      RETCHKORG = #{retchkorg,jdbcType=CHAR},
+      MARKET = #{market,jdbcType=VARCHAR},
+      B_STORECODE_FORMAT_ID = #{bStorecodeFormatId,jdbcType=DECIMAL},
+      TOT_AMT_BOND = #{totAmtBond,jdbcType=DECIMAL},
+      WMS_STORECODE = #{wmsStorecode,jdbcType=VARCHAR},
+      PURAUTOSTAY = #{purautostay,jdbcType=CHAR},
+      IS_CONSIGN = #{isConsign,jdbcType=CHAR},
+      ISMARK = #{ismark,jdbcType=CHAR},
+      VIRTUAL_PERIODATE = #{virtualPeriodate,jdbcType=DECIMAL},
+      WEBPOS_OFFLINE = #{webposOffline,jdbcType=VARCHAR},
+      C_PERIODAREA_ID = #{cPeriodareaId,jdbcType=DECIMAL},
+      AREAMNG = #{areamng,jdbcType=VARCHAR},
+      C_EXPRESSCOMPANY_ID = #{cExpresscompanyId,jdbcType=DECIMAL},
+      C_EXPRESSCITY_ID = #{cExpresscityId,jdbcType=DECIMAL},
+      C_CLOSEREASON_ID = #{cClosereasonId,jdbcType=DECIMAL},
+      CAPACITY = #{capacity,jdbcType=VARCHAR},
+      IS_RET = #{isRet,jdbcType=CHAR},
+      LOWEST_DISCOUNT = #{lowestDiscount,jdbcType=CHAR},
+      ISONLYCARD = #{isonlycard,jdbcType=CHAR},
+      C_PAYWAY_DEFAULT = #{cPaywayDefault,jdbcType=DECIMAL},
+      CHK_OVERDAYS = #{chkOverdays,jdbcType=DECIMAL},
+      C_MARKBALTYPE_ID = #{cMarkbaltypeId,jdbcType=DECIMAL},
+      ISVIPINTL = #{isvipintl,jdbcType=CHAR},
+      ISVIPDIS = #{isvipdis,jdbcType=CHAR},
+      IS_MORESALESREP = #{isMoresalesrep,jdbcType=CHAR},
+      C_POSADDR_ID = #{cPosaddrId,jdbcType=DECIMAL},
+      POSPRINT = #{posprint,jdbcType=VARCHAR},
+      IS_MODIFYPAYAMT = #{isModifypayamt,jdbcType=CHAR},
+      IS_MANUALINT = #{isManualint,jdbcType=CHAR},
+      IS_MARKETNO = #{isMarketno,jdbcType=CHAR},
+      IS_TAOBAO = #{isTaobao,jdbcType=CHAR},
+      ALIPAY_KEY = #{alipayKey,jdbcType=VARCHAR},
+      ALIPAY_PARTNERID = #{alipayPartnerid,jdbcType=VARCHAR},
+      ALIPAY_SELL_MAIL = #{alipaySellMail,jdbcType=VARCHAR},
+      NC_ACCOUNT_ID = #{ncAccountId,jdbcType=DECIMAL},
+      NC_ACCOUNTUP_ID = #{ncAccountupId,jdbcType=DECIMAL},
+      IS_CREATEDATA = #{isCreatedata,jdbcType=CHAR},
+      BILLDATERANGE = #{billdaterange,jdbcType=VARCHAR},
+      C_CONSUMEAREA_ID = #{cConsumeareaId,jdbcType=DECIMAL},
+      IS_CHECKALIAS = #{isCheckalias,jdbcType=CHAR},
+      IS_COUNTER = #{isCounter,jdbcType=CHAR},
+      IS_EXCSTORE = #{isExcstore,jdbcType=CHAR},
+      ORGMODIFYPER = #{orgmodifyper,jdbcType=CHAR},
+      RETAIL_TYPE = #{retailType,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ISMUTLIPRICE = #{ismutliprice,jdbcType=CHAR},
+      C_MARKETER = #{cMarketer,jdbcType=VARCHAR},
+      B_PRICEUPSET_ID = #{bPriceupsetId,jdbcType=DECIMAL},
+      EARNEST = #{earnest,jdbcType=DECIMAL},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      DIM1_FILTER = #{dim1Filter,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dky.common.bean.Store" >
+    update C_STORE
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=DATE},
+      MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      C_AREA_ID = #{cAreaId,jdbcType=DECIMAL},
+      LOCKCASH = #{lockcash,jdbcType=DECIMAL},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      CONTACTOR_ID = #{contactorId,jdbcType=DECIMAL},
+      MONTHFEE = #{monthfee,jdbcType=DECIMAL},
+      ISSTOP = #{isstop,jdbcType=CHAR},
+      RENTBEGIN = #{rentbegin,jdbcType=DECIMAL},
+      RENTEND = #{rentend,jdbcType=DECIMAL},
+      PROPORTION = #{proportion,jdbcType=DECIMAL},
+      EMPCNT = #{empcnt,jdbcType=DECIMAL},
+      CHECKDATE = #{checkdate,jdbcType=DECIMAL},
+      ISCENTER = #{iscenter,jdbcType=CHAR},
+      ISRETAIL = #{isretail,jdbcType=CHAR},
+      MOBIL = #{mobil,jdbcType=VARCHAR},
+      SNAME = #{sname,jdbcType=VARCHAR},
+      POSTCAL = #{postcal,jdbcType=DECIMAL},
+      CALCULATION = #{calculation,jdbcType=CHAR},
+      C_CUSTOMER_ID = #{cCustomerId,jdbcType=DECIMAL},
+      C_CUSTOMERUP_ID = #{cCustomerupId,jdbcType=DECIMAL},
+      C_PRICEAREA_ID = #{cPriceareaId,jdbcType=DECIMAL},
+      ISFAIRORIG = #{isfairorig,jdbcType=CHAR},
+      AREAMNG_ID = #{areamngId,jdbcType=DECIMAL},
+      LIMITQTY = #{limitqty,jdbcType=DECIMAL},
+      LIMITAMT = #{limitamt,jdbcType=DECIMAL},
+      LIMITMO = #{limitmo,jdbcType=CHAR},
+      MARKDIS = #{markdis,jdbcType=DECIMAL},
+      DATEBLOCK = #{dateblock,jdbcType=DECIMAL},
+      C_STORETYPE_JZ_ID = #{cStoretypeJzId,jdbcType=DECIMAL},
+      IMGURL1 = #{imgurl1,jdbcType=VARCHAR},
+      IMGURL2 = #{imgurl2,jdbcType=VARCHAR},
+      IMGURL3 = #{imgurl3,jdbcType=VARCHAR},
+      IMGURL4 = #{imgurl4,jdbcType=VARCHAR},
+      IMGURL5 = #{imgurl5,jdbcType=VARCHAR},
+      BIGAREAMNG_ID = #{bigareamngId,jdbcType=DECIMAL},
+      C_PROVINCE_ID = #{cProvinceId,jdbcType=DECIMAL},
+      C_CITY_ID = #{cCityId,jdbcType=DECIMAL},
+      STORESIGN = #{storesign,jdbcType=DECIMAL},
+      C_STORETYPE = #{cStoretype,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      ISUFSTORE = #{isufstore,jdbcType=CHAR},
+      C_STORE_ID = #{cStoreId,jdbcType=DECIMAL},
+      C_DEPARTMENT_ID = #{cDepartmentId,jdbcType=DECIMAL},
+      C_CLASSCODE_ID = #{cClasscodeId,jdbcType=DECIMAL},
+      BILLDATE_FRIST = #{billdateFrist,jdbcType=DECIMAL},
+      PRIORITY = #{priority,jdbcType=DECIMAL},
+      C_BLOCK_ID = #{cBlockId,jdbcType=DECIMAL},
+      ISFICTITIOUS = #{isfictitious,jdbcType=CHAR},
+      SHOP_RECEIVE_TYPE = #{shopReceiveType,jdbcType=DECIMAL},
+      POSPW = #{pospw,jdbcType=VARCHAR},
+      ISBLOCK = #{isblock,jdbcType=CHAR},
+      DISCOUNT = #{discount,jdbcType=DECIMAL},
+      ISGIFT = #{isgift,jdbcType=CHAR},
+      ISDISCOM = #{isdiscom,jdbcType=CHAR},
+      C_DEPART_ID = #{cDepartId,jdbcType=DECIMAL},
+      IMP_MONTH = #{impMonth,jdbcType=DECIMAL},
+      IMP_TYPE1 = #{impType1,jdbcType=DECIMAL},
+      IMP_TYPE2 = #{impType2,jdbcType=DECIMAL},
+      IMP_TYPE3 = #{impType3,jdbcType=DECIMAL},
+      TAXRATE = #{taxrate,jdbcType=DECIMAL},
+      C_STOREATTRIB1_ID = #{cStoreattrib1Id,jdbcType=DECIMAL},
+      C_STOREATTRIB2_ID = #{cStoreattrib2Id,jdbcType=DECIMAL},
+      C_STOREATTRIB3_ID = #{cStoreattrib3Id,jdbcType=DECIMAL},
+      C_STOREATTRIB4_ID = #{cStoreattrib4Id,jdbcType=DECIMAL},
+      C_STOREATTRIB5_ID = #{cStoreattrib5Id,jdbcType=DECIMAL},
+      C_STOREATTRIB6_ID = #{cStoreattrib6Id,jdbcType=DECIMAL},
+      C_STOREATTRIB7_ID = #{cStoreattrib7Id,jdbcType=DECIMAL},
+      C_STOREATTRIB8_ID = #{cStoreattrib8Id,jdbcType=DECIMAL},
+      C_STOREATTRIB9_ID = #{cStoreattrib9Id,jdbcType=DECIMAL},
+      C_STOREATTRIB10_ID = #{cStoreattrib10Id,jdbcType=DECIMAL},
+      C_STOREATTRIB11_ID = #{cStoreattrib11Id,jdbcType=DECIMAL},
+      C_STOREATTRIB12_ID = #{cStoreattrib12Id,jdbcType=DECIMAL},
+      C_STOREATTRIB13_ID = #{cStoreattrib13Id,jdbcType=DECIMAL},
+      C_STOREATTRIB14_ID = #{cStoreattrib14Id,jdbcType=DECIMAL},
+      C_STOREATTRIB15_ID = #{cStoreattrib15Id,jdbcType=DECIMAL},
+      C_STOREATTRIB16_ID = #{cStoreattrib16Id,jdbcType=DECIMAL},
+      C_STOREATTRIB17_ID = #{cStoreattrib17Id,jdbcType=DECIMAL},
+      C_STOREATTRIB18_ID = #{cStoreattrib18Id,jdbcType=DECIMAL},
+      C_STOREATTRIB19_ID = #{cStoreattrib19Id,jdbcType=DECIMAL},
+      C_STOREATTRIB20_ID = #{cStoreattrib20Id,jdbcType=DECIMAL},
+      ISNEGATIVE = #{isnegative,jdbcType=CHAR},
+      TDEFDOWNTYPE_ID = #{tdefdowntypeId,jdbcType=DECIMAL},
+      USBKEY = #{usbkey,jdbcType=VARCHAR},
+      CONTACTOR = #{contactor,jdbcType=VARCHAR},
+      C_STOREGRADE_ID = #{cStoregradeId,jdbcType=DECIMAL},
+      COMRENTEND = #{comrentend,jdbcType=DECIMAL},
+      C_STOREKIND_ID = #{cStorekindId,jdbcType=DECIMAL},
+      M_DIM1_ID = #{mDim1Id,jdbcType=DECIMAL},
+      ISTAX = #{istax,jdbcType=CHAR},
+      CARRIER = #{carrier,jdbcType=VARCHAR},
+      CHKDAY = #{chkday,jdbcType=DECIMAL},
+      DRAW_INVOICE_EMPID = #{drawInvoiceEmpid,jdbcType=DECIMAL},
+      INVOICE_COM = #{invoiceCom,jdbcType=VARCHAR},
+      INVOICE_ADDR = #{invoiceAddr,jdbcType=VARCHAR},
+      INVOICE_BANK = #{invoiceBank,jdbcType=VARCHAR},
+      INVOICE_PHONE = #{invoicePhone,jdbcType=VARCHAR},
+      INVOICE_TAXNO = #{invoiceTaxno,jdbcType=VARCHAR},
+      INVOICE_ACCOUNT = #{invoiceAccount,jdbcType=VARCHAR},
+      ORDERLIMITDATE = #{orderlimitdate,jdbcType=DECIMAL},
+      IFORDERSTORE = #{iforderstore,jdbcType=CHAR},
+      COMPTYPE = #{comptype,jdbcType=DECIMAL},
+      WEBPOSLOGINURL = #{webposloginurl,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR},
+      C_CLASS_ID = #{cClassId,jdbcType=DECIMAL},
+      C_STAND_ID = #{cStandId,jdbcType=DECIMAL},
+      C_ADDRESS_ID = #{cAddressId,jdbcType=DECIMAL},
+      IFEFFECT = #{ifeffect,jdbcType=CHAR},
+      STATE1 = #{state1,jdbcType=DECIMAL},
+      STATE2 = #{state2,jdbcType=DECIMAL},
+      STATE3 = #{state3,jdbcType=DECIMAL},
+      MOVSTATE = #{movstate,jdbcType=DECIMAL},
+      CONSTATE = #{constate,jdbcType=DECIMAL},
+      C_LISTORE_ID = #{cListoreId,jdbcType=DECIMAL},
+      C_BIGAREA_ID = #{cBigareaId,jdbcType=DECIMAL},
+      SRCCODE = #{srccode,jdbcType=VARCHAR},
+      ISFLAG = #{isflag,jdbcType=CHAR},
+      COUNTERCODE = #{countercode,jdbcType=VARCHAR},
+      INSIDECODE = #{insidecode,jdbcType=VARCHAR},
+      REGISTERNAME = #{registername,jdbcType=VARCHAR},
+      REGISTERADDR = #{registeraddr,jdbcType=VARCHAR},
+      ACCPERIOD = #{accperiod,jdbcType=VARCHAR},
+      CHECKPERIOD = #{checkperiod,jdbcType=VARCHAR},
+      ACCDATE = #{accdate,jdbcType=VARCHAR},
+      INVOICEDATE = #{invoicedate,jdbcType=VARCHAR},
+      M_BREAKEVEN = #{mBreakeven,jdbcType=DECIMAL},
+      BREAKEVEN = #{breakeven,jdbcType=DECIMAL},
+      BREAKEVEN_INFO = #{breakevenInfo,jdbcType=VARCHAR},
+      BILLPERIOD = #{billperiod,jdbcType=VARCHAR},
+      POS_CNT = #{posCnt,jdbcType=DECIMAL},
+      CATALOGCODE = #{catalogcode,jdbcType=VARCHAR},
+      CATALOGNAME = #{catalogname,jdbcType=VARCHAR},
+      CATALOGUP = #{catalogup,jdbcType=VARCHAR},
+      CLIENTTYPE = #{clienttype,jdbcType=VARCHAR},
+      UPID = #{upid,jdbcType=VARCHAR},
+      C_STORE_SQL = #{cStoreSql,jdbcType=VARCHAR},
+      IFSTOCK = #{ifstock,jdbcType=CHAR},
+      C_BIGCITY_ID = #{cBigcityId,jdbcType=DECIMAL},
+      LICENSE = #{license,jdbcType=VARCHAR},
+      MIN_STORAGE = #{minStorage,jdbcType=DECIMAL},
+      MAX_STORAGE = #{maxStorage,jdbcType=DECIMAL},
+      PROFITCENTER = #{profitcenter,jdbcType=VARCHAR},
+      C_UFBLOCK_ID = #{cUfblockId,jdbcType=DECIMAL},
+      ISJOIN = #{isjoin,jdbcType=CHAR},
+      OLD_STORENAME = #{oldStorename,jdbcType=VARCHAR},
+      C_INTEGRALAREA_ID = #{cIntegralareaId,jdbcType=DECIMAL},
+      OPENREMARK = #{openremark,jdbcType=VARCHAR},
+      IS_TOWMS = #{isTowms,jdbcType=CHAR},
+      IS_ICHIBAN = #{isIchiban,jdbcType=CHAR},
+      IS_WMSSTORE = #{isWmsstore,jdbcType=CHAR},
+      WMS_CONTROLSTORE_ID = #{wmsControlstoreId,jdbcType=DECIMAL},
+      CARRIER2 = #{carrier2,jdbcType=VARCHAR},
+      WMS_CONTRAN_STORE = #{wmsContranStore,jdbcType=DECIMAL},
+      RETCHKORG = #{retchkorg,jdbcType=CHAR},
+      MARKET = #{market,jdbcType=VARCHAR},
+      B_STORECODE_FORMAT_ID = #{bStorecodeFormatId,jdbcType=DECIMAL},
+      TOT_AMT_BOND = #{totAmtBond,jdbcType=DECIMAL},
+      WMS_STORECODE = #{wmsStorecode,jdbcType=VARCHAR},
+      PURAUTOSTAY = #{purautostay,jdbcType=CHAR},
+      IS_CONSIGN = #{isConsign,jdbcType=CHAR},
+      ISMARK = #{ismark,jdbcType=CHAR},
+      VIRTUAL_PERIODATE = #{virtualPeriodate,jdbcType=DECIMAL},
+      WEBPOS_OFFLINE = #{webposOffline,jdbcType=VARCHAR},
+      C_PERIODAREA_ID = #{cPeriodareaId,jdbcType=DECIMAL},
+      AREAMNG = #{areamng,jdbcType=VARCHAR},
+      C_EXPRESSCOMPANY_ID = #{cExpresscompanyId,jdbcType=DECIMAL},
+      C_EXPRESSCITY_ID = #{cExpresscityId,jdbcType=DECIMAL},
+      C_CLOSEREASON_ID = #{cClosereasonId,jdbcType=DECIMAL},
+      CAPACITY = #{capacity,jdbcType=VARCHAR},
+      IS_RET = #{isRet,jdbcType=CHAR},
+      LOWEST_DISCOUNT = #{lowestDiscount,jdbcType=CHAR},
+      ISONLYCARD = #{isonlycard,jdbcType=CHAR},
+      C_PAYWAY_DEFAULT = #{cPaywayDefault,jdbcType=DECIMAL},
+      CHK_OVERDAYS = #{chkOverdays,jdbcType=DECIMAL},
+      C_MARKBALTYPE_ID = #{cMarkbaltypeId,jdbcType=DECIMAL},
+      ISVIPINTL = #{isvipintl,jdbcType=CHAR},
+      ISVIPDIS = #{isvipdis,jdbcType=CHAR},
+      IS_MORESALESREP = #{isMoresalesrep,jdbcType=CHAR},
+      C_POSADDR_ID = #{cPosaddrId,jdbcType=DECIMAL},
+      POSPRINT = #{posprint,jdbcType=VARCHAR},
+      IS_MODIFYPAYAMT = #{isModifypayamt,jdbcType=CHAR},
+      IS_MANUALINT = #{isManualint,jdbcType=CHAR},
+      IS_MARKETNO = #{isMarketno,jdbcType=CHAR},
+      IS_TAOBAO = #{isTaobao,jdbcType=CHAR},
+      ALIPAY_KEY = #{alipayKey,jdbcType=VARCHAR},
+      ALIPAY_PARTNERID = #{alipayPartnerid,jdbcType=VARCHAR},
+      ALIPAY_SELL_MAIL = #{alipaySellMail,jdbcType=VARCHAR},
+      NC_ACCOUNT_ID = #{ncAccountId,jdbcType=DECIMAL},
+      NC_ACCOUNTUP_ID = #{ncAccountupId,jdbcType=DECIMAL},
+      IS_CREATEDATA = #{isCreatedata,jdbcType=CHAR},
+      BILLDATERANGE = #{billdaterange,jdbcType=VARCHAR},
+      C_CONSUMEAREA_ID = #{cConsumeareaId,jdbcType=DECIMAL},
+      IS_CHECKALIAS = #{isCheckalias,jdbcType=CHAR},
+      IS_COUNTER = #{isCounter,jdbcType=CHAR},
+      IS_EXCSTORE = #{isExcstore,jdbcType=CHAR},
+      ORGMODIFYPER = #{orgmodifyper,jdbcType=CHAR},
+      RETAIL_TYPE = #{retailType,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ISMUTLIPRICE = #{ismutliprice,jdbcType=CHAR},
+      C_MARKETER = #{cMarketer,jdbcType=VARCHAR},
+      B_PRICEUPSET_ID = #{bPriceupsetId,jdbcType=DECIMAL},
+      EARNEST = #{earnest,jdbcType=DECIMAL},
+      PASSWORD = #{password,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+
+    <select id="selectByCode" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from C_STORE
+        where CODE = #{email,jdbcType=VARCHAR} and isactive = 'Y'
+    </select>
+
+</mapper>

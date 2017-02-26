@@ -3,6 +3,7 @@ package com.dky.business.repository.biz.impl;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.common.bean.ProductApprove;
+import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -37,6 +38,23 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids) {
         return new ReturnT<>().sucessData(mapper.queryProductApproveInfoList(ids));
+    }
+
+
+    /**
+     * 下单保存大货类型订单
+     * @param param
+     * @return
+     */
+    @Override
+    public ReturnT bMptApproveSave(BMptApproveSaveParam param) {
+        try {
+            mapper.bMptApproveSave(param.getJgNo(),param.getProductName(),
+                   param.getSizeId(),param.getColorId());
+        } catch (Exception e) {
+            return new ReturnT().failureData("保存大货类型订单失败");
+        }
+        return new ReturnT().successDefault();
     }
 
     private PageList<ProductApproveView> findPage(ProductApprove approve){

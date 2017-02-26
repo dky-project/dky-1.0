@@ -1,6 +1,7 @@
 package com.dky.business.repository.repository;
 
 import com.dky.common.bean.DimNew;
+import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.view.DimNewView;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +28,6 @@ public interface DimNewMapper {
     String getDimClob();
 
     List<DimNewView> queryDimByDimText(@Param(value = "dimText")String dimText);
+
+    String getpzsJson(PzsJsonQueryParam param);
 }

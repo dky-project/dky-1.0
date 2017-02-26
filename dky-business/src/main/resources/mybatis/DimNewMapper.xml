@@ -255,4 +255,9 @@
   <select id="getDimClob" resultType="java.lang.String">
         SELECT GET_DATAJSON(1) AS jsonstr FROM dual
   </select>
+
+    <select id="getpzsJson" parameterType="com.dky.common.param.PzsJsonQueryParam" resultType="java.lang.String">
+        SELECT GET_PZSJSON(#{flag}, #{productId},
+        #{mDimNew14Id},#{mDimNew15Id},#{mDimNew16Id}) AS pzJsonstr FROM DUAL
+    </select>
 </mapper>

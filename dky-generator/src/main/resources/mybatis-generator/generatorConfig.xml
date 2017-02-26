@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="E:\repo\com\oracle\ojdbc14\10.2.0.1.0\ojdbc14-10.2.0.1.0.jar"/>
+            location="F:\mavenLocalRepository\m2\repository\com\oracle\ojdbc14\10.2.0.1.0\ojdbc14-10.2.0.1.0.jar"/>
     <!--
     context:生成一组对象的环境
     id:必选，上下文id，用于在生成错误时提示
@@ -25,33 +25,33 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@192.168.3.171:1521:orcl" userId="bosnds3"
+                        connectionURL="jdbc:oracle:thin:@122.227.138.34:1521:orcl" userId="bosnds3"
                         password="abc123"/>
 
         <javaModelGenerator targetPackage="com.dky.common.bean"
-                            targetProject="F:/dky/dky-1.0/dky-generator/src/main/java">
+                            targetProject="E:/git/dky-1.0/dky-generator/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="com.dky.business.repository.repository.xml"
-                         targetProject="F:/dky/dky-1.0/dky-generator/src/main/java">
+                         targetProject="E:/git/dky-1.0/dky-generator/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator targetPackage="com.dky.business.repository.repository"
-                             targetProject="F:/dky/dky-1.0/dky-generator/src/main/java" type="XMLMAPPER">
+                             targetProject="E:/git/dky-1.0/dky-generator/src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
-        <table tableName="M_DIM_NEW" domainObjectName="DimNew"
+        <table tableName="c_store" domainObjectName="Store"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <!--<columnRenamingRule searchString="^D_"
                                 replaceString=""/>-->
-            <generatedKey column="id" sqlStatement="select SEQ_M_DIM.nextval from dual"/>
+            <generatedKey column="id" sqlStatement="select SEQ_C_STORE.nextval from dual"/>
         </table>
 
     </context>

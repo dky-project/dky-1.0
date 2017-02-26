@@ -3,6 +3,7 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.UserService;
 import com.dky.business.repository.session.SessionProcess;
 import com.dky.common.bean.SessionUser;
+import com.dky.common.bean.Store;
 import com.dky.common.bean.Users;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.param.LoginUserParam;
@@ -30,14 +31,23 @@ public class UserController {
 
     @RequestMapping(value = "loginUser", name = "登录")
     public ReturnT loginUser(LoginUserParam param, HttpServletResponse response) {
-        ReturnT<Users> returnT = userService.loginUser(param);
+        ReturnT returnT = userService.loginUser(param);
         if (!returnT.isSuccess()) {
             return returnT;
         }
+        Object data = returnT.getData();
         SessionUser sessionUser = new SessionUser();
-        sessionUser.setEmail(returnT.getData().getEmail());
-        sessionUser.setcCustomerId(returnT.getData().getcCustomerId());
-        sessionUser.setcStoreId(returnT.getData().getcStoreId());
+        if(data instanceof Users){
+            Users users = (Users) data;
+            sessionUser.setEmail(users.getEmail());
+            sessionUser.setcCustomerId(users.getcCustomerId());
+            sessionUser.setcStoreId(users.getcStoreId());
+        }else if(data instanceof Store){
+            Store store = new Store();
+            sessionUser.setEmail(store.getEmail());
+            sessionUser.setcCustomerId(store.getcCustomerId());
+            sessionUser.setcStoreId(store.getcStoreId());
+        }
         String token = sessionProcess.login(sessionUser, response, 60 * 60 * 24 * 7 * 1000L);
         return new ReturnT().sucessData(token);
     }

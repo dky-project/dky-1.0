@@ -3,6 +3,7 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.common.enums.DimFlagEnum;
 import com.dky.common.param.DimNewParam;
+import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewListView;
 import com.dky.common.response.view.DimNewView;
@@ -37,5 +38,19 @@ public class DimNewController {
         view.setYearList(dimNewService.queryByDimText(DimFlagEnum.YEAR_FLAG.getCode()).getData());
         result.setData(view);
         return result.successDefault();
+    }
+
+
+    /**
+     * 1、	选择品种下拉框接口  flag:1
+     * 2、	选择组织下拉框接口  flag:2
+     * 3、	选择针型下拉框接口  flag:3
+     * 4、	选择支别下拉框接口  flag:4
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "getPzsJson",name = "选择下拉框接口")
+    public String getPzsJson(PzsJsonQueryParam param){
+        return dimNewService.getpzsJson(param);
     }
 }

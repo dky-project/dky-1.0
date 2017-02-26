@@ -1459,4 +1459,8 @@
     where ID = #{id,jdbcType=DECIMAL}
   </update>
 
+    <insert id="bMptApproveSave" statementType="CALLABLE">
+      {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
+    </insert>
+
 </mapper>

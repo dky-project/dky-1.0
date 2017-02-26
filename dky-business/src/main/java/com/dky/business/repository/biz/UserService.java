@@ -1,6 +1,5 @@
 package com.dky.business.repository.biz;
 
-import com.dky.common.bean.Users;
 import com.dky.common.param.LoginUserParam;
 import com.dky.common.response.ReturnT;
 
@@ -9,5 +8,5 @@ import com.dky.common.response.ReturnT;
  */
 public interface UserService {
 
-    ReturnT<Users> loginUser(LoginUserParam param);
+    ReturnT loginUser(LoginUserParam param);
 }

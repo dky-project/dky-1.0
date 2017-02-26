@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -20,4 +21,6 @@ public interface ProductApproveService {
     ReturnT updateProductApprove();
 
     ReturnT<List<ProductApproveInfoView>>  queryProductApproveInfoList(Long[] ids);
+
+    ReturnT bMptApproveSave(BMptApproveSaveParam param);
 }
