@@ -25,4 +25,6 @@ public interface DimNewMapper {
     String getSendDate();
 
     String getDimClob();
+
+    List<DimNewView> queryDimByDimText(@Param(value = "dimText")String dimText);
 }

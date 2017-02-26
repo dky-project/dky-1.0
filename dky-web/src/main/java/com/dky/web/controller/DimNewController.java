@@ -4,6 +4,7 @@ import com.dky.business.repository.biz.DimNewService;
 import com.dky.common.enums.DimFlagEnum;
 import com.dky.common.param.DimNewParam;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.DimNewListView;
 import com.dky.common.response.view.DimNewView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,20 +22,20 @@ public class DimNewController {
     @Autowired
     private DimNewService dimNewService;
 
-
-    @RequestMapping(value = "getSexEnum",name = "获取性别枚举")
-    public ReturnT<List<DimNewView>> getSexEnum(){
-        return dimNewService.queryByDimFlag(DimFlagEnum.SEX.getCode());
-    }
-
-
-    @RequestMapping(value = "getBigClassEnum",name = "获取大类枚举")
-    public ReturnT<List<DimNewView>> getBigClassEnum(){
-        return dimNewService.queryByDimFlag(DimFlagEnum.BIG_CLASS.getCode());
-    }
-
-    @RequestMapping(value = "getAllDimList",name = "获取属性枚举")
-    public ReturnT<List<DimNewView>> getBigClassEnum(DimNewParam param){
-        return dimNewService.queryByDimFlag(param.getDimFlagNew());
+    @RequestMapping(value = "getDimNewList",name = "获取属性枚举")
+    public ReturnT<DimNewListView> getBigClassEnum(DimNewParam param){
+        ReturnT<DimNewListView> result = new ReturnT<>();
+        DimNewListView view = new DimNewListView();
+        view.setSexList(dimNewService.queryByDimFlag(DimFlagEnum.SEX.getCode()).getData());
+        view.setBigClassList(dimNewService.queryByDimFlag(DimFlagEnum.BIG_CLASS.getCode()).getData());
+        view.setPzList(dimNewService.queryByDimFlag(DimFlagEnum.PZ_FLAG.getCode()).getData());
+        view.setZzList(dimNewService.queryByDimFlag(DimFlagEnum.ZZ_FLAG.getCode()).getData());
+        view.setZxList(dimNewService.queryByDimFlag(DimFlagEnum.ZX_FLAG.getCode()).getData());
+        view.setSyList(dimNewService.queryByDimFlag(DimFlagEnum.SY_FLAG.getCode()).getData());
+        view.setLxList(dimNewService.queryByDimFlag(DimFlagEnum.LX_FLAG.getCode()).getData());
+        view.setXxList(dimNewService.queryByDimFlag(DimFlagEnum.XX_FLAG.getCode()).getData());
+        view.setYearList(dimNewService.queryByDimText(DimFlagEnum.YEAR_FLAG.getCode()).getData());
+        result.setData(view);
+        return result.successDefault();
     }
 }

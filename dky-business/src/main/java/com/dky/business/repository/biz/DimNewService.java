@@ -15,5 +15,7 @@ public interface DimNewService {
 
     ReturnT<List<DimNewView>> queryByDimFlag(String dimFlag);
 
+    ReturnT<List<DimNewView>> queryByDimText(String dimText);
+
     ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param);
 }
