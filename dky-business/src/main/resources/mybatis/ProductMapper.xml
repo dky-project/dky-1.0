@@ -298,15 +298,15 @@
     </sql>
 
     <sql id="whereClause">
-        <if test="null!=mDimNew11Id">AND t2.id = #{mDimNew11Id}</if>
-        <if test="null!=mDimNew13Id">AND t3.id = #{mDimNew13Id}</if>
-        <if test="null!=mDimNew14Id">AND t3.id = #{mDimNew14Id}</if>
-        <if test="null!=mDimNew15Id">AND t3.id = #{mDimNew15Id}</if>
-        <if test="null!=mDimNew16Id">AND t3.id = #{mDimNew16Id}</if>
-        <if test="null!=mDimNew12Id">AND t3.id = #{mDimNew12Id}</if>
-        <if test="null!=mDimNew25Id">AND t3.id = #{mDimNew25Id}</if>
-        <if test="null!=mDimNew9Id">AND t3.id = #{mDimNew9Id}</if>
-        <if test="null!=mDim13Id">AND t3.id = #{mDim13Id}</if>
+        <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
+        <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
+        <if test="null!=mDimNew14Id">AND t1.M_DIM_NEW14_ID = #{mDimNew14Id}</if>
+        <if test="null!=mDimNew15Id">AND t1.M_DIM_NEW15_ID = #{mDimNew15Id}</if>
+        <if test="null!=mDimNew16Id">AND t1.M_DIM_NEW16_ID = #{mDimNew16Id}</if>
+        <if test="null!=mDimNew12Id">AND t1.M_DIM_NEW12_ID = #{mDimNew12Id}</if>
+        <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
+        <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
+        <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
         <if test="null!=name">AND t1.name = #{name}</if>
     </sql>
 
