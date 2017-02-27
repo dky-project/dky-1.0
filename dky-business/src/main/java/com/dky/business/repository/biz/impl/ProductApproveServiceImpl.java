@@ -2,6 +2,7 @@ package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.ProductApproveMapper;
+import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wonpera on 2017/1/6.
@@ -27,11 +29,16 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Autowired
     private ProductApproveMapper mapper;
+    @Autowired
+    private UsersMapper usersMapper;
 
     @Override
     public ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param) {
+        String email = param.getSessionUser().getEmail();
         ProductApprove approve = new ProductApprove();
+        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
         BeanUtils.copyProperties(param,approve);
+        approve.setJgno(map.get("CODE"));
         return new ReturnT<>().sucessData(findPage(approve));
     }
 

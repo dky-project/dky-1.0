@@ -8,4 +8,6 @@ import java.util.List;
 public interface PdtBasepriceMapper {
 
     List<PdtBaseprice> queryPriceListByProductId(Long mProductId);
+
+    Double getDhPrice(Long mProductId);
 }
