@@ -34,6 +34,7 @@
   <select id="queryDimByDimText" resultType="DimNewView">
     SELECT id,attribcode,attribname FROM M_DIM
     WHERE ISACTIVE = 'Y' AND DIMFLAG = #{dimText}
+    ORDER BY ORDERNO DESC
   </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

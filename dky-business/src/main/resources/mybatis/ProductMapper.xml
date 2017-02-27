@@ -284,10 +284,12 @@
     <sql id="queryTmpl">
         SELECT t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1
         FROM M_PRODUCT t1
+        LEFT JOIN M_DIM t2 ON t1.m_dim13_id = t2.id
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
         WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
+        AND t2.DIMFLAG = 'DIM13'
         <include refid="whereClause"></include>
-        order by t1.name asc,t1.MODIFIEDDATE desc
+        order by t2.ORDERNO desc,t1.name asc
     </sql>
 
     <sql id="whereClause">
