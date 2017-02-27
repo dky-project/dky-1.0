@@ -106,7 +106,7 @@ public class ProductInfoView extends ResultObjectBase {
 
     private List<String> imgList;
 
-    private double pdtPrice;
+    private String pdtPrice;
 
     public String getName() {
         return name;
@@ -293,11 +293,11 @@ public class ProductInfoView extends ResultObjectBase {
         this.imgList = imgList;
     }
 
-    public double getPdtPrice() {
+    public String getPdtPrice() {
         return pdtPrice;
     }
 
-    public void setPdtPrice(double pdtPrice) {
+    public void setPdtPrice(String pdtPrice) {
         this.pdtPrice = pdtPrice;
     }
 }

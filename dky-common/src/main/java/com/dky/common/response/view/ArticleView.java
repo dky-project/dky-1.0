@@ -102,7 +102,7 @@ public class ArticleView extends ResultObjectBase {
     }
 
     public void setDecription(String decription) {
-        this.decription = decription.replaceAll("&nbsp;"," ").replaceAll("<br />","");
+        this.decription = decription.replaceAll("&nbsp;"," ").replaceAll("<br />","").replaceAll("&lt;","<").replaceAll("&gt;",">");
     }
 
     public String getIsactive() {

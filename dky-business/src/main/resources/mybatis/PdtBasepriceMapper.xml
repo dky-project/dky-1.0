@@ -50,7 +50,7 @@
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
-  <select id="getDhPrice" resultType="java.lang.Double" parameterType="java.lang.Long" >
+  <select id="getDhPrice" resultType="java.lang.String" parameterType="java.lang.Long" >
     SELECT
       t1.LSPRICE_NEW
     FROM M_BULKEDIT_PRICEITEM t1

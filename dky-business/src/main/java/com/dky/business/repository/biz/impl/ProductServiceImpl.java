@@ -40,8 +40,8 @@ public class ProductServiceImpl implements ProductService {
             if (productInfoView == null) {
                 return new ReturnT<>().failureData("不存在该款号！");
             }
-            Double pdtPrice = pdtBasepriceMapper.getDhPrice(id);
-            productInfoView.setPdtPrice(pdtPrice == null ? 0 : pdtPrice);
+            String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
+            productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());

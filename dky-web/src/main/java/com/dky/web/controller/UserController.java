@@ -5,11 +5,9 @@ import com.dky.business.repository.session.SessionProcess;
 import com.dky.common.bean.SessionUser;
 import com.dky.common.bean.Store;
 import com.dky.common.bean.Users;
-import com.dky.common.constats.GlobConts;
 import com.dky.common.param.LoginUserParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.utils.DkyUtils;
-import com.dky.common.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +41,7 @@ public class UserController {
             sessionUser.setcCustomerId(users.getcCustomerId());
             sessionUser.setcStoreId(users.getcStoreId());
         }else if(data instanceof Store){
-            Store store = new Store();
+            Store store = (Store)data;
             sessionUser.setEmail(store.getEmail());
             sessionUser.setcCustomerId(store.getcCustomerId());
             sessionUser.setcStoreId(store.getcStoreId());
