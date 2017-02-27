@@ -1,6 +1,7 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductService;
+import com.dky.business.repository.repository.PdtBasepriceMapper;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.common.bean.Product;
 import com.dky.common.param.ProductMadeQueryParam;
@@ -21,12 +22,14 @@ import java.util.List;
  * Created by wangpeng on 2017/1/5.
  */
 @Service
-public class ProductServiceImpl implements ProductService  {
+public class ProductServiceImpl implements ProductService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Autowired
     private ProductMapper mapper;
+    @Autowired
+    private PdtBasepriceMapper pdtBasepriceMapper;
 
 
     @Override
@@ -34,6 +37,11 @@ public class ProductServiceImpl implements ProductService  {
         ProductInfoView productInfoView = null;
         try {
             productInfoView = mapper.getProductInfo(id);
+            if (productInfoView == null) {
+                return new ReturnT<>().failureData("不存在该款号！");
+            }
+            Double pdtPrice = pdtBasepriceMapper.getDhPrice(id);
+            productInfoView.setPdtPrice(pdtPrice == null ? 0 : pdtPrice);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
@@ -49,6 +57,7 @@ public class ProductServiceImpl implements ProductService  {
 
     /**
      * 查询胸围、衣长、肩宽、袖长
+     *
      * @param mProductId
      * @return
      */
@@ -59,7 +68,7 @@ public class ProductServiceImpl implements ProductService  {
 
     private PageList<ProductView> findPage(ProductQueryParam productQueryParam) {
         Product product = new Product();
-        BeanUtils.copyProperties(productQueryParam,product);
+        BeanUtils.copyProperties(productQueryParam, product);
         return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
@@ -68,12 +77,12 @@ public class ProductServiceImpl implements ProductService  {
         Product product = new Product();
         product.setName(param.getProductName());
         product = mapper.get(product);
-        if (product == null){
+        if (product == null) {
             return new ReturnT<>().failureData("没有查到该款号");
         }
         ProductMadePageView view = new ProductMadePageView();
         //商品所属类别为大货
-        if ("C".equals(product.getMptbelongtype())){
+        if ("C".equals(product.getMptbelongtype())) {
             List<ProductColorView> colorList = mapper.getProductColorListByProductId(product.getId());
             List<ProductSizeView> sizeList = mapper.getProductSizeList(product.getId());
             view.setColorViewList(colorList);
@@ -82,10 +91,10 @@ public class ProductServiceImpl implements ProductService  {
             madeInfoView.setMptbelongtype("C");
             madeInfoView.setProductId(product.getId());
             view.setProductMadeInfoView(madeInfoView);
-        //商品类别为基础款
-        }else if("A".equals(product.getMptbelongtype())){
+            //商品类别为基础款
+        } else if ("A".equals(product.getMptbelongtype())) {
             ProductMadeInfoView madeInfoView = mapper.getMadeInfoByProductId(product.getId());
-            if (madeInfoView == null){
+            if (madeInfoView == null) {
                 return new ReturnT<>().failureData("没有查到该款号");
             }
             madeInfoView.setProductId(product.getId());
@@ -94,7 +103,7 @@ public class ProductServiceImpl implements ProductService  {
             view.setProductCusmptcateView(productCusmptcateView);
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
-        }else{
+        } else {
             return new ReturnT<>().failureData("没有查到该款号");
         }
         ReturnT<ProductMadePageView> result = new ReturnT<>();

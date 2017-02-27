@@ -35,6 +35,10 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String description5;
     /**
+     * 商品所属类别
+     */
+    private String mptbelongtype;
+    /**
      * 所属类别
      */
     private String mptbelongtypeText;
@@ -102,6 +106,8 @@ public class ProductInfoView extends ResultObjectBase {
 
     private List<String> imgList;
 
+    private double pdtPrice;
+
     public String getName() {
         return name;
     }
@@ -148,6 +154,14 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setDescription5(String description5) {
         this.description5 = description5;
+    }
+
+    public String getMptbelongtype() {
+        return mptbelongtype;
+    }
+
+    public void setMptbelongtype(String mptbelongtype) {
+        this.mptbelongtype = mptbelongtype;
     }
 
     public String getMptbelongtypeText() {
@@ -277,5 +291,13 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setImgList(List<String> imgList) {
         this.imgList = imgList;
+    }
+
+    public double getPdtPrice() {
+        return pdtPrice;
+    }
+
+    public void setPdtPrice(double pdtPrice) {
+        this.pdtPrice = pdtPrice;
     }
 }
