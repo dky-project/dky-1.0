@@ -171,7 +171,7 @@ public class ProductMadeInfoView extends ResultObjectBase {
     /**
      * 花型
      */
-    private String hxShow;
+    private String[] hxShow;
     /**
      * 领：完全（领下拉框内的值）
      */
@@ -232,7 +232,7 @@ public class ProductMadeInfoView extends ResultObjectBase {
     /**
      * 烫珠（勾选框列表）
      */
-    private String tzShow;
+    private String[] tzShow;
     /**
      * 烫珠勾选框后面俩个文本框的第二个文本框值
      */
@@ -248,15 +248,15 @@ public class ProductMadeInfoView extends ResultObjectBase {
     /**
      * 口袋（勾选框列表）
      */
-    private String kdShow;
+    private String[] kdShow;
     /**
      * 附件（勾选框列表）
      */
-    private String fjShow;
+    private String[] fjShow;
     /**
      * 特殊工艺（勾选框列表）
      */
-    private String tsgyShow;
+    private String[] tsgyShow;
     /**
      * 袖口下拉框后面的文本框
      */
@@ -635,11 +635,11 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public String[] getHxShow() {
-        return hxShow.split(",");
+        return hxShow;
     }
 
     public void setHxShow(String hxShow) {
-        this.hxShow = hxShow;
+        this.hxShow = hxShow.split(",");
     }
 
     public String getLwqt() {
@@ -755,11 +755,11 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public String[] getTzShow() {
-        return tzShow.split(",");
+        return tzShow;
     }
 
     public void setTzShow(String tzShow) {
-        this.tzShow = tzShow;
+        this.tzShow = tzShow.split(",");
     }
 
     public String getTzRemark() {
@@ -787,27 +787,27 @@ public class ProductMadeInfoView extends ResultObjectBase {
     }
 
     public String[] getKdShow() {
-        return kdShow.split(",");
+        return kdShow;
     }
 
     public void setKdShow(String kdShow) {
-        this.kdShow = kdShow;
+        this.kdShow = kdShow.split(",");
     }
 
     public String[] getFjShow() {
-        return fjShow.split(",");
+        return fjShow;
     }
 
     public void setFjShow(String fjShow) {
-        this.fjShow = fjShow;
+        this.fjShow = fjShow.split(",");
     }
 
     public String[] getTsgyShow() {
-        return tsgyShow.split(",");
+        return tsgyShow;
     }
 
     public void setTsgyShow(String tsgyShow) {
-        this.tsgyShow = tsgyShow;
+        this.tsgyShow = tsgyShow.split(",");
     }
 
     public String getXkRemark() {
