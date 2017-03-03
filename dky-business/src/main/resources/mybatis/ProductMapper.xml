@@ -287,9 +287,9 @@
         LEFT JOIN M_DIM t2 ON t1.m_dim13_id = t2.id
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
         WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
-        AND t2.DIMFLAG = 'DIM13'
+        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
         <include refid="whereClause"></include>
-        order by t2.ORDERNO desc,t1.name asc
+        order by NVL(t2.ORDERNO,0) desc,t1.name asc
     </sql>
 
     <sql id="whereClause">
@@ -326,6 +326,7 @@
         FROM M_PRODUCT t1
         LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
         WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
+        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
         <include refid="whereClause"></include>
     </select>
 
@@ -364,6 +365,7 @@
       WHERE a.isdefault = 'Y' and a.ISACTIVE = 'Y' and a.M_PRODUCT_ID = #{id,jdbcType=DECIMAL}) t6 on t1.id = t6.M_PRODUCT_ID
     WHERE t5.ISACTIVE = 'Y'
     and t1.ISACTIVE = 'Y'
+    and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
     and t1.ID = #{id,jdbcType=DECIMAL}
   </select>
 
