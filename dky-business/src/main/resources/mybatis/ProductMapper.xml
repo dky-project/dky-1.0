@@ -281,186 +281,187 @@
     DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
   </sql>
 
-    <sql id="queryTmpl">
-        SELECT t1.id AS mProductId,t1.name,t5.IMGURL1 AS imgUrl1
-        FROM M_PRODUCT t1
-        LEFT JOIN M_DIM t2 ON t1.m_dim13_id = t2.id
-        LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
-        WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
-        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
-        <include refid="whereClause"></include>
-        order by NVL(t2.ORDERNO,0) desc,t1.name asc
-    </sql>
+  <sql id="queryTmpl">
+    SELECT t1.M_PRODUCT_ID AS mProductId,tt.name,t5.IMGURL1 AS imgUrl1
+    FROM M_PRODUCT_DIM t1
+    LEFT JOIN M_PRODUCT tt ON t1.M_PRODUCT_ID = tt.id
+    LEFT JOIN M_DIM t2 ON tt.m_dim13_id = t2.id
+    LEFT JOIN B_PDT_MEDIA t5 on t1.M_PRODUCT_ID = t5.M_PRODUCT_ID
+    WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
+    AND t2.DIMFLAG = 'DIM13'
+    AND t1.ISDEFAULT = 'Y'
+    <include refid="whereClause"></include>
+    order by t2.ORDERNO desc,tt.name asc
+  </sql>
 
-    <sql id="whereClause">
-        <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
-        <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
-        <if test="null!=mDimNew14Id">AND t1.M_DIM_NEW14_ID = #{mDimNew14Id}</if>
-        <if test="null!=mDimNew15Id">AND t1.M_DIM_NEW15_ID = #{mDimNew15Id}</if>
-        <if test="null!=mDimNew16Id">AND t1.M_DIM_NEW16_ID = #{mDimNew16Id}</if>
-        <if test="null!=mDimNew12Id">AND t1.M_DIM_NEW12_ID = #{mDimNew12Id}</if>
-        <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
-        <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
-        <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
-        <if test="null!=name">AND t1.name = #{name}</if>
-    </sql>
+  <sql id="whereClause">
+    <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
+    <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
+    <if test="null!=mDimNew14Id">AND t1.M_DIM_NEW14_ID = #{mDimNew14Id}</if>
+    <if test="null!=mDimNew15Id">AND t1.M_DIM_NEW15_ID = #{mDimNew15Id}</if>
+    <if test="null!=mDimNew16Id">AND t1.M_DIM_NEW16_ID = #{mDimNew16Id}</if>
+    <if test="null!=mDimNew12Id">AND t1.M_DIM_NEW12_ID = #{mDimNew12Id}</if>
+    <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
+    <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
+    <if test="null!=mDim13Id">AND tt.M_DIM13_ID = #{mDim13Id}</if>
+    <if test="null!=name">AND tt.name = #{name}</if>
+  </sql>
 
-    <!--样衣列表查询 -->
-    <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
-        SELECT mProductId,name,imgUrl1 FROM (
-        SELECT mProductId,name,imgUrl1,ROWNUM RN
-        from (<include refid="queryTmpl"></include> )
-        WHERE 1=1
-        <if test="null!=requestOffset">
-            AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
-        </if>
-        ) A
-        WHERE 1=1
-        <if test="null!=requestOffset">
-            AND RN <![CDATA[ >= ]]> #{requestOffset}
-        </if>
-    </select>
+  <!--样衣列表查询 -->
+  <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
+    SELECT mProductId,name,imgUrl1 FROM (
+    SELECT mProductId,name,imgUrl1,ROWNUM RN
+    from (<include refid="queryTmpl"></include> )
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+    </if>
+    ) A
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND RN <![CDATA[ >= ]]> #{requestOffset}
+    </if>
+  </select>
 
-    <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
-        SELECT count(1)
-        FROM M_PRODUCT t1
-        LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
-        WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
-        and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
-        <include refid="whereClause"></include>
-    </select>
+  <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
+    SELECT count(1)
+    FROM M_PRODUCT_DIM t1
+    LEFT JOIN M_PRODUCT tt ON t1.M_PRODUCT_ID = tt.id
+    LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
+    WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y' AND t1.ISDEFAULT = 'Y'
+    <include refid="whereClause"></include>
+  </select>
 
   <select id="getProductInfo" resultType="com.dky.common.response.view.ProductInfoView" parameterType="com.dky.common.bean.Product" >
     select
-      t1.id,
-      t1.name,
-      t1.DESCRIPTION3,
-      t1.DESCRIPTION4,
-      t1.DESCRIPTION5,
-      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW11_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW11' and t2.ISACTIVE = 'Y') as mDimNew11Text,
-      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW13_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW13' and t2.ISACTIVE = 'Y') as mDimNew13Text,
-      t5.IMGURL1,
-      t5.IMGURL2,
-      t5.IMGURL3,
-      t5.IMGURL4,
-      t5.IMGURL5,
-      t5.IMGURL6,
-      t5.IMGURL7,
-      t5.IMGURL8,
-      t1.MPTBELONGTYPE,
-      (select b.description from AD_LIMITVALUE_GROUP a,AD_LIMITVALUE b
-      where a.ISACTIVE = 'Y' and b.ISACTIVE = 'Y' and a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText,
-      t6.*
+    t1.id,
+    t1.name,
+    t1.DESCRIPTION3,
+    t1.DESCRIPTION4,
+    t1.DESCRIPTION5,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW11_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW11' and t2.ISACTIVE = 'Y') as mDimNew11Text,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW13_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW13' and t2.ISACTIVE = 'Y') as mDimNew13Text,
+    t5.IMGURL1,
+    t5.IMGURL2,
+    t5.IMGURL3,
+    t5.IMGURL4,
+    t5.IMGURL5,
+    t5.IMGURL6,
+    t5.IMGURL7,
+    t5.IMGURL8,
+    t1.MPTBELONGTYPE,
+    (select b.description from AD_LIMITVALUE_GROUP a,AD_LIMITVALUE b
+    where a.ISACTIVE = 'Y' and b.ISACTIVE = 'Y' and a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText,
+    t6.*
     from M_PRODUCT t1
     LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
     LEFT JOIN
-      (select a.M_PRODUCT_ID,
-              a.CLR_RANGE,
-              (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW14_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW14' and t2.ISACTIVE = 'Y') as mDimNew14Text,
-              (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
-              a.XW_VALUE as defaultXwValue,
-              a.YC_VALUE as defaultYcValue,
-              a.XC_VALUE as defaultXcValue
-      FROM M_PRODUCT_DIM a
-      WHERE a.isdefault = 'Y' and a.ISACTIVE = 'Y' and a.M_PRODUCT_ID = #{id,jdbcType=DECIMAL}) t6 on t1.id = t6.M_PRODUCT_ID
+    (select a.M_PRODUCT_ID,
+    a.CLR_RANGE,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW14_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW14' and t2.ISACTIVE = 'Y') as mDimNew14Text,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
+    a.XW_VALUE as defaultXwValue,
+    a.YC_VALUE as defaultYcValue,
+    a.XC_VALUE as defaultXcValue
+    FROM M_PRODUCT_DIM a
+    WHERE a.isdefault = 'Y' and a.ISACTIVE = 'Y' and a.M_PRODUCT_ID = #{id,jdbcType=DECIMAL}) t6 on t1.id = t6.M_PRODUCT_ID
     WHERE t5.ISACTIVE = 'Y'
     and t1.ISACTIVE = 'Y'
-    and (t1.PDT_TYPE='YY' or t1.PDT_TYPE='PT')
     and t1.ID = #{id,jdbcType=DECIMAL}
   </select>
 
   <select id="queryValueList" parameterType="java.lang.Long" resultType="ProductValueView">
     select
-      t.XW_VALUE as xwValue,
-      t.YC_VALUE as ycValue,
-      t.JK_VALUE as jkValue,
-      t.XC_VALUE as xcValue
+    t.XW_VALUE as xwValue,
+    t.YC_VALUE as ycValue,
+    t.JK_VALUE as jkValue,
+    t.XC_VALUE as xcValue
     from V_CUSMPTCATEITEM t
     where t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
   <select id="getMadeInfoByProductId" parameterType="java.lang.Long" resultType="ProductMadeInfoView">
     SELECT
-      a.size_type AS sizeType,
-      a.mptbelongtype,
-      t.M_DIM_NEW13_ID AS mDimNew13Id,
-      t.ct,
-      t.c as ct1,
-      t.M_DIM_NEW14_ID AS mDimNew14Id,
-      t.M_DIM_NEW15_ID AS mDimNew15Id,
-      t.M_DIM_NEW16_ID AS mDimNew16Id,
-      t.M_DIM_NEW17_ID AS mDimNew17Id,
-      t.M_DIM_NEW12_ID AS mDimNew12Id,
-      t.M_DIM_NEW18_ID AS mDimNew18Id,
-      t.M_DIM_NEW45_ID AS mDimNew45Id,
-      t.XBC_VALUE,
-      t.M_DIM_NEW19_ID AS mDimNew19Id,
-      t.M_DIM_NEW22_ID AS mDimNew22Id,
-      t.M_DIM_NEW9_ID AS mDimNew9Id,
-      t.M_DIM_NEW9_ID2 AS mDimNew9Id2,
-      t.M_DIM_NEW9_ID3 AS mDimNew9Id3,
-      t.QTX_REMARK AS qtxRemark,
-      t.QTX_REMARK2 AS qtxRemark2,
-      t.QTX_REMARK3 AS qtxRemark3,
-      t.M_DIM_NEW26_ID AS mDimNew26Id,
-      t.M_DIM_NEW28_ID AS mDimNew28Id,
-      t.M_DIM_NEW25_ID AS mDimNew25Id,
-      t.M_DIM_NEW10_ID AS mDimNew10Id,
-      t.M_DIM_NEW32_ID AS mDimNew32Id,
-      t.M_DIM_NEW41_ID AS mDimNew41Id,
-      t.M_DIM_NEW46_ID AS mDimNew46Id,
-      t.XB_REMARK AS xbRemark,
-      t.M_DIM_NEW4_ID AS mDimNew4Id,
-      t.M_DIM_NEW6_ID AS mDimNew6Id,
-      t.M_DIM_NEW7_ID AS mDimNew7Id,
-      t.M_DIM_NEW37_ID AS mDimNew37Id,
-      t.M_DIM_NEW38_ID AS mDimNew38Id,
-      t.M_DIM_NEW39_ID AS mDimNew39Id,
-      t.M_DIM_NEW1_ID AS mDimNew1Id,
-      t.M_DIM_NEW3_ID AS mDimNew3Id,
-      t.LBCC_VALUE AS lbccValue,
-      t.HX_SHOW AS hxShow,
-      t.LB_REMARK AS lbqt,
-      t.M_PRODUCT_ID2 AS lwqt,
-      t.M_LBLX_SET_ID1 AS lbt,
-      t.M_LBLX_SET_ID2 AS lxt,
-      t.QTKD_REMARK AS qtkdRemark,
-      t.QTFJ_REMARK AS qtfjRemark,
-      t.QTTSGY_REMARK AS qttsgyRemark,
-      t.DESCRIPTION AS lxRemark,
-      t.JZ_VALUE AS jzValue,
-      t.DKSL_VALUE AS dkslValue,
-      t.MJK_VALUE AS mjkValue,
-      t.DC1_VALUE AS dc1Value,
-      t.HZXC_VALUE AS hzxcValue,
-      t.MJC_VALUE AS mjcValue,
-      t.XW_VALUE AS xwValue,
-      t.TZ_SHOW AS tzShow,
-      t.TZ_REMARK AS tzRemark,
-      t.TZ_REMARK1 AS tzRemark1,
-      t.TZ_REMARK2 AS tzRemark2,
-      t.KD_SHOW AS kdShow,
-      t.FJ_SHOW AS fjShow,
-      t.TSGY_SHOW AS tsgyShow,
-      t.XK_REMARK AS xkRemark,
-      t.XXB_REMARK AS xxbRemark,
-      t.DK_VALUE AS dkValue,
-      t.YC_VALUE AS ycValue,
-      t.JK_VALUE AS jkValue,
-      t.XC_VALUE AS xcValue,
-      t.XKCC_VALUE AS xkccValue,
-      t.CLR_RANGE AS clrRange,
-      t.QTL_REMARK AS qtlRemark,
-      (select nvl(max(g.attribname),'') from M_DIM_NEW g
-      where g.id = t.M_DIM_NEW29_ID) as huax,
-      GET_PZSJSON(1,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
-      GET_PZSJSON(2,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
-      GET_PZSJSON(3,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
-      GET_PZSJSON(4,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
+    a.size_type AS sizeType,
+    a.mptbelongtype,
+    t.M_DIM_NEW13_ID AS mDimNew13Id,
+    t.ct,
+    t.c as ct1,
+    t.M_DIM_NEW14_ID AS mDimNew14Id,
+    t.M_DIM_NEW15_ID AS mDimNew15Id,
+    t.M_DIM_NEW16_ID AS mDimNew16Id,
+    t.M_DIM_NEW17_ID AS mDimNew17Id,
+    t.M_DIM_NEW12_ID AS mDimNew12Id,
+    t.M_DIM_NEW18_ID AS mDimNew18Id,
+    t.M_DIM_NEW45_ID AS mDimNew45Id,
+    t.XBC_VALUE,
+    t.M_DIM_NEW19_ID AS mDimNew19Id,
+    t.M_DIM_NEW22_ID AS mDimNew22Id,
+    t.M_DIM_NEW9_ID AS mDimNew9Id,
+    t.M_DIM_NEW9_ID2 AS mDimNew9Id2,
+    t.M_DIM_NEW9_ID3 AS mDimNew9Id3,
+    t.QTX_REMARK AS qtxRemark,
+    t.QTX_REMARK2 AS qtxRemark2,
+    t.QTX_REMARK3 AS qtxRemark3,
+    t.M_DIM_NEW26_ID AS mDimNew26Id,
+    t.M_DIM_NEW28_ID AS mDimNew28Id,
+    t.M_DIM_NEW25_ID AS mDimNew25Id,
+    t.M_DIM_NEW10_ID AS mDimNew10Id,
+    t.M_DIM_NEW32_ID AS mDimNew32Id,
+    t.M_DIM_NEW41_ID AS mDimNew41Id,
+    t.M_DIM_NEW46_ID AS mDimNew46Id,
+    t.XB_REMARK AS xbRemark,
+    t.M_DIM_NEW4_ID AS mDimNew4Id,
+    t.M_DIM_NEW6_ID AS mDimNew6Id,
+    t.M_DIM_NEW7_ID AS mDimNew7Id,
+    t.M_DIM_NEW37_ID AS mDimNew37Id,
+    t.M_DIM_NEW38_ID AS mDimNew38Id,
+    t.M_DIM_NEW39_ID AS mDimNew39Id,
+    t.M_DIM_NEW1_ID AS mDimNew1Id,
+    t.M_DIM_NEW3_ID AS mDimNew3Id,
+    t.LBCC_VALUE AS lbccValue,
+    t.HX_SHOW AS hxShow,
+    t.LB_REMARK AS lbqt,
+    t.M_PRODUCT_ID2 AS lwqt,
+    t.M_LBLX_SET_ID1 AS lbt,
+    t.M_LBLX_SET_ID2 AS lxt,
+    t.QTKD_REMARK AS qtkdRemark,
+    t.QTFJ_REMARK AS qtfjRemark,
+    t.QTTSGY_REMARK AS qttsgyRemark,
+    t.DESCRIPTION AS lxRemark,
+    t.JZ_VALUE AS jzValue,
+    t.DKSL_VALUE AS dkslValue,
+    t.MJK_VALUE AS mjkValue,
+    t.DC1_VALUE AS dc1Value,
+    t.HZXC_VALUE AS hzxcValue,
+    t.MJC_VALUE AS mjcValue,
+    t.XW_VALUE AS xwValue,
+    t.TZ_SHOW AS tzShow,
+    t.TZ_REMARK AS tzRemark,
+    t.TZ_REMARK1 AS tzRemark1,
+    t.TZ_REMARK2 AS tzRemark2,
+    t.KD_SHOW AS kdShow,
+    t.FJ_SHOW AS fjShow,
+    t.TSGY_SHOW AS tsgyShow,
+    t.XK_REMARK AS xkRemark,
+    t.XXB_REMARK AS xxbRemark,
+    t.DK_VALUE AS dkValue,
+    t.YC_VALUE AS ycValue,
+    t.JK_VALUE AS jkValue,
+    t.XC_VALUE AS xcValue,
+    t.XKCC_VALUE AS xkccValue,
+    t.CLR_RANGE AS clrRange,
+    t.QTL_REMARK AS qtlRemark,
+    (select nvl(max(g.attribname),'') from M_DIM_NEW g
+    where g.id = t.M_DIM_NEW29_ID) as huax,
+    GET_PZSJSON(1,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
+    GET_PZSJSON(2,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
+    GET_PZSJSON(3,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
+    GET_PZSJSON(4,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
     FROM M_PRODUCT_DIM t, M_PRODUCT a
     WHERE  T.M_PRODUCT_ID = a.ID
-      and a.ID = #{mProductId,jdbcType=DECIMAL}
-      AND ROWNUM = 1 and t.isactive = 'Y' and ISDEFAULT = 'Y'
+    and a.ID = #{mProductId,jdbcType=DECIMAL}
+    AND ROWNUM = 1 and t.isactive = 'Y' and ISDEFAULT = 'Y'
   </select>
 
   <select id="getProductColorListByProductId" parameterType="java.lang.Long" resultType="ProductColorView">
