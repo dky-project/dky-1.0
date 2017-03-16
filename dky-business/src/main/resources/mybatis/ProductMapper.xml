@@ -282,16 +282,11 @@
   </sql>
 
   <sql id="queryTmpl">
-    SELECT t1.M_PRODUCT_ID AS mProductId,tt.name,t5.IMGURL1 AS imgUrl1
-    FROM M_PRODUCT_DIM t1
-    LEFT JOIN M_PRODUCT tt ON t1.M_PRODUCT_ID = tt.id
-    LEFT JOIN M_DIM t2 ON tt.m_dim13_id = t2.id
-    LEFT JOIN B_PDT_MEDIA t5 on t1.M_PRODUCT_ID = t5.M_PRODUCT_ID
-    WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y'
-    AND t2.DIMFLAG = 'DIM13'
-    AND t1.ISDEFAULT = 'Y'
+    SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1
+    FROM v_query_product t1
+    WHERE 1=1
     <include refid="whereClause"></include>
-    order by t2.ORDERNO desc,tt.name asc
+    order by NVL(t1.ORDERNO,0) desc,t1.name asc
   </sql>
 
   <sql id="whereClause">
@@ -303,8 +298,8 @@
     <if test="null!=mDimNew12Id">AND t1.M_DIM_NEW12_ID = #{mDimNew12Id}</if>
     <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
     <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
-    <if test="null!=mDim13Id">AND tt.M_DIM13_ID = #{mDim13Id}</if>
-    <if test="null!=name">AND tt.name = #{name}</if>
+    <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
+    <if test="null!=name">AND t1.name = #{name}</if>
   </sql>
 
   <!--样衣列表查询 -->
@@ -325,10 +320,8 @@
 
   <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
     SELECT count(1)
-    FROM M_PRODUCT_DIM t1
-    LEFT JOIN M_PRODUCT tt ON t1.M_PRODUCT_ID = tt.id
-    LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
-    WHERE t5.ISACTIVE = 'Y' and t1.ISACTIVE = 'Y' AND t1.ISDEFAULT = 'Y'
+    FROM v_query_product t1
+    WHERE 1=1
     <include refid="whereClause"></include>
   </select>
 
