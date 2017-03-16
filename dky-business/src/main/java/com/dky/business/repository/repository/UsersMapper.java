@@ -9,4 +9,6 @@ public interface UsersMapper {
     Users selectByEmail(String email);
 
     Map<String,String> getStoreCodeByEmail(String email);
+
+    String getVipName(String phone);
 }

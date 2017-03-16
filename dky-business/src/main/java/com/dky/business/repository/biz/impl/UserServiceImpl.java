@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
         return result.successDefault();
     }
 
+    @Override
+    public ReturnT<String> getVipName(String phone) {
+        ReturnT returnT = new ReturnT();
+        returnT.setData(usersMapper.getVipName(phone));
+        return returnT.successDefault();
+    }
 }

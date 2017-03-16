@@ -81,31 +81,32 @@ public class ProductServiceImpl implements ProductService {
             return new ReturnT<>().failureData("没有查到该款号");
         }
         ProductMadePageView view = new ProductMadePageView();
+        ProductMadeInfoView madeInfoView = new ProductMadeInfoView();
+        madeInfoView.setProductId(product.getId());
+        madeInfoView.setMptbelongtype(product.getMptbelongtype());
         //商品所属类别为大货
         if ("C".equals(product.getMptbelongtype())) {
             List<ProductColorView> colorList = mapper.getProductColorListByProductId(product.getId());
             List<ProductSizeView> sizeList = mapper.getProductSizeList(product.getId());
             view.setColorViewList(colorList);
             view.setSizeViewList(sizeList);
-            ProductMadeInfoView madeInfoView = new ProductMadeInfoView();
-            madeInfoView.setMptbelongtype("C");
-            madeInfoView.setProductId(product.getId());
-            view.setProductMadeInfoView(madeInfoView);
             //商品类别为基础款
         } else if ("A".equals(product.getMptbelongtype())) {
-            ProductMadeInfoView madeInfoView = mapper.getMadeInfoByProductId(product.getId());
+            madeInfoView = mapper.getMadeInfoByProductId(product.getId());
             if (madeInfoView == null) {
                 return new ReturnT<>().failureData("没有查到该款号");
             }
-            madeInfoView.setProductId(product.getId());
-            view.setProductMadeInfoView(madeInfoView);
             ProductCusmptcateView productCusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
             view.setProductCusmptcateView(productCusmptcateView);
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
-        } else {
-            return new ReturnT<>().failureData("没有查到该款号");
+        } else if ("B".equals(product.getMptbelongtype())){
+            madeInfoView = mapper.getMadeInfoByProductId(product.getId());
+            if (madeInfoView == null) {
+                return new ReturnT<>().failureData("没有查到该款号");
+            }
         }
+        view.setProductMadeInfoView(madeInfoView);
         ReturnT<ProductMadePageView> result = new ReturnT<>();
         result.setData(view);
         return result.successDefault();

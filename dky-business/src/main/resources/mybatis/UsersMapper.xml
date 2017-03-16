@@ -116,4 +116,8 @@
     where b.id = a.c_store_id and a.EMAIL =#{email,jdbcType=VARCHAR}
   </select>
 
+  <select id="getVipName" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT nvl(t.VIPNAME,'') as vipName
+    from c_vip t where t.MOBIL = #{phone,jdbcType=VARCHAR} and rownum = 1
+  </select>
 </mapper>

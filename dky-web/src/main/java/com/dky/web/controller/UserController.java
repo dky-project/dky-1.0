@@ -10,6 +10,7 @@ import com.dky.common.response.ReturnT;
 import com.dky.common.utils.DkyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -59,5 +60,14 @@ public class UserController {
     public ReturnT getCurrentUser(){
         SessionUser sessionUser = DkyUtils.getCurrentUser();//获取当前用户
         return new ReturnT().sucessData(sessionUser);
+    }
+
+    /**
+     * 获取VIPNAME
+     * @return
+     */
+    @RequestMapping(value = "getVipName",name = "获取当前登陆用户")
+    public ReturnT getVipName(@RequestParam("phone")String phone){
+        return userService.getVipName(phone);
     }
 }

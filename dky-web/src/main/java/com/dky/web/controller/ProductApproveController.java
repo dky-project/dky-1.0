@@ -60,7 +60,7 @@ public class ProductApproveController {
         return dimNewService.getProductApproveTitle(param);
     }
 
-    @RequestMapping(value = "getMadeInfoByProductName",name = "定制页面第一步")
+    @RequestMapping(value = "getMadeInfoByProductName",name = "定制页面第二步")
     public ReturnT<ProductMadePageView> getMadeInfoByProductName(ProductMadeQueryParam param){
         return productService.getMadeInfoByProductName(param);
     }

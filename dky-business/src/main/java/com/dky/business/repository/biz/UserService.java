@@ -9,4 +9,6 @@ import com.dky.common.response.ReturnT;
 public interface UserService {
 
     ReturnT loginUser(LoginUserParam param);
+
+    ReturnT<String> getVipName(String phone);
 }
