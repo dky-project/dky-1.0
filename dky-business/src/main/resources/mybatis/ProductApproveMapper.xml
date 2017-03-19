@@ -193,8 +193,8 @@
 
     <sql id="whereClause">
         <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
-        <if test="null!=pdt and ''!=pdt">AND t1.pdt like CONCAT('%',#{pdt},'%')</if>
-        <if test="null!=customer and ''!=customer">AND t1.customer like CONCAT('%',#{customer},'%')</if>
+        <if test="null!=pdt and ''!=pdt">AND t1.pdt like '%'||#{pdt}||'%' </if>
+        <if test="null!=customer and ''!=customer">AND t1.customer like '%'||#{customer}||'%' </if>
         <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
         <if test="null!=jgno">AND t1.jgno = #{jgno}</if>
     </sql>
