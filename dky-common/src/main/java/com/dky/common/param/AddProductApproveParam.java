@@ -8,14 +8,6 @@ import com.dky.common.session.SessionParameter;
 public class AddProductApproveParam extends SessionParameter {
 
     /**
-     * 备忘录
-     */
-    private String sh_remark;
-    /**
-     * 式样
-     */
-    private Long mDimNew12Id;
-    /**
      * 主颜色ID（第一个勾选的颜色）
      */
     private Long colorId;
@@ -31,4 +23,33 @@ public class AddProductApproveParam extends SessionParameter {
      * 为抽条时单独拼接：抽条（文本框抽文本框）,例如：抽条(1-2)
      */
     private String huax;
+    /**
+     * 口袋（多个口袋英文分号拼接）
+     * 选中其他时获取其他后面的文本框拼接
+     */
+    private String koud;
+    /**
+     * 附件（多个附件英文分号拼接）
+     * 选中其他时获取其他后面的文本框拼接
+     */
+    private String fuj;
+    /**
+     * 特殊工艺（多个特殊工艺英文分号拼接）
+     * 选中其他时获取其他后面的文本框拼接
+     */
+    private String tesgy;
+    /**
+     * 烫珠（多个烫珠英文分号拼接）
+     * 选中烫珠、绣花、串珠需要单独进行一次拼接：例如：烫珠(1-2#)
+     * 为空时：(-#)
+     */
+    private String tangz;
+    /**
+     * 备忘录
+     */
+    private String sh_remark;
+    /**
+     * 式样
+     */
+    private Long mDimNew12Id;
 }
