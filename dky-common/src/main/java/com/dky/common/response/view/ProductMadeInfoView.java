@@ -313,6 +313,10 @@ public class ProductMadeInfoView extends ResultObjectBase {
      * 支别json字符串
      */
     private String zbJsonstr;
+    /**
+     * 图片地址
+     */
+    private String imgUrl;
 
     public Long getProductId() {
         return productId;
@@ -920,5 +924,13 @@ public class ProductMadeInfoView extends ResultObjectBase {
 
     public void setZbJsonstr(String zbJsonstr) {
         this.zbJsonstr = zbJsonstr.replaceAll("'","\"");
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

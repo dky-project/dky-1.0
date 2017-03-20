@@ -9,6 +9,7 @@ import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
+import com.dky.common.utils.PropertieUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -84,6 +85,7 @@ public class ProductServiceImpl implements ProductService {
         ProductMadeInfoView madeInfoView = new ProductMadeInfoView();
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
+        madeInfoView.setImgUrl(PropertieUtils.getString("imageRootUrl")+"/pdt_imges/"+param.getProductName()+".jpg");
         //商品所属类别为大货
         if ("C".equals(product.getMptbelongtype())) {
             List<ProductColorView> colorList = mapper.getProductColorListByProductId(product.getId());
