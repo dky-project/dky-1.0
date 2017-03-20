@@ -45,11 +45,60 @@ public class AddProductApproveParam extends SessionParameter {
      */
     private String tangz;
     /**
-     * 备忘录
-     */
-    private String sh_remark;
-    /**
      * 式样
      */
     private Long mDimNew12Id;
+    /**
+     * 性别
+     */
+    private Long mDimNew13Id;
+    /**
+     * 品种
+     */
+    private Long mDimNew14Id;
+    /**
+     *  组织
+     */
+    private Long mDimNew15Id;
+    /**
+     *   针型
+     */
+    private Long mDimNew16Id;
+    /**
+     *   支别
+     */
+    private Long mDimNew17Id;
+    /**
+     *   挂肩袖肥
+     */
+    private Long mDimNew18Id;
+    /**
+     *   收腰
+     */
+    private Long mDimNew19Id;
+    /**
+     *   肩型
+     */
+    private Long mDimNew22Id;
+    //XC_VALUE1,XBZZ_VALUE,LING_CC_VALUE,XB_VALUE,XBC_VALUE,QTXBZZ_VALUE,LING_VALUE,LING_NUMBER1_VALUE,LING_NUMBER2_VALUE,M_DIM_NEW25_ID,M_DIM_NEW26_ID,LXSX5_VALUE,qtLingOther,QTLB_VALUE,LXSX3_VALUE,LXSX4_VALUE,LXSX1_VALUE,LXSX2_VALUE,M_DIM_NEW28_ID,HUAX,TANGZ,QTXB_VALUE,XBCC_VALUE,M_DIM_NEW10_ID,JZ_VALUE,XKCC_VALUE,QTXK_VALUE,M_DIM_NEW32_ID,HZXC_VALUE,HZXC1_VALUE,DC1_VALUE,M_DIM_NEW37_ID,M_DIM_NEW38_ID,M_DIM_NEW39_ID,M_DIM_NEW1_ID,DC_VALUE,M_DIM_NEW3_ID,M_DIM_NEW4_ID,M_DIM_NEW6_ID,MJK_VALUE,M_DIM_NEW7_ID,MJC_VALUE,QTMJ_VALUE,AMJ_VALUE,M_DIM_NEW41_ID,COLORVALUE,COLORARR,DK_NUMBER,M_DIM_NEW9_ID,QTXX_VALUE,M_DIM_NEW9_ID1,QTXX_VALUE1,M_DIM_NEW9_ID2,QTXX_VALUE2,ISAPPROVE,OWNERID,MODIFIERID,CREATIONDATE,MODIFIEDDATE,jxw_value,sjxc_value,ISACTIVE,PDT,JGNO,customer,NO,CZ_DATE,FH_DATE,remark,mobile
+    /**
+     *  大（尺寸）
+     */
+    private String xwValue;
+    /**
+     *  长（尺寸）
+     */
+    private String ycValue;
+    /**
+     *  肩宽
+     */
+    private String qtjxValue;
+    /**
+     *  其他肩型
+     */
+    private String jkValue;
+    /**
+     * 备忘录
+     */
+    private String sh_remark;
 }
