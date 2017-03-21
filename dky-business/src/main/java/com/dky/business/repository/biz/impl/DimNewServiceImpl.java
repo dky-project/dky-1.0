@@ -4,6 +4,7 @@ import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.cache.LoadingCacheManager;
 import com.dky.business.repository.repository.DimNewMapper;
 import com.dky.business.repository.repository.UsersMapper;
+import com.dky.common.constats.GlobConts;
 import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.ReturnT;
@@ -78,6 +79,7 @@ public class DimNewServiceImpl implements DimNewService {
         view.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         view.setOrderNo(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         view.setDimList(mapper.getDimClob());
+        view.setStaticDimList(GlobConts.dimList);
         ReturnT<ProductApproveTitleView> returnT = new ReturnT<>();
         returnT.setData(view);
         return returnT.successDefault();

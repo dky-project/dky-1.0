@@ -38,11 +38,13 @@ public class UserController {
         SessionUser sessionUser = new SessionUser();
         if(data instanceof Users){
             Users users = (Users) data;
+            sessionUser.setUserId(users.getId());
             sessionUser.setEmail(users.getEmail());
             sessionUser.setcCustomerId(users.getcCustomerId());
             sessionUser.setcStoreId(users.getcStoreId());
         }else if(data instanceof Store){
             Store store = (Store)data;
+            sessionUser.setUserId(893l);
             sessionUser.setEmail(store.getEmail());
             sessionUser.setcCustomerId(store.getcCustomerId());
             sessionUser.setcStoreId(store.getcStoreId());

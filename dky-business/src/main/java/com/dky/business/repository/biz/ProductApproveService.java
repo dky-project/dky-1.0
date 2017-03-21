@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.AddProductApproveParam;
 import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
@@ -16,7 +17,7 @@ public interface ProductApproveService {
 
     ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param);
 
-    ReturnT insertProductApprove();
+    ReturnT insertProductApprove(AddProductApproveParam param);
 
     ReturnT updateProductApprove();
 

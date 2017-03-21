@@ -4,6 +4,8 @@ import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.ProductApprove;
+import com.dky.common.enums.IsApproveEnum;
+import com.dky.common.param.AddProductApproveParam;
 import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
 import com.dky.common.response.PageList;
@@ -16,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -71,8 +74,18 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
-    public ReturnT insertProductApprove() {
-        return null;
+    public ReturnT insertProductApprove(AddProductApproveParam param) {
+        ProductApprove approve = new ProductApprove();
+        BeanUtils.copyProperties(param,approve);
+        approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
+        approve.setIsactive("Y");
+        Date now = new Date();
+        approve.setCreationdate(now);
+        approve.setModifieddate(now);
+        Long userId = param.getSessionUser().getUserId();
+        approve.setOwnerid(userId);
+        approve.setModifierid(userId);
+        return new ReturnT().successDefault();
     }
 
     @Override

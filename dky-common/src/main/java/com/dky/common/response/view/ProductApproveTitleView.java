@@ -32,6 +32,10 @@ public class ProductApproveTitleView extends ResultObjectBase {
      * 下拉框json字符串
      */
     private String dimList;
+    /**
+     * 静态下拉框json字符串
+     */
+    private String staticDimList;
 
     public String getCode() {
         return code;
@@ -79,5 +83,13 @@ public class ProductApproveTitleView extends ResultObjectBase {
 
     public void setDimList(String dimList) {
         this.dimList = dimList.replaceAll("'","\"");
+    }
+
+    public String getStaticDimList() {
+        return staticDimList;
+    }
+
+    public void setStaticDimList(String staticDimList) {
+        this.staticDimList = staticDimList;
     }
 }

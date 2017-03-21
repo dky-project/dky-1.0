@@ -3,10 +3,7 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.biz.ProductService;
-import com.dky.common.param.BMptApproveSaveParam;
-import com.dky.common.param.ProductApproveDetailParam;
-import com.dky.common.param.ProductApproveQueryParam;
-import com.dky.common.param.ProductMadeQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
@@ -68,5 +65,10 @@ public class ProductApproveController {
     @RequestMapping(value = "bMptApproveSave",name = "下单保存大货类型订单接口")
     public ReturnT bMptApproveSave(BMptApproveSaveParam param){
         return approveService.bMptApproveSave(param);
+    }
+
+    @RequestMapping(value = "addProductApprove",name = "下单保存基础款类型订单接口")
+    public ReturnT addProductApprove(AddProductApproveParam param){
+        return approveService.insertProductApprove(param);
     }
 }
