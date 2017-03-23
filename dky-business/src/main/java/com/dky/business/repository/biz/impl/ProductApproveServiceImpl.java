@@ -85,7 +85,10 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Long userId = param.getSessionUser().getUserId();
         approve.setOwnerid(userId);
         approve.setModifierid(userId);
-        return new ReturnT().successDefault();
+        Long id = mapper.insertProductApprove(approve);
+        mapper.productApproveAc(id);
+        String message = mapper.getScorder(id);
+        return new ReturnT().sucessDataMsg(message);
     }
 
     @Override

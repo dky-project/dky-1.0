@@ -1432,4 +1432,12 @@
       {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
     </insert>
 
+    <update id="productApproveAc" statementType="CALLABLE">
+      {call  M_PRODUCT_APPROVE_AC(#{id}) }
+    </update>
+
+    <update id="getScorder" statementType="CALLABLE">
+      {call  get_scorder(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
+    </update>
+
 </mapper>

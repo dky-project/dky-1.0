@@ -83,9 +83,6 @@ public class ProductServiceImpl implements ProductService {
         }
         ProductMadePageView view = new ProductMadePageView();
         ProductMadeInfoView madeInfoView = new ProductMadeInfoView();
-        madeInfoView.setProductId(product.getId());
-        madeInfoView.setMptbelongtype(product.getMptbelongtype());
-        madeInfoView.setImgUrl(PropertieUtils.getString("imageRootUrl")+"/pdt_imges/"+param.getProductName()+".jpg");
         //商品所属类别为大货
         if ("C".equals(product.getMptbelongtype())) {
             List<ProductColorView> colorList = mapper.getProductColorListByProductId(product.getId());
@@ -108,6 +105,9 @@ public class ProductServiceImpl implements ProductService {
                 return new ReturnT<>().failureData("没有查到该款号");
             }
         }
+        madeInfoView.setProductId(product.getId());
+        madeInfoView.setMptbelongtype(product.getMptbelongtype());
+        madeInfoView.setImgUrl(PropertieUtils.getString("imageBosUrl")+"/pdt_imges/"+param.getProductName()+".jpg");
         view.setProductMadeInfoView(madeInfoView);
         ReturnT<ProductMadePageView> result = new ReturnT<>();
         result.setData(view);

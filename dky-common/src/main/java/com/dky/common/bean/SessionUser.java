@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class SessionUser implements Serializable {
 
+    private static final long serialVersionUID = -6736961910288444407L;
+
     private Long userId;
 
     private String email;

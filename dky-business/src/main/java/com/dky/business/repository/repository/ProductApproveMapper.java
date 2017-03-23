@@ -23,4 +23,8 @@ public interface ProductApproveMapper {
                          @Param("productName")String productName,
                          @Param("sizeId")Long sizeId,
                          @Param("colorId")Long colorId);
+
+    void productApproveAc(@Param("id")Long id);
+
+    String getScorder(@Param("id")Long id);
 }

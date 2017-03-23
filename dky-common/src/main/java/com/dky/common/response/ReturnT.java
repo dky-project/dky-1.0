@@ -36,7 +36,12 @@ public class ReturnT<T> implements Serializable {
         this.success = success;
     }
 
-
+    public ReturnT sucessDataMsg(String msg){
+        this.success = ResultCodeEnum.SUCCESS.isSuccess();
+        this.msg = msg;
+        this.code = ResultCodeEnum.SUCCESS.getCode();
+        return this;
+    }
 
     public ReturnT sucessData(T data){
         this.assignEnums(ResultCodeEnum.SUCCESS);
