@@ -186,11 +186,11 @@ public class AddProductApproveParam extends SessionParameter {
      */
     private String ycValue;
     /**
-     *  肩宽
+     *  肩型:其他肩型
      */
     private String qtjxValue;
     /**
-     *  其他肩型
+     *  肩型:肩型
      */
     private BigDecimal jkValue;
     /**
