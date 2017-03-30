@@ -1,6 +1,9 @@
 package com.dky.common.response.view;
 
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
+
+import java.util.Date;
 
 /**
  * Created by hang on 2017/1/4 0004.
@@ -26,6 +29,10 @@ public class ProductView extends ResultObjectBase {
      * 图片1
      */
     private String imgUrl1;
+    /**
+     * 图片1
+     */
+    private Date modifieddate;
 
     public String getName() {
         return name;
@@ -44,7 +51,7 @@ public class ProductView extends ResultObjectBase {
     }
 
     public String getImgUrl1() {
-        return imgUrl1;
+        return  this.imgUrl1;
     }
 
     public void setImgUrl1(String imgUrl1) {
@@ -57,5 +64,14 @@ public class ProductView extends ResultObjectBase {
 
     public void setmProductId(Long mProductId) {
         this.mProductId = mProductId;
+    }
+
+    public Date getModifieddate() {
+        return modifieddate;
+    }
+
+    public void setModifieddate(Date modifieddate) {
+        this.modifieddate = modifieddate;
+        this.imgUrl1 = GlobConts.IMAGE_ROOT_URL+this.imgUrl1+"?modifieddate="+modifieddate;
     }
 }

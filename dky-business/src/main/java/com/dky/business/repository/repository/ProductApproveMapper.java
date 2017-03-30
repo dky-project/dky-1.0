@@ -6,6 +6,7 @@ import com.dky.common.response.view.ProductApproveView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @MyBatisRepository
 public interface ProductApproveMapper {
@@ -15,7 +16,9 @@ public interface ProductApproveMapper {
 
     List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids);
 
-    Long insertProductApprove(ProductApprove productApprove);
+    void insertProductApprove(ProductApprove productApprove);
+
+    Long getProductApproveSeq();
 
     int updateProductApproveById(ProductApprove productApprove);
 
@@ -26,5 +29,5 @@ public interface ProductApproveMapper {
 
     void productApproveAc(@Param("id")Long id);
 
-    String getScorder(@Param("id")Long id);
+    String getScorder(Map<String,Object> map);
 }

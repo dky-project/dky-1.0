@@ -12,6 +12,7 @@ import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveView;
+import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -85,10 +86,16 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Long userId = param.getSessionUser().getUserId();
         approve.setOwnerid(userId);
         approve.setModifierid(userId);
-        Long id = mapper.insertProductApprove(approve);
+        approve.setAdClientId(37l);
+        approve.setAdOrgId(27l);
+        Long id = mapper.getProductApproveSeq();
+        approve.setId(id);
+        mapper.insertProductApprove(approve);
         mapper.productApproveAc(id);
-        String message = mapper.getScorder(id);
-        return new ReturnT().sucessDataMsg(message);
+        Map<String,Object> map = new HashedMap();
+        map.put("id",id);
+        mapper.getScorder(map);
+        return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
     }
 
     @Override

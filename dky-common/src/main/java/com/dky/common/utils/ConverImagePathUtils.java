@@ -4,6 +4,7 @@ import com.dky.common.constats.GlobConts;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductInfoView;
+import com.dky.common.response.view.ProductView;
 import com.google.common.collect.Lists;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +31,7 @@ public class ConverImagePathUtils {
      */
     public static void transferImageUrl(ReturnT returnT){
         Object data = returnT.getData();
-        if(data != null){
+        if(data != null ){
             if(data instanceof PageList){
                 proccessPageList((PageList)data);
             }else if(data instanceof List){
@@ -88,7 +89,9 @@ public class ConverImagePathUtils {
     private static void proccessList(List list){
         if(list != null && list.size() > 0){
             for (Object obj : list){
-                processNormalBean(obj);
+                if (!(obj instanceof ProductView)){
+                    processNormalBean(obj);
+                }
             }
         }
     }

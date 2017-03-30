@@ -239,10 +239,11 @@
     ORDER BY t1.CZ_DATE DESC
   </select>
 
+  <select id="getProductApproveSeq" resultType="java.lang.Long">
+    SELECT SEQ_M_PRODUCT_APPROVE.NEXTVAL FROM DUAL
+  </select>
+
   <insert id="insertProductApprove" parameterType="com.dky.common.bean.ProductApprove" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      select SEQ_M_PRODUCT_APPROVE.NEXTVAL from dual
-    </selectKey>
     insert into M_PRODUCT_APPROVE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       ID,
@@ -638,7 +639,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=DECIMAL},
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
       <if test="adClientId != null" >
         #{adClientId,jdbcType=DECIMAL},
       </if>
@@ -1436,8 +1439,8 @@
       {call  M_PRODUCT_APPROVE_AC(#{id}) }
     </update>
 
-    <update id="getScorder" statementType="CALLABLE">
+    <select id="getScorder" statementType="CALLABLE" parameterType="java.util.Map">
       {call  get_scorder(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
-    </update>
+    </select>
 
 </mapper>
