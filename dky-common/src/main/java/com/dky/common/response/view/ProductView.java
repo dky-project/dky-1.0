@@ -72,6 +72,6 @@ public class ProductView extends ResultObjectBase {
 
     public void setModifieddate(Date modifieddate) {
         this.modifieddate = modifieddate;
-        this.imgUrl1 = GlobConts.IMAGE_ROOT_URL+this.imgUrl1+"?modifieddate="+modifieddate;
+        this.imgUrl1 = GlobConts.IMAGE_ROOT_URL+this.imgUrl1+"?modifieddate="+modifieddate.getTime();
     }
 }

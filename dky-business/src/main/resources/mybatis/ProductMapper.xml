@@ -447,6 +447,7 @@
     t.QTL_REMARK AS qtlRemark,
     (select nvl(max(g.attribname),'') from M_DIM_NEW g
     where g.id = t.M_DIM_NEW29_ID) as huax,
+    t.MJZZ_REMARK AS mjzzRemark,
     GET_PZSJSON(1,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
     GET_PZSJSON(2,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
     GET_PZSJSON(3,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,

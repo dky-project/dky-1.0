@@ -145,6 +145,10 @@ public class ProductMadeInfoView extends ResultObjectBase {
      */
     private Long mDimNew7Id;
     /**
+     * 门襟组织（其他）备注
+     */
+    private String mjzzRemark;
+    /**
      * 加穗
      */
     private Long mDimNew37Id;
@@ -588,6 +592,14 @@ public class ProductMadeInfoView extends ResultObjectBase {
 
     public void setmDimNew7Id(Long mDimNew7Id) {
         this.mDimNew7Id = mDimNew7Id;
+    }
+
+    public String getMjzzRemark() {
+        return mjzzRemark;
+    }
+
+    public void setMjzzRemark(String mjzzRemark) {
+        this.mjzzRemark = mjzzRemark;
     }
 
     public Long getmDimNew37Id() {
