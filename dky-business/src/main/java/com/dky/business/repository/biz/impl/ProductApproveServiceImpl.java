@@ -78,6 +78,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     public ReturnT insertProductApprove(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
         BeanUtils.copyProperties(param,approve);
+        approve.setDocno(param.getOrderNo());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive("Y");
         Date now = new Date();

@@ -12,6 +12,7 @@ import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.utils.DateUtils;
 import com.google.common.cache.*;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,10 @@ public class DimNewServiceImpl implements DimNewService {
 
     @Override
     public String getpzsJson(PzsJsonQueryParam param) {
-        return mapper.getpzsJson(param);
+        String result = mapper.getpzsJson(param);
+        if(StringUtils.isNoneEmpty(result)){
+            result = result.replaceAll("'","\"");
+        }
+        return result;
     }
 }

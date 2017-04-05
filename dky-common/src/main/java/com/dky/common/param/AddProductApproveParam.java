@@ -338,6 +338,12 @@ public class AddProductApproveParam extends SessionParameter {
      */
     private String sjxcValue;
 
+
+    /**
+     * 订单号
+     */
+    private String orderNo;
+
     public String getPdt() {
         return pdt;
     }
@@ -976,5 +982,13 @@ public class AddProductApproveParam extends SessionParameter {
 
     public void setSjxcValue(String sjxcValue) {
         this.sjxcValue = sjxcValue;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 }
