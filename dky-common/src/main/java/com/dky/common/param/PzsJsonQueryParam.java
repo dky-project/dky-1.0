@@ -31,6 +31,9 @@ public class PzsJsonQueryParam extends BaseParameter {
     @NotNull(message = "mDimNew16Id不能为空")
     private Long mDimNew16Id;
 
+    @NotNull(message = "mDimNew17Id不能为空")
+    private Long mDimNew17Id;
+
 
     public String getFlag() {
         return flag;
@@ -70,5 +73,13 @@ public class PzsJsonQueryParam extends BaseParameter {
 
     public void setmDimNew16Id(Long mDimNew16Id) {
         this.mDimNew16Id = mDimNew16Id;
+    }
+
+    public Long getmDimNew17Id() {
+        return mDimNew17Id;
+    }
+
+    public void setmDimNew17Id(Long mDimNew17Id) {
+        this.mDimNew17Id = mDimNew17Id;
     }
 }

@@ -17,6 +17,8 @@ public class SessionUser implements Serializable {
 
     private Long cCustomerId;
 
+    private Boolean isUser = Boolean.TRUE;
+
     public Long getUserId() {
         return userId;
     }
@@ -47,5 +49,13 @@ public class SessionUser implements Serializable {
 
     public void setcCustomerId(Long cCustomerId) {
         this.cCustomerId = cCustomerId;
+    }
+
+    public Boolean getIsUser() {
+        return isUser;
+    }
+
+    public void setIsUser(Boolean user) {
+        isUser = user;
     }
 }
