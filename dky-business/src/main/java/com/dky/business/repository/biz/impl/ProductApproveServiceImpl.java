@@ -40,9 +40,9 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     public ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param) {
         String email = param.getSessionUser().getEmail();
         ProductApprove approve = new ProductApprove();
-        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
         BeanUtils.copyProperties(param,approve);
-        approve.setJgno(map.get("CODE"));
+        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
+        approve.setJgno(map!=null?map.get("CODE"):email);
         return new ReturnT<>().sucessData(findPage(approve));
     }
 
