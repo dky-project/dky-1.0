@@ -6,12 +6,9 @@ import com.dky.common.param.DimNewParam;
 import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewListView;
-import com.dky.common.response.view.DimNewView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created by wangpeng on 2017/1/10.
@@ -50,7 +47,7 @@ public class DimNewController {
      * @return
      */
     @RequestMapping(value = "getPzsJson",name = "选择下拉框接口")
-    public String getPzsJson(PzsJsonQueryParam param){
+    public ReturnT getPzsJson(PzsJsonQueryParam param){
         return dimNewService.getpzsJson(param);
     }
 }

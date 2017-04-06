@@ -19,5 +19,5 @@ public interface DimNewService {
 
     ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param);
 
-    String getpzsJson(PzsJsonQueryParam param);
+    ReturnT getpzsJson(PzsJsonQueryParam param);
 }

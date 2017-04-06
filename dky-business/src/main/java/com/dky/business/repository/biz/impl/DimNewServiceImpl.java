@@ -11,7 +11,9 @@ import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.utils.DateUtils;
-import com.google.common.cache.*;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,11 +89,15 @@ public class DimNewServiceImpl implements DimNewService {
     }
 
     @Override
-    public String getpzsJson(PzsJsonQueryParam param) {
+    public ReturnT getpzsJson(PzsJsonQueryParam param) {
         String result = mapper.getpzsJson(param);
         if(StringUtils.isNoneEmpty(result)){
             result = result.replaceAll("'","\"");
         }
-        return result;
+        JSONObject jsonObject  = new JSONObject();
+
+        ReturnT returnT = new ReturnT();
+        returnT.setData(jsonObject.fromObject(result));
+        return returnT.successDefault();
     }
 }
