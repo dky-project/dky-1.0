@@ -103,4 +103,29 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     public ReturnT updateProductApprove() {
         return null;
     }
+
+    @Override
+    public ReturnT addProductDefault(AddProductApproveParam param) {
+        ProductApprove approve = new ProductApprove();
+        BeanUtils.copyProperties(param,approve);
+        approve.setDocno(param.getOrderNo());
+        approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
+        approve.setIsactive("Y");
+        Date now = new Date();
+        approve.setCreationdate(now);
+        approve.setModifieddate(now);
+        Long userId = param.getSessionUser().getUserId();
+        approve.setOwnerid(userId);
+        approve.setModifierid(userId);
+        approve.setAdClientId(37l);
+        approve.setAdOrgId(27l);
+        Long id = mapper.getProductApproveSeq();
+        approve.setId(id);
+        mapper.addProductDefault(approve);
+        mapper.productApproveAc(id);
+        Map<String,Object> map = new HashedMap();
+        map.put("id",id);
+        mapper.getScorder(map);
+        return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
+    }
 }

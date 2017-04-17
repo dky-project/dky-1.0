@@ -18,6 +18,8 @@ public interface ProductApproveMapper {
 
     void insertProductApprove(ProductApprove productApprove);
 
+    void addProductDefault(ProductApprove productApprove);
+
     Long getProductApproveSeq();
 
     int updateProductApproveById(ProductApprove productApprove);
