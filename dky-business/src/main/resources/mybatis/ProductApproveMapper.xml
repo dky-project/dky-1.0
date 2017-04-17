@@ -1468,6 +1468,27 @@
       <if test="isactive != null" >
         ISACTIVE,
       </if>
+      <if test="mDimNew14Id != null" >
+        M_DIM_NEW14_ID,
+      </if>
+      <if test="colorvalue != null" >
+        COLORVALUE,
+      </if>
+      <if test="colorarr != null" >
+        COLORARR,
+      </if>
+      <if test="xwValue != null" >
+        XW_VALUE,
+      </if>
+      <if test="ycValue != null" >
+        YC_VALUE,
+      </if>
+      <if test="xcValue != null" >
+        XC_VALUE,
+      </if>
+      <if test="hzxc1Value != null" >
+        HZXC1_VALUE,
+      </if>
       <if test="mDimNew11Id != null" >
         M_DIM_NEW11_ID,
       </if>
@@ -1476,9 +1497,6 @@
       </if>
       <if test="mDimNew13Id != null" >
         M_DIM_NEW13_ID,
-      </if>
-      <if test="mDimNew14Id != null" >
-        M_DIM_NEW14_ID,
       </if>
       <if test="mDimNew15Id != null" >
         M_DIM_NEW15_ID,
@@ -1543,14 +1561,8 @@
       <if test="mDimNew9Id != null" >
         M_DIM_NEW9_ID,
       </if>
-      <if test="ycValue != null" >
-        YC_VALUE,
-      </if>
       <if test="jkValue != null" >
         JK_VALUE,
-      </if>
-      <if test="xcValue != null" >
-        XC_VALUE,
       </if>
       <if test="xbcValue != null" >
         XBC_VALUE,
@@ -1572,9 +1584,6 @@
       </if>
       <if test="hzxcValue != null" >
         HZXC_VALUE,
-      </if>
-      <if test="hzxc1Value != null" >
-        HZXC1_VALUE,
       </if>
       <if test="dc1Value != null" >
         DC1_VALUE,
@@ -1639,9 +1648,6 @@
       <if test="amjValue != null" >
         AMJ_VALUE,
       </if>
-      <if test="colorarr != null" >
-        COLORARR,
-      </if>
       <if test="dkNumber != null" >
         DK_NUMBER,
       </if>
@@ -1660,9 +1666,7 @@
       <if test="isapprove != null" >
         ISAPPROVE,
       </if>
-      <if test="colorvalue != null" >
-        COLORVALUE,
-      </if>
+
       <if test="pdt != null" >
         PDT,
       </if>
@@ -1768,9 +1772,6 @@
       <if test="qtlingother != null" >
         QTLINGOTHER,
       </if>
-      <if test="xwValue != null" >
-        XW_VALUE,
-      </if>
       <if test="scIsdc != null" >
         SC_ISDC,
       </if>
@@ -1863,24 +1864,18 @@
       <if test="isactive != null" >
         #{isactive,jdbcType=CHAR},
       </if>
-      M_DIM_NEW11_ID, M_DIM_NEW12_ID, M_DIM_NEW13_ID, M_DIM_NEW14_ID, M_DIM_NEW15_ID, M_DIM_NEW16_ID,
-      M_DIM_NEW17_ID, M_DIM_NEW18_ID, M_DIM_NEW19_ID, M_DIM_NEW22_ID, M_DIM_NEW25_ID, M_DIM_NEW26_ID,
-      M_DIM_NEW28_ID, M_DIM_NEW10_ID, M_DIM_NEW32_ID, M_DIM_NEW37_ID, M_DIM_NEW38_ID, M_DIM_NEW39_ID,
-      M_DIM_NEW1_ID, M_DIM_NEW3_ID, M_DIM_NEW4_ID, M_DIM_NEW6_ID, M_DIM_NEW7_ID, M_DIM_NEW41_ID,
-      M_DIM_NEW9_ID, YC_VALUE, JK_VALUE, XC_VALUE, XBC_VALUE, LING_CC_VALUE, LBCC_VALUE,
-      XBCC_VALUE, XKCC_VALUE, DKSL_VALUE, HZXC_VALUE, HZXC1_VALUE, DC1_VALUE, DC_VALUE,
-      MJK_VALUE, MJC_VALUE, QTXX_VALUE, QTJX_VALUE, LING_NUMBER2_VALUE, LING_NUMBER1_VALUE,
-      LING_VALUE, QTXBZZ_VALUE, LXSX5_VALUE, LXSX2_VALUE, LXSX1_VALUE, LXSX4_VALUE, LXSX3_VALUE,
-      QTLB_VALUE, QTXB_VALUE, QTXK_VALUE, DK_VALUE, QTMJ_VALUE, AMJ_VALUE, COLORARR, DK_NUMBER,
-      COLORARR_DES, JZ_VALUE, HUAX, TANGZ, ISAPPROVE, COLORVALUE, PDT, JGNO, CUSTOMER,
-      GH_PRICE1, GH_PRICE, FD_RATE, JL_PRICE, JX_TXT, X_TXT, L_TXT, SY_TXT, XB_TXT, XK_TXT,
-      NO, CZ_DATE, FH_DATE, REMARK, MOBILE, LS_PRICE, LS_PRICE1, FD_RATE1, IS_MORE, XF_TYPE,
-      XF_VALUE, M_DIM_NEW9_ID1, QTXX_VALUE1, M_DIM_NEW9_ID2, QTXX_VALUE2, HK_TXT, ZK_TXT,
-      HHK_TXT, HZK_TXT, XF_TXT, GJ_TXT, QTLINGOTHER, XW_VALUE, SC_ISDC, SEP_LING, JXW_VALUE,
-      SJXC_VALUE, XX_TXT, D_TXT, HD_TXT, Z_TXT, KOUD, FUJ, TESGY, M_PRODUCT_ID, XB_VALUE,
-      XBZZ_VALUE, C_CUSTOMER_ID, DOCNO, SH_REMARK, NO1, EXPRESSTYPE, DCTIME, NOERID, NOTIME
-    FROM M_PRODUCT_DIM t
-    WHERE t.M_PRODUCT_ID =  #{mProductId,jdbcType=DECIMAL}
+      <if test="mDimNew14Id != null" >
+        #{mDimNew14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="colorValue != null" >
+        #{colorValue,jdbcType=DECIMAL},
+      </if>
+      <if test="colorArr != null" >
+        #{colorArr,jdbcType=DECIMAL},
+      </if>
+      <if test="mProductId != null" >
+        #{mProductId,jdbcType=DECIMAL}
+      </if>
   </insert>
 
 </mapper>
