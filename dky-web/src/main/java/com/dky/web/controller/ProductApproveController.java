@@ -71,4 +71,9 @@ public class ProductApproveController {
     public ReturnT addProductApprove(AddProductApproveParam param){
         return approveService.insertProductApprove(param);
     }
+
+    @RequestMapping(value = "addProductDefault",name = "下单保存默认款号订单接口")
+    public ReturnT addProductDefault(AddProductApproveParam param){
+        return approveService.addProductDefault(param);
+    }
 }

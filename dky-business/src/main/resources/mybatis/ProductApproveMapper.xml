@@ -1443,4 +1443,439 @@
       {call  get_scorder(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
     </select>
 
+  <insert id="addProductDefault" parameterType="com.dky.common.bean.ProductApprove" >
+    insert into M_PRODUCT_APPROVE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="mDimNew14Id != null" >
+        M_DIM_NEW14_ID,
+      </if>
+      <if test="colorvalue != null" >
+        COLORVALUE,
+      </if>
+      <if test="colorarr != null" >
+        COLORARR,
+      </if>
+      <if test="xwValue != null" >
+        XW_VALUE,
+      </if>
+      <if test="ycValue != null" >
+        YC_VALUE,
+      </if>
+      <if test="xcValue != null" >
+        XC_VALUE,
+      </if>
+      <if test="hzxc1Value != null" >
+        HZXC1_VALUE,
+      </if>
+      <if test="mDimNew11Id != null" >
+        M_DIM_NEW11_ID,
+      </if>
+      <if test="mDimNew12Id != null" >
+        M_DIM_NEW12_ID,
+      </if>
+      <if test="mDimNew13Id != null" >
+        M_DIM_NEW13_ID,
+      </if>
+      <if test="mDimNew15Id != null" >
+        M_DIM_NEW15_ID,
+      </if>
+      <if test="mDimNew16Id != null" >
+        M_DIM_NEW16_ID,
+      </if>
+      <if test="mDimNew17Id != null" >
+        M_DIM_NEW17_ID,
+      </if>
+      <if test="mDimNew18Id != null" >
+        M_DIM_NEW18_ID,
+      </if>
+      <if test="mDimNew19Id != null" >
+        M_DIM_NEW19_ID,
+      </if>
+      <if test="mDimNew22Id != null" >
+        M_DIM_NEW22_ID,
+      </if>
+      <if test="mDimNew25Id != null" >
+        M_DIM_NEW25_ID,
+      </if>
+      <if test="mDimNew26Id != null" >
+        M_DIM_NEW26_ID,
+      </if>
+      <if test="mDimNew28Id != null" >
+        M_DIM_NEW28_ID,
+      </if>
+      <if test="mDimNew10Id != null" >
+        M_DIM_NEW10_ID,
+      </if>
+      <if test="mDimNew32Id != null" >
+        M_DIM_NEW32_ID,
+      </if>
+      <if test="mDimNew37Id != null" >
+        M_DIM_NEW37_ID,
+      </if>
+      <if test="mDimNew38Id != null" >
+        M_DIM_NEW38_ID,
+      </if>
+      <if test="mDimNew39Id != null" >
+        M_DIM_NEW39_ID,
+      </if>
+      <if test="mDimNew1Id != null" >
+        M_DIM_NEW1_ID,
+      </if>
+      <if test="mDimNew3Id != null" >
+        M_DIM_NEW3_ID,
+      </if>
+      <if test="mDimNew4Id != null" >
+        M_DIM_NEW4_ID,
+      </if>
+      <if test="mDimNew6Id != null" >
+        M_DIM_NEW6_ID,
+      </if>
+      <if test="mDimNew7Id != null" >
+        M_DIM_NEW7_ID,
+      </if>
+      <if test="mDimNew41Id != null" >
+        M_DIM_NEW41_ID,
+      </if>
+      <if test="mDimNew9Id != null" >
+        M_DIM_NEW9_ID,
+      </if>
+      <if test="jkValue != null" >
+        JK_VALUE,
+      </if>
+      <if test="xbcValue != null" >
+        XBC_VALUE,
+      </if>
+      <if test="lingCcValue != null" >
+        LING_CC_VALUE,
+      </if>
+      <if test="lbccValue != null" >
+        LBCC_VALUE,
+      </if>
+      <if test="xbccValue != null" >
+        XBCC_VALUE,
+      </if>
+      <if test="xkccValue != null" >
+        XKCC_VALUE,
+      </if>
+      <if test="dkslValue != null" >
+        DKSL_VALUE,
+      </if>
+      <if test="hzxcValue != null" >
+        HZXC_VALUE,
+      </if>
+      <if test="dc1Value != null" >
+        DC1_VALUE,
+      </if>
+      <if test="dcValue != null" >
+        DC_VALUE,
+      </if>
+      <if test="mjkValue != null" >
+        MJK_VALUE,
+      </if>
+      <if test="mjcValue != null" >
+        MJC_VALUE,
+      </if>
+      <if test="qtxxValue != null" >
+        QTXX_VALUE,
+      </if>
+      <if test="qtjxValue != null" >
+        QTJX_VALUE,
+      </if>
+      <if test="lingNumber2Value != null" >
+        LING_NUMBER2_VALUE,
+      </if>
+      <if test="lingNumber1Value != null" >
+        LING_NUMBER1_VALUE,
+      </if>
+      <if test="lingValue != null" >
+        LING_VALUE,
+      </if>
+      <if test="qtxbzzValue != null" >
+        QTXBZZ_VALUE,
+      </if>
+      <if test="lxsx5Value != null" >
+        LXSX5_VALUE,
+      </if>
+      <if test="lxsx2Value != null" >
+        LXSX2_VALUE,
+      </if>
+      <if test="lxsx1Value != null" >
+        LXSX1_VALUE,
+      </if>
+      <if test="lxsx4Value != null" >
+        LXSX4_VALUE,
+      </if>
+      <if test="lxsx3Value != null" >
+        LXSX3_VALUE,
+      </if>
+      <if test="qtlbValue != null" >
+        QTLB_VALUE,
+      </if>
+      <if test="qtxbValue != null" >
+        QTXB_VALUE,
+      </if>
+      <if test="qtxkValue != null" >
+        QTXK_VALUE,
+      </if>
+      <if test="dkValue != null" >
+        DK_VALUE,
+      </if>
+      <if test="qtmjValue != null" >
+        QTMJ_VALUE,
+      </if>
+      <if test="amjValue != null" >
+        AMJ_VALUE,
+      </if>
+      <if test="dkNumber != null" >
+        DK_NUMBER,
+      </if>
+      <if test="colorarrDes != null" >
+        COLORARR_DES,
+      </if>
+      <if test="jzValue != null" >
+        JZ_VALUE,
+      </if>
+      <if test="huax != null" >
+        HUAX,
+      </if>
+      <if test="tangz != null" >
+        TANGZ,
+      </if>
+      <if test="isapprove != null" >
+        ISAPPROVE,
+      </if>
+
+      <if test="pdt != null" >
+        PDT,
+      </if>
+      <if test="jgno != null" >
+        JGNO,
+      </if>
+      <if test="customer != null" >
+        CUSTOMER,
+      </if>
+      <if test="ghPrice1 != null" >
+        GH_PRICE1,
+      </if>
+      <if test="ghPrice != null" >
+        GH_PRICE,
+      </if>
+      <if test="fdRate != null" >
+        FD_RATE,
+      </if>
+      <if test="jlPrice != null" >
+        JL_PRICE,
+      </if>
+      <if test="jxTxt != null" >
+        JX_TXT,
+      </if>
+      <if test="xTxt != null" >
+        X_TXT,
+      </if>
+      <if test="lTxt != null" >
+        L_TXT,
+      </if>
+      <if test="syTxt != null" >
+        SY_TXT,
+      </if>
+      <if test="xbTxt != null" >
+        XB_TXT,
+      </if>
+      <if test="xkTxt != null" >
+        XK_TXT,
+      </if>
+      <if test="no != null" >
+        NO,
+      </if>
+      <if test="czDate != null" >
+        CZ_DATE,
+      </if>
+      <if test="fhDate != null" >
+        FH_DATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="lsPrice != null" >
+        LS_PRICE,
+      </if>
+      <if test="lsPrice1 != null" >
+        LS_PRICE1,
+      </if>
+      <if test="fdRate1 != null" >
+        FD_RATE1,
+      </if>
+      <if test="isMore != null" >
+        IS_MORE,
+      </if>
+      <if test="xfType != null" >
+        XF_TYPE,
+      </if>
+      <if test="xfValue != null" >
+        XF_VALUE,
+      </if>
+      <if test="mDimNew9Id1 != null" >
+        M_DIM_NEW9_ID1,
+      </if>
+      <if test="qtxxValue1 != null" >
+        QTXX_VALUE1,
+      </if>
+      <if test="mDimNew9Id2 != null" >
+        M_DIM_NEW9_ID2,
+      </if>
+      <if test="qtxxValue2 != null" >
+        QTXX_VALUE2,
+      </if>
+      <if test="hkTxt != null" >
+        HK_TXT,
+      </if>
+      <if test="zkTxt != null" >
+        ZK_TXT,
+      </if>
+      <if test="hhkTxt != null" >
+        HHK_TXT,
+      </if>
+      <if test="hzkTxt != null" >
+        HZK_TXT,
+      </if>
+      <if test="xfTxt != null" >
+        XF_TXT,
+      </if>
+      <if test="gjTxt != null" >
+        GJ_TXT,
+      </if>
+      <if test="qtlingother != null" >
+        QTLINGOTHER,
+      </if>
+      <if test="scIsdc != null" >
+        SC_ISDC,
+      </if>
+      <if test="sepLing != null" >
+        SEP_LING,
+      </if>
+      <if test="jxwValue != null" >
+        JXW_VALUE,
+      </if>
+      <if test="sjxcValue != null" >
+        SJXC_VALUE,
+      </if>
+      <if test="xxTxt != null" >
+        XX_TXT,
+      </if>
+      <if test="dTxt != null" >
+        D_TXT,
+      </if>
+      <if test="hdTxt != null" >
+        HD_TXT,
+      </if>
+      <if test="zTxt != null" >
+        Z_TXT,
+      </if>
+      <if test="koud != null" >
+        KOUD,
+      </if>
+      <if test="fuj != null" >
+        FUJ,
+      </if>
+      <if test="tesgy != null" >
+        TESGY,
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID,
+      </if>
+      <if test="xbValue != null" >
+        XB_VALUE,
+      </if>
+      <if test="xbzzValue != null" >
+        XBZZ_VALUE,
+      </if>
+      <if test="cCustomerId != null" >
+        C_CUSTOMER_ID,
+      </if>
+      <if test="docno != null" >
+        DOCNO,
+      </if>
+      <if test="shRemark != null" >
+        SH_REMARK,
+      </if>
+      <if test="no1 != null" >
+        NO1,
+      </if>
+      <if test="expresstype != null" >
+        EXPRESSTYPE,
+      </if>
+      <if test="dctime != null" >
+        DCTIME,
+      </if>
+      <if test="noerid != null" >
+        NOERID,
+      </if>
+      <if test="notime != null" >
+        NOTIME,
+      </if>
+    </trim>
+    SELECT
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="mDimNew14Id != null" >
+        #{mDimNew14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="colorValue != null" >
+        #{colorValue,jdbcType=DECIMAL},
+      </if>
+      <if test="colorArr != null" >
+        #{colorArr,jdbcType=DECIMAL},
+      </if>
+      <if test="mProductId != null" >
+        #{mProductId,jdbcType=DECIMAL}
+      </if>
+  </insert>
+
 </mapper>

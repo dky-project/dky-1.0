@@ -19,6 +19,8 @@ public interface ProductApproveService {
 
     ReturnT insertProductApprove(AddProductApproveParam param);
 
+    ReturnT addProductDefault(AddProductApproveParam param);
+
     ReturnT updateProductApprove();
 
     ReturnT<List<ProductApproveInfoView>>  queryProductApproveInfoList(Long[] ids);
