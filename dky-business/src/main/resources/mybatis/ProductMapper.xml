@@ -443,6 +443,7 @@
     t.JK_VALUE AS jkValue,
     t.XC_VALUE AS xcValue,
     t.XKCC_VALUE AS xkccValue,
+    t.XBCC_VALUE AS xbccValue,
     t.CLR_RANGE AS clrRange,
     t.QTL_REMARK AS qtlRemark,
     (select nvl(max(g.attribname),'') from M_DIM_NEW g

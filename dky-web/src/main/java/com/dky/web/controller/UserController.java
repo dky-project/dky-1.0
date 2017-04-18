@@ -45,9 +45,9 @@ public class UserController {
         }else if(data instanceof Store){
             Store store = (Store)data;
             sessionUser.setUserId(893l);
-            sessionUser.setEmail(store.getEmail());
+            sessionUser.setEmail(param.getEmail());
             sessionUser.setcCustomerId(store.getcCustomerId());
-            sessionUser.setcStoreId(store.getcStoreId());
+            sessionUser.setcStoreId(store.getId());
         }
         String token = sessionProcess.login(sessionUser, response, 60 * 60 * 24 * 7 * 1000L);
         return new ReturnT().sucessData(token);
