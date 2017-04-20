@@ -121,11 +121,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setAdOrgId(27l);
         Long id = mapper.getProductApproveSeq();
         approve.setId(id);
-        mapper.addProductDefault(approve);
-        mapper.productApproveAc(id);
+        //mapper.addProductDefault(approve);
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
-        mapper.getScorder(map);
+        mapper.addProductDefaultAc(map);
+        //mapper.getScorder(map);
         return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
     }
 }
