@@ -35,4 +35,6 @@ public interface ProductApproveMapper {
     void addProductDefaultAc(Map<String,Object> map);
 
     String getScorder(Map<String,Object> map);
+
+    String getMaxNo();
 }

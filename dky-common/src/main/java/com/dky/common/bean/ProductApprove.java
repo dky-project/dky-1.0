@@ -134,7 +134,7 @@ public class ProductApprove extends PojoObjectBase {
 
     private String amjValue;
 
-    private String colorarr;
+    private String colorArr;
 
     private String dkNumber;
 
@@ -148,7 +148,7 @@ public class ProductApprove extends PojoObjectBase {
 
     private Integer isapprove;
 
-    private String colorvalue;
+    private String colorValue;
 
     private String pdt;
 
@@ -786,12 +786,12 @@ public class ProductApprove extends PojoObjectBase {
         this.amjValue = amjValue == null ? null : amjValue.trim();
     }
 
-    public String getColorarr() {
-        return colorarr;
+    public String getColorArr() {
+        return colorArr;
     }
 
-    public void setColorarr(String colorarr) {
-        this.colorarr = colorarr == null ? null : colorarr.trim();
+    public void setColorArr(String colorarr) {
+        this.colorArr = colorarr == null ? null : colorarr.trim();
     }
 
     public String getDkNumber() {
@@ -842,12 +842,12 @@ public class ProductApprove extends PojoObjectBase {
         this.isapprove = isapprove;
     }
 
-    public String getColorvalue() {
-        return colorvalue;
+    public String getColorValue() {
+        return colorValue;
     }
 
-    public void setColorvalue(String colorvalue) {
-        this.colorvalue = colorvalue == null ? null : colorvalue.trim();
+    public void setColorValue(String colorvalue) {
+        this.colorValue = colorvalue == null ? null : colorvalue.trim();
     }
 
     public String getPdt() {

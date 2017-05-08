@@ -67,14 +67,14 @@
     <result column="DK_VALUE" property="dkValue" jdbcType="VARCHAR" />
     <result column="QTMJ_VALUE" property="qtmjValue" jdbcType="VARCHAR" />
     <result column="AMJ_VALUE" property="amjValue" jdbcType="VARCHAR" />
-    <result column="COLORARR" property="colorarr" jdbcType="VARCHAR" />
+    <result column="COLORARR" property="colorArr" jdbcType="VARCHAR" />
     <result column="DK_NUMBER" property="dkNumber" jdbcType="VARCHAR" />
     <result column="COLORARR_DES" property="colorarrDes" jdbcType="VARCHAR" />
     <result column="JZ_VALUE" property="jzValue" jdbcType="VARCHAR" />
     <result column="HUAX" property="huax" jdbcType="VARCHAR" />
     <result column="TANGZ" property="tangz" jdbcType="VARCHAR" />
     <result column="ISAPPROVE" property="isapprove" jdbcType="DECIMAL" />
-    <result column="COLORVALUE" property="colorvalue" jdbcType="VARCHAR" />
+    <result column="COLORVALUE" property="colorValue" jdbcType="VARCHAR" />
     <result column="PDT" property="pdt" jdbcType="VARCHAR" />
     <result column="JGNO" property="jgno" jdbcType="VARCHAR" />
     <result column="CUSTOMER" property="customer" jdbcType="VARCHAR" />
@@ -439,7 +439,7 @@
       <if test="amjValue != null" >
         AMJ_VALUE,
       </if>
-      <if test="colorarr != null" >
+      <if test="colorArr != null" >
         COLORARR,
       </if>
       <if test="dkNumber != null" >
@@ -460,7 +460,7 @@
       <if test="isapprove != null" >
         ISAPPROVE,
       </if>
-      <if test="colorvalue != null" >
+      <if test="colorValue != null" >
         COLORVALUE,
       </if>
       <if test="pdt != null" >
@@ -835,7 +835,7 @@
         #{amjValue,jdbcType=VARCHAR},
       </if>
       <if test="colorarr != null" >
-        #{colorarr,jdbcType=VARCHAR},
+        #{colorArr,jdbcType=VARCHAR},
       </if>
       <if test="dkNumber != null" >
         #{dkNumber,jdbcType=VARCHAR},
@@ -855,8 +855,8 @@
       <if test="isapprove != null" >
         #{isapprove,jdbcType=DECIMAL},
       </if>
-      <if test="colorvalue != null" >
-        #{colorvalue,jdbcType=VARCHAR},
+      <if test="colorValue != null" >
+        #{colorValue,jdbcType=VARCHAR},
       </if>
       <if test="pdt != null" >
         #{pdt,jdbcType=VARCHAR},
@@ -1229,8 +1229,8 @@
       <if test="amjValue != null" >
         AMJ_VALUE = #{amjValue,jdbcType=VARCHAR},
       </if>
-      <if test="colorarr != null" >
-        COLORARR = #{colorarr,jdbcType=VARCHAR},
+      <if test="colorArr != null" >
+        COLORARR = #{colorArr,jdbcType=VARCHAR},
       </if>
       <if test="dkNumber != null" >
         DK_NUMBER = #{dkNumber,jdbcType=VARCHAR},
@@ -1250,8 +1250,8 @@
       <if test="isapprove != null" >
         ISAPPROVE = #{isapprove,jdbcType=DECIMAL},
       </if>
-      <if test="colorvalue != null" >
-        COLORVALUE = #{colorvalue,jdbcType=VARCHAR},
+      <if test="colorValue != null" >
+        COLORVALUE = #{colorValue,jdbcType=VARCHAR},
       </if>
       <if test="pdt != null" >
         PDT = #{pdt,jdbcType=VARCHAR},
@@ -1471,10 +1471,10 @@
       <if test="mDimNew14Id != null" >
         M_DIM_NEW14_ID,
       </if>
-      <if test="colorvalue != null" >
+      <if test="colorValue != null" >
         COLORVALUE,
       </if>
-      <if test="colorarr != null" >
+      <if test="colorArr != null" >
         COLORARR,
       </if>
       <if test="xwValue != null" >
@@ -1506,6 +1506,18 @@
       </if>
       <if test="mobile != null" >
         MOBILE,
+      </if>
+      <if test="docno != null" >
+        DOCNO,
+      </if>
+      <if test="isapprove != null" >
+        isapprove,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="shRemark != null" >
+        sh_remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -1558,7 +1570,7 @@
         #{pdt,jdbcType=VARCHAR},
       </if>
       <if test="jgno != null" >
-        JGNO = #{jgno,jdbcType=VARCHAR},
+        #{jgno,jdbcType=VARCHAR},
       </if>
       <if test="customer != null" >
         #{customer,jdbcType=VARCHAR},
@@ -1572,10 +1584,26 @@
       <if test="mobile != null" >
         #{mobile,jdbcType=VARCHAR},
       </if>
+      <if test="docno != null" >
+        #{docno,jdbcType=VARCHAR},
+      </if>
+      <if test="isapprove != null" >
+        #{isapprove,jdbcType=DECIMAL},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="shRemark != null" >
+        #{shRemark,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
 
   <insert id="addProductDefaultAc" statementType="CALLABLE">
     {call  add_product_default(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
   </insert>
+
+  <select id="getMaxNo" resultType="java.lang.String">
+    select max(to_number(NO)) from m_product_approve
+  </select>
 </mapper>

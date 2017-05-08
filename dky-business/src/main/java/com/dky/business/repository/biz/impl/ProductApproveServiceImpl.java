@@ -1,6 +1,7 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductApproveService;
+import com.dky.business.repository.repository.DimNewMapper;
 import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.ProductApprove;
@@ -12,6 +13,7 @@ import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveView;
+import com.dky.common.utils.DateUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +37,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     private ProductApproveMapper mapper;
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private DimNewMapper dimNewMapper;
 
     @Override
     public ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param) {
@@ -90,9 +94,14 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setAdClientId(37l);
         approve.setAdOrgId(27l);
         Long id = mapper.getProductApproveSeq();
-        approve.setId(id);
-        mapper.insertProductApprove(approve);
-        mapper.productApproveAc(id);
+        try {
+            approve.setId(id);
+            mapper.insertProductApprove(approve);
+            mapper.productApproveAc(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ReturnT().failureData(e.getMessage());
+        }
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
         mapper.getScorder(map);
@@ -108,7 +117,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     public ReturnT addProductDefault(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
         BeanUtils.copyProperties(param,approve);
-        approve.setDocno(param.getOrderNo());
+        approve.setFhDate(dimNewMapper.getSendDate());
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        approve.setJgno(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
+        approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
+        approve.setDocno(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive("Y");
         Date now = new Date();
@@ -121,10 +134,16 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setAdOrgId(27l);
         Long id = mapper.getProductApproveSeq();
         approve.setId(id);
-        //mapper.addProductDefault(approve);
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
-        mapper.addProductDefaultAc(map);
+        approve.setShRemark("样衣默认项测试单据，请勿操作！！！");
+        try {
+            mapper.addProductDefault(approve);
+            mapper.addProductDefaultAc(map);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ReturnT().failureData(e.getMessage());
+        }
         //mapper.getScorder(map);
         return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
     }

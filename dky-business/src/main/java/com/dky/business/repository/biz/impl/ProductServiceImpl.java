@@ -104,6 +104,8 @@ public class ProductServiceImpl implements ProductService {
             if (madeInfoView == null) {
                 return new ReturnT<>().failureData("没有查到该款号");
             }
+            List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
+            view.setColorViewList(colorList);
         }
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
