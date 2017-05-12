@@ -84,7 +84,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         BeanUtils.copyProperties(param,approve);
         approve.setDocno(param.getOrderNo());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
-        approve.setIsactive("Y");
+        approve.setIsactive("N");
         Date now = new Date();
         approve.setCreationdate(now);
         approve.setModifieddate(now);
@@ -123,7 +123,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         approve.setDocno(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
-        approve.setIsactive("Y");
+        approve.setIsactive("N");
         Date now = new Date();
         approve.setCreationdate(now);
         approve.setModifieddate(now);
@@ -136,7 +136,6 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setId(id);
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
-        approve.setShRemark("样衣默认项测试单据，请勿操作！！！");
         try {
             mapper.addProductDefault(approve);
             mapper.addProductDefaultAc(map);
@@ -144,7 +143,6 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             e.printStackTrace();
             return new ReturnT().failureData(e.getMessage());
         }
-        //mapper.getScorder(map);
         return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
     }
 }
