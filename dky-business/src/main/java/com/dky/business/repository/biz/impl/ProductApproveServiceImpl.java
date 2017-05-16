@@ -3,15 +3,19 @@ package com.dky.business.repository.biz.impl;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.DimNewMapper;
 import com.dky.business.repository.repository.ProductApproveMapper;
+import com.dky.business.repository.repository.ProductCollectMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.ProductApprove;
+import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.enums.IsApproveEnum;
 import com.dky.common.param.AddProductApproveParam;
 import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.ProductApproveQueryParam;
+import com.dky.common.param.UpdateProductApproveParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
+import com.dky.common.response.view.ProductApproveReturnView;
 import com.dky.common.response.view.ProductApproveView;
 import com.dky.common.utils.DateUtils;
 import org.apache.commons.collections.map.HashedMap;
@@ -21,7 +25,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +42,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     private UsersMapper usersMapper;
     @Autowired
     private DimNewMapper dimNewMapper;
+    @Autowired
+    private ProductCollectMapper productCollectMapper;
 
     @Override
     public ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param) {
@@ -79,15 +84,12 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
-    public ReturnT insertProductApprove(AddProductApproveParam param) {
+    public ReturnT<ProductApproveReturnView> insertProductApprove(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
         BeanUtils.copyProperties(param,approve);
         approve.setDocno(param.getOrderNo());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
-        approve.setIsactive("N");
-        Date now = new Date();
-        approve.setCreationdate(now);
-        approve.setModifieddate(now);
+        approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();
         approve.setOwnerid(userId);
         approve.setModifierid(userId);
@@ -105,7 +107,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
         mapper.getScorder(map);
-        return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
+        ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());
+        view.setProductApproveId(id);
+        ReturnT<ProductApproveReturnView>  returnT = new ReturnT<>();
+        returnT.setData(view);
+        return returnT.successDefault();
     }
 
     @Override
@@ -114,7 +120,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
-    public ReturnT addProductDefault(AddProductApproveParam param) {
+    public ReturnT<ProductApproveReturnView> addProductDefault(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
         BeanUtils.copyProperties(param,approve);
         approve.setFhDate(dimNewMapper.getSendDate());
@@ -123,10 +129,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         approve.setDocno(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
-        approve.setIsactive("N");
-        Date now = new Date();
-        approve.setCreationdate(now);
-        approve.setModifieddate(now);
+        approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();
         approve.setOwnerid(userId);
         approve.setModifierid(userId);
@@ -143,6 +146,20 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             e.printStackTrace();
             return new ReturnT().failureData(e.getMessage());
         }
-        return new ReturnT().sucessDataMsg(map.get("R_MESSAGE").toString());
+        ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());
+        view.setProductApproveId(id);
+        ReturnT<ProductApproveReturnView> returnT = new ReturnT<>();
+        returnT.setData(view);
+        return returnT.successDefault();
     }
+
+    @Override
+    public ReturnT confirmProductApprove(UpdateProductApproveParam param) {
+        ProductApprove productApprove = new ProductApprove();
+        productApprove.setId(param.getId());
+        productApprove.setIsactive(IsActiveEnum.YES.getCode());
+        mapper.updateProductApproveById(productApprove);
+        return new ReturnT().successDefault();
+    }
+
 }

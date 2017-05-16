@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.ProductCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.ProductCollect" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+    <result column="M_PRODUCT_ID" property="mProductId" jdbcType="DECIMAL" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, ISACTIVE, 
+    M_PRODUCT_ID, CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from M_PRODUCT_COLLECT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from M_PRODUCT_COLLECT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.dky.common.bean.ProductCollect" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_PRODUCT_COLLECT.nextval from dual
+    </selectKey>
+    insert into M_PRODUCT_COLLECT (ID, AD_CLIENT_ID, AD_ORG_ID, 
+      OWNERID, MODIFIERID, CREATIONDATE, 
+      MODIFIEDDATE, ISACTIVE, M_PRODUCT_ID, 
+      CODE)
+    values (#{id,jdbcType=DECIMAL}, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL}, 
+      #{ownerid,jdbcType=DECIMAL}, #{modifierid,jdbcType=DECIMAL}, #{creationdate,jdbcType=DATE}, 
+      #{modifieddate,jdbcType=DATE}, #{isactive,jdbcType=CHAR}, #{mProductId,jdbcType=DECIMAL}, 
+      #{code,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dky.common.bean.ProductCollect" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select SEQ_PRODUCT_COLLECT.nextval from dual
+    </selectKey>
+    insert into M_PRODUCT_COLLECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="adClientId != null" >
+        AD_CLIENT_ID,
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID,
+      </if>
+      <if test="ownerid != null" >
+        OWNERID,
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE,
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE,
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=DECIMAL},
+      <if test="adClientId != null" >
+        #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierid != null" >
+        #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifieddate != null" >
+        #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="mProductId != null" >
+        #{mProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dky.common.bean.ProductCollect" >
+    update M_PRODUCT_COLLECT
+    <set >
+      <if test="adClientId != null" >
+        AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      </if>
+      <if test="adOrgId != null" >
+        AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerid != null" >
+        OWNERID = #{ownerid,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierid != null" >
+        MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=DATE},
+      </if>
+      <if test="modifieddate != null" >
+        MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      </if>
+      <if test="isactive != null" >
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dky.common.bean.ProductCollect" >
+    update M_PRODUCT_COLLECT
+    set AD_CLIENT_ID = #{adClientId,jdbcType=DECIMAL},
+      AD_ORG_ID = #{adOrgId,jdbcType=DECIMAL},
+      OWNERID = #{ownerid,jdbcType=DECIMAL},
+      MODIFIERID = #{modifierid,jdbcType=DECIMAL},
+      CREATIONDATE = #{creationdate,jdbcType=DATE},
+      MODIFIEDDATE = #{modifieddate,jdbcType=DATE},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL},
+      CODE = #{code,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <insert id="mergeIntoProductCollect" parameterType="com.dky.common.bean.ProductCollect">
+    merge into M_PRODUCT_COLLECT p  USING DUAL
+      ON(p.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL} and  p.CODE = #{code,jdbcType=VARCHAR})
+    when matched then
+      update set p.ISACTIVE = #{isactive,jdbcType=CHAR},p.MODIFIEDDATE = sysdate
+    when not matched then
+    insert values(SEQ_PRODUCT_COLLECT.nextval, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL},
+    #{ownerid,jdbcType=DECIMAL}, #{modifierid,jdbcType=DECIMAL}, sysdate,
+    sysdate, #{isactive,jdbcType=CHAR}, #{mProductId,jdbcType=DECIMAL},#{code,jdbcType=VARCHAR})
+  </insert>
+
+  <sql id="queryTmpl">
+    SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate
+    FROM v_query_collect t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+    order by NVL(t1.ORDERNO,0) desc,t1.name asc
+  </sql>
+
+  <sql id="whereClause">
+    <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
+    <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
+    <if test="null!=mDimNew14Id">AND t1.M_DIM_NEW14_ID = #{mDimNew14Id}</if>
+    <if test="null!=mDimNew15Id">AND t1.M_DIM_NEW15_ID = #{mDimNew15Id}</if>
+    <if test="null!=mDimNew16Id">AND t1.M_DIM_NEW16_ID = #{mDimNew16Id}</if>
+    <if test="null!=mDimNew12Id">AND t1.M_DIM_NEW12_ID = #{mDimNew12Id}</if>
+    <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
+    <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
+    <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
+    <if test="null!=name">AND t1.name = #{name}</if>
+    <if test="null!=code">AND t1.code = #{code}</if>
+  </sql>
+
+  <!--样衣列表查询 -->
+  <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.param.ProductCollectQueryParam">
+    SELECT mProductId,name,imgUrl1,modifieddate FROM (
+    SELECT mProductId,name,imgUrl1,modifieddate,ROWNUM RN
+    from (<include refid="queryTmpl"></include> )
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+    </if>
+    ) A
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND RN <![CDATA[ >= ]]> #{requestOffset}
+    </if>
+  </select>
+
+  <select id="count" resultType="int" parameterType="com.dky.common.param.ProductCollectQueryParam">
+    SELECT count(1)
+    FROM v_query_collect t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+  </select>
+</mapper>

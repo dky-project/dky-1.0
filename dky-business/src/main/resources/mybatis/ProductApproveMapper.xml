@@ -652,13 +652,13 @@
         #{ownerid,jdbcType=DECIMAL},
       </if>
       <if test="creationdate != null" >
-        #{creationdate,jdbcType=DATE},
+        #{creationdate,jdbcType=TIMESTAMP},
       </if>
       <if test="modifierid != null" >
         #{modifierid,jdbcType=DECIMAL},
       </if>
       <if test="modifieddate != null" >
-        #{modifieddate,jdbcType=DATE},
+        #{modifieddate,jdbcType=TIMESTAMP},
       </if>
       <if test="isactive != null" >
         #{isactive,jdbcType=CHAR},
@@ -834,7 +834,7 @@
       <if test="amjValue != null" >
         #{amjValue,jdbcType=VARCHAR},
       </if>
-      <if test="colorarr != null" >
+      <if test="colorArr != null" >
         #{colorArr,jdbcType=VARCHAR},
       </if>
       <if test="dkNumber != null" >
@@ -1604,6 +1604,6 @@
   </insert>
 
   <select id="getMaxNo" resultType="java.lang.String">
-    select max(to_number(NO)) from m_product_approve
+    select max(to_number(NO))+1 from m_product_approve
   </select>
 </mapper>

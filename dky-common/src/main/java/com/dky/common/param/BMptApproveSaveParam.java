@@ -1,6 +1,6 @@
 package com.dky.common.param;
 
-import com.dky.common.session.BaseParameter;
+import com.dky.common.session.SessionParameter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by wonpera on 2017/2/26.
  */
-public class BMptApproveSaveParam extends BaseParameter {
+public class BMptApproveSaveParam extends SessionParameter {
 
 
     /**

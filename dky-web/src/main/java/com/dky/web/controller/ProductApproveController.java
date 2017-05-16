@@ -6,10 +6,7 @@ import com.dky.business.repository.biz.ProductService;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.ProductApproveInfoView;
-import com.dky.common.response.view.ProductApproveTitleView;
-import com.dky.common.response.view.ProductApproveView;
-import com.dky.common.response.view.ProductMadePageView;
+import com.dky.common.response.view.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +65,17 @@ public class ProductApproveController {
     }
 
     @RequestMapping(value = "addProductApprove",name = "下单保存基础款类型订单接口")
-    public ReturnT addProductApprove(AddProductApproveParam param){
+    public ReturnT<ProductApproveReturnView> addProductApprove(AddProductApproveParam param){
         return approveService.insertProductApprove(param);
     }
 
-    @RequestMapping(value = "addProductDefault",name = "下单保存默认款号订单接口")
-    public ReturnT addProductDefault(AddProductApproveParam param){
+    @RequestMapping(value = "addProductDefault",name = "收藏款号下单")
+    public ReturnT<ProductApproveReturnView> addProductDefault(AddProductApproveParam param){
         return approveService.addProductDefault(param);
+    }
+
+    @RequestMapping(value = "confirmProductApprove",name = "确认下单")
+    public ReturnT confirmProductApprove(UpdateProductApproveParam param){
+        return approveService.confirmProductApprove(param);
     }
 }
