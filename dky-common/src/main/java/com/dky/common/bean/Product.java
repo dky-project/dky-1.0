@@ -486,6 +486,18 @@ public class Product extends PojoObjectBase {
 
     private BigDecimal actualprice;
 
+    private String isRecommend;
+
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public Long getId() {
         return id;
     }
@@ -2412,5 +2424,13 @@ public class Product extends PojoObjectBase {
 
     public void setActualprice(BigDecimal actualprice) {
         this.actualprice = actualprice;
+    }
+
+    public String getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(String isRecommend) {
+        this.isRecommend = isRecommend;
     }
 }

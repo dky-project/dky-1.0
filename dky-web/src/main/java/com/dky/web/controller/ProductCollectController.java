@@ -3,7 +3,9 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.ProductCollectService;
 import com.dky.common.param.AddProductCollectParam;
 import com.dky.common.param.ProductCollectQueryParam;
+import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.ProductView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,7 @@ public class ProductCollectController {
     private ProductCollectService productCollectService;
 
     @RequestMapping(value = "page",name = "收藏列表分页")
-    public ReturnT findByPage(ProductCollectQueryParam param){
+    public ReturnT<PageList<ProductView>> findByPage(ProductCollectQueryParam param){
         return productCollectService.findByPage(param);
     }
 

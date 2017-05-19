@@ -135,6 +135,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setModifierid(userId);
         approve.setAdClientId(37l);
         approve.setAdOrgId(27l);
+        approve.setJxwValue("0");
+        approve.setSjxcValue("0");
         Long id = mapper.getProductApproveSeq();
         approve.setId(id);
         Map<String,Object> map = new HashedMap();
@@ -143,7 +145,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             mapper.addProductDefault(approve);
             mapper.addProductDefaultAc(map);
         }catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
+            LOGGER.error("样衣详情下单出错！result:{}",e.getMessage());
             return new ReturnT().failureData(e.getMessage());
         }
         ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());

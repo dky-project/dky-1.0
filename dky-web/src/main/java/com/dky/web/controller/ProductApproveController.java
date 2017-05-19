@@ -43,7 +43,6 @@ public class ProductApproveController {
         return approveService.findByPage(param);
     }
 
-
     @RequestMapping(value = "productApproveInfoList",name = "查询订单详情")
     public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids){
         return approveService.queryProductApproveInfoList(ids);

@@ -282,8 +282,10 @@
   </sql>
 
   <sql id="queryTmpl">
-    SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate
+    SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate
     FROM v_query_product t1
+    LEFT JOIN (select * from m_product_collect t
+      where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
     WHERE 1=1
     <include refid="whereClause"></include>
     order by NVL(t1.ORDERNO,0) desc,t1.name asc
@@ -300,12 +302,13 @@
     <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
     <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
     <if test="null!=name">AND t1.name = #{name}</if>
+    <if test="null!=isRecommend">AND t1.IS_RECOMMEND = #{isRecommend}</if>
   </sql>
 
   <!--样衣列表查询 -->
   <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
-    SELECT mProductId,name,imgUrl1,modifieddate FROM (
-    SELECT mProductId,name,imgUrl1,modifieddate,ROWNUM RN
+    SELECT iscollect,mProductId,name,imgUrl1,modifieddate FROM (
+    SELECT iscollect,mProductId,name,imgUrl1,modifieddate,ROWNUM RN
     from (<include refid="queryTmpl"></include> )
     WHERE 1=1
     <if test="null!=requestOffset">
@@ -321,6 +324,8 @@
   <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
     SELECT count(1)
     FROM v_query_product t1
+    LEFT JOIN (select * from m_product_collect t
+    where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
     WHERE 1=1
     <include refid="whereClause"></include>
   </select>

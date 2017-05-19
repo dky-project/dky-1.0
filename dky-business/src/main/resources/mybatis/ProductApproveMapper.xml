@@ -256,15 +256,11 @@
       <if test="ownerid != null" >
         OWNERID,
       </if>
-      <if test="creationdate != null" >
         CREATIONDATE,
-      </if>
       <if test="modifierid != null" >
         MODIFIERID,
       </if>
-      <if test="modifieddate != null" >
         MODIFIEDDATE,
-      </if>
       <if test="isactive != null" >
         ISACTIVE,
       </if>
@@ -651,15 +647,11 @@
       <if test="ownerid != null" >
         #{ownerid,jdbcType=DECIMAL},
       </if>
-      <if test="creationdate != null" >
-        #{creationdate,jdbcType=TIMESTAMP},
-      </if>
+        sysdate,
       <if test="modifierid != null" >
         #{modifierid,jdbcType=DECIMAL},
       </if>
-      <if test="modifieddate != null" >
-        #{modifieddate,jdbcType=TIMESTAMP},
-      </if>
+        sysdate,
       <if test="isactive != null" >
         #{isactive,jdbcType=CHAR},
       </if>
@@ -1456,15 +1448,11 @@
       <if test="ownerid != null" >
         OWNERID,
       </if>
-      <if test="creationdate != null" >
         CREATIONDATE,
-      </if>
       <if test="modifierid != null" >
         MODIFIERID,
       </if>
-      <if test="modifieddate != null" >
         MODIFIEDDATE,
-      </if>
       <if test="isactive != null" >
         ISACTIVE,
       </if>
@@ -1488,6 +1476,9 @@
       </if>
       <if test="hzxc1Value != null" >
         HZXC1_VALUE,
+      </if>
+      <if test="jxwValue != null" >
+        JXW_VALUE,
       </if>
       <if test="pdt != null" >
         PDT,
@@ -1533,15 +1524,11 @@
       <if test="ownerid != null" >
         #{ownerid,jdbcType=DECIMAL},
       </if>
-      <if test="creationdate != null" >
-        #{creationdate,jdbcType=DATE},
-      </if>
+        sysdate,
       <if test="modifierid != null" >
         #{modifierid,jdbcType=DECIMAL},
       </if>
-      <if test="modifieddate != null" >
-        #{modifieddate,jdbcType=DATE},
-      </if>
+        sysdate,
       <if test="isactive != null" >
         #{isactive,jdbcType=CHAR},
       </if>
@@ -1565,6 +1552,9 @@
       </if>
       <if test="hzxc1Value != null" >
         #{hzxc1Value,jdbcType=DECIMAL},
+      </if>
+      <if test="jxwValue != null" >
+        #{jxwValue,jdbcType=DECIMAL},
       </if>
       <if test="pdt != null" >
         #{pdt,jdbcType=VARCHAR},

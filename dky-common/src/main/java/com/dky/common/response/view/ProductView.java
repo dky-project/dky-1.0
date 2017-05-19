@@ -33,6 +33,10 @@ public class ProductView extends ResultObjectBase {
      * 图片1
      */
     private Date modifieddate;
+    /**
+     * 是否收藏
+     */
+    private Integer iscollect;
 
     public String getName() {
         return name;
@@ -73,5 +77,13 @@ public class ProductView extends ResultObjectBase {
     public void setModifieddate(Date modifieddate) {
         this.modifieddate = modifieddate;
         this.imgUrl1 = GlobConts.IMAGE_ROOT_URL+this.imgUrl1+"?modifieddate="+modifieddate.getTime();
+    }
+
+    public Integer getIscollect() {
+        return iscollect;
+    }
+
+    public void setIscollect(Integer iscollect) {
+        this.iscollect = iscollect;
     }
 }

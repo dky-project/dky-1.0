@@ -46,6 +46,7 @@ public class ProductQueryParam extends WebPageParameter {
 
     private String name;
 
+    private String isRecommend;
 
     public Long getmDimNew11Id() {
         return mDimNew11Id;
@@ -125,5 +126,13 @@ public class ProductQueryParam extends WebPageParameter {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(String isRecommend) {
+        this.isRecommend = isRecommend;
     }
 }

@@ -3,6 +3,7 @@ package com.dky.business.repository.biz.impl;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.PdtBasepriceMapper;
 import com.dky.business.repository.repository.ProductMapper;
+import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.Product;
 import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryParam;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 样衣查询服务
@@ -31,6 +33,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper mapper;
     @Autowired
     private PdtBasepriceMapper pdtBasepriceMapper;
+    @Autowired
+    private UsersMapper usersMapper;
 
 
     @Override
@@ -70,6 +74,8 @@ public class ProductServiceImpl implements ProductService {
     private PageList<ProductView> findPage(ProductQueryParam productQueryParam) {
         Product product = new Product();
         BeanUtils.copyProperties(productQueryParam, product);
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(productQueryParam.getSessionUser().getEmail());
+        product.setCode(userMap!=null?userMap.get("CODE"):productQueryParam.getSessionUser().getEmail());
         return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
