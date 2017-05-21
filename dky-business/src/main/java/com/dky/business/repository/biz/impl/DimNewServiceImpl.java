@@ -4,13 +4,16 @@ import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.cache.LoadingCacheManager;
 import com.dky.business.repository.repository.DimNewMapper;
 import com.dky.business.repository.repository.ProductApproveMapper;
+import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.constats.GlobConts;
+import com.dky.common.param.ColorQueryParam;
 import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
+import com.dky.common.response.view.ProductColorView;
 import com.dky.common.utils.DateUtils;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -42,6 +45,8 @@ public class DimNewServiceImpl implements DimNewService {
     private UsersMapper usersMapper;
     @Autowired
     private ProductApproveMapper productApproveMapper;
+    @Autowired
+    private ProductMapper productMapper;
 
     @PostConstruct
     public void init(){
@@ -102,6 +107,14 @@ public class DimNewServiceImpl implements DimNewService {
 
         ReturnT returnT = new ReturnT();
         returnT.setData(jsonObject.fromObject(result));
+        return returnT.successDefault();
+    }
+
+    @Override
+    public ReturnT<List<ProductColorView>> getColorList(ColorQueryParam param) {
+        List<ProductColorView> colorList = productMapper.getProductColorListByDimId(param.getmDimNew14Id());
+        ReturnT<List<ProductColorView>> returnT = new ReturnT<>();
+        returnT.setData(colorList);
         return returnT.successDefault();
     }
 }

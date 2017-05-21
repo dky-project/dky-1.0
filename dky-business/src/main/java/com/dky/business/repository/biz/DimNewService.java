@@ -1,10 +1,12 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.ColorQueryParam;
 import com.dky.common.param.ProductApproveDetailParam;
 import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
+import com.dky.common.response.view.ProductColorView;
 
 import java.util.List;
 
@@ -20,4 +22,6 @@ public interface DimNewService {
     ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param);
 
     ReturnT getpzsJson(PzsJsonQueryParam param);
+
+    ReturnT<List<ProductColorView>> getColorList(ColorQueryParam param);
 }
