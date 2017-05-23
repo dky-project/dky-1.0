@@ -488,6 +488,8 @@ public class Product extends PojoObjectBase {
 
     private String isRecommend;
 
+    private String isRank;
+
     private String code;
 
     public String getCode() {
@@ -496,6 +498,14 @@ public class Product extends PojoObjectBase {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getIsRank() {
+        return isRank;
+    }
+
+    public void setIsRank(String isRank) {
+        this.isRank = isRank;
     }
 
     public Long getId() {

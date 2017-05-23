@@ -1,5 +1,6 @@
 package com.dky.common.param;
 
+import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.session.WebPageParameter;
 
 /**
@@ -45,8 +46,14 @@ public class ProductQueryParam extends WebPageParameter {
     private Long mDim13Id;
 
     private String name;
-
-    private String isRecommend;
+    /**
+     * 是否推荐款：默认不推荐
+     */
+    private String isRecommend = IsActiveEnum.NO.getCode();
+    /**
+     * 是否获取销量排行：默认不获取
+     */
+    private String isRank = IsActiveEnum.NO.getCode();
 
     public Long getmDimNew11Id() {
         return mDimNew11Id;
@@ -134,5 +141,13 @@ public class ProductQueryParam extends WebPageParameter {
 
     public void setIsRecommend(String isRecommend) {
         this.isRecommend = isRecommend;
+    }
+
+    public String getIsRank() {
+        return isRank;
+    }
+
+    public void setIsRank(String isRank) {
+        this.isRank = isRank;
     }
 }

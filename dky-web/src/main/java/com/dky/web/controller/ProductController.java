@@ -26,16 +26,13 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-
     @Autowired
     private PdtBasepriceService pdtBasepriceService;
-
 
     @RequestMapping(value = "page",name = "样衣查询分页")
     public ReturnT<PageList<ProductView>> queryPage(ProductQueryParam productQueryParam){
         return productService.findByPage(productQueryParam);
     }
-
 
     /**
      * 样衣详细信息查询
@@ -50,7 +47,6 @@ public class ProductController {
         return productService.getProductInfo(id);
     }
 
-
     /**
      * 查询胸围、衣长、肩宽、袖长列表
      * @param mProductId
@@ -63,7 +59,6 @@ public class ProductController {
         }
         return productService.queryValueList(mProductId);
     }
-
 
     /**
      * 查询价格列表

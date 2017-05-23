@@ -37,6 +37,10 @@ public class ProductView extends ResultObjectBase {
      * 是否收藏
      */
     private Integer iscollect;
+    /**
+     * 是否推荐
+     */
+    private String isRecommend;
 
     public String getName() {
         return name;
@@ -85,5 +89,13 @@ public class ProductView extends ResultObjectBase {
 
     public void setIscollect(Integer iscollect) {
         this.iscollect = iscollect;
+    }
+
+    public String getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(String isRecommend) {
+        this.isRecommend = isRecommend;
     }
 }
