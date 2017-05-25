@@ -293,7 +293,7 @@
       where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
     WHERE 1=1
     <include refid="whereClause"></include>
-    order by NVL(t1.ORDERNO,0) desc,t1.name asc
+    order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
   </sql>
 
   <sql id="whereClause">
@@ -359,7 +359,8 @@
     t1.MPTBELONGTYPE,
     (select b.description from AD_LIMITVALUE_GROUP a,AD_LIMITVALUE b
     where a.ISACTIVE = 'Y' and b.ISACTIVE = 'Y' and a.name  = 'MPTBELONGTYPE' and a.id = b.ad_limitvalue_group_id and b.value = t1.MPTBELONGTYPE) as mptbelongtypeText,
-    t6.*
+    t6.*,
+    t1.gw
     from M_PRODUCT t1
     LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
     LEFT JOIN
@@ -495,6 +496,16 @@
     AND a.id = t.m_color_id
     and t.isactive = 'Y'
     order by a.NAME
+  </select>
+
+  <select id="getColorDimListByProductId" parameterType="java.lang.Long" resultType="ProductColorView">
+    SELECT
+      t.m_dim_new14_id,
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t.M_DIM_NEW14_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW14' and t2.ISACTIVE = 'Y') as mDimNew14Text,
+      t.m_color AS colorName
+    FROM M_COLOR_2 t
+    WHERE t.m_product_id = #{mProductId,jdbcType=DECIMAL}
+    and t.isactive = 'Y'
   </select>
 
   <select id="getProductSizeList" parameterType="java.lang.Long" resultType="ProductSizeView">

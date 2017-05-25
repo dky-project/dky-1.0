@@ -25,6 +25,10 @@ public class ProductColorView extends ResultObjectBase {
      */
     private String colorValue;
     /**
+     *  品种
+     */
+    private String mDimNew14Text;
+    /**
      * 颜色描述
      */
     private String colorDesc;
@@ -67,5 +71,13 @@ public class ProductColorView extends ResultObjectBase {
 
     public void setColorDesc(String colorDesc) {
         this.colorDesc = colorDesc;
+    }
+
+    public String getmDimNew14Text() {
+        return mDimNew14Text;
+    }
+
+    public void setmDimNew14Text(String mDimNew14Text) {
+        this.mDimNew14Text = mDimNew14Text;
     }
 }

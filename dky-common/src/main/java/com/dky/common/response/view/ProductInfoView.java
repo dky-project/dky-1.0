@@ -107,6 +107,10 @@ public class ProductInfoView extends ResultObjectBase {
     private List<String> imgList;
 
     private String pdtPrice;
+    /**
+     * 杆位
+     */
+    private String gw;
 
     public String getName() {
         return name;
@@ -299,5 +303,13 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setPdtPrice(String pdtPrice) {
         this.pdtPrice = pdtPrice;
+    }
+
+    public String getGw() {
+        return gw;
+    }
+
+    public void setGw(String gw) {
+        this.gw = gw;
     }
 }

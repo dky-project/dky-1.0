@@ -7,9 +7,7 @@ import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.constats.GlobConts;
-import com.dky.common.param.ColorQueryParam;
-import com.dky.common.param.ProductApproveDetailParam;
-import com.dky.common.param.PzsJsonQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
@@ -115,6 +113,22 @@ public class DimNewServiceImpl implements DimNewService {
         List<ProductColorView> colorList = productMapper.getProductColorListByDimId(param.getmDimNew14Id());
         ReturnT<List<ProductColorView>> returnT = new ReturnT<>();
         returnT.setData(colorList);
+        return returnT.successDefault();
+    }
+
+    @Override
+    public ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param) {
+        List<ProductColorView> colorList = productMapper.getColorDimListByProductId(param.getmProductId());
+        ReturnT<List<ProductColorView>> returnT = new ReturnT<>();
+        returnT.setData(colorList);
+        return returnT.successDefault();
+    }
+
+    @Override
+    public ReturnT getSizeData(SizeDataQueryParam param) {
+        ReturnT returnT = new ReturnT();
+        String jsonStr = mapper.getSizeData(param.getPdt(),param.getXwValue());
+        returnT.setData(JSONObject.fromObject(jsonStr));
         return returnT.successDefault();
     }
 }

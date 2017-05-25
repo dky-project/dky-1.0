@@ -15,7 +15,7 @@ public class BMptApproveSaveParam extends SessionParameter {
      * 机构号
      */
     @NotNull(message = "机构号jgNo不能为空")
-    private Long jgNo;
+        private Long jgNo;
 
 
     /**

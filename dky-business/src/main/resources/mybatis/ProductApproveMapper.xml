@@ -1459,6 +1459,15 @@
       <if test="mDimNew14Id != null" >
         M_DIM_NEW14_ID,
       </if>
+      <if test="mDimNew15Id != null" >
+        M_DIM_NEW15_ID,
+      </if>
+      <if test="mDimNew16Id != null" >
+        M_DIM_NEW16_ID,
+      </if>
+      <if test="mDimNew17Id != null" >
+        M_DIM_NEW17_ID,
+      </if>
       <if test="colorValue != null" >
         COLORVALUE,
       </if>
@@ -1534,6 +1543,15 @@
       </if>
       <if test="mDimNew14Id != null" >
         #{mDimNew14Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew14Id != null" >
+        #{mDimNew15Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew14Id != null" >
+        #{mDimNew16Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDimNew14Id != null" >
+        #{mDimNew17Id,jdbcType=DECIMAL},
       </if>
       <if test="colorValue != null" >
         #{colorValue,jdbcType=DECIMAL},

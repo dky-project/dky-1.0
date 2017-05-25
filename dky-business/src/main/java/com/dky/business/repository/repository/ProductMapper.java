@@ -46,6 +46,13 @@ public interface ProductMapper extends BaseDao<Product,Long> {
     List<ProductColorView> getProductColorListByDimId(Long mDimNew14Id);
 
     /**
+     * 根据款号查询定制款号颜色列表
+     * @param mProductId
+     * @return
+     */
+    List<ProductColorView> getColorDimListByProductId(Long mProductId);
+
+    /**
      * 查询定制款号尺寸列表
      * @param mProductId
      * @return

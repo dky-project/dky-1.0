@@ -2,12 +2,9 @@ package com.dky.web.controller;
 
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.common.enums.DimFlagEnum;
-import com.dky.common.param.ColorQueryParam;
-import com.dky.common.param.DimNewParam;
-import com.dky.common.param.PzsJsonQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewListView;
-import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.response.view.ProductColorView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,5 +56,15 @@ public class DimNewController {
     @RequestMapping(value = "getColorList",name = "选择颜色列表")
     public ReturnT<List<ProductColorView>> getColorList(ColorQueryParam param){
         return dimNewService.getColorList(param);
+    }
+
+    @RequestMapping(value = "getColorDimList",name = "选择颜色品种列表")
+    public ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param){
+        return dimNewService.getColorDimList(param);
+    }
+
+    @RequestMapping(value = "getSizeData",name = "根据胸围获取尺寸数据")
+    public ReturnT getSizeData(SizeDataQueryParam param){
+        return dimNewService.getSizeData(param);
     }
 }
