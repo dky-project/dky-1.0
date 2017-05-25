@@ -1612,6 +1612,16 @@
   </insert>
 
   <select id="getMaxNo" resultType="java.lang.String">
-    select max(to_number(NO))+1 from m_product_approve
+    <![CDATA[ select NVL(max(to_number(NO)),0)+1 from m_product_approve
+    where  CZ_DATE = #{czDate}
+    AND NO = #{code} AND ISACTIVE = 'Y' ]]>
+  </select>
+
+  <select id="updateProductApproveList" parameterType="com.dky.common.bean.ProductApprove" >
+    update M_PRODUCT_APPROVE t set t.ISACTIVE = &apos;N&apos;,t.MODIFIEDDATE = sysdate
+    WHERE t.ISAPPROVE = 1 and t.ID IN
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
 </mapper>

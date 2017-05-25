@@ -115,8 +115,9 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
-    public ReturnT updateProductApprove() {
-        return null;
+    public ReturnT updateProductApproveList(Long[] ids) {
+        mapper.updateProductApproveList(ids);
+        return new ReturnT().successDefault();
     }
 
     @Override

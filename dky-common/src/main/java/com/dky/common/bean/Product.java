@@ -492,6 +492,16 @@ public class Product extends PojoObjectBase {
 
     private String code;
 
+    private String version;
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     public String getCode() {
         return code;
     }

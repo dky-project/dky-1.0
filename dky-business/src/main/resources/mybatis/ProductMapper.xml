@@ -296,6 +296,21 @@
     order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
   </sql>
 
+  <sql id="queryAllTmpl">
+    SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,
+            t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend
+    FROM
+    <choose>
+    <when test="isRank != &quot;N&quot;">v_query_product1_all t1</when>
+    <otherwise>v_query_product_all t1</otherwise>
+    </choose>
+    LEFT JOIN (select * from m_product_collect t
+      where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
+    WHERE 1=1
+    <include refid="whereClause"></include>
+    order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
+  </sql>
+
   <sql id="whereClause">
     <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
     <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
@@ -314,7 +329,10 @@
   <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
     SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend FROM (
     SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,ROWNUM RN
-    from (<include refid="queryTmpl"></include> )
+    from (<choose>
+          <when test="version == &quot;1.0.0&quot;"><include refid="queryTmpl"></include></when>
+          <otherwise><include refid="queryAllTmpl"></include></otherwise>
+        </choose>)
     WHERE 1=1
     <if test="null!=requestOffset">
       AND ROWNUM <![CDATA[ <= ]]>#{requestCount}

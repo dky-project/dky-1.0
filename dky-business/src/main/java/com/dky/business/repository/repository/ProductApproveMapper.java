@@ -36,5 +36,7 @@ public interface ProductApproveMapper {
 
     String getScorder(Map<String,Object> map);
 
-    String getMaxNo();
+    String getMaxNo(@Param("code")String code,@Param("czDate")String czDate);
+
+    void updateProductApproveList(@Param("ids") Long[] ids);
 }

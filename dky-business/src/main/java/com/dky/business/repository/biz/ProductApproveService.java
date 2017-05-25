@@ -20,7 +20,7 @@ public interface ProductApproveService {
 
     ReturnT<ProductApproveReturnView> addProductDefault(AddProductApproveParam param);
 
-    ReturnT updateProductApprove();
+    ReturnT updateProductApproveList(Long[] ids);
 
     ReturnT<List<ProductApproveInfoView>>  queryProductApproveInfoList(Long[] ids);
 

@@ -48,6 +48,11 @@ public class ProductApproveController {
         return approveService.queryProductApproveInfoList(ids);
     }
 
+    @RequestMapping(value = "updateProductApprove",name = "删除订单")
+    public ReturnT updateProductApprove(Long[] ids){
+        return approveService.updateProductApproveList(ids);
+    }
+
     @RequestMapping(value = "getProductApproveTitle",name = "定制页面第一步")
     public ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param){
         return dimNewService.getProductApproveTitle(param);

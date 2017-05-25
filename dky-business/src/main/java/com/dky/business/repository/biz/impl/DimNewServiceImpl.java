@@ -89,7 +89,7 @@ public class DimNewServiceImpl implements DimNewService {
         view.setOrderNo(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         view.setDimList(mapper.getDimClob());
         view.setStaticDimList(GlobConts.dimList);
-        view.setNo(productApproveMapper.getMaxNo());
+        view.setNo(productApproveMapper.getMaxNo(view.getCode(),view.getCzDate()));
         ReturnT<ProductApproveTitleView> returnT = new ReturnT<>();
         returnT.setData(view);
         return returnT.successDefault();
