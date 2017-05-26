@@ -1614,7 +1614,7 @@
   <select id="getMaxNo" resultType="java.lang.String">
     <![CDATA[ select NVL(max(to_number(NO)),0)+1 from m_product_approve
     where  CZ_DATE = #{czDate}
-    AND NO = #{code} AND ISACTIVE = 'Y' ]]>
+    AND jgno = #{code} AND ISACTIVE = 'Y' ]]>
   </select>
 
   <select id="updateProductApproveList" parameterType="com.dky.common.bean.ProductApprove" >

@@ -24,7 +24,7 @@ public interface ProductApproveMapper {
 
     int updateProductApproveById(ProductApprove productApprove);
 
-    void bMptApproveSave(@Param("jgNo")Long jgNo,
+    void bMptApproveSave(@Param("jgNo")String jgNo,
                          @Param("productName")String productName,
                          @Param("sizeId")Long sizeId,
                          @Param("colorId")Long colorId);

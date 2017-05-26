@@ -15,8 +15,7 @@ public class BMptApproveSaveParam extends SessionParameter {
      * 机构号
      */
     @NotNull(message = "机构号jgNo不能为空")
-        private Long jgNo;
-
+    private String jgNo;
 
     /**
      * 款号名称
@@ -24,13 +23,11 @@ public class BMptApproveSaveParam extends SessionParameter {
     @NotEmpty(message = "款号名称productName不能为空")
     private String productName;
 
-
     /**
      * 尺寸
      */
     @NotNull(message = "尺寸sizeId不能为空")
     private Long sizeId;
-
 
     /**
      * 颜色
@@ -38,11 +35,11 @@ public class BMptApproveSaveParam extends SessionParameter {
     @NotNull(message = "颜色colorId不能为空")
     private Long colorId;
 
-    public Long getJgNo() {
+    public String getJgNo() {
         return jgNo;
     }
 
-    public void setJgNo(Long jgNo) {
+    public void setJgNo(String jgNo) {
         this.jgNo = jgNo;
     }
 
