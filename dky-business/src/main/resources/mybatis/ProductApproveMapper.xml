@@ -185,7 +185,7 @@
         (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW17_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW17' and t2.ISACTIVE = 'Y') as mDimNew17Text,
         t1.XW_VALUE as xwValue,
         t1.YC_VALUE as ycValue
-        from M_PRODUCT_APPROVE t1
+        from v_m_product_approve t1
         WHERE t1.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
         ORDER BY t1.CZ_DATE DESC
@@ -201,7 +201,7 @@
 
     <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
         SELECT count(1)
-        from M_PRODUCT_APPROVE t1
+        from v_m_product_approve t1
         WHERE t1.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
     </select>
