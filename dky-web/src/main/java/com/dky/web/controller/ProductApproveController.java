@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 订单controller
@@ -69,16 +71,35 @@ public class ProductApproveController {
 
     @RequestMapping(value = "addProductApprove",name = "下单保存基础款类型订单接口")
     public ReturnT<ProductApproveReturnView> addProductApprove(AddProductApproveParam param){
+        if (!judgeContainsStr(param.getNo())){
+            return  new ReturnT<>().failureData("编号必须为数字！");
+        }
+        if (Integer.valueOf(param.getNo()) > 999){
+            return  new ReturnT<>().failureData("编号最大不能超过999！");
+        }
         return approveService.insertProductApprove(param);
     }
 
     @RequestMapping(value = "addProductDefault",name = "收藏款号下单")
     public ReturnT<ProductApproveReturnView> addProductDefault(AddProductApproveParam param){
+        if (!judgeContainsStr(param.getNo())){
+            return  new ReturnT<>().failureData("编号必须为数字！");
+        }
+        if (Integer.valueOf(param.getNo()) > 999){
+            return  new ReturnT<>().failureData("编号最大不能超过999！");
+        }
         return approveService.addProductDefault(param);
     }
 
     @RequestMapping(value = "confirmProductApprove",name = "确认下单")
     public ReturnT confirmProductApprove(UpdateProductApproveParam param){
         return approveService.confirmProductApprove(param);
+    }
+
+    public boolean judgeContainsStr(String no) {
+        //String regex=".*[a-zA-Z]+.*";
+        String regex="^\\d+$";
+        Matcher m= Pattern.compile(regex).matcher(no);
+        return m.matches();
     }
 }
