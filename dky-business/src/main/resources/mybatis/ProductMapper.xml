@@ -281,13 +281,25 @@
     DESCRIPTION7, C_CUSTOMER_ID1, M_DIM22_ID, TO_STOREID, ACTUALPRICE
   </sql>
 
+  <sql id="queryVersion">
+    <choose>
+      <when test="version == &quot;1.0.0&quot;">v_product_inner_order</when>
+      <when test="version == &quot;2.0.0&quot;">v_product_outer_order</when>
+      <when test="version == &quot;3.0.0&quot;">v_product_jm</when>
+      <when test="version == &quot;4.0.0&quot;">v_product_zm</when>
+      <otherwise>v_query_product</otherwise>
+    </choose>
+  </sql>
+
   <sql id="queryTmpl">
     SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,
             t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend
     FROM
     <choose>
-    <when test="isRank != &quot;N&quot;">v_query_product1 t1</when>
-    <otherwise>v_query_product t1</otherwise>
+    <when test="isRank != &quot;N&quot;">
+      (select t1.*,t2.sumQty from <include refid="queryVersion" /> t1,v_query_product_rank t2
+      where t1.name = t2.PDT) t1</when>
+    <otherwise><include refid="queryVersion" /> t1</otherwise>
     </choose>
     LEFT JOIN (select * from m_product_collect t
       where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
@@ -296,19 +308,13 @@
     order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
   </sql>
 
-  <sql id="queryAllTmpl">
-    SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,
-            t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend
-    FROM
+  <sql id="queryCount">
     <choose>
-    <when test="isRank != &quot;N&quot;">v_query_product1_all t1</when>
-    <otherwise>v_query_product_all t1</otherwise>
-    </choose>
-    LEFT JOIN (select * from m_product_collect t
-      where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
-    WHERE 1=1
-    <include refid="whereClause"></include>
-    order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
+      <when test="isRank != &quot;N&quot;">
+      (select t1.* from <include refid="queryVersion" /> t1,v_query_product_rank t2
+      where t1.name = t2.PDT) t1</when>
+    <otherwise><include refid="queryVersion" /> t1</otherwise>
+  </choose>
   </sql>
 
   <sql id="whereClause">
@@ -329,10 +335,7 @@
   <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.bean.Product">
     SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend FROM (
     SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,ROWNUM RN
-    from (<choose>
-          <when test="version == &quot;1.0.0&quot;"><include refid="queryTmpl"></include></when>
-          <otherwise><include refid="queryAllTmpl"></include></otherwise>
-        </choose>)
+    from (<include refid="queryTmpl"></include>)
     WHERE 1=1
     <if test="null!=requestOffset">
       AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
@@ -345,15 +348,13 @@
   </select>
 
   <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
-    SELECT count(1)
-    FROM
     <choose>
-      <when test="isRank != &quot;N&quot;">v_query_product1 t1</when>
-      <otherwise>v_query_product t1</otherwise>
+      <when test="isRank != &quot;N&quot;">
+        select count(1) from <include refid="queryVersion" /> t1,v_query_product_rank t2
+        where t1.name = t2.PDT
+      </when>
+      <otherwise>select count(1) from <include refid="queryVersion" /> t1 WHERE 1=1</otherwise>
     </choose>
-    LEFT JOIN (select * from m_product_collect t
-    where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
-    WHERE 1=1
     <include refid="whereClause"></include>
   </select>
 
