@@ -12,23 +12,23 @@ public class ProductCusmptcateView extends ResultObjectBase {
     /**
      * 挂件袖肥下拉框
      */
-    private String[] gjxfShow;
+    private String gjxfShow;
     /**
      * 下边下拉框
      */
-    private String[] xbShow;
+    private String xbShow;
     /**
      * 袖口下拉框
      */
-    private String[] xkShow;
+    private String xkShow;
     /**
      * 门襟组织下拉框
      */
-    private String[] mjzzShow;
+    private String mjzzShow;
     /**
      * 领边下拉框
      */
-    private String[] lbShow;
+    private String lbShow;
     /**
      * 胸围下拉框（json字符串，键为value）
      */
@@ -36,19 +36,19 @@ public class ProductCusmptcateView extends ResultObjectBase {
     /**
      * 领型下拉框
      */
-    private String[] lxShow;
+    private String lxShow;
     /**
      * 肩型下拉框
      */
-    private String[] jxShow;
+    private String jxShow;
     /**
      * 袖型下拉框
      */
-    private String[] xxShow;
+    private String xxShow;
     /**
      * 式样下拉框
      */
-    private String[] syShow;
+    private String syShow;
     /**
      * 是否配置衣长
      * 值为“Y”时，请选择收腰下拉框下面的长[文本框]不可编辑
@@ -70,44 +70,44 @@ public class ProductCusmptcateView extends ResultObjectBase {
      */
     private String isHxAffix;
 
-    public String[] getGjxfShow() {
+    public String getGjxfShow() {
         return gjxfShow;
     }
 
     public void setGjxfShow(String gjxfShow) {
-        this.gjxfShow = gjxfShow.split(",");
+        this.gjxfShow = gjxfShow.replaceAll("'","\"");
     }
 
-    public String[] getXbShow() {
+    public String getXbShow() {
         return xbShow;
     }
 
     public void setXbShow(String xbShow) {
-        this.xbShow = xbShow.split(",");
+        this.xbShow = xbShow.replaceAll("'","\"");
     }
 
-    public String[] getXkShow() {
+    public String getXkShow() {
         return xkShow;
     }
 
     public void setXkShow(String xkShow) {
-        this.xkShow = xkShow.split(",");
+        this.xkShow = xkShow.replaceAll("'","\"");
     }
 
-    public String[] getMjzzShow() {
+    public String getMjzzShow() {
         return mjzzShow;
     }
 
     public void setMjzzShow(String mjzzShow) {
-        this.mjzzShow = mjzzShow.split(",");
+        this.mjzzShow = mjzzShow.replaceAll("'","\"");
     }
 
-    public String[] getLbShow() {
+    public String getLbShow() {
         return lbShow;
     }
 
     public void setLbShow(String lbShow) {
-        this.lbShow = lbShow.split(",");
+        this.lbShow = lbShow.replaceAll("'","\"");
     }
 
     public String getXwArray() {
@@ -118,36 +118,36 @@ public class ProductCusmptcateView extends ResultObjectBase {
         this.xwArray = xwArray.replaceAll("'","\"");
     }
 
-    public String[] getLxShow() {
+    public String getLxShow() {
         return lxShow;
     }
 
     public void setLxShow(String lxShow) {
-        this.lxShow = lxShow.split(",");
+        this.lxShow = lxShow.replaceAll("'","\"");
     }
 
-    public String[] getJxShow() {
+    public String getJxShow() {
         return jxShow;
     }
 
     public void setJxShow(String jxShow) {
-        this.jxShow = jxShow.split(",");
+        this.jxShow = jxShow.replaceAll("'","\"");
     }
 
-    public String[] getXxShow() {
+    public String getXxShow() {
         return xxShow;
     }
 
     public void setXxShow(String xxShow) {
-        this.xxShow = xxShow.split(",");
+        this.xxShow = xxShow.replaceAll("'","\"");
     }
 
-    public String[] getSyShow() {
+    public String getSyShow() {
         return syShow;
     }
 
     public void setSyShow(String syShow) {
-        this.syShow = syShow.split(",");
+        this.syShow = syShow.replaceAll("'","\"");
     }
 
     public String getIsYcAffix() {
