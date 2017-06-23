@@ -36,6 +36,10 @@ public class ReturnT<T> implements Serializable {
         this.success = success;
     }
 
+    public boolean isFailed() {
+        return !this.isSuccess();
+    }
+
     public ReturnT sucessDataMsg(String msg){
         this.success = ResultCodeEnum.SUCCESS.isSuccess();
         this.msg = msg;

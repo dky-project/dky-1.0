@@ -31,7 +31,6 @@ public interface ProductApproveMapper {
 
     void productApproveAc(@Param("id")Long id);
 
-
     void addProductDefaultAc(Map<String,Object> map);
 
     String getScorder(Map<String,Object> map);

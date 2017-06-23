@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.cache.LoadingCacheManager;
 import com.dky.business.repository.repository.DimNewMapper;
@@ -7,15 +8,16 @@ import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.FlagEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.response.view.ProductColorView;
+import com.dky.common.response.view.PzJsonResultView;
 import com.dky.common.utils.DateUtils;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,15 +98,47 @@ public class DimNewServiceImpl implements DimNewService {
     }
 
     @Override
-    public ReturnT getpzsJson(PzsJsonQueryParam param) {
-        String result = mapper.getpzsJson(param);
-        if(StringUtils.isNoneEmpty(result)){
-            result = result.replaceAll("'","\"");
+    public ReturnT<PzJsonResultView> getpzsJson(PzsJsonQueryParam param) {
+        PzJsonResultView view = new PzJsonResultView();
+        if (FlagEnum.ZZFLAG.getCode().equals(param.getFlag())){
+            String result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZzJson(JSONObject.parseObject(result).getString("value"));
+            }
+            param.setFlag(FlagEnum.ZXFLAG.getCode());
+            result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZxJson(JSONObject.parseObject(result).getString("value"));
+            }
+            param.setFlag(FlagEnum.ZBFLAG.getCode());
+            result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZbJson(JSONObject.parseObject(result).getString("value"));
+            }
+        }else if (FlagEnum.ZXFLAG.getCode().equals(param.getFlag())){
+            String result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZxJson(JSONObject.parseObject(result).getString("value"));
+            }
+            param.setFlag(FlagEnum.ZBFLAG.getCode());
+            result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZbJson(JSONObject.parseObject(result).getString("value"));
+            }
+        }else if(FlagEnum.ZBFLAG.getCode().equals(param.getFlag())){
+            String result = mapper.getpzsJson(param);
+            if(StringUtils.isNoneEmpty(result)){
+                result = result.replaceAll("'","\"");
+                view.setZbJson(JSONObject.parseObject(result).getString("value"));
+            }
         }
-        JSONObject jsonObject  = new JSONObject();
-
         ReturnT returnT = new ReturnT();
-        returnT.setData(jsonObject.fromObject(result));
+        returnT.setData(view);
         return returnT.successDefault();
     }
 
@@ -128,7 +162,7 @@ public class DimNewServiceImpl implements DimNewService {
     public ReturnT getSizeData(SizeDataQueryParam param) {
         ReturnT returnT = new ReturnT();
         String jsonStr = mapper.getSizeData(param.getPdt(),param.getXwValue());
-        returnT.setData(JSONObject.fromObject(jsonStr));
+        returnT.setData(JSONObject.parseObject(jsonStr));
         return returnT.successDefault();
     }
 }

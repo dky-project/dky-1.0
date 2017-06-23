@@ -348,6 +348,9 @@
       <if test="xcValue != null" >
         XC_VALUE,
       </if>
+      <if test="xcValue != null" >
+        XC_VALUE1,
+      </if>
       <if test="xbcValue != null" >
         XBC_VALUE,
       </if>
@@ -735,6 +738,9 @@
       </if>
       <if test="jkValue != null" >
         #{jkValue,jdbcType=DECIMAL},
+      </if>
+      <if test="xcValue != null" >
+        #{xcValue,jdbcType=DECIMAL},
       </if>
       <if test="xcValue != null" >
         #{xcValue,jdbcType=DECIMAL},
@@ -1428,7 +1434,7 @@
     </insert>
 
     <update id="productApproveAc" statementType="CALLABLE">
-      {call  M_PRODUCT_APPROVE_AC(#{id}) }
+      {call  update_product_approve(#{id}) }
     </update>
 
     <select id="getScorder" statementType="CALLABLE" parameterType="java.util.Map">

@@ -5,6 +5,7 @@ import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductApproveTitleView;
 import com.dky.common.response.view.ProductColorView;
+import com.dky.common.response.view.PzJsonResultView;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface DimNewService {
 
     ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param);
 
-    ReturnT getpzsJson(PzsJsonQueryParam param);
+    ReturnT<PzJsonResultView> getpzsJson(PzsJsonQueryParam param);
 
     ReturnT<List<ProductColorView>> getColorList(ColorQueryParam param);
 

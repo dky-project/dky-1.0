@@ -384,7 +384,7 @@
     LEFT JOIN B_PDT_MEDIA t5 on t1.id = t5.M_PRODUCT_ID
     LEFT JOIN
     (select a.M_PRODUCT_ID,
-    a.CLR_RANGE,
+    a.CLR_RANGE AS clrRange,
     (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW14_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW14' and t2.ISACTIVE = 'Y') as mDimNew14Text,
     (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE a.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
     a.XW_VALUE as defaultXwValue,
