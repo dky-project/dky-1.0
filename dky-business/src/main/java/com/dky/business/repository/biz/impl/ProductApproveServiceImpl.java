@@ -128,7 +128,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         approve.setJgno(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-        approve.setDocno(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+        approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();

@@ -421,7 +421,7 @@
     t.M_DIM_NEW12_ID AS mDimNew12Id,
     t.M_DIM_NEW18_ID AS mDimNew18Id,
     t.M_DIM_NEW45_ID AS mDimNew45Id,
-    t.XBC_VALUE,
+    t.XBC_VALUE AS xbcValue,
     t.M_DIM_NEW19_ID AS mDimNew19Id,
     t.M_DIM_NEW22_ID AS mDimNew22Id,
     t.M_DIM_NEW9_ID AS mDimNew9Id,
