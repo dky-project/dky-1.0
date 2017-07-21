@@ -6,6 +6,7 @@ import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.Product;
 import com.dky.common.param.ProductMadeQueryParam;
+import com.dky.common.param.ProductQueryBaseParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -59,6 +60,10 @@ public class ProductServiceImpl implements ProductService {
         return new ReturnT<>().sucessData(findPage(productQueryParam));
     }
 
+    @Override
+    public ReturnT<PageList<ProductView>> findByPage(ProductQueryBaseParam productQueryParam) {
+        return new ReturnT<>().sucessData(findPage(productQueryParam));
+    }
 
     /**
      * 查询胸围、衣长、肩宽、袖长
@@ -76,6 +81,12 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(productQueryParam, product);
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(productQueryParam.getSessionUser().getEmail());
         product.setCode(userMap!=null?userMap.get("CODE"):productQueryParam.getSessionUser().getEmail());
+        return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
+    }
+    private PageList<ProductView> findPage(ProductQueryBaseParam productQueryParam) {
+        Product product = new Product();
+        BeanUtils.copyProperties(productQueryParam, product);
+        product.setCode("99999");
         return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 

@@ -69,9 +69,21 @@
             <mvc:exclude-mapping path="/user/loginUser"/>
             <mvc:exclude-mapping path="/dimNew/*"/>
             <mvc:exclude-mapping path="/boot/queryValid"/>
+            <mvc:exclude-mapping path="/boot/page"/>
+            <mvc:exclude-mapping path="/boot/pageList"/>
+            <mvc:exclude-mapping path="/assets/**"/>
             <bean class="com.dky.web.interceptor.SessionInterceptor"/>
         </mvc:interceptor>
 
     </mvc:interceptors>
 
+    <mvc:resources mapping="/assets/**" location="/assets/" />
+
+    <mvc:default-servlet-handler/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 </beans>

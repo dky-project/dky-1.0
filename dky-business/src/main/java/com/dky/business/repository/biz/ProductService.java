@@ -1,11 +1,14 @@
 package com.dky.business.repository.biz;
 
-import com.dky.common.bean.Product;
 import com.dky.common.param.ProductMadeQueryParam;
+import com.dky.common.param.ProductQueryBaseParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.*;
+import com.dky.common.response.view.ProductInfoView;
+import com.dky.common.response.view.ProductMadePageView;
+import com.dky.common.response.view.ProductValueView;
+import com.dky.common.response.view.ProductView;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public interface ProductService{
     ReturnT<ProductInfoView> getProductInfo(Long id);
 
     ReturnT<PageList<ProductView>> findByPage(ProductQueryParam productQueryParam);
+
+    ReturnT<PageList<ProductView>> findByPage(ProductQueryBaseParam productQueryParam);
 
     ReturnT<List<ProductValueView>> queryValueList(Long mProductId);
 
