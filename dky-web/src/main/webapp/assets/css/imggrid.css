@@ -3,7 +3,7 @@
 li,ol,ul{list-style:none}
 .imggrid-separator{height:18px;border:none;border-left:1px solid #ddd}
 .imggrid-disabled{opacity:.35}
-.imggrid-list{position:relative; margin:0;padding:0;float:none; overflow-y:auto}
+.imggrid-list{position:relative; margin:0;padding:0;float:none; overflow-y:hidden}
 .imggrid-list ul li{float:left;width:100px;padding:2px;height:100px;margin:2px}
 .imggrid-list ul li:hover{border:solid 1px #ccc}
 .imggrid-list ul li img{width:100%}

@@ -81,6 +81,7 @@
         var mDimNew14Id = $("#mDimNew14Id").val()=='undefined'?'':$("#mDimNew14Id").val();
         var mDimNew15Id = $("#mDimNew15Id").val()=='undefined'?'':$("#mDimNew15Id").val();
         var mDim13Id = $("#mDim13Id").val()=='undefined'?'':$("#mDim13Id").val();
+        var name = $("#name").val()=='undefined'?'':$("#name").val();
         $('#imggrid').imgGrid({
             title: '样衣查询',
             type: 'GET',//GET|POST
@@ -89,14 +90,15 @@
                     mDimNew13Id:mDimNew13Id,
                     mDimNew14Id:mDimNew14Id,
                     mDimNew15Id:mDimNew15Id,
-                    mDim13Id:mDim13Id},//url参数
-            height: '800px',
-            width: '900px',
-            img: { width: '210px',height:'350px', animate: 'zoomIn' },//图片宽度，及动画效果
+                    mDim13Id:mDim13Id,
+                    name:name},//url参数
+            height: '100%',
+            width: '100%',
+            img: {width: '203px',height:'350px', animate: 'zoomIn' },//图片宽度，及动画效果
             onClick: function (obj, index, item) {//点击图片事件
             },
             render: function (item, index) {//自定义显示图片
-                var str = '<img style="height:300px;" id="img_'+index+'" src="' + item.imgUrl1 + '" />';
+                var str = '<img style="height:300px;" id="img_'+index+'" src="' + item.bigImgUrl + '" />';
                 str += '<h3>'+item.name+'</h3>';
                 return str;
             }

@@ -19,7 +19,7 @@
             height: 'auto',
             loading: '<div></div><div></div>',
             pageselect: [10, 20, 50, 100],
-            page: { total: 0, records: 0, pageSize: 12, pageNo: 0 },
+            page: { total: 0, records: 0, pageSize: 18, pageNo: 0 },
             img: { width: '100px', animate: 'zoomIn' }
         },
         this.options = $.extend({}, this.defaults, option)
@@ -42,7 +42,7 @@
                 str.push('    <input type="button" id="queryBtn" onclick="queryBtn()" value="查询"/></div>');
             }
             */
-            str.push('    <div class="panel-body" style="padding:2px">');
+            str.push('    <div class="panel-body" style="padding:2px;margin-left: 20px;">');
             str.push('        <div class="imggrid-list" style="height:' + $this.options.height + '">');
             str.push('            <ul>');
             str.push('            </ul>');

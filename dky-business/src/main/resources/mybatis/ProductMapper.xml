@@ -327,7 +327,7 @@
     <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
     <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
     <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
-    <if test="null!=name">AND t1.name = #{name}</if>
+    <if test="null!=name and ''!=name">AND t1.name = #{name}</if>
     <if test="null!=isRecommend">AND nvl(t1.IS_RECOMMEND,'N') = #{isRecommend}</if>
   </sql>
 
