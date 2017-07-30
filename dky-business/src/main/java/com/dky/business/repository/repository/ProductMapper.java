@@ -65,4 +65,11 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @return
      */
     ProductCusmptcateView getProductCusmptcateInfo(Long mProductId);
+
+    /**
+     * 查询颜色尺寸矩阵
+     * @param productName
+     * @return
+     */
+    List<ColorSizeView> getColorSizeList(String productName);
 }

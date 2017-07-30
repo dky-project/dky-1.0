@@ -18,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -132,6 +133,30 @@ public class ProductServiceImpl implements ProductService {
         view.setProductMadeInfoView(madeInfoView);
         ReturnT<ProductMadePageView> result = new ReturnT<>();
         result.setData(view);
+        return result.successDefault();
+    }
+
+    @Override
+    public ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param) {
+        List<ColorSizeView> list = mapper.getColorSizeList(param.getProductName());
+        if (list.size() == 0){
+            return new ReturnT<>().failureData("该款无可用尺寸颜色！");
+        }
+        List<String> colorList = new ArrayList<>();
+        List<String> sizeList = new ArrayList<>();
+        for(ColorSizeView view : list){
+            if (!colorList.contains(view.getValue1Code())){
+                colorList.add(view.getValue1Code());
+            }
+            if (!sizeList.contains(view.getValue())){
+                sizeList.add(view.getValue());
+            }
+        }
+        ReturnT<ColorSizeListView> result = new ReturnT<>();
+        ColorSizeListView resultView = new ColorSizeListView();
+        resultView.setColorList(colorList);
+        resultView.setSizeList(sizeList);
+        result.setData(resultView);
         return result.successDefault();
     }
 }
