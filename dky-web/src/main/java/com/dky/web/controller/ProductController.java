@@ -3,9 +3,11 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.PdtBasepriceService;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.common.bean.PdtBaseprice;
+import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.ColorSizeListView;
 import com.dky.common.response.view.ProductInfoView;
 import com.dky.common.response.view.ProductValueView;
 import com.dky.common.response.view.ProductView;
@@ -71,5 +73,15 @@ public class ProductController {
             return new ReturnT<>().failureData("mProductId不能为空");
         }
         return pdtBasepriceService.queryPriceListByProductId(mProductId);
+    }
+
+    /**
+     * 查询颜色尺寸矩阵列表
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/queryColorSizeList",name = "查询颜色尺寸矩阵列表")
+    public ReturnT<ColorSizeListView> queryPriceListByProductId(ProductMadeQueryParam param){
+        return productService.getColorSizeList(param);
     }
 }

@@ -562,4 +562,17 @@
     from M_PRODUCT
     WHERE name = #{name,jdbcType=VARCHAR}
   </select>
+
+  <select id="getColorSizeList" parameterType="java.lang.String" resultType="ColorSizeView">
+    SELECT a.value1_code as value1Code, d.VALUE, a.value1
+    FROM m_attributesetinstance a, m_product_alias b,m_product c,m_size d
+      WHERE c.name = #{productName,jdbcType=VARCHAR}
+      AND a.id = b.m_attributesetinstance_id
+      AND b.m_product_id=c.id
+      and c.m_sizegroup_id=d.M_ATTRIBUTE_ID
+      and a.value2_id=d.ID
+      and d.id not in (1371,1372)
+      and b.id not in(38970,35276)
+      order by d.MARTIXCOL
+  </select>
 </mapper>

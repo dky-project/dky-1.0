@@ -5,10 +5,7 @@ import com.dky.common.param.ProductQueryBaseParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.ProductInfoView;
-import com.dky.common.response.view.ProductMadePageView;
-import com.dky.common.response.view.ProductValueView;
-import com.dky.common.response.view.ProductView;
+import com.dky.common.response.view.*;
 
 import java.util.List;
 
@@ -32,4 +29,6 @@ public interface ProductService{
     ReturnT<List<ProductValueView>> queryValueList(Long mProductId);
 
     ReturnT<ProductMadePageView> getMadeInfoByProductName(ProductMadeQueryParam param);
+
+    ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param);
 }

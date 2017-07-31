@@ -266,6 +266,8 @@ public class ProductApprove extends PojoObjectBase {
 
     private Date notime;
 
+    private Long sum;
+
     public Long getId() {
         return id;
     }

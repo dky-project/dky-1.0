@@ -49,6 +49,10 @@ public class BootController {
     public ModelAndView pageHtml(){
         return new ModelAndView("page");
     }
+    @RequestMapping("table")
+    public ModelAndView tableHtml(){
+        return new ModelAndView("table");
+    }
 
     @RequestMapping(value = "pageList",name = "样衣查询分页")
     public ReturnT<PageList<ProductView>> queryPage(ProductQueryBaseParam productQueryParam){

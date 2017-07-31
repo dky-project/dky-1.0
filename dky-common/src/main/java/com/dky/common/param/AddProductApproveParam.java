@@ -337,12 +337,14 @@ public class AddProductApproveParam extends SessionParameter {
      * 净尺寸：实际袖长
      */
     private String sjxcValue;
-
-
     /**
      * 订单号
      */
     private String orderNo;
+    /**
+     * 数量
+     */
+    private Long sum;
 
     public String getPdt() {
         return pdt;
@@ -990,5 +992,13 @@ public class AddProductApproveParam extends SessionParameter {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public Long getSum() {
+        return sum;
+    }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
     }
 }
