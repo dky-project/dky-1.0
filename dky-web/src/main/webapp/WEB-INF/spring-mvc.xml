@@ -69,6 +69,7 @@
             <mvc:exclude-mapping path="/user/loginUser"/>
             <mvc:exclude-mapping path="/dimNew/*"/>
             <mvc:exclude-mapping path="/boot/*"/>
+            <mvc:exclude-mapping path="/product/queryColorSizeList"/>
             <mvc:exclude-mapping path="/assets/**"/>
             <bean class="com.dky.web.interceptor.SessionInterceptor"/>
         </mvc:interceptor>

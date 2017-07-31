@@ -1525,6 +1525,9 @@
       <if test="shRemark != null" >
         sh_remark,
       </if>
+      <if test="sum != null" >
+        sum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1609,6 +1612,9 @@
       </if>
       <if test="shRemark != null" >
         #{shRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>

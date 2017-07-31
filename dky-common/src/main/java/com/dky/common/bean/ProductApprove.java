@@ -1315,4 +1315,12 @@ public class ProductApprove extends PojoObjectBase {
     public void setNotime(Date notime) {
         this.notime = notime;
     }
+
+    public Long getSum() {
+        return sum;
+    }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
+    }
 }
