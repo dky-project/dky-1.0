@@ -92,7 +92,7 @@
                     mDimNew15Id:mDimNew15Id,
                     mDim13Id:mDim13Id,
                     name:name},//url参数
-            height: '100%',
+            height: '900px',
             width: '100%',
             img: {width: '203px',height:'350px', animate: 'zoomIn' },//图片宽度，及动画效果
             onClick: function (obj, index, item) {//点击图片事件

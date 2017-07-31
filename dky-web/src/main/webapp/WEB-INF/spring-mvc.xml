@@ -75,10 +75,6 @@
 
     </mvc:interceptors>
 
-    <mvc:resources mapping="/assets/**" location="/assets/" />
-
-    <mvc:default-servlet-handler/>
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/page/"/>
