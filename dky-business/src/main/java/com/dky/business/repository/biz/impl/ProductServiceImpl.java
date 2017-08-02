@@ -138,25 +138,57 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param) {
+        Product product = new Product();
+        product.setName(param.getProductName());
+        product = mapper.get(product);
+        if (product == null) {
+            return new ReturnT<>().failureData("没有查到该款号");
+        }
         List<ColorSizeView> list = mapper.getColorSizeList(param.getProductName());
         if (list.size() == 0){
             return new ReturnT<>().failureData("该款无可用尺寸颜色！");
         }
-        List<String> colorList = new ArrayList<>();
-        List<String> sizeList = new ArrayList<>();
-        for(ColorSizeView view : list){
-            if (!colorList.contains(view.getValue1Code())){
-                colorList.add(view.getValue1Code());
+        List<ColorSizeView> colorList = new ArrayList<>();
+        List<ColorSizeView> sizeList = new ArrayList<>();
+//        for(ColorSizeView view : list){
+//            if (!colorList.contains(view.getValue1Code())){
+//                colorList.add(view);
+//            }
+//            if (!sizeList.contains(view.getValue())){
+//                sizeList.add(view);
+//            }
+//        }
+        int index=0;
+        while(index<list.size()) {
+            if (distinct(list,index,Boolean.TRUE)){
+                colorList.add(list.get(index));
             }
-            if (!sizeList.contains(view.getValue())){
-                sizeList.add(view.getValue());
+            if (distinct(list,index,Boolean.FALSE)){
+                sizeList.add(list.get(index));
             }
+            index ++;
         }
         ReturnT<ColorSizeListView> result = new ReturnT<>();
         ColorSizeListView resultView = new ColorSizeListView();
         resultView.setColorList(colorList);
         resultView.setSizeList(sizeList);
+        resultView.setmProductId(product.getId());
         result.setData(resultView);
         return result.successDefault();
+    }
+
+    public boolean distinct(List<ColorSizeView> list,int index,boolean colorOrSize){
+        boolean isSame = true;
+        for(int i=index+1;i<list.size();i++){
+            if (list.get(i).getValue1Code().equals(list.get(index).getValue1Code()) && colorOrSize){
+                isSame =  false;
+                break;
+            }
+            if (list.get(i).getValue().equals(list.get(index).getValue()) && !colorOrSize){
+                isSame = false;
+                break;
+            }
+        }
+        return isSame;
     }
 }

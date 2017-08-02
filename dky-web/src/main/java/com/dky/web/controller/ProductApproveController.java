@@ -1,5 +1,8 @@
 package com.dky.web.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.biz.ProductService;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -94,6 +98,22 @@ public class ProductApproveController {
     @RequestMapping(value = "confirmProductApprove",name = "确认下单")
     public ReturnT confirmProductApprove(UpdateProductApproveParam param){
         return approveService.confirmProductApprove(param);
+    }
+
+    @RequestMapping(value = "tableApproveSave",name = "下单保存大货类型订单接口")
+    public ReturnT tableApproveSave(TableApproveSaveParam param){
+        JSONArray array = JSON.parseArray(param.getItemDatas());
+        Iterator<Object> it = array.iterator();
+        while (it.hasNext()) {
+            JSONObject json = (JSONObject) it.next();
+            BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
+            bMptApproveSaveParam.setProductName(param.getProductName());
+            bMptApproveSaveParam.setJgNo(param.getJgNo());
+            bMptApproveSaveParam.setColorId(json.getLong("color"));
+            bMptApproveSaveParam.setSizeId(json.getLong("size"));
+            approveService.bMptApproveSave(bMptApproveSaveParam);
+        }
+        return new ReturnT().successDefault();
     }
 
     public boolean judgeContainsStr(String no) {

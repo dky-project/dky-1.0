@@ -2,6 +2,8 @@ package com.dky.common.response.view;
 
 import com.dky.common.response.ResultObjectBase;
 
+import java.math.BigDecimal;
+
 /**
  * Created by hang on 2017/1/4 0004.
  * @decription 订单查询列表
@@ -52,6 +54,14 @@ public class ProductApproveView extends ResultObjectBase {
      * 长
      */
     private String ycValue;
+    /**
+     * 专卖店价 * 数量
+     */
+    private BigDecimal totalAmount;
+    /**
+     * 数量
+     */
+    private Long sum;
 
     public Long getId() {
         return id;
@@ -139,5 +149,21 @@ public class ProductApproveView extends ResultObjectBase {
 
     public void setYcValue(String ycValue) {
         this.ycValue = ycValue;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Long getSum() {
+        return sum;
+    }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
     }
 }

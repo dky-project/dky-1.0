@@ -564,7 +564,7 @@
   </select>
 
   <select id="getColorSizeList" parameterType="java.lang.String" resultType="ColorSizeView">
-    SELECT a.value1_code as value1Code, d.VALUE, a.value1
+    SELECT a.value1_code as value1Code, d.VALUE, a.value1,a.value1_id as colorId,d.id as sizeId
     FROM m_attributesetinstance a, m_product_alias b,m_product c,m_size d
       WHERE c.name = #{productName,jdbcType=VARCHAR}
       AND a.id = b.m_attributesetinstance_id

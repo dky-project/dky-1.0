@@ -13,25 +13,35 @@ public class ColorSizeListView extends ResultObjectBase {
     /**
      * 颜色列表
      */
-    private List<String> colorList;
+    private List<ColorSizeView> colorList;
     /**
      * 尺寸列表
      */
-    private List<String> sizeList;
+    private List<ColorSizeView> sizeList;
 
-    public List<String> getSizeList() {
-        return sizeList;
-    }
+    private Long mProductId;
 
-    public void setSizeList(List<String> sizeList) {
-        this.sizeList = sizeList;
-    }
-
-    public List<String> getColorList() {
+    public List<ColorSizeView> getColorList() {
         return colorList;
     }
 
-    public void setColorList(List<String> colorList) {
+    public void setColorList(List<ColorSizeView> colorList) {
         this.colorList = colorList;
+    }
+
+    public List<ColorSizeView> getSizeList() {
+        return sizeList;
+    }
+
+    public void setSizeList(List<ColorSizeView> sizeList) {
+        this.sizeList = sizeList;
+    }
+
+    public Long getmProductId() {
+        return mProductId;
+    }
+
+    public void setmProductId(Long mProductId) {
+        this.mProductId = mProductId;
     }
 }

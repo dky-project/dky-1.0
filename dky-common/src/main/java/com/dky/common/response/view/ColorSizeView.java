@@ -20,6 +20,14 @@ public class ColorSizeView extends ResultObjectBase {
      * 尺寸
      */
     private String value;
+    /**
+     * 颜色ID
+     */
+    private Long colorId;
+    /**
+     * 尺寸ID
+     */
+    private Long sizeId;
 
     public String getValue() {
         return value;
@@ -43,5 +51,21 @@ public class ColorSizeView extends ResultObjectBase {
 
     public void setValue1(String value1) {
         this.value1 = value1;
+    }
+
+    public Long getColorId() {
+        return colorId;
+    }
+
+    public void setColorId(Long colorId) {
+        this.colorId = colorId;
+    }
+
+    public Long getSizeId() {
+        return sizeId;
+    }
+
+    public void setSizeId(Long sizeId) {
+        this.sizeId = sizeId;
     }
 }
