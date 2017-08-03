@@ -150,14 +150,6 @@ public class ProductServiceImpl implements ProductService {
         }
         List<ColorSizeView> colorList = new ArrayList<>();
         List<ColorSizeView> sizeList = new ArrayList<>();
-//        for(ColorSizeView view : list){
-//            if (!colorList.contains(view.getValue1Code())){
-//                colorList.add(view);
-//            }
-//            if (!sizeList.contains(view.getValue())){
-//                sizeList.add(view);
-//            }
-//        }
         int index=0;
         while(index<list.size()) {
             if (distinct(list,index,Boolean.TRUE)){

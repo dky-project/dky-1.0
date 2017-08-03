@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<c:set var="accessToken" value="${requestScope.accessToken}" />
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,8 +16,8 @@
     </style>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="${ctx}/assets/css/jquery-confirm.css?111" rel="stylesheet" />
-    <script src="${ctx}/assets/js/jquery-confirm.js?111"></script>
+    <link href="${ctx}/assets/css/jquery-confirm.css?22" rel="stylesheet" />
+    <script src="${ctx}/assets/js/jquery-confirm.js?11"></script>
 </head>
 <body>
 <div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
@@ -34,11 +33,7 @@
 <table class="table table-bordered" id="productTable" style="margin-top:20px;"></table>
 <div class="modal-footer" id="addBtn"></div>
 <input type="hidden" id="pdtId" value="" >
-<input type="hidden" id="accessToken" value="${accessToken}" >
 <script>
-    var a = $.dialog({
-        lazyOpen: true,
-    });
     var objJson = [];
     //查询颜色尺寸矩阵
     function queryData(){
@@ -75,8 +70,8 @@
     //修改矩阵数量
     function changeData(inp){
         if(inp){
-            var x=parseInt($(inp).attr("x"),10);
-            var y=parseInt($(inp).attr("y"),10);
+            //var x=parseInt($(inp).attr("x"),10);
+            //var y=parseInt($(inp).attr("y"),10);
             var cl=$(inp).attr("cl");
             var sz=$(inp).attr("sz");
             var count=parseInt($(inp).val(),10);
@@ -101,25 +96,27 @@
         console.log(eval(objJson));
         if(objJson.length == 0){
             $.alert({
-                title: 'Warning!',
+                title: '警告！',
                 content: "请输入数量！",
-                theme: 'dark',
+                closeIcon: true,
+                animationSpeed: 200,
+                type:'red'
             });
             return;
         }
-        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:$("#accessToken").val(),pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
+        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:${param.accessToken},pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
             if(data.success){
                 $.alert({
-                    title: 'Alert!',
+                    title: '恭喜！',
                     content: "数据保存成功！",
-                    theme: 'dark',
+                    theme: 'dark'
                 });
             }else{
                 //alert(data.msg);
-                $.alert({
-                    title: 'Warning!',
+                $.dialog({
+                    title: '警告!',
                     content: data.msg,
-                    theme: 'dark',
+                    type:'red'
                 });
             }
         });
