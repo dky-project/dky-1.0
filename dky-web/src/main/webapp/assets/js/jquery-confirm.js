@@ -232,9 +232,9 @@ var jconfirm, Jconfirm;
             this._contentReady = $.Deferred();
             this._modalReady = $.Deferred();
             this.$holder.css({
-                'padding-top': this.offsetTop,
+                'margin': 'auto',
                 'padding-bottom': this.offsetBottom,
-                'padding-left': this.offsetLeft,
+                'padding-left': this.offsetLeft
             });
 
             this.setTitle();
