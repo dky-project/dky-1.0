@@ -1,11 +1,12 @@
 package com.dky.business.repository.biz;
 
-import com.dky.common.param.*;
+import com.dky.common.param.AddProductApproveParam;
+import com.dky.common.param.BMptApproveSaveParam;
+import com.dky.common.param.UpdateProductApproveParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveReturnView;
-import com.dky.common.response.view.ProductApproveView;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface ProductApproveService {
 
-    ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param);
+    ReturnT<PageList> findByPage(Object param);
 
     ReturnT<ProductApproveReturnView> insertProductApprove(AddProductApproveParam param);
 

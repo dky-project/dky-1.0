@@ -157,10 +157,10 @@
 
     <!--订单分页查询 -->
     <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
-        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,mDimNew16Text,mDimNew17Text,xwValue,ycValue
+        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl
        FROM (
         SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
-        mDimNew16Text,mDimNew17Text,xwValue,ycValue,ROWNUM RN FROM (
+        mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,ROWNUM RN FROM (
           <include refid="queryTmpl"></include>
         ) WHERE 1=1
         <if test="null!=requestOffset">
@@ -184,8 +184,11 @@
         (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
         (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW17_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW17' and t2.ISACTIVE = 'Y') as mDimNew17Text,
         t1.XW_VALUE as xwValue,
-        t1.YC_VALUE as ycValue
+        t1.YC_VALUE as ycValue,
+        t3.IMGURL1 as imgUrl
         from v_m_product_approve t1
+        LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
+        LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
         WHERE t1.ISACTIVE = 'Y'
         <include refid="whereClause"></include>
         ORDER BY t1.CZ_DATE DESC

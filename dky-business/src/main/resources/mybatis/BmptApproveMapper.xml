@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dky.business.repository.repository.BmptApproveMapper">
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.BmptApprove">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="AD_CLIENT_ID" jdbcType="DECIMAL" property="adClientId" />
+    <result column="AD_ORG_ID" jdbcType="DECIMAL" property="adOrgId" />
+    <result column="C_CUSTOMER_ID" jdbcType="DECIMAL" property="cCustomerId" />
+    <result column="C_STORE_ID" jdbcType="DECIMAL" property="cStoreId" />
+    <result column="M_PRODUCTALIAS_ID" jdbcType="DECIMAL" property="mProductaliasId" />
+    <result column="M_PRODUCT_ID" jdbcType="DECIMAL" property="mProductId" />
+    <result column="QTY" jdbcType="DECIMAL" property="qty" />
+    <result column="ISAPPROVE" jdbcType="DECIMAL" property="isapprove" />
+    <result column="M_ATTRIBUTESETINSTANCE_ID" jdbcType="DECIMAL" property="mAttributesetinstanceId" />
+    <result column="OWNERID" jdbcType="DECIMAL" property="ownerid" />
+    <result column="MODIFIERID" jdbcType="DECIMAL" property="modifierid" />
+    <result column="CREATIONDATE" jdbcType="DATE" property="creationdate" />
+    <result column="MODIFIEDDATE" jdbcType="DATE" property="modifieddate" />
+    <result column="STATUSERID" jdbcType="DECIMAL" property="statuserid" />
+    <result column="STATUSTIME" jdbcType="DATE" property="statustime" />
+    <result column="ISACTIVE" jdbcType="CHAR" property="isactive" />
+    <result column="M_PURCHASE_ID" jdbcType="DECIMAL" property="mPurchaseId" />
+    <result column="NOERID" jdbcType="DECIMAL" property="noerid" />
+    <result column="NOTIME" jdbcType="DATE" property="notime" />
+    <result column="M_COLOR_ID" jdbcType="DECIMAL" property="mColorId" />
+    <result column="M_SIZE_ID" jdbcType="DECIMAL" property="mSizeId" />
+    <result column="M_DIM_NEW13_ID" jdbcType="DECIMAL" property="mDimNew13Id" />
+    <result column="IS_FAIR" jdbcType="DECIMAL" property="isFair" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AD_CLIENT_ID, AD_ORG_ID, C_CUSTOMER_ID, C_STORE_ID, M_PRODUCTALIAS_ID, M_PRODUCT_ID, 
+    QTY, ISAPPROVE, M_ATTRIBUTESETINSTANCE_ID, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, 
+    STATUSERID, STATUSTIME, ISACTIVE, M_PURCHASE_ID, NOERID, NOTIME, M_COLOR_ID, M_SIZE_ID, 
+    M_DIM_NEW13_ID, IS_FAIR
+  </sql>
+
+  <sql id="whereClause">
+    <if test="null!=productName and ''!=productName">AND t2.name like '%'||#{productName}||'%' </if>
+    <if test="null!=colorName and ''!=colorName">AND t3.value1 like '%'||#{colorName}||'%' </if>
+    <if test="null!=sizeName and ''!=sizeName">AND t3.VALUE2_CODE = #{sizeName} </if>
+    <if test="null!=jgno and ''!=jgno">AND t6.CODE = #{jgno} </if>
+  </sql>
+
+  <sql id="queryTmpl">
+    SELECT
+      t1.id,
+      t2.name as productName,
+      t3.value1 as colorName,
+      t3.VALUE2_CODE as sizeName,
+      t1.qty,
+      t1.qty * t4.PRICE_NEW as amount,
+      t5.IMGURL1 as imgUrl
+    from V_B_MPTAPPROVE t1,
+         m_product t2,
+         M_ATTRIBUTESETINSTANCE t3,
+        (select * from (select rank() over(partition by m_product_id order by creationdate desc) r,a.* from M_BULKEDIT_PRICEITEM a) where r=1) t4,
+        B_PDT_MEDIA t5,
+        C_STORE t6
+    WHERE t1.ISACTIVE = 'Y'
+    AND t2.ISACTIVE = 'Y'
+    AND t3.ISACTIVE = 'Y'
+    AND t1.m_product_id = t2.id
+    AND t1.M_ATTRIBUTESETINSTANCE_ID = t3.id
+    AND t1.M_PRODUCT_ID = t4.M_PRODUCT_ID
+    AND t5.M_PRODUCT_ID = t1.M_PRODUCT_ID
+    AND t1.c_store_id = t6.id
+    <include refid="whereClause"></include>
+    ORDER BY t1.CREATIONDATE DESC
+  </sql>
+
+  <!--订单分页查询 -->
+  <select id="queryByPage" parameterType="com.dky.common.bean.BmptApprove" resultType="com.dky.common.response.view.BmptApproveView">
+    SELECT *
+    FROM (
+    SELECT t.*,ROWNUM RN FROM (
+    <include refid="queryTmpl"></include>
+    ) t WHERE 1=1
+    <if test="null!=requestOffset">
+      AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+    </if>  ) A WHERE 1=1
+    <if test="null!=requestOffset">
+      AND RN <![CDATA[ >= ]]> #{requestOffset}
+    </if>
+  </select>
+
+  <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
+    SELECT count(1)
+    from  (<include refid="queryTmpl"></include>) t
+  </select>
+</mapper>

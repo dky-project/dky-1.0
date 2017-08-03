@@ -1,8 +1,10 @@
 package com.dky.common.response.view;
 
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 /**
  * Created by hang on 2017/1/4 0004.
@@ -62,6 +64,10 @@ public class ProductApproveView extends ResultObjectBase {
      * 数量
      */
     private Long sum;
+    /**
+     * 小图片
+     */
+    private String imgUrl;
 
     public Long getId() {
         return id;
@@ -165,5 +171,16 @@ public class ProductApproveView extends ResultObjectBase {
 
     public void setSum(Long sum) {
         this.sum = sum;
+    }
+
+    public String getImgUrl() {
+        if (this.imgUrl != null){
+            this.imgUrl = GlobConts.IMAGE_ROOT_URL+this.imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
+        }
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

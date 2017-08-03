@@ -9,7 +9,10 @@ import com.dky.business.repository.biz.ProductService;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.*;
+import com.dky.common.response.view.ProductApproveInfoView;
+import com.dky.common.response.view.ProductApproveReturnView;
+import com.dky.common.response.view.ProductApproveTitleView;
+import com.dky.common.response.view.ProductMadePageView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +47,16 @@ public class ProductApproveController {
      * @return
      */
     @RequestMapping(value = "page",name = "订单分页查询")
-    public ReturnT<PageList<ProductApproveView>> page(ProductApproveQueryParam param){
+    public ReturnT<PageList> page(ProductApproveQueryParam param){
+        return approveService.findByPage(param);
+    }
+    /**
+     * 查询大货订单，分页
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "bmptPage",name = "订单分页查询")
+    public ReturnT<PageList> page(BmptApproveQueryParam param){
         return approveService.findByPage(param);
     }
 

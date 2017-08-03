@@ -1,19 +1,14 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductApproveService;
-import com.dky.business.repository.repository.DimNewMapper;
-import com.dky.business.repository.repository.ProductApproveMapper;
-import com.dky.business.repository.repository.ProductCollectMapper;
-import com.dky.business.repository.repository.UsersMapper;
+import com.dky.business.repository.repository.*;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.enums.IsApproveEnum;
-import com.dky.common.param.AddProductApproveParam;
-import com.dky.common.param.BMptApproveSaveParam;
-import com.dky.common.param.ProductApproveQueryParam;
-import com.dky.common.param.UpdateProductApproveParam;
+import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.BmptApproveView;
 import com.dky.common.response.view.ProductApproveInfoView;
 import com.dky.common.response.view.ProductApproveReturnView;
 import com.dky.common.response.view.ProductApproveView;
@@ -39,6 +34,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Autowired
     private ProductApproveMapper mapper;
     @Autowired
+    private BmptApproveMapper bmptApproveMapper;
+    @Autowired
     private UsersMapper usersMapper;
     @Autowired
     private DimNewMapper dimNewMapper;
@@ -46,13 +43,23 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     private ProductCollectMapper productCollectMapper;
 
     @Override
-    public ReturnT<PageList<ProductApproveView>> findByPage(ProductApproveQueryParam param) {
-        String email = param.getSessionUser().getEmail();
-        ProductApprove approve = new ProductApprove();
-        BeanUtils.copyProperties(param,approve);
-        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
-        approve.setJgno(map!=null?map.get("CODE"):email);
-        return new ReturnT<>().sucessData(findPage(approve));
+    public ReturnT<PageList> findByPage(Object param) {
+        if (param instanceof ProductApproveQueryParam){
+            ProductApproveQueryParam queryParam = (ProductApproveQueryParam) param;
+            String email = queryParam.getSessionUser().getEmail();
+            ProductApprove approve = new ProductApprove();
+            BeanUtils.copyProperties(queryParam,approve);
+            Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
+            approve.setJgno(map!=null?map.get("CODE"):email);
+            return new ReturnT<>().sucessData(findPage(approve));
+        }else if (param instanceof BmptApproveQueryParam){
+            BmptApproveQueryParam queryParam = (BmptApproveQueryParam) param;
+            String email = queryParam.getSessionUser().getEmail();
+            Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
+            queryParam.setJgno(map!=null?map.get("CODE"):email);
+            return new ReturnT<>().sucessData(findPage(queryParam));
+        }
+        return null;
     }
 
     @Override
@@ -80,6 +87,12 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     private PageList<ProductApproveView> findPage(ProductApprove approve){
         return new PageList<ProductApproveView>(
                 mapper.queryByPage(approve),mapper.count(approve),
+                approve.getPageNo(),approve.getPageSize());
+    }
+
+    private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve){
+        return new PageList<BmptApproveView>(
+                bmptApproveMapper.queryByPage(approve),bmptApproveMapper.count(approve),
                 approve.getPageNo(),approve.getPageSize());
     }
 
