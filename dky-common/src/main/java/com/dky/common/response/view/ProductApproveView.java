@@ -1,6 +1,5 @@
 package com.dky.common.response.view;
 
-import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
@@ -175,7 +174,7 @@ public class ProductApproveView extends ResultObjectBase {
 
     public String getImgUrl() {
         if (this.imgUrl != null){
-            this.imgUrl = GlobConts.IMAGE_ROOT_URL+this.imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
+            this.imgUrl = this.imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
         }
         return imgUrl;
     }

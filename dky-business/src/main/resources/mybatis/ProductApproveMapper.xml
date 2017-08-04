@@ -154,60 +154,104 @@
     XBZZ_VALUE, C_CUSTOMER_ID, DOCNO, SH_REMARK, NO1, EXPRESSTYPE, DCTIME, NOERID, NOTIME
   </sql>
 
+  <!--订单分页查询 -->
+  <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
+     SELECT
+        id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
+        mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount
+     FROM (
+      SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
+      mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,ROWNUM RN FROM (
+        <include refid="queryTmpl"></include>
+      ) WHERE 1=1
+      <if test="null!=requestOffset">
+          AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+      </if>  ) A WHERE 1=1
+      <if test="null!=requestOffset">
+          AND RN <![CDATA[ >= ]]> #{requestOffset}
+      </if>
+  </select>
 
-    <!--订单分页查询 -->
-    <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
-        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl
-       FROM (
-        SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
-        mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,ROWNUM RN FROM (
-          <include refid="queryTmpl"></include>
-        ) WHERE 1=1
-        <if test="null!=requestOffset">
-            AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
-        </if>  ) A WHERE 1=1
-        <if test="null!=requestOffset">
-            AND RN <![CDATA[ >= ]]> #{requestOffset}
-        </if>
+  <!--订单分页查询 -->
+  <select id="queryByPageGroup" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
+      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount
+     FROM (
+      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount,ROWNUM RN FROM (
+        <include refid="queryTmplGroup"></include>
+      ) WHERE 1=1
+      <if test="null!=requestOffset">
+          AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+      </if>  ) A WHERE 1=1
+      <if test="null!=requestOffset">
+          AND RN <![CDATA[ >= ]]> #{requestOffset}
+      </if>
+  </select>
 
-    </select>
+  <sql id="queryTmpl">
+  SELECT
+    t1.ID,
+    t1.NO1,
+    t1.PDT,
+    t1.CUSTOMER,
+    t1.CZ_DATE as czDate,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW12_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW12' and t2.ISACTIVE = 'Y') as mDimNew12Text,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW15_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW15' and t2.ISACTIVE = 'Y') as mDimNew15Text,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
+    (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW17_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW17' and t2.ISACTIVE = 'Y') as mDimNew17Text,
+    t1.XW_VALUE as xwValue,
+    t1.YC_VALUE as ycValue,
+    1 as sum,
+    NVL(1 * t1.ls_price,0) as totalAmount,
+    t3.IMGURL1 as imgUrl
+  from v_m_product_approve t1
+  LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
+  LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
+  WHERE t1.ISACTIVE = 'Y'
+  <include refid="whereClause"></include>
+  ORDER BY t1.CZ_DATE DESC
+</sql>
 
-    <sql id="queryTmpl">
-        SELECT
-        t1.ID,
-        t1.NO1,
-        t1.PDT,
-        t1.CUSTOMER,
-        t1.CZ_DATE as czDate,
-        (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW12_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW12' and t2.ISACTIVE = 'Y') as mDimNew12Text,
-        (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW15_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW15' and t2.ISACTIVE = 'Y') as mDimNew15Text,
-        (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
-        (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW17_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW17' and t2.ISACTIVE = 'Y') as mDimNew17Text,
-        t1.XW_VALUE as xwValue,
-        t1.YC_VALUE as ycValue,
-        t3.IMGURL1 as imgUrl
-        from v_m_product_approve t1
-        LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
-        LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
-        WHERE t1.ISACTIVE = 'Y'
-        <include refid="whereClause"></include>
-        ORDER BY t1.CZ_DATE DESC
-    </sql>
+  <sql id="queryTmplGroup">
+    SELECT
+    t1.ID,
+    t1.NO1,
+    t1.PDT,
+    t1.CUSTOMER,
+    t1.CZ_DATE as czDate,
+    t1.XW_VALUE as xwValue,
+    t1.YC_VALUE as ycValue,
+    t1.SUM as sum,
+    t1.TOTALAMOUNT as totalAmount,
+    t3.IMGURL1 as imgUrl
+    from V_M_PRODUCT_APPROVE_GROUP t1
+    LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
+    LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
+    WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+    ORDER BY t1.CZ_DATE DESC
+  </sql>
 
-    <sql id="whereClause">
-        <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
-        <if test="null!=pdt and ''!=pdt">AND t1.pdt like '%'||#{pdt}||'%' </if>
-        <if test="null!=customer and ''!=customer">AND t1.customer like '%'||#{customer}||'%' </if>
-        <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
-        <if test="null!=jgno">AND t1.jgno = #{jgno}</if>
-    </sql>
+  <sql id="whereClause">
+    <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
+    <if test="null!=pdt and ''!=pdt">AND t1.pdt like '%'||#{pdt}||'%' </if>
+    <if test="null!=customer and ''!=customer">AND t1.customer like '%'||#{customer}||'%' </if>
+    <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
+    <if test="null!=jgno">AND t1.jgno = #{jgno}</if>
+  </sql>
 
-    <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
-        SELECT count(1)
-        from v_m_product_approve t1
-        WHERE t1.ISACTIVE = 'Y'
-        <include refid="whereClause"></include>
-    </select>
+  <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
+    SELECT count(1)
+    from v_m_product_approve t1
+    WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="countGroup" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
+    SELECT count(1)
+    from v_m_product_approve_group t1
+    WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+  </select>
 
   <select id="queryProductApproveInfoList"  resultType="ProductApproveInfoView">
     select

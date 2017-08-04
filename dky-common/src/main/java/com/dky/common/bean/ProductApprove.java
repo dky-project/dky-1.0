@@ -267,6 +267,10 @@ public class ProductApprove extends PojoObjectBase {
     private Date notime;
 
     private Long sum;
+    /**
+     * 版本号
+     */
+    private String version;
 
     public Long getId() {
         return id;
@@ -1322,5 +1326,13 @@ public class ProductApprove extends PojoObjectBase {
 
     public void setSum(Long sum) {
         this.sum = sum;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }

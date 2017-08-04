@@ -5,6 +5,7 @@ import com.dky.business.repository.repository.*;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.enums.IsApproveEnum;
+import com.dky.common.enums.VesionEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -85,9 +86,15 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     private PageList<ProductApproveView> findPage(ProductApprove approve){
-        return new PageList<ProductApproveView>(
-                mapper.queryByPage(approve),mapper.count(approve),
-                approve.getPageNo(),approve.getPageSize());
+        if (approve.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || approve.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())){
+            return new PageList<ProductApproveView>(
+                    mapper.queryByPageGroup(approve),mapper.countGroup(approve),
+                    approve.getPageNo(),approve.getPageSize());
+        }else{
+            return new PageList<ProductApproveView>(
+                    mapper.queryByPage(approve),mapper.count(approve),
+                    approve.getPageNo(),approve.getPageSize());
+        }
     }
 
     private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve){

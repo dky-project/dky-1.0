@@ -40,7 +40,7 @@
         $.ajax({
             type:'post',
             url:'${ctx}/product/queryColorSizeList',
-            data:{'productName':$("#productName").val()},
+            data:{'accessToken':${param.accessToken},'productName':$("#productName").val()},
             cache:false,
             dataType:'json',
             success:function(data){

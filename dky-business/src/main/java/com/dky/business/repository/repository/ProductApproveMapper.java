@@ -12,7 +12,11 @@ import java.util.Map;
 public interface ProductApproveMapper {
     List<ProductApproveView> queryByPage(ProductApprove productApprove);
 
+    List<ProductApproveView> queryByPageGroup(ProductApprove productApprove);
+
     int count(ProductApprove productApprove);
+
+    int countGroup(ProductApprove productApprove);
 
     List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids);
 

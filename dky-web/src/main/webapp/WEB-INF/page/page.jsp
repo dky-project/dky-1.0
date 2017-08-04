@@ -16,10 +16,6 @@
     <link href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-    <!--<link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
-
     <link href="${ctx}/assets/css/imggrid.css" rel="stylesheet" />
     <script src="${ctx}/assets/js/imggrid.js"></script>
     <script src="${ctx}/assets/js/jquery.museum.js"></script>
