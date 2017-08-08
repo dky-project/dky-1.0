@@ -31,4 +31,6 @@ public interface ProductService{
     ReturnT<ProductMadePageView> getMadeInfoByProductName(ProductMadeQueryParam param);
 
     ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param);
+
+    ReturnT<List<DpGroupView>> getProductListByGroupNo(String groupNo);
 }

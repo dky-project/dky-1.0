@@ -33,6 +33,7 @@
 <table class="table table-bordered" id="productTable" style="margin-top:20px;"></table>
 <div class="modal-footer" id="addBtn"></div>
 <input type="hidden" id="pdtId" value="" >
+<input type="hidden" id="accessToken" value="${param.accessToken}" >
 <script>
     var objJson = [];
     //查询颜色尺寸矩阵
@@ -40,7 +41,7 @@
         $.ajax({
             type:'post',
             url:'${ctx}/product/queryColorSizeList',
-            data:{'accessToken':${param.accessToken},'productName':$("#productName").val()},
+            data:{'accessToken':$('#accessToken').val(),'productName':$("#productName").val()},
             cache:false,
             dataType:'json',
             success:function(data){
@@ -104,7 +105,7 @@
             });
             return;
         }
-        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:${param.accessToken},pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
+        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:$('#accessToken').val(),pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
             if(data.success){
                 $.alert({
                     title: '恭喜！',

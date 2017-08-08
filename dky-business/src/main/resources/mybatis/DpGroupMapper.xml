@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dky.business.repository.repository.DpGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.dky.common.bean.DpGroup" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AD_CLIENT_ID" property="adClientId" jdbcType="DECIMAL" />
+    <result column="AD_ORG_ID" property="adOrgId" jdbcType="DECIMAL" />
+    <result column="OWNERID" property="ownerid" jdbcType="DECIMAL" />
+    <result column="MODIFIERID" property="modifierid" jdbcType="DECIMAL" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="DATE" />
+    <result column="MODIFIEDDATE" property="modifieddate" jdbcType="DATE" />
+    <result column="GROUP_NO" property="groupNo" jdbcType="VARCHAR" />
+    <result column="SY_PRODUCT_ID" property="syProductId" jdbcType="DECIMAL" />
+    <result column="WT_PRODUCT_ID" property="wtProductId" jdbcType="DECIMAL" />
+    <result column="XZ_PRODUCT_ID" property="xzProductId" jdbcType="DECIMAL" />
+    <result column="YD_PRODUCT_ID" property="ydProductId" jdbcType="DECIMAL" />
+    <result column="SP_PRODUCT_ID" property="spProductId" jdbcType="DECIMAL" />
+    <result column="SHOES_PRODUCT_ID" property="shoesProductId" jdbcType="DECIMAL" />
+    <result column="BAO_PRODUCT_ID" property="baoProductId" jdbcType="DECIMAL" />
+    <result column="WJ_PRODUCT_ID" property="wjProductId" jdbcType="DECIMAL" />
+    <result column="ISACTIVE" property="isactive" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AD_CLIENT_ID, AD_ORG_ID, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, GROUP_NO, 
+    SY_PRODUCT_ID, WT_PRODUCT_ID, XZ_PRODUCT_ID, YD_PRODUCT_ID, SP_PRODUCT_ID, SHOES_PRODUCT_ID, 
+    BAO_PRODUCT_ID, WJ_PRODUCT_ID, ISACTIVE
+  </sql>
+  <select id="selectByGroupNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from DP_GROUP
+    where group_no = #{groupNo,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

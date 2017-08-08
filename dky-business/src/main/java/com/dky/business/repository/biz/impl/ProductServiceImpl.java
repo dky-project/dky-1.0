@@ -1,9 +1,11 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductService;
+import com.dky.business.repository.repository.DpGroupMapper;
 import com.dky.business.repository.repository.PdtBasepriceMapper;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
+import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
 import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryBaseParam;
@@ -37,6 +39,8 @@ public class ProductServiceImpl implements ProductService {
     private PdtBasepriceMapper pdtBasepriceMapper;
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private DpGroupMapper dpGroupMapper;
 
 
     @Override
@@ -182,5 +186,34 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return isSame;
+    }
+
+    @Override
+    public ReturnT<List<DpGroupView>> getProductListByGroupNo(String groupNo) {
+        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(groupNo);
+        List<Long> ids = new ArrayList<>();
+        ids.add(dpGroup.getSyProductId());
+        ids.add(dpGroup.getWtProductId());
+        ids.add(dpGroup.getXzProductId());
+        ids.add(dpGroup.getYdProductId());
+        ids.add(dpGroup.getShoesProductId());
+        ids.add(dpGroup.getSpProductId());
+        ids.add(dpGroup.getBaoProductId());
+        ids.add(dpGroup.getWjProductId());
+        List<Long> e = new ArrayList<>(1);
+        e.add(null);
+        ids.removeAll(e);
+        List<DpGroupView> list = mapper.getProductListByIds(ids);
+        for (DpGroupView view : list){
+            if ("C".equals(view.getMptbelongtype())){
+                view.setColorViewList(mapper.getProductColorListByProductId(view.getmProductId()));
+                view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
+            }else{
+                view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
+            }
+        }
+        ReturnT<List<DpGroupView>> result = new ReturnT<>();
+        result.setData(list);
+        return result.successDefault();
     }
 }

@@ -72,4 +72,11 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @return
      */
     List<ColorSizeView> getColorSizeList(String productName);
+
+    /**
+     * 搭配款号列表
+     * @param ids
+     * @return
+     */
+    List<DpGroupView> getProductListByIds(List<Long> ids);
 }

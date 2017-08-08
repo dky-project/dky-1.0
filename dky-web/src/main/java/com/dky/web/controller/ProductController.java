@@ -7,10 +7,7 @@ import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.ColorSizeListView;
-import com.dky.common.response.view.ProductInfoView;
-import com.dky.common.response.view.ProductValueView;
-import com.dky.common.response.view.ProductView;
+import com.dky.common.response.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,5 +80,15 @@ public class ProductController {
     @RequestMapping(value = "/queryColorSizeList",name = "查询颜色尺寸矩阵列表")
     public ReturnT<ColorSizeListView> queryPriceListByProductId(ProductMadeQueryParam param){
         return productService.getColorSizeList(param);
+    }
+
+    /**
+     * 搭配列表
+     * @param groupNo
+     * @return
+     */
+    @RequestMapping(value = "/getProductListByGroupNo",name = "搭配列表")
+    public ReturnT<List<DpGroupView>> getProductListByGroupNo(@RequestParam(value = "groupNo",required = false)String groupNo){
+        return productService.getProductListByGroupNo(groupNo);
     }
 }
