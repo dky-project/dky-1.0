@@ -213,16 +213,16 @@
 
   <sql id="queryTmplGroup">
     SELECT
-    t1.ID,
-    t1.NO1,
-    t1.PDT,
-    t1.CUSTOMER,
-    t1.CZ_DATE as czDate,
-    t1.XW_VALUE as xwValue,
-    t1.YC_VALUE as ycValue,
-    t1.SUM as sum,
-    t1.TOTALAMOUNT as totalAmount,
-    t3.IMGURL1 as imgUrl
+      t1.ID,
+      t1.NO1,
+      t1.PDT,
+      t1.CUSTOMER,
+      t1.CZ_DATE as czDate,
+      t1.XW_VALUE as xwValue,
+      t1.YC_VALUE as ycValue,
+      t1.SUM as sum,
+      t1.TOTALAMOUNT as totalAmount,
+      t3.IMGURL1 as imgUrl
     from V_M_PRODUCT_APPROVE_GROUP t1
     LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
     LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID

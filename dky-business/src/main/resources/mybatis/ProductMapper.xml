@@ -579,19 +579,21 @@
   <select id="getProductListByIds" resultType="DpGroupView">
     SELECT
       a.id            AS mProductId,
+      a.name          AS productName,
       a.mptbelongtype,
-      t.XW_VALUE      AS xwValue,
-      t.YC_VALUE      AS ycValue,
-      t.M_DIM_NEW14_ID AS mDimNew14Id,
+      c.XW_VALUE      AS xwValue,
+      c.YC_VALUE      AS ycValue,
+      c.M_DIM_NEW14_ID AS mDimNew14Id,
+      (select '[' || WM_CONCAT('{''value'':''' || t.xw_value || ''' }') || ']' from B_CUSMPTCATE t1,B_CUSMPTCATEITEM t2 WHERE t2.B_CUSMPTCATE_ID = t1.id and t1.M_PRODUCT_ID = a.id) as xwArray,
       b.IMGURL1 as imgUrl
-    FROM M_PRODUCT_DIM t, M_PRODUCT a,B_PDT_MEDIA b
-    WHERE T.M_PRODUCT_ID = a.ID
-      AND T.M_PRODUCT_ID = b.M_PRODUCT_ID
-      AND a.ID in
+    FROM M_PRODUCT a
+      LEFT JOIN B_PDT_MEDIA b ON a.ID = b.M_PRODUCT_ID
+      LEFT JOIN (select c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.M_DIM_NEW14_ID FROM M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
+    WHERE a.ID in
       <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
           #{item}
       </foreach>
-      and t.isactive = 'Y'
-      and ISDEFAULT = 'Y'
+      and a.isactive = 'Y'
+      and b.isactive = 'Y'
   </select>
 </mapper>

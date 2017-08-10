@@ -1,5 +1,6 @@
 package com.dky.common.response.view;
 
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
@@ -39,6 +40,10 @@ public class BmptApproveView extends ResultObjectBase {
      * 图片
      */
     private String imgUrl;
+    /**
+     * 大图片
+     */
+    private String bigImgUrl;
 
     public Long getId() {
         return id;
@@ -90,6 +95,7 @@ public class BmptApproveView extends ResultObjectBase {
 
     public String getImgUrl() {
         if (this.imgUrl != null){
+            this.bigImgUrl = GlobConts.IMAGE_ROOT_URL+this.imgUrl+"?random="+ new Random().nextInt(100);
             this.imgUrl =this.imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
         }
         return imgUrl;
@@ -97,5 +103,13 @@ public class BmptApproveView extends ResultObjectBase {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getBigImgUrl() {
+        return bigImgUrl;
+    }
+
+    public void setBigImgUrl(String bigImgUrl) {
+        this.bigImgUrl = bigImgUrl;
     }
 }

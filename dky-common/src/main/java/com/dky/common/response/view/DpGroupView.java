@@ -16,6 +16,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private Long mProductId;
     /**
+     * 款号名称
+     */
+    private String productName;
+    /**
      * 商品所属类别
      */
     private String mptbelongtype;
@@ -24,6 +28,11 @@ public class DpGroupView extends ResultObjectBase {
      * 请选择胸围
      */
     private String xwValue;
+    /**
+     * 尺寸：大
+     * 胸围下拉框
+     */
+    private String xwArray;
     /**
      * 尺寸：长
      */
@@ -36,9 +45,13 @@ public class DpGroupView extends ResultObjectBase {
      * 品种
      */
     private Long mDimNew14Id;
-
+    /**
+     * 颜色列表
+     */
     private List<ProductColorView> colorViewList;
-
+    /**
+     * 尺寸列表
+     */
     private List<ProductSizeView> sizeViewList;
 
     public String getImgUrl() {
@@ -58,6 +71,14 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setmProductId(Long mProductId) {
         this.mProductId = mProductId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getMptbelongtype() {
@@ -106,5 +127,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setmDimNew14Id(Long mDimNew14Id) {
         this.mDimNew14Id = mDimNew14Id;
+    }
+
+    public String getXwArray() {
+        return xwArray;
+    }
+
+    public void setXwArray(String xwArray) {
+        this.xwArray = xwArray;
     }
 }
