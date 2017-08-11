@@ -1,12 +1,10 @@
 package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductService;
-import com.dky.business.repository.repository.DpGroupMapper;
-import com.dky.business.repository.repository.PdtBasepriceMapper;
-import com.dky.business.repository.repository.ProductMapper;
-import com.dky.business.repository.repository.UsersMapper;
+import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
+import com.dky.common.param.DpGroupQueryParam;
 import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryBaseParam;
 import com.dky.common.param.ProductQueryParam;
@@ -41,6 +39,8 @@ public class ProductServiceImpl implements ProductService {
     private UsersMapper usersMapper;
     @Autowired
     private DpGroupMapper dpGroupMapper;
+    @Autowired
+    private DimNewMapper dimNewMapper;
 
 
     @Override
@@ -189,8 +189,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ReturnT<List<DpGroupView>> getProductListByGroupNo(String groupNo) {
-        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(groupNo);
+    public ReturnT getProductListByGroupNo(DpGroupQueryParam param) {
+        param.setPageSize(1);
+        if (!"".equals(param.getGroupNo()) && param.getGroupNo()!= null){
+            param.setPageNo(1);
+            param.calculatePageLimit();
+        }
+        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(param.getGroupNo(),param.getRequestCount(),param.getRequestOffset());
+        if (dpGroup == null){
+            return new ReturnT<>().failureData("无数据！");
+        }
         List<Long> ids = new ArrayList<>();
         ids.add(dpGroup.getSyProductId());
         ids.add(dpGroup.getWtProductId());
@@ -203,17 +211,18 @@ public class ProductServiceImpl implements ProductService {
         List<Long> e = new ArrayList<>(1);
         e.add(null);
         ids.removeAll(e);
-        List<DpGroupView> list = mapper.getProductListByIds(ids);
+
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+        List<DpGroupView> list = mapper.getProductListByIds(ids,code);
         for (DpGroupView view : list){
             if ("C".equals(view.getMptbelongtype())){
                 view.setColorViewList(mapper.getProductColorListByProductId(view.getmProductId()));
                 view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
             }else{
-                view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
+                view.setColorViewList(dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id()));
             }
         }
-        ReturnT<List<DpGroupView>> result = new ReturnT<>();
-        result.setData(list);
-        return result.successDefault();
+        return new ReturnT<>().sucessData(new PageList<DpGroupView>(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize()));
     }
 }

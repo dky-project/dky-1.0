@@ -5,8 +5,8 @@ package com.dky.common.enums;
  */
 public enum IsCollectEnum {
 
-    YES("Y","是",Boolean.TRUE),
-    NO("N","否",Boolean.FALSE),
+    YES("2","是",Boolean.TRUE),
+    NO("1","否",Boolean.FALSE),
     ;
 
     IsCollectEnum() {

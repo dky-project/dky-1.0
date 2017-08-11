@@ -123,7 +123,11 @@ public class ProductApproveController {
             bMptApproveSaveParam.setJgNo(param.getJgNo());
             bMptApproveSaveParam.setColorId(json.getLong("color"));
             bMptApproveSaveParam.setSizeId(json.getLong("size"));
-            approveService.bMptApproveSave(bMptApproveSaveParam);
+            bMptApproveSaveParam.setSessionUser(param.getSessionUser());
+            ReturnT returnT = approveService.bMptApproveSave(bMptApproveSaveParam);
+            if (returnT.isFailed()){
+                return returnT;
+            }
         }
         return new ReturnT().successDefault();
     }

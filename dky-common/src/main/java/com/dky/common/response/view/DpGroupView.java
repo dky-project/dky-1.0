@@ -1,5 +1,7 @@
 package com.dky.common.response.view;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dky.common.response.ResultObjectBase;
 
 import java.util.List;
@@ -24,27 +26,39 @@ public class DpGroupView extends ResultObjectBase {
      */
     private String mptbelongtype;
     /**
-     * 尺寸：大
-     * 请选择胸围
+     * 尺寸：大 默认值
      */
     private String xwValue;
+    /**
+     * 袖长
+     */
+    private String xcValue;
     /**
      * 尺寸：大
      * 胸围下拉框
      */
-    private String xwArray;
+    private JSONArray xwArrayJson;
     /**
      * 尺寸：长
      */
     private String ycValue;
     /**
+     * 是否配置衣长
+     * 值为“Y”时，请选择收腰下拉框下面的长[文本框]不可编辑
+     */
+    private String isYcAffix;
+    /**
      * 图片
      */
     private String imgUrl;
     /**
-     * 品种
+     * 品种默认值
      */
     private Long mDimNew14Id;
+    /**
+     * 品种列表
+     */
+    private JSONArray pzJsonstr;
     /**
      * 颜色列表
      */
@@ -53,6 +67,10 @@ public class DpGroupView extends ResultObjectBase {
      * 尺寸列表
      */
     private List<ProductSizeView> sizeViewList;
+    /**
+     * 收藏状体：1-未收藏，2-已收藏
+     */
+    private Integer iscollect;
 
     public String getImgUrl() {
         if (this.imgUrl != null){
@@ -129,11 +147,43 @@ public class DpGroupView extends ResultObjectBase {
         this.mDimNew14Id = mDimNew14Id;
     }
 
-    public String getXwArray() {
-        return xwArray;
+    public JSONArray getXwArrayJson() {
+        return xwArrayJson;
     }
 
-    public void setXwArray(String xwArray) {
-        this.xwArray = xwArray;
+    public void setXwArrayJson(String xwArrayJson) {
+        this.xwArrayJson = JSONObject.parseArray(xwArrayJson);
+    }
+
+    public JSONArray getPzJsonstr() {
+        return pzJsonstr;
+    }
+
+    public void setPzJsonstr(String pzJsonstr) {
+        this.pzJsonstr = JSONArray.parseObject(pzJsonstr).getJSONArray("value");
+    }
+
+    public String getIsYcAffix() {
+        return isYcAffix;
+    }
+
+    public void setIsYcAffix(String isYcAffix) {
+        this.isYcAffix = isYcAffix;
+    }
+
+    public String getXcValue() {
+        return xcValue;
+    }
+
+    public void setXcValue(String xcValue) {
+        this.xcValue = xcValue;
+    }
+
+    public Integer getIscollect() {
+        return iscollect;
+    }
+
+    public void setIscollect(Integer iscollect) {
+        this.iscollect = iscollect;
     }
 }

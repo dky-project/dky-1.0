@@ -583,14 +583,19 @@
       a.mptbelongtype,
       c.XW_VALUE      AS xwValue,
       c.YC_VALUE      AS ycValue,
+      c.XC_VALUE      AS xcValue,
       c.M_DIM_NEW14_ID AS mDimNew14Id,
-      (select '[' || WM_CONCAT('{''value'':''' || t.xw_value || ''' }') || ']' from B_CUSMPTCATE t1,B_CUSMPTCATEITEM t2 WHERE t2.B_CUSMPTCATE_ID = t1.id and t1.M_PRODUCT_ID = a.id) as xwArray,
+      (select '[' || WM_CONCAT('{''value'':''' || t2.xw_value || ''' }') || ']' from B_CUSMPTCATE t1,B_CUSMPTCATEITEM t2 WHERE t2.B_CUSMPTCATE_ID = t1.id and t1.M_PRODUCT_ID = a.id) as xwArrayJson,
+      (select t1.IS_YCAFFIX from B_CUSMPTCATE t1 WHERE t1.M_PRODUCT_ID = a.id) AS isYcAffix,
+      GET_PZSJSON(1,a.id,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS pzJsonstr,
+      decode(d.code,null,1,2) as iscollect,
       b.IMGURL1 as imgUrl
     FROM M_PRODUCT a
       LEFT JOIN B_PDT_MEDIA b ON a.ID = b.M_PRODUCT_ID
-      LEFT JOIN (select c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.M_DIM_NEW14_ID FROM M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
+      LEFT JOIN (select c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.XC_VALUE,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID FROM M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
+      LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID = a.id
     WHERE a.ID in
-      <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
           #{item}
       </foreach>
       and a.isactive = 'Y'

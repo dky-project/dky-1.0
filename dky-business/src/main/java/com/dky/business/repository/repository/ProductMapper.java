@@ -2,6 +2,7 @@ package com.dky.business.repository.repository;
 
 import com.dky.common.bean.Product;
 import com.dky.common.response.view.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -78,5 +79,5 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @param ids
      * @return
      */
-    List<DpGroupView> getProductListByIds(List<Long> ids);
+    List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
 }

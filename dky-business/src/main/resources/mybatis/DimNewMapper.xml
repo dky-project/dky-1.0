@@ -268,4 +268,13 @@
       WHERE t.b_cusmptcate_id = a.id AND a.m_product_id = b.id AND b.name = #{pdt}
       AND t.xw_value = #{xwValue}
     </select>
+
+    <select id="getColorListByDimIdAndProductId" resultType="ProductColorView">
+      SELECT
+        t.m_color as colorName
+      FROM M_COLOR_2 t
+      WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
+      AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      and t.isactive = 'Y'
+    </select>
 </mapper>

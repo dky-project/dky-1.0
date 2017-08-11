@@ -77,9 +77,12 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT bMptApproveSave(BMptApproveSaveParam param) {
         try {
-            mapper.bMptApproveSave(param.getJgNo(),param.getProductName(),
+            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+            mapper.bMptApproveSave(code,param.getProductName(),
                    param.getSizeId(),param.getColorId());
         } catch (Exception e) {
+            LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
         }
         return new ReturnT().successDefault();

@@ -14,7 +14,7 @@ public class TableApproveSaveParam extends SessionParameter {
     /**
      * 机构号
      */
-    @NotBlank(message = "客户不能为空")
+    //@NotBlank(message = "客户不能为空")
     private String jgNo;
 
     /**

@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.DpGroupQueryParam;
 import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductQueryBaseParam;
 import com.dky.common.param.ProductQueryParam;
@@ -32,5 +33,5 @@ public interface ProductService{
 
     ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param);
 
-    ReturnT<List<DpGroupView>> getProductListByGroupNo(String groupNo);
+    ReturnT getProductListByGroupNo(DpGroupQueryParam param);
 }

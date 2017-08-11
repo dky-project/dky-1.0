@@ -152,7 +152,13 @@ public class DimNewServiceImpl implements DimNewService {
 
     @Override
     public ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param) {
-        List<ProductColorView> colorList = productMapper.getColorDimListByProductId(param.getmProductId());
+        List<ProductColorView> colorList;
+        if (param.getmDimNew14Id() != null){
+            colorList = mapper.getColorListByDimIdAndProductId(param.getmProductId(),param.getmDimNew14Id());
+        }else{
+            colorList = productMapper.getColorDimListByProductId(param.getmProductId());
+        }
+
         ReturnT<List<ProductColorView>> returnT = new ReturnT<>();
         returnT.setData(colorList);
         return returnT.successDefault();

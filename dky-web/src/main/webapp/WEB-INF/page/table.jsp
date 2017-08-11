@@ -20,12 +20,12 @@
     <script src="${ctx}/assets/js/jquery-confirm.js?11"></script>
 </head>
 <body>
-<div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
-    <input  type="text"  id="phone" maxlength="3"  placeholder="请输入1-3位的数字编号 " class="form-control input-lg" onkeyup="this.value=this.value.replace(/\D/g,'')" />
+<!-- <div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
+    <input  type="text"  id="no" maxlength="3"  placeholder="请输入1-3位的数字编号 " class="form-control input-lg" onkeyup="this.value=this.value.replace(/\D/g,'')" />
     <input type="text" id="customer" class="form-control input-lg" placeholder="请输入客户" style="margin-top:20px;"/>
-</div>
+</div> -->
 <div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
-    <input type="text" id="productName" value="16-A008" onblur="queryData()" class="form-control input-lg" placeholder="请输入款号" />
+    <input type="text" id="productName" value="" onblur="queryData()" class="form-control input-lg" placeholder="请输入款号" />
     <span class="input-group-btn">
        <button class="btn btn-info btn-search" onclick="queryData()">搜索</button>
     </span>
@@ -112,6 +112,14 @@
                     content: "数据保存成功！",
                     theme: 'dark'
                 });
+                $("#pdtId").val("");
+                $("#productName").val("");
+                //$("#customer").val("");
+                //$("#no").val("");
+                $("#productTable :input[type='text']").each(function(i){
+                    this.value = "";
+                });
+                objJson = {};
             }else{
                 //alert(data.msg);
                 $.dialog({

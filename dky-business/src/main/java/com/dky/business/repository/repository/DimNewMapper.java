@@ -3,6 +3,7 @@ package com.dky.business.repository.repository;
 import com.dky.common.bean.DimNew;
 import com.dky.common.param.PzsJsonQueryParam;
 import com.dky.common.response.view.DimNewView;
+import com.dky.common.response.view.ProductColorView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -32,4 +33,6 @@ public interface DimNewMapper {
     String getpzsJson(PzsJsonQueryParam param);
 
     String getSizeData(@Param("pdt")String pdt,@Param("xwValue")String xwValue);
+
+    List<ProductColorView> getColorListByDimIdAndProductId(@Param("mProductId")Long mProductId, @Param("mDimNew14Id")Long mDimNew14Id);
 }

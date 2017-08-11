@@ -2,7 +2,7 @@ package com.dky.common.bean;
 
 import java.util.Date;
 
-public class DpGroup {
+public class DpGroup extends PojoObjectBase{
     private Long id;
 
     private Long adClientId;
