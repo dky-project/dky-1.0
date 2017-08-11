@@ -38,6 +38,16 @@
     var objJson = [];
     //查询颜色尺寸矩阵
     function queryData(){
+        if($("#productName").val() == ""){
+            $.alert({
+                title: '警告！',
+                content: "请输入款号！",
+                closeIcon: true,
+                animationSpeed: 200,
+                type:'red'
+            });
+            return;
+        }
         $.ajax({
             type:'post',
             url:'${ctx}/product/queryColorSizeList',
@@ -45,7 +55,17 @@
             cache:false,
             dataType:'json',
             success:function(data){
-                console.log(data);
+                //console.log(data);
+                if(!data.success){
+                    $.alert({
+                        title: '警告！',
+                        content: data.msg,
+                        closeIcon: true,
+                        animationSpeed: 200,
+                        type:'red'
+                    });
+                    return;
+                }
                 var result = data.data;
                 var html = "<thead><tr><th>#</th>";
                 for(var i = 0;i<result.sizeList.length;i++){
@@ -62,7 +82,7 @@
                 html += "</tbody>";
                 $("#productTable").html(html);
                 html ='<button class="btn btn-success" onclick="save()">保存订单</button>'+
-                        '&nbsp;&nbsp;<button class="btn" onclick="location.reload();">重新填写</button>';
+                        '&nbsp;&nbsp;<button class="btn" onclick="resetInput()">重新填写</button>';
                 $("#addBtn").html(html);
                 $("#pdtId").val(result.mProductId);
             }
@@ -92,9 +112,14 @@
             }
         }
     }
+    function resetInput(){
+        $("#productTable :input[type='text']").each(function(i){
+            this.value = "";
+        });
+        objJson = {};
+    }
     //保存下单
     function save(){
-        console.log(eval(objJson));
         if(objJson.length == 0){
             $.alert({
                 title: '警告！',
@@ -121,7 +146,6 @@
                 });
                 objJson = {};
             }else{
-                //alert(data.msg);
                 $.dialog({
                     title: '警告!',
                     content: data.msg,
