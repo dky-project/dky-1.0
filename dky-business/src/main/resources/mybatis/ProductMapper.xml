@@ -601,4 +601,8 @@
       and a.isactive = 'Y'
       and b.isactive = 'Y'
   </select>
+
+  <select id="getProductImgUrl" parameterType="java.lang.Long" resultType="java.lang.String">
+    select imgurl1 from B_PDT_MEDIA where m_product_id = #{mProductId,jdbcType=DECIMAL}
+  </select>
 </mapper>

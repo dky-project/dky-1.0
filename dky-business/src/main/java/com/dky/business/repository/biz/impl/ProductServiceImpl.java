@@ -169,6 +169,7 @@ public class ProductServiceImpl implements ProductService {
         resultView.setColorList(colorList);
         resultView.setSizeList(sizeList);
         resultView.setmProductId(product.getId());
+        resultView.setImgUrl(mapper.getProductImgUrl(product.getId()));
         result.setData(resultView);
         return result.successDefault();
     }

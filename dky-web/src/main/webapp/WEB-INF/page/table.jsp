@@ -13,11 +13,17 @@
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .table td, .table th{ padding:0px;text-align:center;vertical-align:middle;}
+        img {
+            width: auto;
+            height: auto;
+            max-width: 70%;
+            max-height: 70%;;
+        }
     </style>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="${ctx}/assets/css/jquery-confirm.css?22" rel="stylesheet" />
-    <script src="${ctx}/assets/js/jquery-confirm.js?11"></script>
+    <link href="${ctx}/assets/css/jquery-confirm.css?" rel="stylesheet" />
+    <script src="${ctx}/assets/js/jquery-confirm.js?"></script>
 </head>
 <body>
 <!-- <div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
@@ -34,7 +40,19 @@
 <div class="modal-footer" id="addBtn"></div>
 <input type="hidden" id="pdtId" value="" >
 <input type="hidden" id="accessToken" value="${param.accessToken}" >
+﻿<div id="ShowImage_Form" onclick="$('#ShowImage_Form').modal('hide')" class="modal hide">
+    <div class="modal-body" style="margin-left: 150px;margin-top: 80px;">
+        <div id="img_show">
+        </div>
+    </div>
+</div>
 <script>
+    //图片放大
+    function showimage(source)
+    {
+        $("#ShowImage_Form").find("#img_show").html("<image src='"+source+"' class='carousel-inner img-responsive img-rounded' />");
+        $("#ShowImage_Form").modal();
+    }
     var objJson = [];
     //查询颜色尺寸矩阵
     function queryData(){
@@ -81,7 +99,7 @@
                 }
                 html += "</tbody>";
                 $("#productTable").html(html);
-                html ='<button class="btn btn-success" onclick="save()">保存订单</button>'+
+                html ='<img style="width:200px;height:300px;margin-right:100px;" onclick="showimage(this.src);" src="'+result.imgUrl+'" /><button class="btn btn-success" onclick="save()">保存订单</button>'+
                         '&nbsp;&nbsp;<button class="btn" onclick="resetInput()">重新填写</button>';
                 $("#addBtn").html(html);
                 $("#pdtId").val(result.mProductId);

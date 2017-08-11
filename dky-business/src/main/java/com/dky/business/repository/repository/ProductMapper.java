@@ -80,4 +80,6 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @return
      */
     List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
+
+    String getProductImgUrl(Long mProductId);
 }

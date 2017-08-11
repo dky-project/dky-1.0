@@ -21,6 +21,8 @@ public class ColorSizeListView extends ResultObjectBase {
 
     private Long mProductId;
 
+    private String imgUrl;
+
     public List<ColorSizeView> getColorList() {
         return colorList;
     }
@@ -43,5 +45,13 @@ public class ColorSizeListView extends ResultObjectBase {
 
     public void setmProductId(Long mProductId) {
         this.mProductId = mProductId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
