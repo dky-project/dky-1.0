@@ -2,6 +2,7 @@ package com.dky.business.repository.biz.impl;
 
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.*;
+import com.dky.common.bean.BmptApprove;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.enums.IsApproveEnum;
@@ -9,10 +10,7 @@ import com.dky.common.enums.VesionEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.BmptApproveView;
-import com.dky.common.response.view.ProductApproveInfoView;
-import com.dky.common.response.view.ProductApproveReturnView;
-import com.dky.common.response.view.ProductApproveView;
+import com.dky.common.response.view.*;
 import com.dky.common.utils.DateUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
@@ -21,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +78,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         try {
             Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-            mapper.bMptApproveSave(code,param.getProductName(),
+            bmptApproveMapper.bMptApproveSave(code,param.getProductName(),
                    param.getSizeId(),param.getColorId());
         } catch (Exception e) {
             LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
@@ -186,7 +185,80 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         productApprove.setId(param.getId());
         productApprove.setIsactive(IsActiveEnum.YES.getCode());
         mapper.updateProductApproveById(productApprove);
+        mapper.updateProductApproveByApproveId(productApprove);
+        if (param.getApproveIds() != null && param.getApproveIds().size() > 0){
+            for (Long id : param.getApproveIds()){
+                productApprove = new ProductApprove();
+                productApprove.setId(id);
+                mapper.updateProductApproveById(productApprove);
+                mapper.updateProductApproveByApproveId(productApprove);
+            }
+        }
+        BmptApprove bmptApprove = new BmptApprove();
+        bmptApprove.setIsactive(IsActiveEnum.YES.getCode());
+        if (param.getBmptIds() != null && param.getBmptIds().size() > 0){
+            for (Long id : param.getBmptIds()){
+                bmptApprove = new BmptApprove();
+                bmptApprove.setId(id);
+                bmptApproveMapper.updateBmptApproveById(bmptApprove);
+            }
+        }
         return new ReturnT().successDefault();
     }
 
+    @Override
+    public ReturnT addProductDpGroup(AddDpGroupParam param) {
+        List<Long> bmptIds = new ArrayList<>();
+        List<Long> approveIds = new ArrayList<>();
+        try {
+            //大货下单
+            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+            for (AddDpGroupBmptParam addDpGroupBmptParam : param.getAddDpGroupBmptParamList()){
+                Long id = bmptApproveMapper.getBmptApproveSeq();
+                bmptApproveMapper.insertBmptApprove(id,code,addDpGroupBmptParam.getPdt(),
+                        addDpGroupBmptParam.getSizeId(),addDpGroupBmptParam.getColorId());
+                bmptApproveMapper.bmptApproveAcm(id);
+                bmptIds.add(id);
+            }
+            //定制下单
+            for (AddDpGroupApproveParam approveParam : param.getAddDpGroupApproveParamList()){
+                ProductApprove approve = new ProductApprove();
+                BeanUtils.copyProperties(approveParam,approve);
+                approve.setFhDate(dimNewMapper.getSendDate());
+                approve.setJgno(code);
+                approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
+                approve.setNo(mapper.getMaxNo(code,approve.getCzDate()));
+                approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+                approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
+                approve.setIsactive(IsActiveEnum.NO.getCode());
+                Long userId = param.getSessionUser().getUserId();
+                approve.setOwnerid(userId);
+                approve.setModifierid(userId);
+                approve.setAdClientId(37l);
+                approve.setAdOrgId(27l);
+                approve.setJxwValue("0");
+                approve.setSjxcValue("0");
+                approve.setCustomer("样衣五");
+                Long id = mapper.getProductApproveSeq();
+                approve.setId(id);
+                Map<String,Object> map = new HashedMap();
+                map.put("id",id);
+                    mapper.addProductDefault(approve);
+                    mapper.add_product_dp_group(map);
+
+                approveIds.add(id);
+            }
+        }catch (Exception e){
+                //e.printStackTrace();
+                LOGGER.error("搭配下单出错！result:{}",e.getMessage());
+                return new ReturnT().failureData(e.getMessage());
+            }
+        DpGroupReturnView view = new DpGroupReturnView();
+        view.setBmptIds(bmptIds);
+        view.setApproveIds(approveIds);
+        ReturnT returnT = new ReturnT();
+        returnT.setData(view);
+        return returnT.successDefault();
+    }
 }

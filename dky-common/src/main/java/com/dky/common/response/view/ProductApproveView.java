@@ -72,6 +72,10 @@ public class ProductApproveView extends ResultObjectBase {
      * 大图片
      */
     private String bigImgUrl;
+    /**
+     * 主颜色
+     */
+    private String colorName;
 
     public Long getId() {
         return id;
@@ -195,5 +199,13 @@ public class ProductApproveView extends ResultObjectBase {
 
     public void setBigImgUrl(String bigImgUrl) {
         this.bigImgUrl = bigImgUrl;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
     }
 }

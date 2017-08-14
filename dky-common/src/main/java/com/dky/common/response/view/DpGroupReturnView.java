@@ -1,32 +1,23 @@
-package com.dky.common.param;
+package com.dky.common.response.view;
 
-import com.dky.common.session.SessionParameter;
+import com.dky.common.response.ResultObjectBase;
 
 import java.util.List;
 
-
 /**
- * 更新订单
- * Created by hang 2017/2/19.
+ * Created by hang on 2017/5/15 0004.
+ * @decription 下单保存返回字段
  */
-public class UpdateProductApproveParam extends SessionParameter {
+public class DpGroupReturnView extends ResultObjectBase {
 
     /**
-     * 订单ID
+     * 大货订单ID
      */
-    private Long id;
-
     private List<Long> bmptIds;
-
+    /**
+     * 定制订单ID
+     */
     private List<Long> approveIds;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public List<Long> getBmptIds() {
         return bmptIds;

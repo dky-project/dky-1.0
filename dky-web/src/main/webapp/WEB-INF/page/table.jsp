@@ -31,7 +31,7 @@
     <input type="text" id="customer" class="form-control input-lg" placeholder="请输入客户" style="margin-top:20px;"/>
 </div> -->
 <div class="input-group" style="width:50%;margin:0 auto;margin-top:20px;">
-    <input type="text" id="productName" value="" onblur="queryData()" class="form-control input-lg" placeholder="请输入款号" />
+    <input type="text" id="productName" value="${param.productName}" onblur="queryData()" class="form-control input-lg" placeholder="请输入款号" />
     <span class="input-group-btn">
        <button class="btn btn-info btn-search" onclick="queryData()">搜索</button>
     </span>
@@ -47,6 +47,9 @@
     </div>
 </div>
 <script>
+    if($("#productName").val() != ""){
+        queryData();
+    }
     //图片放大
     function showimage(source)
     {
@@ -99,7 +102,7 @@
                 }
                 html += "</tbody>";
                 $("#productTable").html(html);
-                html ='<img style="width:200px;height:300px;margin-right:100px;" onclick="showimage(this.src);" src="'+result.imgUrl+'" /><button class="btn btn-success" onclick="save()">保存订单</button>'+
+                html ='<img style="width:200px;height:300px;margin-right:60px;" onclick="showimage(this.src);" src="'+result.imgUrl+'" /><button class="btn btn-success" onclick="save()">保存订单</button>'+
                         '&nbsp;&nbsp;<button class="btn" onclick="resetInput()">重新填写</button>';
                 $("#addBtn").html(html);
                 $("#pdtId").val(result.mProductId);

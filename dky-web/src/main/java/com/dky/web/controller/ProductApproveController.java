@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Iterator;
@@ -130,6 +131,12 @@ public class ProductApproveController {
             }
         }
         return new ReturnT().successDefault();
+    }
+
+    @RequestMapping(value = "addProductDpGroup",name = "搭配款号下单")
+    @ResponseBody
+    public ReturnT<ProductApproveReturnView> addProductDpGroup(AddDpGroupParam param){
+        return approveService.addProductDpGroup(param);
     }
 
     public boolean judgeContainsStr(String no) {

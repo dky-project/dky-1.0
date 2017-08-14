@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.AddDpGroupParam;
 import com.dky.common.param.AddProductApproveParam;
 import com.dky.common.param.BMptApproveSaveParam;
 import com.dky.common.param.UpdateProductApproveParam;
@@ -28,4 +29,6 @@ public interface ProductApproveService {
     ReturnT bMptApproveSave(BMptApproveSaveParam param);
 
     ReturnT confirmProductApprove(UpdateProductApproveParam param);
+
+    ReturnT addProductDpGroup(AddDpGroupParam param);
 }

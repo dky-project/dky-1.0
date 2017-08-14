@@ -28,14 +28,13 @@ public interface ProductApproveMapper {
 
     int updateProductApproveById(ProductApprove productApprove);
 
-    void bMptApproveSave(@Param("jgNo")String jgNo,
-                         @Param("productName")String productName,
-                         @Param("sizeId")Long sizeId,
-                         @Param("colorId")Long colorId);
+    int updateProductApproveByApproveId(ProductApprove productApprove);
 
     void productApproveAc(@Param("id")Long id);
 
     void addProductDefaultAc(Map<String,Object> map);
+
+    void add_product_dp_group(Map<String,Object> map);
 
     String getScorder(Map<String,Object> map);
 

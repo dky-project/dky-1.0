@@ -158,10 +158,10 @@
   <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
      SELECT
         id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
-        mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount
+        mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,colorName
      FROM (
       SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
-      mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,ROWNUM RN FROM (
+      mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,colorName,ROWNUM RN FROM (
         <include refid="queryTmpl"></include>
       ) WHERE 1=1
       <if test="null!=requestOffset">
@@ -202,10 +202,12 @@
     t1.YC_VALUE as ycValue,
     1 as sum,
     NVL(1 * t1.ls_price,0) as totalAmount,
-    t3.IMGURL1 as imgUrl
+    t3.IMGURL1 as imgUrl,
+    t4.name as colorName
   from v_m_product_approve t1
   LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
   LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
+  LEFT JOIN M_COLOR t4 on t4.id = t1.COLORVALUE
   WHERE t1.ISACTIVE = 'Y'
   <include refid="whereClause"></include>
   ORDER BY t1.CZ_DATE DESC
@@ -1079,6 +1081,12 @@
       </if>
     </trim>
   </insert>
+
+  <update id="updateProductApproveByApproveId" parameterType="com.dky.common.bean.ProductApprove" >
+    update M_PRODUCT_APPROVE t set t.ISACTIVE = #{isactive,jdbcType=CHAR}
+    where t.M_PRODUCT_APPROVE_ID = #{id,jdbcType=DECIMAL}
+  </update>
+
   <update id="updateProductApproveById" parameterType="com.dky.common.bean.ProductApprove" >
     update M_PRODUCT_APPROVE
     <set >
@@ -1476,10 +1484,6 @@
     where ID = #{id,jdbcType=DECIMAL}
   </update>
 
-    <insert id="bMptApproveSave" statementType="CALLABLE">
-      {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
-    </insert>
-
     <update id="productApproveAc" statementType="CALLABLE">
       {call  update_product_approve(#{id}) }
     </update>
@@ -1544,6 +1548,9 @@
       </if>
       <if test="pdt != null" >
         PDT,
+      </if>
+      <if test="mProductId != null" >
+        M_PRODUCT_ID,
       </if>
       <if test="jgno != null" >
         JGNO,
@@ -1633,6 +1640,9 @@
       <if test="pdt != null" >
         #{pdt,jdbcType=VARCHAR},
       </if>
+      <if test="mProductId != null" >
+        #{mProductId,jdbcType=DECIMAL},
+      </if>
       <if test="jgno != null" >
         #{jgno,jdbcType=VARCHAR},
       </if>
@@ -1667,7 +1677,11 @@
   </insert>
 
   <insert id="addProductDefaultAc" statementType="CALLABLE">
-    {call  add_product_default(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
+      {call  add_product_default(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
+  </insert>
+
+  <insert id="add_product_dp_group" statementType="CALLABLE">
+      {call  add_product_dp_group(#{id,mode=IN,jdbcType=DECIMAL},#{R_MESSAGE,mode=OUT,jdbcType=VARCHAR}) }
   </insert>
 
   <select id="getMaxNo" resultType="java.lang.String">

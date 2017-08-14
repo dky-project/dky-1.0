@@ -87,4 +87,50 @@
     SELECT count(1)
     from  (<include refid="queryTmpl"></include>) t
   </select>
+
+  <insert id="bMptApproveSave" statementType="CALLABLE">
+    {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
+  </insert>
+
+  <select id="getBmptApproveSeq" resultType="java.lang.Long">
+    SELECT SEQ_B_MPTAPPROVE.NEXTVAL FROM DUAL
+  </select>
+
+  <insert id="insertBmptApprove">
+    insert into B_MPTAPPROVE
+    (ID,
+      AD_CLIENT_ID,
+      AD_ORG_ID,
+      C_STORE_ID,
+      M_PRODUCT_ID,
+      M_COLOR_ID,
+      M_SIZE_ID,
+      OWNERID,
+      MODIFIERID,
+      CREATIONDATE,
+      MODIFIEDDATE,
+      ISACTIVE)
+      values
+    (#{id},
+      37,
+      27,
+      (select nvl(max(t.id), 0) from c_store t where t.code = trim(#{jgNo})),
+      (select nvl(max(t.id), 0) from m_product t where t.name = trim(#{productName})),
+      #{colorId},
+      #{sizeId},
+      893,
+      893,
+      sysdate,
+      sysdate,
+      'N');
+  </insert>
+
+  <insert id="bmptApproveAcm" statementType="CALLABLE">
+    {call  b_mptapprove_acm(#{id}) }
+  </insert>
+
+  <update id="updateBmptApproveById" parameterType="com.dky.common.bean.BmptApprove">
+    update B_MPTAPPROVE set t.ISACTIVE= #{isactive,jdbcType=CHAR}
+    where t.ID = #{id,jdbcType=DECIMAL}
+  </update>
 </mapper>
