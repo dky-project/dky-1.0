@@ -187,23 +187,25 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT confirmProductApprove(UpdateProductApproveParam param) {
         ProductApprove productApprove = new ProductApprove();
-        productApprove.setId(param.getId());
-        productApprove.setIsactive(IsActiveEnum.YES.getCode());
-        mapper.updateProductApproveById(productApprove);
-        mapper.updateProductApproveByApproveId(productApprove);
+        if (param.getId() != null){
+            productApprove.setId(param.getId());
+            productApprove.setIsactive(IsActiveEnum.YES.getCode());
+            mapper.updateProductApproveById(productApprove);
+            mapper.updateProductApproveByApproveId(productApprove);
+        }
         if (param.getApproveIds() != null && param.getApproveIds().length > 0){
             for (Long id : param.getApproveIds()){
                 productApprove = new ProductApprove();
+                productApprove.setIsactive(IsActiveEnum.YES.getCode());
                 productApprove.setId(id);
                 mapper.updateProductApproveById(productApprove);
                 mapper.updateProductApproveByApproveId(productApprove);
             }
         }
-        BmptApprove bmptApprove = new BmptApprove();
-        bmptApprove.setIsactive(IsActiveEnum.YES.getCode());
         if (param.getBmptIds() != null && param.getBmptIds().length > 0){
             for (Long id : param.getBmptIds()){
-                bmptApprove = new BmptApprove();
+                BmptApprove bmptApprove = new BmptApprove();
+                bmptApprove.setIsactive(IsActiveEnum.YES.getCode());
                 bmptApprove.setId(id);
                 bmptApproveMapper.updateBmptApproveById(bmptApprove);
             }
@@ -223,10 +225,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             JSONArray bmptArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupBmptParamList");
             Iterator<Object> it = bmptArray.iterator();
             while (it.hasNext()) {
-                JSONObject json = (JSONObject) it.next();
-                AddDpGroupBmptParam bmptParam = JSONObject.toJavaObject(json,AddDpGroupBmptParam.class);
+                String jsonStr = it.next().toString();
+                Gson gson = new Gson();
+                AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr,AddDpGroupBmptParam.class);
                 Long id = bmptApproveMapper.getBmptApproveSeq();
-                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getPdt().trim(),
+                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getMproductId(),
                         bmptParam.getSizeId(),bmptParam.getColorId());
                 bmptApproveMapper.bmptApproveAcm(id);
                 bmptIds.add(id);

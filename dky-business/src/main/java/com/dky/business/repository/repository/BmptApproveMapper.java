@@ -23,7 +23,7 @@ public interface BmptApproveMapper {
 
     void insertBmptApprove(@Param("id")Long id,
                            @Param("jgNo")String jgNo,
-                           @Param("productName")String productName,
+                           @Param("mProductId")Long mProductId,
                            @Param("sizeId")Long sizeId,
                            @Param("colorId")Long colorId);
 

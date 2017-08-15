@@ -115,7 +115,7 @@
       37,
       27,
       (select nvl(max(t.id), 0) from c_store t where t.code = #{jgNo}),
-      (select nvl(max(t.id), 0) from m_product t where t.name = #{productName}),
+      #{mProductId},
       #{colorId},
       #{sizeId},
       893,
@@ -130,7 +130,7 @@
   </insert>
 
   <update id="updateBmptApproveById" parameterType="com.dky.common.bean.BmptApprove">
-    update B_MPTAPPROVE set t.ISACTIVE= #{isactive,jdbcType=CHAR}
+    update B_MPTAPPROVE t set t.ISACTIVE= #{isactive,jdbcType=CHAR}
     where t.ID = #{id,jdbcType=DECIMAL}
   </update>
 </mapper>
