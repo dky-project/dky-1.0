@@ -20,7 +20,7 @@ public class AddDpGroupApproveParam extends SessionParameter {
     /**
      * 品种
      */
-    private String mDimNew14Id;
+    private Long mDimNew14Id;
     /**
      *  大（尺寸）
      */
@@ -54,11 +54,11 @@ public class AddDpGroupApproveParam extends SessionParameter {
         this.pdt = pdt;
     }
 
-    public String getmDimNew14Id() {
+    public Long getmDimNew14Id() {
         return mDimNew14Id;
     }
 
-    public void setmDimNew14Id(String mDimNew14Id) {
+    public void setmDimNew14Id(Long mDimNew14Id) {
         this.mDimNew14Id = mDimNew14Id;
     }
 

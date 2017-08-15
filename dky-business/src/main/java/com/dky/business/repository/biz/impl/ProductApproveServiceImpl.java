@@ -1,5 +1,7 @@
 package com.dky.business.repository.biz.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.BmptApprove;
@@ -12,14 +14,17 @@ import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
 import com.dky.common.utils.DateUtils;
+import com.google.gson.Gson;
 import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -186,7 +191,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         productApprove.setIsactive(IsActiveEnum.YES.getCode());
         mapper.updateProductApproveById(productApprove);
         mapper.updateProductApproveByApproveId(productApprove);
-        if (param.getApproveIds() != null && param.getApproveIds().size() > 0){
+        if (param.getApproveIds() != null && param.getApproveIds().length > 0){
             for (Long id : param.getApproveIds()){
                 productApprove = new ProductApprove();
                 productApprove.setId(id);
@@ -196,7 +201,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         }
         BmptApprove bmptApprove = new BmptApprove();
         bmptApprove.setIsactive(IsActiveEnum.YES.getCode());
-        if (param.getBmptIds() != null && param.getBmptIds().size() > 0){
+        if (param.getBmptIds() != null && param.getBmptIds().length > 0){
             for (Long id : param.getBmptIds()){
                 bmptApprove = new BmptApprove();
                 bmptApprove.setId(id);
@@ -207,6 +212,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
+    @Transactional
     public ReturnT addProductDpGroup(AddDpGroupParam param) {
         List<Long> bmptIds = new ArrayList<>();
         List<Long> approveIds = new ArrayList<>();
@@ -214,15 +220,24 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             //大货下单
             Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-            for (AddDpGroupBmptParam addDpGroupBmptParam : param.getAddDpGroupBmptParamList()){
+            JSONArray bmptArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupBmptParamList");
+            Iterator<Object> it = bmptArray.iterator();
+            while (it.hasNext()) {
+                JSONObject json = (JSONObject) it.next();
+                AddDpGroupBmptParam bmptParam = JSONObject.toJavaObject(json,AddDpGroupBmptParam.class);
                 Long id = bmptApproveMapper.getBmptApproveSeq();
-                bmptApproveMapper.insertBmptApprove(id,code,addDpGroupBmptParam.getPdt(),
-                        addDpGroupBmptParam.getSizeId(),addDpGroupBmptParam.getColorId());
+                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getPdt().trim(),
+                        bmptParam.getSizeId(),bmptParam.getColorId());
                 bmptApproveMapper.bmptApproveAcm(id);
                 bmptIds.add(id);
             }
             //定制下单
-            for (AddDpGroupApproveParam approveParam : param.getAddDpGroupApproveParamList()){
+            JSONArray approveArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupApproveParamList");
+            Iterator<Object> iterator = approveArray.iterator();
+            while (iterator.hasNext()) {
+                String json =  iterator.next().toString();
+                Gson gson = new Gson();
+                AddDpGroupApproveParam approveParam = gson.fromJson(json,AddDpGroupApproveParam.class);
                 ProductApprove approve = new ProductApprove();
                 BeanUtils.copyProperties(approveParam,approve);
                 approve.setFhDate(dimNewMapper.getSendDate());
@@ -244,9 +259,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 approve.setId(id);
                 Map<String,Object> map = new HashedMap();
                 map.put("id",id);
-                    mapper.addProductDefault(approve);
-                    mapper.add_product_dp_group(map);
-
+                mapper.addProductDefault(approve);
+                mapper.add_product_dp_group(map);
                 approveIds.add(id);
             }
         }catch (Exception e){

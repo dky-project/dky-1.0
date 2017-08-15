@@ -2,8 +2,6 @@ package com.dky.common.param;
 
 import com.dky.common.session.SessionParameter;
 
-import java.util.List;
-
 
 /**
  * 更新订单
@@ -15,10 +13,14 @@ public class UpdateProductApproveParam extends SessionParameter {
      * 订单ID
      */
     private Long id;
-
-    private List<Long> bmptIds;
-
-    private List<Long> approveIds;
+    /**
+     * 大货订单ID
+     */
+    private Long[] bmptIds;
+    /**
+     * 定制订单ID
+     */
+    private Long[] approveIds;
 
     public Long getId() {
         return id;
@@ -28,19 +30,19 @@ public class UpdateProductApproveParam extends SessionParameter {
         this.id = id;
     }
 
-    public List<Long> getBmptIds() {
+    public Long[] getBmptIds() {
         return bmptIds;
     }
 
-    public void setBmptIds(List<Long> bmptIds) {
+    public void setBmptIds(Long[] bmptIds) {
         this.bmptIds = bmptIds;
     }
 
-    public List<Long> getApproveIds() {
+    public Long[] getApproveIds() {
         return approveIds;
     }
 
-    public void setApproveIds(List<Long> approveIds) {
+    public void setApproveIds(Long[] approveIds) {
         this.approveIds = approveIds;
     }
 }

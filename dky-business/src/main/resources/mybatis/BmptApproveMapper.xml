@@ -114,15 +114,15 @@
     (#{id},
       37,
       27,
-      (select nvl(max(t.id), 0) from c_store t where t.code = trim(#{jgNo})),
-      (select nvl(max(t.id), 0) from m_product t where t.name = trim(#{productName})),
+      (select nvl(max(t.id), 0) from c_store t where t.code = #{jgNo}),
+      (select nvl(max(t.id), 0) from m_product t where t.name = #{productName}),
       #{colorId},
       #{sizeId},
       893,
       893,
       sysdate,
       sysdate,
-      'N');
+      'N')
   </insert>
 
   <insert id="bmptApproveAcm" statementType="CALLABLE">

@@ -29,11 +29,11 @@ public class AddDpGroupBmptParam extends SessionParameter {
     @NotNull(message = "颜色colorId不能为空")
     private Long colorId;
 
-    public Long getmProductId() {
+    public Long getMproductId() {
         return mProductId;
     }
 
-    public void setmProductId(Long mProductId) {
+    public void setMproductId(Long mProductId) {
         this.mProductId = mProductId;
     }
 

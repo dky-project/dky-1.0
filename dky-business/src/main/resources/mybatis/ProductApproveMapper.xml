@@ -1546,6 +1546,9 @@
       <if test="jxwValue != null" >
         JXW_VALUE,
       </if>
+      <if test="sjxcValue != null" >
+        SJXC_VALUE,
+      </if>
       <if test="pdt != null" >
         PDT,
       </if>
@@ -1607,13 +1610,13 @@
       <if test="mDimNew14Id != null" >
         #{mDimNew14Id,jdbcType=DECIMAL},
       </if>
-      <if test="mDimNew14Id != null" >
+      <if test="mDimNew15Id != null" >
         #{mDimNew15Id,jdbcType=DECIMAL},
       </if>
-      <if test="mDimNew14Id != null" >
+      <if test="mDimNew16Id != null" >
         #{mDimNew16Id,jdbcType=DECIMAL},
       </if>
-      <if test="mDimNew14Id != null" >
+      <if test="mDimNew17Id != null" >
         #{mDimNew17Id,jdbcType=DECIMAL},
       </if>
       <if test="colorValue != null" >
@@ -1636,6 +1639,9 @@
       </if>
       <if test="jxwValue != null" >
         #{jxwValue,jdbcType=DECIMAL},
+      </if>
+      <if test="sjxcValue != null" >
+        #{sjxcValue,jdbcType=DECIMAL},
       </if>
       <if test="pdt != null" >
         #{pdt,jdbcType=VARCHAR},
