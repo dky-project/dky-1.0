@@ -121,11 +121,13 @@ public class ProductApproveController {
             JSONObject json = (JSONObject) it.next();
             BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
             bMptApproveSaveParam.setProductName(param.getProductName());
+            bMptApproveSaveParam.setPdtId(param.getPdtId());
             bMptApproveSaveParam.setJgNo(param.getJgNo());
             bMptApproveSaveParam.setColorId(json.getLong("color"));
             bMptApproveSaveParam.setSizeId(json.getLong("size"));
+            bMptApproveSaveParam.setQty(json.getLong("qty"));
             bMptApproveSaveParam.setSessionUser(param.getSessionUser());
-            ReturnT returnT = approveService.bMptApproveSave(bMptApproveSaveParam);
+            ReturnT returnT = approveService.bMptApproveInsert(bMptApproveSaveParam);
             if (returnT.isFailed()){
                 return returnT;
             }

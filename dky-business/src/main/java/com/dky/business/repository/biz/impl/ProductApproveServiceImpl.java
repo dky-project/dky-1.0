@@ -84,7 +84,21 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
             bmptApproveMapper.bMptApproveSave(code,param.getProductName(),
-                   param.getSizeId(),param.getColorId());
+                    param.getSizeId(),param.getColorId());
+        } catch (Exception e) {
+            LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
+            return new ReturnT().failureData("保存大货类型订单失败");
+        }
+        return new ReturnT().successDefault();
+    }
+
+    @Override
+    public ReturnT bMptApproveInsert(BMptApproveSaveParam param) {
+        try {
+            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+            bmptApproveMapper.bMptApproveInsert(code,param.getPdtId(),
+                    param.getSizeId(),param.getColorId(),param.getQty());
         } catch (Exception e) {
             LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
@@ -229,8 +243,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 Gson gson = new Gson();
                 AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr,AddDpGroupBmptParam.class);
                 Long id = bmptApproveMapper.getBmptApproveSeq();
-                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getMproductId(),
-                        bmptParam.getSizeId(),bmptParam.getColorId());
+                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
+                        bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum());
                 bmptApproveMapper.bmptApproveAcm(id);
                 bmptIds.add(id);
             }

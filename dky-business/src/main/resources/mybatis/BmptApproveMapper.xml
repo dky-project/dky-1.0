@@ -92,6 +92,10 @@
     {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
   </insert>
 
+  <insert id="bMptApproveInsert" statementType="CALLABLE">
+    {call  B_MPTAPPROVE_INSERT(#{jgNo},#{pdtId},#{sizeId},#{colorId},#{qty}) }
+  </insert>
+
   <select id="getBmptApproveSeq" resultType="java.lang.Long">
     SELECT SEQ_B_MPTAPPROVE.NEXTVAL FROM DUAL
   </select>
@@ -105,6 +109,7 @@
       M_PRODUCT_ID,
       M_COLOR_ID,
       M_SIZE_ID,
+      QTY,
       OWNERID,
       MODIFIERID,
       CREATIONDATE,
@@ -118,6 +123,7 @@
       #{mProductId},
       #{colorId},
       #{sizeId},
+      #{qty},
       893,
       893,
       sysdate,

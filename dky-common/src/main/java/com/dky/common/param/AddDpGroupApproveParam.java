@@ -37,6 +37,10 @@ public class AddDpGroupApproveParam extends SessionParameter {
      * 颜色名称
      */
     private String colorArr;
+    /**
+     * 数量
+     */
+    private Long sum;
 
     public Long getmProductId() {
         return mProductId;
@@ -92,5 +96,13 @@ public class AddDpGroupApproveParam extends SessionParameter {
 
     public void setColorArr(String colorArr) {
         this.colorArr = colorArr;
+    }
+
+    public Long getSum() {
+        return sum;
+    }
+
+    public void setSum(Long sum) {
+        this.sum = sum;
     }
 }

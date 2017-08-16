@@ -14,18 +14,25 @@ public interface BmptApproveMapper {
 
     int count(BmptApproveQueryParam bmptApprove);
 
-    void bMptApproveSave(@Param("jgNo")String jgNo,
-                         @Param("productName")String productName,
-                         @Param("sizeId")Long sizeId,
-                         @Param("colorId")Long colorId);
+    void bMptApproveSave(@Param("jgNo") String jgNo,
+                         @Param("productName") String productName,
+                         @Param("sizeId") Long sizeId,
+                         @Param("colorId") Long colorId);
+
+    void bMptApproveInsert(@Param("jgNo") String jgNo,
+                           @Param("pdtId") Long pdtId,
+                           @Param("sizeId") Long sizeId,
+                           @Param("colorId") Long colorId,
+                           @Param("qty") Long qty);
 
     Long getBmptApproveSeq();
 
-    void insertBmptApprove(@Param("id")Long id,
-                           @Param("jgNo")String jgNo,
-                           @Param("mProductId")Long mProductId,
-                           @Param("sizeId")Long sizeId,
-                           @Param("colorId")Long colorId);
+    void insertBmptApprove(@Param("id") Long id,
+                           @Param("jgNo") String jgNo,
+                           @Param("mProductId") Long mProductId,
+                           @Param("sizeId") Long sizeId,
+                           @Param("colorId") Long colorId,
+                           @Param("qty") Long qty);
 
     void bmptApproveAcm(Long id);
 

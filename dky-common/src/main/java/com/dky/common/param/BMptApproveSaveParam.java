@@ -35,6 +35,14 @@ public class BMptApproveSaveParam extends SessionParameter {
     @NotNull(message = "颜色colorId不能为空")
     private Long colorId;
 
+    /**
+     * 颜色
+     */
+    @NotNull(message = "款号不能为空")
+    private Long pdtId;
+
+    private Long qty;
+
     public String getJgNo() {
         return jgNo;
     }
@@ -65,5 +73,21 @@ public class BMptApproveSaveParam extends SessionParameter {
 
     public void setColorId(Long colorId) {
         this.colorId = colorId;
+    }
+
+    public Long getQty() {
+        return qty;
+    }
+
+    public void setQty(Long qty) {
+        this.qty = qty;
+    }
+
+    public Long getPdtId() {
+        return pdtId;
+    }
+
+    public void setPdtId(Long pdtId) {
+        this.pdtId = pdtId;
     }
 }

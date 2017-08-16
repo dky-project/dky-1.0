@@ -119,15 +119,15 @@
             var count=parseInt($(inp).val(),10);
             count=isNaN(count)?0:count;
             if(objJson.length == 0){
-                objJson.push(eval('({"color":"' + cl + '","size":"' + sz + '","num":' + count + '})'));
+                objJson.push(eval('({"color":"' + cl + '","size":"' + sz + '","qty":' + count + '})'));
                 return;
             }
             for(var i=0;i<objJson.length;i++){
                 if(objJson[i].color==cl&&objJson[i].size==sz){
-                    objJson[i].num = count;
+                    objJson[i].qty = count;
                     break;
                 }else{
-                    objJson.push(eval('({"color":"' + cl + '","size":"' + sz + '","num":' + count + '})'));
+                    objJson.push(eval('({"color":"' + cl + '","size":"' + sz + '","qty":' + count + '})'));
                     break;
                 }
             }
