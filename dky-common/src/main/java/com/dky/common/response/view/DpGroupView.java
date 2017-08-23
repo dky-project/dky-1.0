@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dky.common.response.ResultObjectBase;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 
@@ -56,6 +57,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private Long mDimNew14Id;
     /**
+     * 针型默认值
+     */
+    private Long mDimNew16Id;
+    /**
      * 品种列表
      */
     private JSONArray pzJsonstr;
@@ -71,6 +76,8 @@ public class DpGroupView extends ResultObjectBase {
      * 收藏状体：1-未收藏，2-已收藏
      */
     private Integer iscollect;
+
+    private BigDecimal price;
 
     public String getImgUrl() {
         if (this.imgUrl != null){
@@ -147,6 +154,14 @@ public class DpGroupView extends ResultObjectBase {
         this.mDimNew14Id = mDimNew14Id;
     }
 
+    public Long getmDimNew16Id() {
+        return mDimNew16Id;
+    }
+
+    public void setmDimNew16Id(Long mDimNew16Id) {
+        this.mDimNew16Id = mDimNew16Id;
+    }
+
     public JSONArray getXwArrayJson() {
         return xwArrayJson;
     }
@@ -185,5 +200,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setIscollect(Integer iscollect) {
         this.iscollect = iscollect;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

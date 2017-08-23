@@ -2,55 +2,46 @@ package com.dky.common.param;
 
 import com.dky.common.session.SessionParameter;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by hang on 2017/2/26.
  */
-public class AddDpGroupApproveParam extends SessionParameter {
+public class ProductPriceQueryParam extends SessionParameter {
 
-    /**
-     * 款号ID
-     */
-    private Long mProductId;
     /**
      * 款号名称
      */
     private String pdt;
     /**
-     * 针型
+     * 款号ID
      */
-    private Long mDimNew16Id;
+    private Long pdtId;
     /**
-     * 品种
+     * 商品所属类别
+     */
+    @NotNull(message = "mptbelongtype can not be null!")
+    private String mptbelongtype;
+    /**
+     * 品种默认值
      */
     private Long mDimNew14Id;
     /**
-     *  大（尺寸）
+     * 针型默认值
+     */
+    private Long mDimNew16Id;
+    /**
+     * 尺寸：大 默认值
      */
     private String xwValue;
     /**
-     *  长（尺寸）
-     */
-    private String ycValue;
-    /**
-     *  袖长
+     * 袖长
      */
     private String xcValue;
     /**
-     * 颜色名称
+     * 尺寸：长
      */
-    private String colorArr;
-    /**
-     * 数量
-     */
-    private Long sum;
-
-    public Long getmProductId() {
-        return mProductId;
-    }
-
-    public void setmProductId(Long mProductId) {
-        this.mProductId = mProductId;
-    }
+    private String ycValue;
 
     public String getPdt() {
         return pdt;
@@ -58,6 +49,22 @@ public class AddDpGroupApproveParam extends SessionParameter {
 
     public void setPdt(String pdt) {
         this.pdt = pdt;
+    }
+
+    public Long getPdtId() {
+        return pdtId;
+    }
+
+    public String getMptbelongtype() {
+        return mptbelongtype;
+    }
+
+    public void setMptbelongtype(String mptbelongtype) {
+        this.mptbelongtype = mptbelongtype;
+    }
+
+    public void setPdtId(Long pdtId) {
+        this.pdtId = pdtId;
     }
 
     public Long getmDimNew14Id() {
@@ -84,14 +91,6 @@ public class AddDpGroupApproveParam extends SessionParameter {
         this.xwValue = xwValue;
     }
 
-    public String getYcValue() {
-        return ycValue;
-    }
-
-    public void setYcValue(String ycValue) {
-        this.ycValue = ycValue;
-    }
-
     public String getXcValue() {
         return xcValue;
     }
@@ -100,19 +99,11 @@ public class AddDpGroupApproveParam extends SessionParameter {
         this.xcValue = xcValue;
     }
 
-    public String getColorArr() {
-        return colorArr;
+    public String getYcValue() {
+        return ycValue;
     }
 
-    public void setColorArr(String colorArr) {
-        this.colorArr = colorArr;
-    }
-
-    public Long getSum() {
-        return sum;
-    }
-
-    public void setSum(Long sum) {
-        this.sum = sum;
+    public void setYcValue(String ycValue) {
+        this.ycValue = ycValue;
     }
 }

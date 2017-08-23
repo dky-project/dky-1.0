@@ -14,6 +14,8 @@ public class ProductMadePageView extends ResultObjectBase {
 
     private List<ProductColorView> colorViewList;
 
+    private List<ProductColorView> colorRangeViewList;
+
     private List<ProductSizeView> sizeViewList;
 
     private ProductCusmptcateView productCusmptcateView;
@@ -32,6 +34,14 @@ public class ProductMadePageView extends ResultObjectBase {
 
     public void setColorViewList(List<ProductColorView> colorViewList) {
         this.colorViewList = colorViewList;
+    }
+
+    public List<ProductColorView> getColorRangeViewList() {
+        return colorRangeViewList;
+    }
+
+    public void setColorRangeViewList(List<ProductColorView> colorRangeViewList) {
+        this.colorRangeViewList = colorRangeViewList;
     }
 
     public List<ProductSizeView> getSizeViewList() {

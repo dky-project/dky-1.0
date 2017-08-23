@@ -4,7 +4,9 @@ import com.dky.common.bean.Product;
 import com.dky.common.response.view.*;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 
 @MyBatisRepository
@@ -82,4 +84,8 @@ public interface ProductMapper extends BaseDao<Product,Long> {
     List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
 
     String getProductImgUrl(Long mProductId);
+
+    String getProductPrice(Map<String,Object> map);
+
+    BigDecimal getMpdtProductPrice(Long mProductId);
 }

@@ -12,12 +12,14 @@ import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
 import com.dky.common.utils.PropertieUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +123,7 @@ public class ProductServiceImpl implements ProductService {
             view.setProductCusmptcateView(productCusmptcateView);
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
+            view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
         } else if ("B".equals(product.getMptbelongtype())){
             ProductCusmptcateView productCusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
             view.setProductCusmptcateView(productCusmptcateView);
@@ -130,6 +133,7 @@ public class ProductServiceImpl implements ProductService {
             }
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
+            view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
         }
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
@@ -220,8 +224,20 @@ public class ProductServiceImpl implements ProductService {
             if ("C".equals(view.getMptbelongtype())){
                 view.setColorViewList(mapper.getProductColorListByProductId(view.getmProductId()));
                 view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
+                view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
             }else{
                 view.setColorViewList(dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id()));
+                Map<String,Object> map = new HashedMap();
+                map.put("V_PZ",view.getmDimNew14Id());
+                map.put("V_ZX",view.getmDimNew16Id());
+                map.put("V_XW_VALUE",view.getXwValue());
+                map.put("V_XC_VALUE",view.getXcValue());
+                map.put("V_YC_VALUE1",view.getYcValue());
+                map.put("V_JGNO",code);
+                map.put("V_PDT",view.getProductName());
+                mapper.getProductPrice(map);
+                BigDecimal price = new BigDecimal(map.get("v_price_out").toString());
+                view.setPrice(price);
             }
         }
         return new ReturnT<>().sucessData(new PageList<DpGroupView>(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize()));

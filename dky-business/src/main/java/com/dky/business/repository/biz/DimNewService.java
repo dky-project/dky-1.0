@@ -27,4 +27,6 @@ public interface DimNewService {
     ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param);
 
     ReturnT getSizeData(SizeDataQueryParam param);
+
+    ReturnT getProductPrice(ProductPriceQueryParam param);
 }

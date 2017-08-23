@@ -18,6 +18,7 @@ import com.dky.common.response.view.PzJsonResultView;
 import com.dky.common.utils.DateUtils;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -169,6 +171,30 @@ public class DimNewServiceImpl implements DimNewService {
         ReturnT returnT = new ReturnT();
         String jsonStr = mapper.getSizeData(param.getPdt(),param.getXwValue());
         returnT.setData(JSONObject.parseObject(jsonStr));
+        return returnT.successDefault();
+    }
+
+    @Override
+    public ReturnT getProductPrice(ProductPriceQueryParam param) {
+        BigDecimal price;
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+        if ("C".equals(param.getMptbelongtype())){
+            price = productMapper.getMpdtProductPrice(param.getPdtId());
+        }else{
+            Map<String,Object> map = new HashedMap();
+            map.put("V_PZ",param.getmDimNew14Id());
+            map.put("V_ZX",param.getmDimNew16Id());
+            map.put("V_XW_VALUE",param.getXwValue());
+            map.put("V_XC_VALUE",param.getXcValue());
+            map.put("V_YC_VALUE1",param.getYcValue());
+            map.put("V_JGNO",code);
+            map.put("V_PDT",param.getPdt());
+            productMapper.getProductPrice(map);
+            price = new BigDecimal(map.get("v_price_out").toString());
+        }
+        ReturnT returnT = new ReturnT();
+        returnT.setData(price);
         return returnT.successDefault();
     }
 }
