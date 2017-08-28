@@ -65,6 +65,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private JSONArray pzJsonstr;
     /**
+     * 针型列表
+     */
+    private JSONArray zxJsonstr;
+    /**
      * 颜色列表
      */
     private List<ProductColorView> colorViewList;
@@ -176,6 +180,14 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setPzJsonstr(String pzJsonstr) {
         this.pzJsonstr = JSONArray.parseObject(pzJsonstr).getJSONArray("value");
+    }
+
+    public JSONArray getZxJsonstr() {
+        return zxJsonstr;
+    }
+
+    public void setZxJsonstr(String zxJsonstr) {
+        this.zxJsonstr = JSONArray.parseObject(zxJsonstr).getJSONArray("value");
     }
 
     public String getIsYcAffix() {
