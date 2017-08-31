@@ -242,11 +242,13 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 String jsonStr = it.next().toString();
                 Gson gson = new Gson();
                 AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr,AddDpGroupBmptParam.class);
-                Long id = bmptApproveMapper.getBmptApproveSeq();
-                bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
-                        bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum());
-                bmptApproveMapper.bmptApproveAcm(id);
-                bmptIds.add(id);
+                if (bmptParam.getSum() > 0){
+                    Long id = bmptApproveMapper.getBmptApproveSeq();
+                    bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
+                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum());
+                    bmptApproveMapper.bmptApproveAcm(id);
+                    bmptIds.add(id);
+                }
             }
             //定制下单
             JSONArray approveArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupApproveParamList");
@@ -255,30 +257,32 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 String json =  iterator.next().toString();
                 Gson gson = new Gson();
                 AddDpGroupApproveParam approveParam = gson.fromJson(json,AddDpGroupApproveParam.class);
-                ProductApprove approve = new ProductApprove();
-                BeanUtils.copyProperties(approveParam,approve);
-                approve.setFhDate(dimNewMapper.getSendDate());
-                approve.setJgno(code);
-                approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-                approve.setNo(mapper.getMaxNo(code,approve.getCzDate()));
-                approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
-                approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
-                approve.setIsactive(IsActiveEnum.NO.getCode());
-                Long userId = param.getSessionUser().getUserId();
-                approve.setOwnerid(userId);
-                approve.setModifierid(userId);
-                approve.setAdClientId(37l);
-                approve.setAdOrgId(27l);
-                approve.setJxwValue("0");
-                approve.setSjxcValue("0");
-                approve.setCustomer("样衣五");
-                Long id = mapper.getProductApproveSeq();
-                approve.setId(id);
-                Map<String,Object> map = new HashedMap();
-                map.put("id",id);
-                mapper.addProductDefault(approve);
-                mapper.add_product_dp_group(map);
-                approveIds.add(id);
+                if (approveParam.getSum() > 0){
+                    ProductApprove approve = new ProductApprove();
+                    BeanUtils.copyProperties(approveParam,approve);
+                    approve.setFhDate(dimNewMapper.getSendDate());
+                    approve.setJgno(code);
+                    approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
+                    approve.setNo(mapper.getMaxNo(code,approve.getCzDate()));
+                    approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+                    approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
+                    approve.setIsactive(IsActiveEnum.NO.getCode());
+                    Long userId = param.getSessionUser().getUserId();
+                    approve.setOwnerid(userId);
+                    approve.setModifierid(userId);
+                    approve.setAdClientId(37l);
+                    approve.setAdOrgId(27l);
+                    approve.setJxwValue("0");
+                    approve.setSjxcValue("0");
+                    approve.setCustomer("样衣五");
+                    Long id = mapper.getProductApproveSeq();
+                    approve.setId(id);
+                    Map<String,Object> map = new HashedMap();
+                    map.put("id",id);
+                    mapper.addProductDefault(approve);
+                    mapper.add_product_dp_group(map);
+                    approveIds.add(id);
+                }
             }
         }catch (Exception e){
                 //e.printStackTrace();

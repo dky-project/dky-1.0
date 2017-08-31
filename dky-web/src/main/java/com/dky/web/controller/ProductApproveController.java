@@ -115,12 +115,14 @@ public class ProductApproveController {
 
     @RequestMapping(value = "tableApproveSave",name = "下单保存大货类型订单接口")
     public ReturnT tableApproveSave(TableApproveSaveParam param){
+        LOGGER.info("<<<<<<<<<<<<<<<<<<<<<param:{}", JSON.toJSONString(param));
         JSONArray array = JSON.parseArray(param.getItemDatas());
         Iterator<Object> it = array.iterator();
         while (it.hasNext()) {
+            LOGGER.info("<<<<<<<<<<<<<<<<<<<<<json:{}", it.next());
             JSONObject json = (JSONObject) it.next();
             BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
-            bMptApproveSaveParam.setProductName(param.getProductName());
+            bMptApproveSaveParam.setProductName(param.getProductName().trim());
             bMptApproveSaveParam.setPdtId(param.getPdtId());
             bMptApproveSaveParam.setJgNo(param.getJgNo());
             bMptApproveSaveParam.setColorId(json.getLong("color"));
