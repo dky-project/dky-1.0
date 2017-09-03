@@ -3,6 +3,7 @@ package com.dky.common.response.view;
 import com.dky.common.response.ResultObjectBase;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by hang on 2017/1/4 0004.
@@ -181,7 +182,7 @@ public class ProductInfoView extends ResultObjectBase {
     }
 
     public void setImgUrl1(String imgUrl1) {
-        this.imgUrl1 = imgUrl1;
+        this.imgUrl1 = imgUrl1+"?random="+new Random().nextInt(100);
     }
 
     public String getImgUrl2() {

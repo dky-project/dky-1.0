@@ -210,7 +210,7 @@
   LEFT JOIN M_COLOR t4 on t4.id = t1.COLORVALUE
   WHERE t1.ISACTIVE = 'Y'
   <include refid="whereClause"></include>
-  ORDER BY t1.CZ_DATE DESC
+  ORDER BY t1.CZ_DATE DESC,t1.NO1 DESC
 </sql>
 
   <sql id="queryTmplGroup">
