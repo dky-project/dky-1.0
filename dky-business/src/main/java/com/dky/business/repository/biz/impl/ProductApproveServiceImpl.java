@@ -276,7 +276,6 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 approve.setId(id);
                 Map<String,Object> map = new HashedMap();
                 map.put("id",id);
-                mapper.addProductDefault(approve);
                 mapper.add_product_dp_group(map);
                 approveIds.add(id);
             }

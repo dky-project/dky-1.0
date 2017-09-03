@@ -97,6 +97,16 @@ public class ProductController {
         return productService.getProductListByGroupNo(param);
     }
 
+    /**
+     * 陈列列表
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/getClProductListByGroupNo",name = "搭配列表")
+    public ReturnT getClProductListByGroupNo(DpGroupQueryParam param){
+        return productService.getClProductListByGroupNo(param);
+    }
+
     @RequestMapping(value = "getProductPrice",name = "获取价格")
     public ReturnT getProductPrice(ProductPriceQueryParam param){
         return dimNewService.getProductPrice(param);

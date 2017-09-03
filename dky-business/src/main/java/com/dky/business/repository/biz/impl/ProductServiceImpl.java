@@ -242,4 +242,30 @@ public class ProductServiceImpl implements ProductService {
         }
         return new ReturnT<>().sucessData(new PageList<DpGroupView>(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize()));
     }
+
+    @Override
+    public ReturnT getClProductListByGroupNo(DpGroupQueryParam param) {
+        param.setPageSize(1);
+        if (!"".equals(param.getGroupNo()) && param.getGroupNo()!= null){
+            param.setPageNo(1);
+            param.calculatePageLimit();
+        }
+        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(param.getGroupNo(),param.getRequestCount(),param.getRequestOffset());
+        if (dpGroup == null){
+            return new ReturnT<>().failureData("无数据！");
+        }
+        List<Long> ids = new ArrayList<>();
+        ids.add(dpGroup.getSyProductId());
+        ids.add(dpGroup.getWtProductId());
+        ids.add(dpGroup.getXzProductId());
+        ids.add(dpGroup.getYdProductId());
+        ids.add(dpGroup.getShoesProductId());
+        ids.add(dpGroup.getSpProductId());
+        ids.add(dpGroup.getBaoProductId());
+        ids.add(dpGroup.getWjProductId());
+        List<Long> e = new ArrayList<>(1);
+        e.add(null);
+        ids.removeAll(e);
+        return null;
+    }
 }

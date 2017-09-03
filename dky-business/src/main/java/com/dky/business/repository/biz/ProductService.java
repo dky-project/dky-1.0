@@ -34,4 +34,6 @@ public interface ProductService{
     ReturnT<ColorSizeListView> getColorSizeList(ProductMadeQueryParam param);
 
     ReturnT getProductListByGroupNo(DpGroupQueryParam param);
+
+    ReturnT getClProductListByGroupNo(DpGroupQueryParam param);
 }
