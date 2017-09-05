@@ -1,13 +1,14 @@
 package com.dky.business.repository.repository;
 
-import com.dky.common.bean.PdtBaseprice;
+import com.dky.common.response.view.PdtPriceView;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @MyBatisRepository
 public interface PdtBasepriceMapper {
 
-    List<PdtBaseprice> queryPriceListByProductId(Long mProductId);
+    List<PdtPriceView> queryPriceListByProductId(@Param("mProductId") Long mProductId, @Param("code") String code);
 
     String getDhPrice(Long mProductId);
 }

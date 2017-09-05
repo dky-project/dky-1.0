@@ -3,7 +3,6 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.PdtBasepriceService;
 import com.dky.business.repository.biz.ProductService;
-import com.dky.common.bean.PdtBaseprice;
 import com.dky.common.param.DpGroupQueryParam;
 import com.dky.common.param.ProductMadeQueryParam;
 import com.dky.common.param.ProductPriceQueryParam;
@@ -70,7 +69,7 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/queryPriceList",name = "查询价格列表")
-    public ReturnT<List<PdtBaseprice>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
+    public ReturnT<List<PdtPriceView>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
         if(mProductId == null){
             return new ReturnT<>().failureData("mProductId不能为空");
         }

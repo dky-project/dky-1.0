@@ -1,7 +1,7 @@
 package com.dky.business.repository.biz;
 
-import com.dky.common.bean.PdtBaseprice;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.PdtPriceView;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface PdtBasepriceService {
 
-    ReturnT<List<PdtBaseprice>> queryPriceListByProductId(Long mProductId);
+    ReturnT<List<PdtPriceView>> queryPriceListByProductId(Long mProductId);
 }
