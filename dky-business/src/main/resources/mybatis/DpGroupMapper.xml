@@ -57,4 +57,43 @@
       select count(1) from DP_GROUP WHERE ISACTIVE = 'Y'
       <include refid="whereClause" />
   </select>
+
+  <sql id="queryClTmpl">
+    SELECT
+      GH AS gh, NO1_PRODUCT_ID AS no1ProductId,
+      NO2_PRODUCT_ID AS no2ProductId, NO3_PRODUCT_ID AS no3ProductId,
+      NO4_PRODUCT_ID AS no4ProductId, NO5_PRODUCT_ID AS no5ProductId,
+      NO6_PRODUCT_ID AS no6ProductId, NO7_PRODUCT_ID AS no7ProductId,
+      NO8_PRODUCT_ID AS no8ProductId, NO9_PRODUCT_ID AS no9ProductId,
+      NO10_PRODUCT_ID AS no10ProductId, NO11_PRODUCT_ID AS no11ProductId,
+      NO12_PRODUCT_ID AS no12ProductId, NO13_PRODUCT_ID AS no13ProductId,
+      NO14_PRODUCT_ID AS no14ProductId, NO15_PRODUCT_ID AS no15ProductId
+    FROM CL WHERE 1=1
+    <include refid="whereClClause" />
+    ORDER BY gh desc
+  </sql>
+
+  <select id="selectByGh" resultType="ClGroupView">
+    SELECT * FROM (
+    SELECT t.*,ROWNUM RN
+    from (<include refid="queryClTmpl"></include>) t
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+    </if>
+    ) A
+    WHERE 1=1
+    <if test="null!=requestOffset">
+      AND RN <![CDATA[ >= ]]> #{requestOffset}
+    </if>
+  </select>
+
+  <select id="clCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+      select count(1) from CL WHERE ISACTIVE = 'Y'
+      <include refid="whereClClause" />
+  </select>
+
+  <sql id="whereClClause">
+    <if test="null!=gh">AND gh = #{gh,jdbcType=VARCHAR}</if>
+  </sql>
 </mapper>

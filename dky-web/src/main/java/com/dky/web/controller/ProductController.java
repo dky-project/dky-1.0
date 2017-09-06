@@ -3,10 +3,7 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.PdtBasepriceService;
 import com.dky.business.repository.biz.ProductService;
-import com.dky.common.param.DpGroupQueryParam;
-import com.dky.common.param.ProductMadeQueryParam;
-import com.dky.common.param.ProductPriceQueryParam;
-import com.dky.common.param.ProductQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
@@ -94,6 +91,16 @@ public class ProductController {
     @RequestMapping(value = "/getProductListByGroupNo",name = "搭配列表")
     public ReturnT getProductListByGroupNo(DpGroupQueryParam param){
         return productService.getProductListByGroupNo(param);
+    }
+
+    /**
+     * 陈列列表
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/getProductListByGh",name = "陈列列表")
+    public ReturnT getProductListByGh(ClGroupQueryParam param){
+        return productService.getProductListByGh(param);
     }
 
     @RequestMapping(value = "getProductPrice",name = "获取价格")

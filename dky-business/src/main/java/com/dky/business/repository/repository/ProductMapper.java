@@ -83,6 +83,13 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      */
     List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
 
+    /**
+     * 陈列款号列表
+     * @param ids
+     * @return
+     */
+    List<ClGroupResultView> getClProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
+
     String getProductImgUrl(Long mProductId);
 
     String getProductPrice(Map<String,Object> map);
