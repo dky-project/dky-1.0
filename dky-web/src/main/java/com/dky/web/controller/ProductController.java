@@ -3,11 +3,7 @@ package com.dky.web.controller;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.PdtBasepriceService;
 import com.dky.business.repository.biz.ProductService;
-import com.dky.common.bean.PdtBaseprice;
-import com.dky.common.param.DpGroupQueryParam;
-import com.dky.common.param.ProductMadeQueryParam;
-import com.dky.common.param.ProductPriceQueryParam;
-import com.dky.common.param.ProductQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
@@ -70,7 +66,7 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/queryPriceList",name = "查询价格列表")
-    public ReturnT<List<PdtBaseprice>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
+    public ReturnT<List<PdtPriceView>> queryPriceListByProductId(@RequestParam(value = "mProductId",required = false)Long mProductId){
         if(mProductId == null){
             return new ReturnT<>().failureData("mProductId不能为空");
         }
@@ -102,9 +98,9 @@ public class ProductController {
      * @param param
      * @return
      */
-    @RequestMapping(value = "/getClProductListByGroupNo",name = "搭配列表")
-    public ReturnT getClProductListByGroupNo(DpGroupQueryParam param){
-        return productService.getClProductListByGroupNo(param);
+    @RequestMapping(value = "/getProductListByGh",name = "陈列列表")
+    public ReturnT getProductListByGh(ClGroupQueryParam param){
+        return productService.getProductListByGh(param);
     }
 
     @RequestMapping(value = "getProductPrice",name = "获取价格")

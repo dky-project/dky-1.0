@@ -668,4 +668,23 @@
         where t.m_product_id = #{mProductId}
         order by t.creationdate desc) where rownum = 1
     </select>
+
+    <select id="getClProductListByIds" resultType="ClGroupResultView">
+        SELECT
+        a.id AS mProductId,
+        a.name AS productName,
+        a.mptbelongtype,
+        decode(d.code,null,1,2) as iscollect,
+        b.IMGURL1 as imgUrl
+        FROM M_PRODUCT a
+        LEFT JOIN B_PDT_MEDIA b ON a.ID = b.M_PRODUCT_ID
+        LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID =
+        a.id
+        WHERE a.ID in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and a.isactive = 'Y'
+        and b.isactive = 'Y'
+    </select>
 </mapper>

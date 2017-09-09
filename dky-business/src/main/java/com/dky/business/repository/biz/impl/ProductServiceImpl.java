@@ -4,10 +4,7 @@ import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
-import com.dky.common.param.DpGroupQueryParam;
-import com.dky.common.param.ProductMadeQueryParam;
-import com.dky.common.param.ProductQueryBaseParam;
-import com.dky.common.param.ProductQueryParam;
+import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
@@ -244,28 +241,38 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ReturnT getClProductListByGroupNo(DpGroupQueryParam param) {
+    public ReturnT getProductListByGh(ClGroupQueryParam param) {
         param.setPageSize(1);
-        if (!"".equals(param.getGroupNo()) && param.getGroupNo()!= null){
+        if (!"".equals(param.getGh()) && param.getGh()!= null){
             param.setPageNo(1);
             param.calculatePageLimit();
         }
-        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(param.getGroupNo(),param.getRequestCount(),param.getRequestOffset());
-        if (dpGroup == null){
+        ClGroupView clGroupView = dpGroupMapper.selectByGh(param.getGh(),param.getRequestCount(),param.getRequestOffset());
+        if (clGroupView == null){
             return new ReturnT<>().failureData("无数据！");
         }
         List<Long> ids = new ArrayList<>();
-        ids.add(dpGroup.getSyProductId());
-        ids.add(dpGroup.getWtProductId());
-        ids.add(dpGroup.getXzProductId());
-        ids.add(dpGroup.getYdProductId());
-        ids.add(dpGroup.getShoesProductId());
-        ids.add(dpGroup.getSpProductId());
-        ids.add(dpGroup.getBaoProductId());
-        ids.add(dpGroup.getWjProductId());
+        ids.add(clGroupView.getNo1ProductId());
+        ids.add(clGroupView.getNo2ProductId());
+        ids.add(clGroupView.getNo3ProductId());
+        ids.add(clGroupView.getNo4ProductId());
+        ids.add(clGroupView.getNo5ProductId());
+        ids.add(clGroupView.getNo6ProductId());
+        ids.add(clGroupView.getNo7ProductId());
+        ids.add(clGroupView.getNo8ProductId());
+        ids.add(clGroupView.getNo9ProductId());
+        ids.add(clGroupView.getNo10ProductId());
+        ids.add(clGroupView.getNo11ProductId());
+        ids.add(clGroupView.getNo12ProductId());
+        ids.add(clGroupView.getNo13ProductId());
+        ids.add(clGroupView.getNo14ProductId());
+        ids.add(clGroupView.getNo15ProductId());
         List<Long> e = new ArrayList<>(1);
         e.add(null);
         ids.removeAll(e);
-        return null;
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+        List<ClGroupResultView> list = mapper.getClProductListByIds(ids,code);
+        return new ReturnT<>().sucessData(new PageList<ClGroupResultView>(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize()));
     }
 }
