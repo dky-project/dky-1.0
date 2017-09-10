@@ -84,13 +84,33 @@ public class ProductController {
     }
 
     /**
+     * 搭配详情
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/getProductListByGroupNo",name = "搭配详情")
+    public ReturnT getProductListByGroupNo(DpGroupQueryParam param){
+        return productService.getProductListByGroupNo(param);
+    }
+
+    /**
+     * 陈列详情
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/getProductListByGh",name = "陈列详情")
+    public ReturnT getProductListByGh(ClGroupQueryParam param){
+        return productService.getProductListByGh(param);
+    }
+
+    /**
      * 搭配列表
      * @param param
      * @return
      */
-    @RequestMapping(value = "/getProductListByGroupNo",name = "搭配列表")
-    public ReturnT getProductListByGroupNo(DpGroupQueryParam param){
-        return productService.getProductListByGroupNo(param);
+    @RequestMapping(value = "/getProductGroupPage",name = "搭配列表")
+    public ReturnT getProductGroupPage(DpGroupQueryParam param){
+        return productService.getProductGroupPage(param);
     }
 
     /**
@@ -98,9 +118,9 @@ public class ProductController {
      * @param param
      * @return
      */
-    @RequestMapping(value = "/getProductListByGh",name = "陈列列表")
-    public ReturnT getProductListByGh(ClGroupQueryParam param){
-        return productService.getProductListByGh(param);
+    @RequestMapping(value = "/getProductListGhPage",name = "陈列列表")
+    public ReturnT getProductListGhPage(ClGroupQueryParam param){
+        return productService.getProductListGhPage(param);
     }
 
     @RequestMapping(value = "getProductPrice",name = "获取价格")

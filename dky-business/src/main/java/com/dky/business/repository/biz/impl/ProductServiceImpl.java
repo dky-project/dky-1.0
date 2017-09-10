@@ -4,7 +4,9 @@ import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
+import com.dky.common.constats.GlobConts;
 import com.dky.common.param.*;
+import com.dky.common.response.ImagePageList;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
@@ -20,6 +22,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * 样衣查询服务
@@ -192,15 +195,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListByGroupNo(DpGroupQueryParam param) {
-        param.setPageSize(1);
-        if (!"".equals(param.getGroupNo()) && param.getGroupNo()!= null){
-            param.setPageNo(1);
-            param.calculatePageLimit();
+        if ("".equals(param.getGroupNo()) || param.getGroupNo()== null){
+            return  new ReturnT().failureData("组号不能为空！");
         }
-        DpGroup dpGroup = dpGroupMapper.selectByGroupNo(param.getGroupNo(),param.getRequestCount(),param.getRequestOffset());
-        if (dpGroup == null){
+        param.setPageNo(1);
+        param.setPageSize(1);
+        param.calculatePageLimit();
+        List<DpGroup> dGroupList = dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset());
+        if (dGroupList.size() == 0){
             return new ReturnT<>().failureData("无数据！");
         }
+        DpGroup dpGroup = dGroupList.get(0);
         List<Long> ids = new ArrayList<>();
         ids.add(dpGroup.getSyProductId());
         ids.add(dpGroup.getWtProductId());
@@ -237,20 +242,24 @@ public class ProductServiceImpl implements ProductService {
                 view.setPrice(price);
             }
         }
-        return new ReturnT<>().sucessData(new PageList<DpGroupView>(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize()));
+        ImagePageList page = new ImagePageList(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize());
+        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/DP/"+param.getGroupNo()+".jpg?random="+ new Random().nextInt(100));
+        return new ReturnT<>().sucessData(page);
     }
 
     @Override
     public ReturnT getProductListByGh(ClGroupQueryParam param) {
-        param.setPageSize(1);
-        if (!"".equals(param.getGh()) && param.getGh()!= null){
-            param.setPageNo(1);
-            param.calculatePageLimit();
+        if ("".equals(param.getGh()) || param.getGh()== null){
+            return new ReturnT().failureData("杆号不能为空！");
         }
-        ClGroupView clGroupView = dpGroupMapper.selectByGh(param.getGh(),param.getRequestCount(),param.getRequestOffset());
-        if (clGroupView == null){
+        param.setPageNo(1);
+        param.setPageSize(1);
+        param.calculatePageLimit();
+        List<ClGroupView> dpList = dpGroupMapper.selectByGh(param.getGh(),param.getRequestCount(),param.getRequestOffset());
+        if (dpList.size() == 0){
             return new ReturnT<>().failureData("无数据！");
         }
+        ClGroupView clGroupView = dpList.get(0);
         List<Long> ids = new ArrayList<>();
         ids.add(clGroupView.getNo1ProductId());
         ids.add(clGroupView.getNo2ProductId());
@@ -273,6 +282,18 @@ public class ProductServiceImpl implements ProductService {
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
         List<ClGroupResultView> list = mapper.getClProductListByIds(ids,code);
-        return new ReturnT<>().sucessData(new PageList<ClGroupResultView>(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize()));
+        ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize());
+        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
+        return new ReturnT<>().sucessData(page);
+    }
+
+    @Override
+    public ReturnT getProductGroupPage(DpGroupQueryParam param) {
+        return new ReturnT().sucessData(new PageList<DpGroup>(dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.count(param.getGroupNo()), param.getPageNo(), param.getPageSize()));
+    }
+
+    @Override
+    public ReturnT getProductListGhPage(ClGroupQueryParam param) {
+        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param.getGh(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.clCount(param.getGh()), param.getPageNo(), param.getPageSize()));
     }
 }

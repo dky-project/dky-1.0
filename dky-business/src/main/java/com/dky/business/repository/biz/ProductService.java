@@ -32,5 +32,9 @@ public interface ProductService{
 
     ReturnT getProductListByGroupNo(DpGroupQueryParam param);
 
+    ReturnT getProductGroupPage(DpGroupQueryParam param);
+
     ReturnT getProductListByGh(ClGroupQueryParam param);
+
+    ReturnT getProductListGhPage(ClGroupQueryParam param);
 }

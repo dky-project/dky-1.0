@@ -67,7 +67,8 @@
       NO8_PRODUCT_ID AS no8ProductId, NO9_PRODUCT_ID AS no9ProductId,
       NO10_PRODUCT_ID AS no10ProductId, NO11_PRODUCT_ID AS no11ProductId,
       NO12_PRODUCT_ID AS no12ProductId, NO13_PRODUCT_ID AS no13ProductId,
-      NO14_PRODUCT_ID AS no14ProductId, NO15_PRODUCT_ID AS no15ProductId
+      NO14_PRODUCT_ID AS no14ProductId, NO15_PRODUCT_ID AS no15ProductId,
+      MODIFIEDDATE AS modifieddate
     FROM CL WHERE 1=1
     <include refid="whereClClause" />
     ORDER BY gh desc

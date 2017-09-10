@@ -1,6 +1,9 @@
 package com.dky.common.response.view;
 
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
+
+import java.util.Date;
 
 /**
  * Created by hang on 2017/1/4 0004.
@@ -24,7 +27,9 @@ public class ClGroupView extends ResultObjectBase {
     private Long no13ProductId;
     private Long no14ProductId;
     private Long no15ProductId;
+    private Date modifieddate;
 
+    private String clImgUrl;
     public String getGh() {
         return gh;
     }
@@ -151,5 +156,22 @@ public class ClGroupView extends ResultObjectBase {
 
     public void setNo15ProductId(Long no15ProductId) {
         this.no15ProductId = no15ProductId;
+    }
+
+    public String getClImgUrl() {
+        return clImgUrl;
+    }
+
+    public void setClImgUrl(String clImgUrl) {
+        this.clImgUrl = clImgUrl;
+    }
+
+    public Date getModifieddate() {
+        return modifieddate;
+    }
+
+    public void setModifieddate(Date modifieddate) {
+        this.clImgUrl = GlobConts.IMAGE_ROOT_URL+"/CL_SL/"+this.gh+".jpg?modifieddate="+ modifieddate.getTime();
+        this.modifieddate = modifieddate;
     }
 }

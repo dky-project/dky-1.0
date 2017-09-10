@@ -1,5 +1,7 @@
 package com.dky.common.bean;
 
+import com.dky.common.constats.GlobConts;
+
 import java.util.Date;
 
 public class DpGroup extends PojoObjectBase{
@@ -36,6 +38,8 @@ public class DpGroup extends PojoObjectBase{
     private Long wjProductId;
 
     private String isactive;
+
+    private String dpImgUrl;
 
     public Long getId() {
         return id;
@@ -98,6 +102,7 @@ public class DpGroup extends PojoObjectBase{
     }
 
     public void setGroupNo(String groupNo) {
+        this.dpImgUrl = GlobConts.IMAGE_ROOT_URL+"/DP_SL/"+groupNo+".jpg?modifieddate="+ modifieddate.getTime();
         this.groupNo = groupNo == null ? null : groupNo.trim();
     }
 
@@ -171,5 +176,13 @@ public class DpGroup extends PojoObjectBase{
 
     public void setIsactive(String isactive) {
         this.isactive = isactive == null ? null : isactive.trim();
+    }
+
+    public String getDpImgUrl() {
+        return dpImgUrl;
+    }
+
+    public void setDpImgUrl(String dpImgUrl) {
+        this.dpImgUrl = dpImgUrl;
     }
 }
