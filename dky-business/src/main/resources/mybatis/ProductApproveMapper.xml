@@ -174,9 +174,9 @@
 
   <!--订单分页查询 -->
   <select id="queryByPageGroup" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
-      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount
+      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount,colorName
      FROM (
-      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount,ROWNUM RN FROM (
+      SELECT id,no1,pdt,customer,czDate,xwValue,ycValue,imgUrl,sum,totalAmount,colorName,ROWNUM RN FROM (
         <include refid="queryTmplGroup"></include>
       ) WHERE 1=1
       <if test="null!=requestOffset">
@@ -224,7 +224,8 @@
       t1.YC_VALUE as ycValue,
       t1.SUM as sum,
       t1.TOTALAMOUNT as totalAmount,
-      t3.IMGURL1 as imgUrl
+      t3.IMGURL1 as imgUrl,
+      t1.colorName as colorName
     from V_M_PRODUCT_APPROVE_GROUP t1
     LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
     LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
