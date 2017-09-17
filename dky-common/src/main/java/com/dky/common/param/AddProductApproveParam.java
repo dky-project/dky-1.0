@@ -1,6 +1,7 @@
 package com.dky.common.param;
 
 import com.dky.common.session.SessionParameter;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.math.BigDecimal;
 
@@ -23,6 +24,7 @@ public class AddProductApproveParam extends SessionParameter {
     /**
      * 编号
      */
+    @NotBlank(message = "编号不能为空！")
     private String no;
     /**
      * 传真日期
