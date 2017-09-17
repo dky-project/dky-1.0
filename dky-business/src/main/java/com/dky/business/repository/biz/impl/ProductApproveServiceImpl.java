@@ -8,6 +8,7 @@ import com.dky.common.bean.BmptApprove;
 import com.dky.common.bean.ProductApprove;
 import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.enums.IsApproveEnum;
+import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.enums.VesionEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
@@ -238,11 +239,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
             JSONArray bmptArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupBmptParamList");
             Iterator<Object> it = bmptArray.iterator();
-            while (it.hasNext()) {
+            while (it.hasNext() && bmptArray.size() > 0) {
                 String jsonStr = it.next().toString();
                 Gson gson = new Gson();
                 AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr,AddDpGroupBmptParam.class);
-                if (bmptParam.getSum() > 0){
+                if (bmptParam.getSum() != null && bmptParam.getSum() > 0){
                     Long id = bmptApproveMapper.getBmptApproveSeq();
                     bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
                             bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum());
@@ -253,11 +254,11 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             //定制下单
             JSONArray approveArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupApproveParamList");
             Iterator<Object> iterator = approveArray.iterator();
-            while (iterator.hasNext()) {
+            while (iterator.hasNext() && approveArray.size() > 0) {
                 String json =  iterator.next().toString();
                 Gson gson = new Gson();
                 AddDpGroupApproveParam approveParam = gson.fromJson(json,AddDpGroupApproveParam.class);
-                if (approveParam.getSum() > 0){
+                if (approveParam.getSum() != null && approveParam.getSum() > 0){
                     ProductApprove approve = new ProductApprove();
                     BeanUtils.copyProperties(approveParam,approve);
                     approve.setFhDate(dimNewMapper.getSendDate());
@@ -279,6 +280,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setId(id);
                     Map<String,Object> map = new HashedMap();
                     map.put("id",id);
+                    mapper.addProductDefault(approve);
                     mapper.add_product_dp_group(map);
                     approveIds.add(id);
                 }
@@ -286,7 +288,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         }catch (Exception e){
                 //e.printStackTrace();
                 LOGGER.error("搭配下单出错！result:{}",e.getMessage());
-                return new ReturnT().failureData(e.getMessage());
+                return new ReturnT().failureData(ResultCodeEnum.SYSTEM_ERROR);
             }
         DpGroupReturnView view = new DpGroupReturnView();
         view.setBmptIds(bmptIds);
