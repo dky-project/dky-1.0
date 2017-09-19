@@ -35,7 +35,7 @@
       <include refid="Base_Column_List"></include>
     FROM DP_GROUP WHERE 1=1
     <include refid="whereClause" />
-    ORDER BY group_no desc
+    ORDER BY group_no asc
   </sql>
 
   <select id="selectByGroupNo" resultMap="BaseResultMap">
@@ -71,7 +71,7 @@
       MODIFIEDDATE AS modifieddate
     FROM CL WHERE 1=1
     <include refid="whereClClause" />
-    ORDER BY gh desc
+    ORDER BY gh asc
   </sql>
 
   <select id="selectByGh" resultType="ClGroupView">
