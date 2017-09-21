@@ -5,6 +5,7 @@ import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.ImagePageList;
 import com.dky.common.response.PageList;
@@ -88,7 +89,13 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(productQueryParam, product);
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(productQueryParam.getSessionUser().getEmail());
         product.setCode(userMap!=null?userMap.get("CODE"):productQueryParam.getSessionUser().getEmail());
-        return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
+        int count = 0;
+        if (IsActiveEnum.YES.getCode().equals(productQueryParam.getIsRank())){
+            count = mapper.rankCount(product);
+        }else {
+            count = mapper.count(product);
+        }
+        return new PageList<ProductView>(mapper.queryByPage(product), count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
     private PageList<ProductView> findPage(ProductQueryBaseParam productQueryParam) {
         Product product = new Product();

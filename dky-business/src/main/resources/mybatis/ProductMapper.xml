@@ -314,21 +314,6 @@
         order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,t1.name asc
     </sql>
 
-    <sql id="queryCount">
-        <choose>
-            <when test="isRank != &quot;N&quot;">
-                (select t1.* from
-                <include refid="queryVersion"/>
-                t1,v_query_product_rank t2
-                where t1.name = t2.PDT) t1
-            </when>
-            <otherwise>
-                <include refid="queryVersion"/>
-                t1
-            </otherwise>
-        </choose>
-    </sql>
-
     <sql id="whereClause">
         <if test="null!=mDimNew11Id">AND t1.M_DIM_NEW11_ID = #{mDimNew11Id}</if>
         <if test="null!=mDimNew13Id">AND t1.M_DIM_NEW13_ID = #{mDimNew13Id}</if>
@@ -361,18 +346,17 @@
     </select>
 
     <select id="count" resultType="int" parameterType="com.dky.common.bean.Product">
-        <choose>
-            <when test="isRank != &quot;N&quot;">
-                select count(1) from
-                <include refid="queryVersion"/>
-                t1,v_query_product_rank t2
-                where t1.name = t2.PDT
-            </when>
-            <otherwise>select count(1) from
-                <include refid="queryVersion"/>
-                t1 WHERE 1=1
-            </otherwise>
-        </choose>
+        select count(1) from
+        <include refid="queryVersion"/>
+        t1 WHERE 1=1
+        <include refid="whereClause"></include>
+    </select>
+
+    <select id="rankCount" resultType="int" parameterType="com.dky.common.bean.Product">
+        select count(1) from
+        <include refid="queryVersion"/>
+        t1,v_query_product_rank t2
+        where t1.name = t2.PDT
         <include refid="whereClause"></include>
     </select>
 

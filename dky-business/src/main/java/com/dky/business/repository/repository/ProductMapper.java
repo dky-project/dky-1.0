@@ -18,6 +18,8 @@ public interface ProductMapper extends BaseDao<Product,Long> {
 
     int count(Product product);
 
+    int rankCount(Product product);
+
 
     /**
      * 查询胸围、衣长、肩宽、袖长
