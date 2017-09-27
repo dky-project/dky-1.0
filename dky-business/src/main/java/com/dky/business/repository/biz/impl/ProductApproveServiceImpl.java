@@ -17,6 +17,7 @@ import com.dky.common.response.view.*;
 import com.dky.common.utils.DateUtils;
 import com.google.gson.Gson;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -258,6 +259,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 if (approveParam.getSum() != null && approveParam.getSum() > 0){
                     ProductApprove approve = new ProductApprove();
                     BeanUtils.copyProperties(approveParam,approve);
+                    buildDimNew(approveParam,approve);
                     approve.setFhDate(dimNewMapper.getSendDate());
                     approve.setJgno(code);
                     approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
@@ -293,5 +295,27 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         ReturnT returnT = new ReturnT();
         returnT.setData(view);
         return returnT.successDefault();
+    }
+
+    public void buildDimNew(AddDpGroupApproveParam approveParam,ProductApprove productApprove){
+        PzsJsonQueryParam pzsJsonQueryParam = new PzsJsonQueryParam();
+        pzsJsonQueryParam.setFlag("2");
+        pzsJsonQueryParam.setProductId(approveParam.getmProductId());
+        pzsJsonQueryParam.setmDimNew14Id(approveParam.getmDimNew14Id());
+        String result = dimNewMapper.getpzsJson(pzsJsonQueryParam);
+        if(StringUtils.isNoneEmpty(result)){
+            result = result.replaceAll("'","\"");
+            JSONObject zzJson = (JSONObject)JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
+            productApprove.setmDimNew15Id(Long.valueOf(zzJson.get("id").toString()));
+        }
+        pzsJsonQueryParam.setFlag("4");
+        pzsJsonQueryParam.setmDimNew15Id(productApprove.getmDimNew15Id());
+        pzsJsonQueryParam.setmDimNew16Id(approveParam.getmDimNew16Id());
+        result = dimNewMapper.getpzsJson(pzsJsonQueryParam);
+        if(StringUtils.isNoneEmpty(result)){
+            result = result.replaceAll("'","\"");
+            JSONObject zzJson = (JSONObject)JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
+            productApprove.setmDimNew17Id(Long.valueOf(zzJson.get("id").toString()));
+        }
     }
 }
