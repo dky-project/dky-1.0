@@ -25,10 +25,10 @@ public class PzsJsonQueryParam extends BaseParameter {
     @NotNull(message = "mDimNew14Id不能为空")
     private Long mDimNew14Id;
 
-    @NotNull(message = "mDimNew15Id不能为空")
+    //@NotNull(message = "mDimNew15Id不能为空")
     private Long mDimNew15Id;
 
-    @NotNull(message = "mDimNew16Id不能为空")
+    //@NotNull(message = "mDimNew16Id不能为空")
     private Long mDimNew16Id;
 
     public String getFlag() {

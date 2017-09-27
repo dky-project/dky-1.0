@@ -108,17 +108,23 @@ public class DimNewServiceImpl implements DimNewService {
                 result = result.replaceAll("'","\"");
                 view.setZzJson(JSONObject.parseObject(result).getString("value"));
             }
+            if (param.getmDimNew15Id() == null){
+                JSONObject json = (JSONObject)view.getZzJson().get(0);
+                param.setmDimNew15Id(Long.valueOf(json.get("id").toString()));
+            }
             param.setFlag(FlagEnum.ZXFLAG.getCode());
             result = mapper.getpzsJson(param);
             if(StringUtils.isNoneEmpty(result)){
                 result = result.replaceAll("'","\"");
                 view.setZxJson(JSONObject.parseObject(result).getString("value"));
             }
-            param.setFlag(FlagEnum.ZBFLAG.getCode());
-            result = mapper.getpzsJson(param);
-            if(StringUtils.isNoneEmpty(result)){
-                result = result.replaceAll("'","\"");
-                view.setZbJson(JSONObject.parseObject(result).getString("value"));
+            if (param.getmDimNew16Id() != null){
+                param.setFlag(FlagEnum.ZBFLAG.getCode());
+                result = mapper.getpzsJson(param);
+                if(StringUtils.isNoneEmpty(result)){
+                    result = result.replaceAll("'","\"");
+                    view.setZbJson(JSONObject.parseObject(result).getString("value"));
+                }
             }
         }else if (FlagEnum.ZXFLAG.getCode().equals(param.getFlag())){
             String result = mapper.getpzsJson(param);
