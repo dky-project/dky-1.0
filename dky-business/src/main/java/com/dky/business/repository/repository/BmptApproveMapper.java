@@ -6,6 +6,7 @@ import com.dky.common.response.view.BmptApproveView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @MyBatisRepository
 public interface BmptApproveMapper {
@@ -37,4 +38,6 @@ public interface BmptApproveMapper {
     void bmptApproveAcm(Long id);
 
     void updateBmptApproveById(BmptApprove bmptApprove);
+
+    Map<Object,Object> queryTotalMap(BmptApproveQueryParam bmptApprove);
 }

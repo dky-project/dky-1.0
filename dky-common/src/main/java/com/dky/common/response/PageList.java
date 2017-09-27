@@ -3,6 +3,7 @@ package com.dky.common.response;
 import com.dky.common.constats.GlobConts;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangpeng on 2016/12/13.
@@ -15,6 +16,8 @@ public class PageList<T> {
 
     private Integer pageNo = 1;
 
+    private Map<Object,Object> totalMap;
+
 
     /**
      * 每页显示多少条
@@ -25,6 +28,15 @@ public class PageList<T> {
      * 总页数
      */
     private Integer totalPageNum;
+
+    public PageList(List<T> items, Integer total, Integer pageNo, Integer pageSize,Map<Object,Object> totalMap) {
+        this.items = items;
+        this.total = total;
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
+        this.totalPageNum = total%pageSize == 0 ? (total/pageSize) : (total/pageSize+1);
+        this.totalMap = totalMap;
+    }
 
     public PageList(List<T> items, Integer total, Integer pageNo, Integer pageSize) {
         this.items = items;
@@ -85,5 +97,13 @@ public class PageList<T> {
 
     public void setTotalPageNum(Integer totalPageNum) {
         this.totalPageNum = totalPageNum;
+    }
+
+    public Map<Object, Object> getTotalMap() {
+        return totalMap;
+    }
+
+    public void setTotalMap(Map<Object, Object> totalMap) {
+        this.totalMap = totalMap;
     }
 }

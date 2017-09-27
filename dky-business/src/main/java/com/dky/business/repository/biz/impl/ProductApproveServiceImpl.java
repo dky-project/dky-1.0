@@ -109,20 +109,17 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     private PageList<ProductApproveView> findPage(ProductApprove approve){
         if (approve.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || approve.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())){
-            return new PageList<ProductApproveView>(
-                    mapper.queryByPageGroup(approve),mapper.countGroup(approve),
-                    approve.getPageNo(),approve.getPageSize());
+            return new PageList<>(
+                    mapper.queryByPageGroup(approve),mapper.countGroup(approve),approve.getPageNo(),approve.getPageSize(),mapper.queryGroupTotalMap(approve));
         }else{
-            return new PageList<ProductApproveView>(
-                    mapper.queryByPage(approve),mapper.count(approve),
-                    approve.getPageNo(),approve.getPageSize());
+            return new PageList<>(
+                    mapper.queryByPage(approve),mapper.count(approve),approve.getPageNo(),approve.getPageSize(),mapper.queryTotalMap(approve));
         }
     }
 
     private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve){
         return new PageList<BmptApproveView>(
-                bmptApproveMapper.queryByPage(approve),bmptApproveMapper.count(approve),
-                approve.getPageNo(),approve.getPageSize());
+                bmptApproveMapper.queryByPage(approve),bmptApproveMapper.count(approve),approve.getPageNo(),approve.getPageSize(),bmptApproveMapper.queryTotalMap(approve));
     }
 
     @Override

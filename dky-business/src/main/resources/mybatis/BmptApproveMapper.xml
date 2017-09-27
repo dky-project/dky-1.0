@@ -69,7 +69,7 @@
   </sql>
 
   <!--订单分页查询 -->
-  <select id="queryByPage" parameterType="com.dky.common.bean.BmptApprove" resultType="com.dky.common.response.view.BmptApproveView">
+  <select id="queryByPage" parameterType="com.dky.common.param.BmptApproveQueryParam" resultType="com.dky.common.response.view.BmptApproveView">
     SELECT *
     FROM (
     SELECT t.*,ROWNUM RN FROM (
@@ -83,8 +83,13 @@
     </if>
   </select>
 
-  <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
+  <select id="count" parameterType="com.dky.common.param.BmptApproveQueryParam" resultType="int">
     SELECT count(1)
+    from  (<include refid="queryTmpl"></include>) t
+  </select>
+
+  <select id="queryTotalMap" parameterType="com.dky.common.param.BmptApproveQueryParam" resultType="java.util.HashMap">
+    SELECT sum(qty) as totalCount,sum(amount) as totalAmount
     from  (<include refid="queryTmpl"></include>) t
   </select>
 

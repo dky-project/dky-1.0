@@ -41,4 +41,8 @@ public interface ProductApproveMapper {
     String getMaxNo(@Param("code")String code,@Param("czDate")String czDate);
 
     void updateProductApproveList(@Param("ids") Long[] ids);
+
+    Map<Object,Object> queryTotalMap(ProductApprove productApprove);
+
+    Map<Object,Object> queryGroupTotalMap(ProductApprove productApprove);
 }

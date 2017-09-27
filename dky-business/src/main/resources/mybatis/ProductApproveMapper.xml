@@ -249,8 +249,22 @@
     <include refid="whereClause"></include>
   </select>
 
+  <select id="queryTotalMap" parameterType="com.dky.common.bean.ProductApprove" resultType="java.util.HashMap">
+    SELECT count(1) as totalCount,sum(NVL(1 * t1.ls_price,0)) as totalAmount
+    from v_m_product_approve t1
+    WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+  </select>
+
   <select id="countGroup" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
     SELECT count(1)
+    from v_m_product_approve_group t1
+    WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="queryGroupTotalMap" parameterType="com.dky.common.bean.ProductApprove" resultType="java.util.HashMap">
+    SELECT sum(sum) as totalCount,sum(totalAmount) as totalAmount
     from v_m_product_approve_group t1
     WHERE t1.ISACTIVE = 'Y'
     <include refid="whereClause"></include>
