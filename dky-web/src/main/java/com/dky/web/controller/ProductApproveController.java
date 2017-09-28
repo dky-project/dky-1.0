@@ -124,7 +124,6 @@ public class ProductApproveController {
             BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
             bMptApproveSaveParam.setProductName(param.getProductName().trim());
             bMptApproveSaveParam.setPdtId(param.getPdtId());
-            bMptApproveSaveParam.setJgNo(param.getJgNo());
             bMptApproveSaveParam.setColorId(json.getLong("color"));
             bMptApproveSaveParam.setSizeId(json.getLong("size"));
             bMptApproveSaveParam.setQty(json.getLong("qty"));

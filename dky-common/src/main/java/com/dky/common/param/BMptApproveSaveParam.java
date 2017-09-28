@@ -10,13 +10,6 @@ import javax.validation.constraints.NotNull;
  */
 public class BMptApproveSaveParam extends SessionParameter {
 
-
-    /**
-     * 机构号
-     */
-    @NotNull(message = "机构号jgNo不能为空")
-    private String jgNo;
-
     /**
      * 款号名称
      */
@@ -42,14 +35,6 @@ public class BMptApproveSaveParam extends SessionParameter {
     private Long pdtId;
 
     private Long qty;
-
-    public String getJgNo() {
-        return jgNo;
-    }
-
-    public void setJgNo(String jgNo) {
-        this.jgNo = jgNo;
-    }
 
     public String getProductName() {
         return productName;
