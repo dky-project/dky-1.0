@@ -118,9 +118,8 @@ public class ProductApproveController {
         LOGGER.info("<<<<<<<<<<<<<<<<<<<<<param:{}", JSON.toJSONString(param));
         JSONArray array = JSON.parseArray(param.getItemDatas());
         Iterator<Object> it = array.iterator();
-        while (it.hasNext()) {
-            LOGGER.info("<<<<<<<<<<<<<<<<<<<<<json:{}", it.next());
-            JSONObject json = (JSONObject) it.next();
+        for(int i = 0;i<array.size();i++){
+            JSONObject json = (JSONObject) array.get(i);
             BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
             bMptApproveSaveParam.setProductName(param.getProductName().trim());
             bMptApproveSaveParam.setPdtId(param.getPdtId());
