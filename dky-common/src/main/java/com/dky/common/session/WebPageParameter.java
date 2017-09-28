@@ -54,7 +54,7 @@ public class WebPageParameter extends SessionParameter {
         if (pageSize == null) {
             pageSize = GlobConts.DEFUALT_PAGE_SIZE;
         }
-        this.requestOffset = (pageNo - 1) * pageSize + 1;
+        this.requestOffset = (pageNo - 1) * pageSize;
         this.requestCount = pageNo * pageSize;
     }
 }
