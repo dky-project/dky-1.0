@@ -27,14 +27,61 @@
     XW_VALUE, YC_VALUE, STATUS, CLOSE_STATUS, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, 
     ISACTIVE, FLOAT_RATE, PRICE1, PRICE
   </sql>
+
   <select id="queryPriceListByProductId" resultType="PdtPriceView" parameterType="map" >
-    SELECT
+    SELECT DISTINCT
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
       t4.ATTRIBNAME as mDimNew16Text,
       t1.PRICE2 AS price,
       t6.PRICERATE as floatRate
     FROM M_PDT_BASEPRICEVIEW1 t1
+    LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
+    LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
+    LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
+    LEFT JOIN C_STORE t5 on t5.ID = t1.C_STORE_ID
+    LEFT JOIN B_PRICEUPSET t6 on t6.ID = t1.B_PRICEUPSET_ID
+    WHERE t2.DIMFLAG='DIMFLAG_NEW13'
+    AND t2.ISACTIVE = 'Y'
+    AND t3.DIMFLAG='DIMFLAG_NEW14'
+    AND t3.ISACTIVE = 'Y'
+    AND t4.DIMFLAG='DIMFLAG_NEW16'
+    AND t4.ISACTIVE = 'Y'
+    AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    AND t5.CODE = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryChildPriceListByProductId" resultType="PdtPriceView" parameterType="map" >
+    SELECT DISTINCT
+      t2.ATTRIBNAME as mDimNew13Text,
+      t3.ATTRIBNAME as mDimNew14Text,
+      t4.ATTRIBNAME as mDimNew16Text,
+      t1.NEWPRICE8 AS price,
+      t6.PRICERATE as floatRate
+    FROM M_TZ_BASEPRICEVIEW1 t1
+    LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
+    LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
+    LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id
+    LEFT JOIN C_STORE t5 on t5.ID = t1.C_STORE_ID
+    LEFT JOIN B_PRICEUPSET t6 on t6.ID = t1.B_PRICEUPSET_ID
+    WHERE t2.DIMFLAG='DIMFLAG_NEW13'
+    AND t2.ISACTIVE = 'Y'
+    AND t3.DIMFLAG='DIMFLAG_NEW14'
+    AND t3.ISACTIVE = 'Y'
+    AND t4.DIMFLAG='DIMFLAG_NEW16'
+    AND t4.ISACTIVE = 'Y'
+    AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    AND t5.CODE = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryBabyPriceListByProductId" resultType="PdtPriceView" parameterType="map" >
+    SELECT DISTINCT
+      t2.ATTRIBNAME as mDimNew13Text,
+      t3.ATTRIBNAME as mDimNew14Text,
+      t4.ATTRIBNAME as mDimNew16Text,
+      t1.NEWPRICE6 AS price,
+      t6.PRICERATE as floatRate
+    FROM M_YE_BASEPRICEVIEW1 t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
     LEFT JOIN M_DIM_NEW t4 on t1.M_DIM_NEW16_ID = t4.id

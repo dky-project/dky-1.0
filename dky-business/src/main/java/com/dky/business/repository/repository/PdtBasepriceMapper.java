@@ -10,5 +10,9 @@ public interface PdtBasepriceMapper {
 
     List<PdtPriceView> queryPriceListByProductId(@Param("mProductId") Long mProductId, @Param("code") String code);
 
+    List<PdtPriceView> queryChildPriceListByProductId(@Param("mProductId") Long mProductId, @Param("code") String code);
+
+    List<PdtPriceView> queryBabyPriceListByProductId(@Param("mProductId") Long mProductId, @Param("code") String code);
+
     String getDhPrice(Long mProductId);
 }

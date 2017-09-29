@@ -671,4 +671,10 @@
         and a.isactive = 'Y'
         and b.isactive = 'Y'
     </select>
+
+    <select id="getById" parameterType="java.lang.Long" resultType="Product">
+        select M_DIM_NEW13_ID AS mDimNew13Id
+        from m_product
+        where id = #{mProductId}
+    </select>
 </mapper>
