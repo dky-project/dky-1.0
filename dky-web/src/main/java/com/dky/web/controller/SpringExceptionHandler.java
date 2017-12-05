@@ -3,6 +3,7 @@ package com.dky.web.controller;
 import com.dky.common.bean.SessionUser;
 import com.dky.common.enums.ResultCodeEnum;
 import com.dky.common.exception.NoLoginException;
+import com.dky.common.exception.RequestLimitException;
 import com.dky.common.exception.ValidatorException;
 import com.dky.common.response.ReturnT;
 import com.dky.common.utils.DkyUtils;
@@ -44,7 +45,7 @@ public class SpringExceptionHandler {
 
 
     /**
-     * 统一校验异常处理
+     * 统一登录异常处理
      * @param e
      * @param request
      * @param response
@@ -56,6 +57,22 @@ public class SpringExceptionHandler {
     public @ResponseBody ReturnT handleException(NoLoginException e, HttpServletRequest request, HttpServletResponse response)throws IOException{
         printLog(e,request,response);
         return new ReturnT().failureData(ResultCodeEnum.NOLOGIN);
+    }
+
+
+    /**
+     * 统一请求频繁异常处理
+     * @param e
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @ExceptionHandler(RequestLimitException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody ReturnT handleException(RequestLimitException e, HttpServletRequest request, HttpServletResponse response)throws IOException{
+        printLog(e,request,response);
+        return new ReturnT().failureData(ResultCodeEnum.REQUEST_ERROR);
     }
 
 

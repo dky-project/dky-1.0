@@ -36,12 +36,16 @@ public class RedisCacheManager {
 
     public Integer getInt(Object key){
         Object value = get(key);
-        return value != null ? (Integer) key : null;
+        return value != null ? (Integer)value  : null;
     }
 
     public Long getLong(Object key){
         Object value = get(key);
         return value != null ? Long.parseLong(String.valueOf(value)) : null;
+    }
+
+    public Long getExpire(Object key){
+        return jedisClient.getExpire(key)*1000;
     }
 
     public boolean isExist(Object key){

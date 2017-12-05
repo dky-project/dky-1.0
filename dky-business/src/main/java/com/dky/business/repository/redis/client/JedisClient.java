@@ -43,6 +43,14 @@ public class JedisClient {
         return jedisConfigration.getObject(key);
     }
 
+
+    public Long getExpire(Object key){
+        if(!hasKey(key)){
+            return -1l;
+        }
+        return jedisConfigration.getObjectExpire(key);
+    }
+
     public String getString(Object key){
         return (String)get(key);
     }

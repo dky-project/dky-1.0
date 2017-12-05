@@ -103,6 +103,17 @@ public class JedisConfigration {
         return deSerializer(bytes);
     }
 
+    public Long getObjectExpire(Object key){
+        Long expire;
+        ShardedJedis jedis = getResource();
+        try {
+            expire = jedis.ttl(serializerBytes(key));
+        } finally {
+            close(jedis);
+        }
+        return expire;
+    }
+
     public boolean exists(Object key){
         Boolean flag;
         ShardedJedis jedis = getResource();

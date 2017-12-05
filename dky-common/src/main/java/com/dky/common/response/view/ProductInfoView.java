@@ -182,7 +182,7 @@ public class ProductInfoView extends ResultObjectBase {
     }
 
     public void setImgUrl1(String imgUrl1) {
-        this.imgUrl1 = imgUrl1+"?random="+new Random().nextInt(100);
+        this.imgUrl1 = imgUrl1.replace("img","img_pad")+"?random="+new Random().nextInt(100);
     }
 
     public String getImgUrl2() {

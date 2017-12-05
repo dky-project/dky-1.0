@@ -15,7 +15,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <jetty.version>7.6.14.v20131031</jetty.version>
-        <webserver.port>8080</webserver.port>
+        <webserver.port>8090</webserver.port>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
