@@ -469,6 +469,9 @@
       <if test="qtxbzzValue != null" >
         QTXBZZ_VALUE,
       </if>
+      <if test="qtxbzzValue1 != null" >
+        QTXBZZ_VALUE1,
+      </if>
       <if test="lxsx5Value != null" >
         LXSX5_VALUE,
       </if>
@@ -862,6 +865,9 @@
       </if>
       <if test="qtxbzzValue != null" >
         #{qtxbzzValue,jdbcType=VARCHAR},
+      </if>
+      <if test="qtxbzzValue1 != null" >
+        #{qtxbzzValue1,jdbcType=VARCHAR},
       </if>
       <if test="lxsx5Value != null" >
         #{lxsx5Value,jdbcType=VARCHAR},

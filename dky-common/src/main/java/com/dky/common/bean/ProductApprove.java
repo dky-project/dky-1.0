@@ -112,6 +112,8 @@ public class ProductApprove extends PojoObjectBase {
 
     private String qtxbzzValue;
 
+    private String qtxbzzValue1;
+
     private String lxsx5Value;
 
     private String lxsx2Value;
@@ -1334,5 +1336,13 @@ public class ProductApprove extends PojoObjectBase {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getQtxbzzValue1() {
+        return qtxbzzValue1;
+    }
+
+    public void setQtxbzzValue1(String qtxbzzValue1) {
+        this.qtxbzzValue1 = qtxbzzValue1;
     }
 }

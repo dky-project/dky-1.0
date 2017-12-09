@@ -127,6 +127,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     public ReturnT<ProductApproveReturnView> insertProductApprove(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
         BeanUtils.copyProperties(param,approve);
+        approve.setQtxbzzValue1(param.getQtxbzzValue());
         approve.setDocno(param.getOrderNo());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive(IsActiveEnum.NO.getCode());
