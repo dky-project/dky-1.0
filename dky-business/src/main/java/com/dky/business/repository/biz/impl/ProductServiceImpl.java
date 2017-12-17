@@ -144,7 +144,12 @@ public class ProductServiceImpl implements ProductService {
         }
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
-        madeInfoView.setImgUrl(PropertieUtils.getString("imageBosUrl")+"/pdt_imges/"+param.getProductName()+".jpg");
+        List<String> list = new ArrayList<>(3);
+        list.add(PropertieUtils.getString("imageBosUrl") + "/pdt_imges/" + param.getProductName() + ".jpg");
+        list.add(PropertieUtils.getString("imageBosUrl") + "/pdt_imges_1/" + param.getProductName() + ".jpg");
+        list.add(PropertieUtils.getString("imageBosUrl") + "/pdt_imges_2/" + param.getProductName() + ".jpg");
+        madeInfoView.setImgUrlList(list);
+        madeInfoView.setImgUrl(PropertieUtils.getString("imageBosUrl") + "/pdt_imges/" + param.getProductName() + ".jpg");
         view.setProductMadeInfoView(madeInfoView);
         ReturnT<ProductMadePageView> result = new ReturnT<>();
         result.setData(view);

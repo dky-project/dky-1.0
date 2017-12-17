@@ -2,6 +2,8 @@ package com.dky.common.response.view;
 
 import com.dky.common.response.ResultObjectBase;
 
+import java.util.List;
+
 /**
  * Created by hang on 2017/1/4 0004.
  * @decription 所有结尾是Show的字段都是以逗号分隔的字符串，进行截取返回给客户端的都是字符串数组
@@ -321,6 +323,10 @@ public class ProductMadeInfoView extends ResultObjectBase {
      * 图片地址
      */
     private String imgUrl;
+    /**
+     * 图片地址
+     */
+    private List<String> imgUrlList;
 
     public Long getProductId() {
         return productId;
@@ -944,5 +950,13 @@ public class ProductMadeInfoView extends ResultObjectBase {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<String> getImgUrlList() {
+        return imgUrlList;
+    }
+
+    public void setImgUrlList(List<String> imgUrlList) {
+        this.imgUrlList = imgUrlList;
     }
 }
