@@ -183,14 +183,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setId(id);
         Map<String,Object> map = new HashedMap();
         map.put("id",id);
-        try {
-            mapper.addProductDefault(approve);
-            mapper.addProductDefaultAc(map);
-        }catch (Exception e){
-            //e.printStackTrace();
-            LOGGER.error("样衣详情下单出错！result:{}",e.getMessage());
-            return new ReturnT().failureData(e.getMessage());
-        }
+        mapper.addProductDefault(approve);
+        mapper.addProductDefaultAc(map);
         ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());
         view.setProductApproveId(id);
         ReturnT<ProductApproveReturnView> returnT = new ReturnT<>();

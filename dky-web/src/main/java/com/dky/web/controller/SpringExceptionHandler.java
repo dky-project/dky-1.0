@@ -6,10 +6,12 @@ import com.dky.common.exception.NoLoginException;
 import com.dky.common.exception.RequestLimitException;
 import com.dky.common.exception.ValidatorException;
 import com.dky.common.response.ReturnT;
+import com.dky.common.utils.DkyStringUtils;
 import com.dky.common.utils.DkyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * 统一异常处理
@@ -88,6 +91,9 @@ public class SpringExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody ReturnT handleException(Exception e, HttpServletRequest request, HttpServletResponse response)throws IOException{
         printLog(e,request,response);
+        if (e instanceof UncategorizedSQLException){
+            return new ReturnT().failureData(DkyStringUtils.getThrowableMsg(e.getMessage()));
+        }
         return new ReturnT().failureData(ResultCodeEnum.SYSTEM_ERROR);
     }
 
@@ -98,5 +104,9 @@ public class SpringExceptionHandler {
         }else {
             LOGGER.error("访问路径[{}],错误[{}]",request.getRequestURL(),e.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new SQLException() instanceof SQLException);
     }
 }

@@ -55,4 +55,16 @@ public class DkyStringUtils {
 
         return null;
     }
+
+    public static String getThrowableMsg(String message){
+        String a = message.substring(
+                message.indexOf("ORA-") + 10,
+                message.length());
+        if (a.indexOf("ORA-") > -1)
+            return  a.substring(0, a.indexOf("ORA-"));
+        else {
+            return  a;
+        }
+    }
+
 }
