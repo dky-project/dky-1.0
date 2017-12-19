@@ -1,9 +1,6 @@
 package com.dky.common.response;
 
-import com.dky.common.constats.GlobConts;
-
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by wangpeng on 2016/12/13.
