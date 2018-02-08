@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -117,7 +116,6 @@ public class ProductApproveController {
     public ReturnT tableApproveSave(TableApproveSaveParam param){
         LOGGER.info("<<<<<<<<<<<<<<<<<<<<<param:{}", JSON.toJSONString(param));
         JSONArray array = JSON.parseArray(param.getItemDatas());
-        Iterator<Object> it = array.iterator();
         for(int i = 0;i<array.size();i++){
             JSONObject json = (JSONObject) array.get(i);
             BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
