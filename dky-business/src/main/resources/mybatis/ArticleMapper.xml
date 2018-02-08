@@ -43,7 +43,7 @@
             </if>
         ) A WHERE 1=1
         <if test="null!=requestOffset">
-            AND RN <![CDATA[ >= ]]> #{requestOffset}
+            AND RN <![CDATA[ > ]]> #{requestOffset}
         </if>
     </select>
 
