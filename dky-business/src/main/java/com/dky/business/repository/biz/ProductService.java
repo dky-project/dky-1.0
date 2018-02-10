@@ -18,7 +18,7 @@ public interface ProductService{
      * @param id
      * @return
      */
-    ReturnT<ProductInfoView> getProductInfo(Long id);
+    ReturnT<ProductInfoView> getProductInfo(Long id,String isBuy);
 
     ReturnT<PageList<ProductView>> findByPage(ProductQueryParam productQueryParam);
 

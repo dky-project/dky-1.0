@@ -69,6 +69,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private JSONArray zxJsonstr;
     /**
+     * 品类列表
+     */
+    private JSONArray pinList;
+    /**
      * 颜色列表
      */
     private List<ProductColorView> colorViewList;
@@ -220,5 +224,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public JSONArray getPinList() {
+        return pinList;
+    }
+
+    public void setPinList(JSONArray pinList) {
+        this.pinList = pinList;
     }
 }

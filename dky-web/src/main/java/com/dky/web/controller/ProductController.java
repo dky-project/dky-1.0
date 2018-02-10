@@ -40,11 +40,11 @@ public class ProductController {
      * @return
      */
     @RequestMapping(value = "/getProductInfo" ,name="样衣详细信息查询")
-    public ReturnT<ProductInfoView> getProductInfo(@RequestParam(value = "id",required = false) Long id){
+    public ReturnT<ProductInfoView> getProductInfo(@RequestParam(value = "id",required = false) Long id,@RequestParam(value = "isBuy",required = false) String isBuy){
         if(id == null){
             return new ReturnT<>().failureData("id不能为空");
         }
-        return productService.getProductInfo(id);
+        return productService.getProductInfo(id,isBuy);
     }
 
     /**

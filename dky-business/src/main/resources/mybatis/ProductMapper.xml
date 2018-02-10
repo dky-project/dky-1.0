@@ -375,6 +375,8 @@
         t2.ISACTIVE = 'Y') as mDimNew11Text,
         (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW13_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW13' and
         t2.ISACTIVE = 'Y') as mDimNew13Text,
+        (SELECT t.attribname FROM M_DIM t
+        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM16' AND t.id = t1.M_DIM16_ID) as mDim16Text,
         t5.IMGURL1,
         t5.IMGURL2,
         t5.IMGURL3,

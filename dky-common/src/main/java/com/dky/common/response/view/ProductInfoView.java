@@ -24,6 +24,10 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String mDimNew13Text;
     /**
+     * 品类
+     */
+    private String mDim16Text;
+    /**
      * 温馨提示
      */
     private String description3;
@@ -182,7 +186,7 @@ public class ProductInfoView extends ResultObjectBase {
     }
 
     public void setImgUrl1(String imgUrl1) {
-        this.imgUrl1 = imgUrl1.replace("img","img_pad")+"?random="+new Random().nextInt(100);
+        this.imgUrl1 = imgUrl1;
     }
 
     public String getImgUrl2() {
@@ -312,5 +316,13 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setGw(String gw) {
         this.gw = gw;
+    }
+
+    public String getmDim16Text() {
+        return mDim16Text;
+    }
+
+    public void setmDim16Text(String mDim16Text) {
+        this.mDim16Text = mDim16Text;
     }
 }

@@ -1,10 +1,13 @@
 package com.dky.business.repository.biz.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
 import com.dky.common.bean.Product;
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.DimFlagEnum;
 import com.dky.common.enums.IsActiveEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.ImagePageList;
@@ -47,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public ReturnT<ProductInfoView> getProductInfo(Long id) {
+    public ReturnT<ProductInfoView> getProductInfo(Long id,String isBuy) {
         ProductInfoView productInfoView = null;
         try {
             productInfoView = mapper.getProductInfo(id);
@@ -56,6 +59,8 @@ public class ProductServiceImpl implements ProductService {
             }
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
+            String img = productInfoView.getImgUrl1()+"?random="+new Random().nextInt(100);
+            productInfoView.setImgUrl1("Y".equals(isBuy)?img.replace("img","img_pad1"):img.replace("img","img_pad"));
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
@@ -98,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductView> list = mapper.queryByPage(product);
         for (ProductView view : list){
             if (view.getImgUrl1() != null){
-                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("img", "img_sl") + "?modifieddate=" + view.getModifieddate().getTime());
+                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1()+ "?modifieddate=" + view.getModifieddate().getTime());
                 view.setImgUrl1(productQueryParam.getIsBuy().equals("Y")?view.getBigImgUrl().replace("img", "img_s2"):view.getBigImgUrl().replace("img", "img_sl"));
             }
         }
@@ -238,6 +243,8 @@ public class ProductServiceImpl implements ProductService {
         e.add(null);
         ids.removeAll(e);
 
+        List<DimNewView> dimList = dimNewMapper.queryDimByDimText(DimFlagEnum.PIN_FLAG.getCode());
+
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
         List<DpGroupView> list = mapper.getProductListByIds(ids,code);
@@ -259,6 +266,13 @@ public class ProductServiceImpl implements ProductService {
                 mapper.getProductPrice(map);
                 BigDecimal price = new BigDecimal(map.get("v_price_out").toString());
                 view.setPrice(price);
+                if (dimList.size() > 0){
+                    JSONArray jsonArray = new JSONArray();
+                    for (DimNewView dim : dimList){
+                        jsonArray.add(dim);
+                    }
+                    view.setPinList(jsonArray);
+                }
             }
         }
         ImagePageList page = new ImagePageList(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize());
