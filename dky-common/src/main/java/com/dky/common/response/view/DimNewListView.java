@@ -19,6 +19,7 @@ public class DimNewListView extends ResultObjectBase {
     private List<DimNewView> lxList;
     private List<DimNewView> xxList;
     private List<DimNewView> yearList;
+    private List<DimNewView> pinList;
 
     public List<DimNewView> getSexList() {
         return sexList;
@@ -90,5 +91,13 @@ public class DimNewListView extends ResultObjectBase {
 
     public void setYearList(List<DimNewView> yearList) {
         this.yearList = yearList;
+    }
+
+    public List<DimNewView> getPinList() {
+        return pinList;
+    }
+
+    public void setPinList(List<DimNewView> pinList) {
+        this.pinList = pinList;
     }
 }

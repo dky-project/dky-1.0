@@ -95,7 +95,14 @@ public class ProductServiceImpl implements ProductService {
         }else {
             count = mapper.count(product);
         }
-        return new PageList<ProductView>(mapper.queryByPage(product), count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
+        List<ProductView> list = mapper.queryByPage(product);
+        for (ProductView view : list){
+            if (view.getImgUrl1() != null){
+                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("img", "img_sl") + "?modifieddate=" + view.getModifieddate().getTime());
+                view.setImgUrl1(productQueryParam.getIsBuy().equals("Y")?view.getBigImgUrl().replace("img", "img_s2"):view.getBigImgUrl().replace("img", "img_sl"));
+            }
+        }
+        return new PageList<ProductView>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
     private PageList<ProductView> findPage(ProductQueryBaseParam productQueryParam) {
         Product product = new Product();

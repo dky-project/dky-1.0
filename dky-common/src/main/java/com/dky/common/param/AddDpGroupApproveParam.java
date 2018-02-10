@@ -43,6 +43,10 @@ public class AddDpGroupApproveParam extends SessionParameter {
      * 数量
      */
     private Long sum;
+    /**
+     * 品类
+     */
+    private Long mDim16Id;
 
     public Long getmProductId() {
         return mProductId;
@@ -114,5 +118,13 @@ public class AddDpGroupApproveParam extends SessionParameter {
 
     public void setSum(Long sum) {
         this.sum = sum;
+    }
+
+    public Long getmDim16Id() {
+        return mDim16Id;
+    }
+
+    public void setmDim16Id(Long mDim16Id) {
+        this.mDim16Id = mDim16Id;
     }
 }

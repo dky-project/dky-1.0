@@ -26,6 +26,10 @@ public class ProductView extends ResultObjectBase {
      */
     private String mDimNew11Text;
     /**
+     * 品类
+     */
+    private String mDim16Text;
+    /**
      * 图片1
      */
     private String imgUrl1;
@@ -82,10 +86,7 @@ public class ProductView extends ResultObjectBase {
 
     public void setModifieddate(Date modifieddate) {
         this.modifieddate = modifieddate;
-        if (this.imgUrl1 != null){
-            this.imgUrl1 = GlobConts.IMAGE_ROOT_URL+this.imgUrl1.replace("img","img_sl")+"?modifieddate="+modifieddate.getTime();
-            this.bigImgUrl = this.imgUrl1.replace("img_sl","img");
-        }
+
     }
 
     public Integer getIscollect() {
@@ -110,5 +111,13 @@ public class ProductView extends ResultObjectBase {
 
     public void setBigImgUrl(String bigImgUrl) {
         this.bigImgUrl = bigImgUrl;
+    }
+
+    public String getmDim16Text() {
+        return mDim16Text;
+    }
+
+    public void setmDim16Text(String mDim16Text) {
+        this.mDim16Text = mDim16Text;
     }
 }

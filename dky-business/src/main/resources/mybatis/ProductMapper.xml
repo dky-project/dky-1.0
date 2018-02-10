@@ -293,7 +293,9 @@
 
     <sql id="queryTmpl">
         SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,
-        t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend
+        t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend,
+        (SELECT t.attribname FROM M_DIM t
+        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM16' AND t.id = t1.M_DIM16_ID) as mDim16Text
         FROM
         <choose>
             <when test="isRank != &quot;N&quot;">
@@ -324,6 +326,7 @@
         <if test="null!=mDimNew25Id">AND t1.M_DIM_NEW25_ID = #{mDimNew25Id}</if>
         <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
         <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
+        <if test="null!=mDim16Id">AND t1.M_DIM16_ID = #{mDim16Id}</if>
         <if test="null!=name and ''!=name">AND t1.name = #{name}</if>
         <if test="null!=isRecommend">AND nvl(t1.IS_RECOMMEND,'N') = #{isRecommend}</if>
     </sql>
@@ -331,8 +334,8 @@
     <!--样衣列表查询 -->
     <select id="queryByPage" resultType="com.dky.common.response.view.ProductView"
             parameterType="com.dky.common.bean.Product">
-        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend FROM (
-        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,ROWNUM RN
+        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,mDim16Text FROM (
+        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,mDim16Text,ROWNUM RN
         from (<include refid="queryTmpl"></include>)
         WHERE 1=1
         <if test="null!=requestOffset">

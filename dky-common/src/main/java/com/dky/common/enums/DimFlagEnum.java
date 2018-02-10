@@ -13,6 +13,7 @@ public enum  DimFlagEnum {
     LX_FLAG("DIMFLAG_NEW25","领型"),
     XX_FLAG("DIMFLAG_NEW9","袖型"),
     YEAR_FLAG("DIM13","年份"),
+    PIN_FLAG("DIM16","品类"),
     ;
 
 

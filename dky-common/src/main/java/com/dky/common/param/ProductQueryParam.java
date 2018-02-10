@@ -44,6 +44,10 @@ public class ProductQueryParam extends WebPageParameter {
      * 年份
      */
     private Long mDim13Id;
+    /**
+     * 品类
+     */
+    private Long mDim16Id;
 
     private String name;
     /**
@@ -54,6 +58,10 @@ public class ProductQueryParam extends WebPageParameter {
      * 是否获取销量排行：默认不获取
      */
     private String isRank = IsActiveEnum.NO.getCode();
+    /**
+     * 是否获取买家秀图片：默认不获取
+     */
+    private String isBuy = IsActiveEnum.NO.getCode();
 
     public Long getmDimNew11Id() {
         return mDimNew11Id;
@@ -149,5 +157,21 @@ public class ProductQueryParam extends WebPageParameter {
 
     public void setIsRank(String isRank) {
         this.isRank = isRank;
+    }
+
+    public Long getmDim16Id() {
+        return mDim16Id;
+    }
+
+    public void setmDim16Id(Long mDim16Id) {
+        this.mDim16Id = mDim16Id;
+    }
+
+    public String getIsBuy() {
+        return isBuy;
+    }
+
+    public void setIsBuy(String isBuy) {
+        this.isBuy = isBuy;
     }
 }

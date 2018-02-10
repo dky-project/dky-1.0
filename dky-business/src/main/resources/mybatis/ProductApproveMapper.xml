@@ -1546,6 +1546,9 @@
       <if test="mDimNew17Id != null" >
         M_DIM_NEW17_ID,
       </if>
+      <if test="mDim16Id != null" >
+        M_DIM16_ID,
+      </if>
       <if test="colorValue != null" >
         COLORVALUE,
       </if>
@@ -1639,6 +1642,9 @@
       </if>
       <if test="mDimNew17Id != null" >
         #{mDimNew17Id,jdbcType=DECIMAL},
+      </if>
+      <if test="mDim16Id != null" >
+        #{mDim16Id,jdbcType=DECIMAL},
       </if>
       <if test="colorValue != null" >
         #{colorValue,jdbcType=DECIMAL},

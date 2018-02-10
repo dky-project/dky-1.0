@@ -70,6 +70,8 @@ public class ProductApprove extends PojoObjectBase {
 
     private Long mDimNew9Id;
 
+    private Long mDim16Id;
+
     private String ycValue;
 
     private BigDecimal jkValue;
@@ -1344,5 +1346,13 @@ public class ProductApprove extends PojoObjectBase {
 
     public void setQtxbzzValue1(String qtxbzzValue1) {
         this.qtxbzzValue1 = qtxbzzValue1;
+    }
+
+    public Long getmDim16Id() {
+        return mDim16Id;
+    }
+
+    public void setmDim16Id(Long mDim16Id) {
+        this.mDim16Id = mDim16Id;
     }
 }
