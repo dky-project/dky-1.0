@@ -1,6 +1,5 @@
 package com.dky.business.repository.biz.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.*;
@@ -113,7 +112,13 @@ public class ProductServiceImpl implements ProductService {
         Product product = new Product();
         BeanUtils.copyProperties(productQueryParam, product);
         product.setCode("99999");
-        return new PageList<ProductView>(mapper.queryByPage(product), mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
+        List<ProductView> list = mapper.queryByPage(product);
+        for (ProductView view : list){
+            if (view.getImgUrl1() != null){
+                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1()+ "?modifieddate=" + view.getModifieddate().getTime());
+            }
+        }
+        return new PageList<ProductView>(list, mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
     @Override
