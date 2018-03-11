@@ -1730,4 +1730,9 @@
       #{item}
     </foreach>
   </select>
+
+  <select id="getById" parameterType="java.lang.Long" >
+    select <include refid="Base_Column_List"></include>
+    from m_product_approve where id = #{id}
+  </select>
 </mapper>

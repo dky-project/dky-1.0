@@ -45,4 +45,6 @@ public interface ProductApproveMapper {
     Map<Object,Object> queryTotalMap(ProductApprove productApprove);
 
     Map<Object,Object> queryGroupTotalMap(ProductApprove productApprove);
+
+    ProductApprove getById(Long id);
 }

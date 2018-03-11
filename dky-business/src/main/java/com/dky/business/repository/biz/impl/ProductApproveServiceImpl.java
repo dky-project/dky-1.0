@@ -157,6 +157,12 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT updateProductApproveList(Long[] ids) {
+        for (Long id : ids){
+            ProductApprove p = mapper.getById(id);
+            if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(p.getIsapprove())){
+                return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+            }
+        }
         mapper.updateProductApproveList(ids);
         return new ReturnT().successDefault();
     }
