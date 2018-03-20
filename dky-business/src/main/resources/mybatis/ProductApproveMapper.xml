@@ -1731,7 +1731,7 @@
     </foreach>
   </select>
 
-  <select id="getById" parameterType="java.lang.Long" >
+  <select id="getById" parameterType="java.lang.Long" resultType="com.dky.common.bean.ProductApprove">
     select <include refid="Base_Column_List"></include>
     from m_product_approve where id = #{id}
   </select>
