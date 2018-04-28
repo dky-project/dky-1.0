@@ -181,4 +181,34 @@ public class ConverImagePathUtils {
 
         return (Class) params[index];
     }
+
+    public static void convertProductView(Object object,String isBuy){
+        Class clazz = object.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        for(Field field : fields){
+            String name = field.getName();
+            for (String s : GlobConts.PREFIX){
+                if(name.startsWith(s) || name.endsWith(s)){
+                    try {
+                        Object oldValue = PropertyUtils.getProperty(object, name);
+                        String path = oldValue == null ? "" : String.valueOf(oldValue);
+                        String imageUrl = appendImageUrl( GlobConts.IMAGE_ROOT_URL,path);
+                        if(StringUtils.isEmpty(imageUrl)){
+                            continue;
+                        }
+                        imageUrl = "Y".equals(isBuy)?imageUrl.replace("img","img_pad1"):imageUrl.replace("img","img_pad");
+                        List<String> imgList = ( List<String>) PropertyUtils.getProperty(object,GlobConts.IMAGE_LIST_COLUMN);
+                        if(imgList == null || imgList.size() == 0){
+                            imgList = Lists.newArrayList();
+                        }
+                        imgList.add(imageUrl);
+                        PropertyUtils.setProperty(object,GlobConts.IMAGE_LIST_COLUMN,imgList);
+                        PropertyUtils.setProperty(object,name,null);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+        }
+    }
 }

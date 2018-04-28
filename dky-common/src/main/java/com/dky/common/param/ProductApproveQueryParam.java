@@ -32,6 +32,8 @@ public class ProductApproveQueryParam extends WebPageParameter {
      */
     private Integer isapprove;
 
+    private Integer issource;
+
 
     public String getCzDate() {
         return czDate;
@@ -63,5 +65,13 @@ public class ProductApproveQueryParam extends WebPageParameter {
 
     public void setIsapprove(Integer isapprove) {
         this.isapprove = isapprove;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

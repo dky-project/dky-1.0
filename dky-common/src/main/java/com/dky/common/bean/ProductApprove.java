@@ -152,6 +152,8 @@ public class ProductApprove extends PojoObjectBase {
 
     private Integer isapprove;
 
+    private Integer issource;
+
     private String colorValue;
 
     private String pdt;
@@ -1354,5 +1356,13 @@ public class ProductApprove extends PojoObjectBase {
 
     public void setmDim16Id(Long mDim16Id) {
         this.mDim16Id = mDim16Id;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

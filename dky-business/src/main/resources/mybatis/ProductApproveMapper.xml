@@ -157,10 +157,10 @@
   <!--订单分页查询 -->
   <select id="queryByPage" parameterType="com.dky.common.bean.ProductApprove" resultType="com.dky.common.response.view.ProductApproveView">
      SELECT
-        id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
+        issource,id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
         mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,colorName
      FROM (
-      SELECT id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
+      SELECT issource,id,no1,pdt,customer,czDate,mDimNew12Text,mDimNew15Text,
       mDimNew16Text,mDimNew17Text,xwValue,ycValue,imgUrl,sum,totalAmount,colorName,ROWNUM RN FROM (
         <include refid="queryTmpl"></include>
       ) WHERE 1=1
@@ -203,7 +203,8 @@
     1 as sum,
     NVL(1 * t1.ls_price,0) as totalAmount,
     t3.IMGURL1 as imgUrl,
-    t4.name as colorName
+    t4.name as colorName,
+    t1.is_source as issource
   from v_m_product_approve t1
   LEFT JOIN M_PRODUCT t2 on t2.NAME = t1.PDT
   LEFT JOIN B_PDT_MEDIA t3 on t3.M_PRODUCT_ID = t2.ID
@@ -240,6 +241,7 @@
     <if test="null!=customer and ''!=customer">AND t1.customer like '%'||#{customer}||'%' </if>
     <if test="null!=isapprove">AND t1.isapprove = #{isapprove}</if>
     <if test="null!=jgno">AND t1.jgno = #{jgno}</if>
+    <if test="null!=issource">AND t1.is_source = #{issource}</if>
   </sql>
 
   <select id="count" parameterType="com.dky.common.bean.ProductApprove" resultType="int">
@@ -703,6 +705,9 @@
       <if test="notime != null" >
         NOTIME,
       </if>
+      <if test="issource != null" >
+        IS_SOURCE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1099,6 +1104,9 @@
       </if>
       <if test="notime != null" >
         #{notime,jdbcType=DATE},
+      </if>
+      <if test="issource != null" >
+        #{issource,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -1609,6 +1617,9 @@
       <if test="sum != null" >
         sum,
       </if>
+      <if test="issource != null" >
+        IS_SOURCE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1705,6 +1716,9 @@
       </if>
       <if test="sum != null" >
         #{sum,jdbcType=DECIMAL},
+      </if>
+      <if test="issource != null" >
+        #{issource,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>

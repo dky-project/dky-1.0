@@ -6,10 +6,7 @@ import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.BmptApprove;
 import com.dky.common.bean.ProductApprove;
-import com.dky.common.enums.IsActiveEnum;
-import com.dky.common.enums.IsApproveEnum;
-import com.dky.common.enums.ResultCodeEnum;
-import com.dky.common.enums.VesionEnum;
+import com.dky.common.enums.*;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -276,6 +273,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJxwValue("0");
                     approve.setSjxcValue("0");
                     approve.setCustomer("样衣五");
+                    approve.setIssource(SourceEnum.WITH.getCode());
                     Long id = mapper.getProductApproveSeq();
                     approve.setId(id);
                     Map<String,Object> map = new HashedMap();
@@ -291,8 +289,12 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 return new ReturnT().failureData(ResultCodeEnum.SYSTEM_ERROR);
             }
         DpGroupReturnView view = new DpGroupReturnView();
-        view.setBmptIds(bmptIds);
-        view.setApproveIds(approveIds);
+        if (bmptIds.size() > 0){
+            view.setBmptIds(bmptIds);
+        }
+        if (approveIds.size() > 0){
+            view.setApproveIds(approveIds);
+        }
         ReturnT returnT = new ReturnT();
         returnT.setData(view);
         return returnT.successDefault();

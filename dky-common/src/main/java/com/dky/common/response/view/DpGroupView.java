@@ -77,6 +77,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private List<ProductColorView> colorViewList;
     /**
+     * 颜色列表
+     */
+    private List<ProductColorView> colorRangeViewList;
+    /**
      * 尺寸列表
      */
     private List<ProductSizeView> sizeViewList;
@@ -232,5 +236,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setPinList(JSONArray pinList) {
         this.pinList = pinList;
+    }
+
+    public List<ProductColorView> getColorRangeViewList() {
+        return colorRangeViewList;
+    }
+
+    public void setColorRangeViewList(List<ProductColorView> colorRangeViewList) {
+        this.colorRangeViewList = colorRangeViewList;
     }
 }

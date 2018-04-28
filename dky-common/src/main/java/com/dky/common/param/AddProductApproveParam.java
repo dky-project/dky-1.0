@@ -348,6 +348,8 @@ public class AddProductApproveParam extends SessionParameter {
      */
     private Long sum;
 
+    private Integer issource;
+
     public String getPdt() {
         return pdt;
     }
@@ -1002,5 +1004,13 @@ public class AddProductApproveParam extends SessionParameter {
 
     public void setSum(Long sum) {
         this.sum = sum;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

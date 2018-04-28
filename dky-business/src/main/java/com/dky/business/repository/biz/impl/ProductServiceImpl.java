@@ -13,6 +13,7 @@ import com.dky.common.response.ImagePageList;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
+import com.dky.common.utils.ConverImagePathUtils;
 import com.dky.common.utils.PropertieUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
@@ -59,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
             String img = productInfoView.getImgUrl1()+"?random="+new Random().nextInt(100);
-            productInfoView.setImgUrl1("Y".equals(isBuy)?img.replace("img","img_pad1"):img.replace("img","img_pad"));
+            ConverImagePathUtils.convertProductView(productInfoView,isBuy);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
@@ -259,7 +260,8 @@ public class ProductServiceImpl implements ProductService {
                 view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
                 view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
             }else{
-                view.setColorViewList(dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id()));
+                view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
+                view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id()));
                 Map<String,Object> map = new HashedMap();
                 map.put("V_PZ",view.getmDimNew14Id());
                 map.put("V_ZX",view.getmDimNew16Id());

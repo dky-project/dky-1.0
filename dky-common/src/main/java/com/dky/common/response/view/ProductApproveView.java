@@ -1,6 +1,7 @@
 package com.dky.common.response.view;
 
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.SourceEnum;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
@@ -76,6 +77,10 @@ public class ProductApproveView extends ResultObjectBase {
      * 主颜色
      */
     private String colorName;
+
+    private Integer issource;
+
+    private String issourceText;
 
     public Long getId() {
         return id;
@@ -207,5 +212,25 @@ public class ProductApproveView extends ResultObjectBase {
 
     public void setColorName(String colorName) {
         this.colorName = colorName;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        SourceEnum sourceEnum = SourceEnum.getByCode(issource);
+        if (sourceEnum != null){
+            this.issourceText = sourceEnum.getMessage();
+        }
+        this.issource = issource;
+    }
+
+    public String getIssourceText(){
+        return this.issourceText;
+    }
+
+    public void setIssourceText(String issourceText) {
+        this.issourceText = issourceText;
     }
 }
