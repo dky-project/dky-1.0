@@ -198,7 +198,7 @@ public class AddProductApproveParam extends SessionParameter {
     /**
      *  袖长
      */
-    private BigDecimal xcValue;
+    private String xcValue;
     /**
      * 备忘录
      */
@@ -702,11 +702,11 @@ public class AddProductApproveParam extends SessionParameter {
         this.jkValue = jkValue;
     }
 
-    public BigDecimal getXcValue() {
+    public String getXcValue() {
         return xcValue;
     }
 
-    public void setXcValue(BigDecimal xcValue) {
+    public void setXcValue(String xcValue) {
         this.xcValue = xcValue;
     }
 

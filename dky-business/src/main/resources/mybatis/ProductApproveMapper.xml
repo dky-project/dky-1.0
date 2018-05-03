@@ -37,7 +37,7 @@
     <result column="M_DIM_NEW9_ID" property="mDimNew9Id" jdbcType="DECIMAL" />
     <result column="YC_VALUE" property="ycValue" jdbcType="VARCHAR" />
     <result column="JK_VALUE" property="jkValue" jdbcType="DECIMAL" />
-    <result column="XC_VALUE" property="xcValue" jdbcType="DECIMAL" />
+    <result column="XC_VALUE" property="xcValue" jdbcType="VARCHAR" />
     <result column="XBC_VALUE" property="xbcValue" jdbcType="DECIMAL" />
     <result column="LING_CC_VALUE" property="lingCcValue" jdbcType="DECIMAL" />
     <result column="LBCC_VALUE" property="lbccValue" jdbcType="DECIMAL" />
@@ -812,10 +812,10 @@
         #{jkValue,jdbcType=DECIMAL},
       </if>
       <if test="xcValue != null" >
-        #{xcValue,jdbcType=DECIMAL},
+        #{xcValue,jdbcType=VARCHAR},
       </if>
       <if test="xcValue != null" >
-        #{xcValue,jdbcType=DECIMAL},
+        #{xcValue,jdbcType=VARCHAR},
       </if>
       <if test="xbcValue != null" >
         #{xbcValue,jdbcType=DECIMAL},
@@ -1222,7 +1222,7 @@
         JK_VALUE = #{jkValue,jdbcType=DECIMAL},
       </if>
       <if test="xcValue != null" >
-        XC_VALUE = #{xcValue,jdbcType=DECIMAL},
+        XC_VALUE = #{xcValue,jdbcType=VARCHAR},
       </if>
       <if test="xbcValue != null" >
         XBC_VALUE = #{xbcValue,jdbcType=DECIMAL},
@@ -1670,7 +1670,7 @@
         #{ycValue,jdbcType=VARCHAR},
       </if>
       <if test="xcValue != null" >
-        #{xcValue,jdbcType=DECIMAL},
+        #{xcValue,jdbcType=VARCHAR},
       </if>
       <if test="hzxc1Value != null" >
         #{hzxc1Value,jdbcType=DECIMAL},

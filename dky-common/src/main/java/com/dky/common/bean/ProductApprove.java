@@ -76,7 +76,7 @@ public class ProductApprove extends PojoObjectBase {
 
     private BigDecimal jkValue;
 
-    private BigDecimal xcValue;
+    private String xcValue;
 
     private BigDecimal xbcValue;
 
@@ -558,11 +558,11 @@ public class ProductApprove extends PojoObjectBase {
         this.jkValue = jkValue;
     }
 
-    public BigDecimal getXcValue() {
+    public String getXcValue() {
         return xcValue;
     }
 
-    public void setXcValue(BigDecimal xcValue) {
+    public void setXcValue(String xcValue) {
         this.xcValue = xcValue;
     }
 
