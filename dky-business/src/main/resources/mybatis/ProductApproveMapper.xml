@@ -412,9 +412,6 @@
         JK_VALUE,
       </if>
       <if test="xcValue != null" >
-        XC_VALUE,
-      </if>
-      <if test="xcValue != null" >
         XC_VALUE1,
       </if>
       <if test="xbcValue != null" >
@@ -810,9 +807,6 @@
       </if>
       <if test="jkValue != null" >
         #{jkValue,jdbcType=DECIMAL},
-      </if>
-      <if test="xcValue != null" >
-        #{xcValue,jdbcType=VARCHAR},
       </if>
       <if test="xcValue != null" >
         #{xcValue,jdbcType=VARCHAR},
@@ -1570,7 +1564,7 @@
         YC_VALUE,
       </if>
       <if test="xcValue != null" >
-        XC_VALUE,
+        XC_VALUE1,
       </if>
       <if test="hzxc1Value != null" >
         HZXC1_VALUE,
