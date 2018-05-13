@@ -31,6 +31,8 @@ public class AddDpGroupBmptParam extends SessionParameter {
 
     private Long sum;
 
+    private Integer issource;
+
     public Long getmProductId() {
         return mProductId;
     }
@@ -69,5 +71,13 @@ public class AddDpGroupBmptParam extends SessionParameter {
 
     public void setSum(Long sum) {
         this.sum = sum;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

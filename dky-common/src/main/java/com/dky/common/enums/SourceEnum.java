@@ -4,7 +4,7 @@ package com.dky.common.enums;
  * Created by hang on 2017/1/4.
  */
 public enum SourceEnum {
-    DEFALUT(1,"其他"),
+    DEFALUT(1,"样衣"),
     DISPLAY(2,"陈列"),
     WITH(3,"搭配"),
     ;

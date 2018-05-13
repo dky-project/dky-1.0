@@ -18,13 +18,15 @@ public interface BmptApproveMapper {
     void bMptApproveSave(@Param("jgNo") String jgNo,
                          @Param("productName") String productName,
                          @Param("sizeId") Long sizeId,
-                         @Param("colorId") Long colorId);
+                         @Param("colorId") Long colorId,
+                         @Param("issource") Integer issource);
 
     void bMptApproveInsert(@Param("jgNo") String jgNo,
                            @Param("pdtId") Long pdtId,
                            @Param("sizeId") Long sizeId,
                            @Param("colorId") Long colorId,
-                           @Param("qty") Long qty);
+                           @Param("qty") Long qty,
+                           @Param("issource") Integer issource);
 
     Long getBmptApproveSeq();
 
@@ -33,7 +35,8 @@ public interface BmptApproveMapper {
                            @Param("mProductId") Long mProductId,
                            @Param("sizeId") Long sizeId,
                            @Param("colorId") Long colorId,
-                           @Param("qty") Long qty);
+                           @Param("qty") Long qty,
+                           @Param("issource") Integer issource);
 
     void bmptApproveAcm(Long id);
 

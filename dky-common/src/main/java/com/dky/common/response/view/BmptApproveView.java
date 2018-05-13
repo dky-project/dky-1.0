@@ -1,6 +1,7 @@
 package com.dky.common.response.view;
 
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.SourceEnum;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
@@ -44,6 +45,10 @@ public class BmptApproveView extends ResultObjectBase {
      * 大图片
      */
     private String bigImgUrl;
+
+    private Integer issource;
+
+    private String issourceText;
 
     public Long getId() {
         return id;
@@ -111,5 +116,25 @@ public class BmptApproveView extends ResultObjectBase {
 
     public void setBigImgUrl(String bigImgUrl) {
         this.bigImgUrl = bigImgUrl;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        SourceEnum sourceEnum = SourceEnum.getByCode(issource);
+        if (sourceEnum != null){
+            this.issourceText = sourceEnum.getMessage();
+        }
+        this.issource = issource;
+    }
+
+    public String getIssourceText(){
+        return this.issourceText;
+    }
+
+    public void setIssourceText(String issourceText) {
+        this.issourceText = issourceText;
     }
 }

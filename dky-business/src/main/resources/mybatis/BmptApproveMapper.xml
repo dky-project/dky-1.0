@@ -39,6 +39,7 @@
     <if test="null!=colorName and ''!=colorName">AND t3.value1 like '%'||#{colorName}||'%' </if>
     <if test="null!=sizeName and ''!=sizeName">AND t3.VALUE2_CODE = #{sizeName} </if>
     <if test="null!=jgno and ''!=jgno">AND t6.CODE = #{jgno} </if>
+    <if test="null!=issource and ''!=issource">AND t1.is_source = #{issource} </if>
   </sql>
 
   <sql id="queryTmpl">
@@ -49,7 +50,8 @@
       t3.VALUE2_CODE as sizeName,
       t1.qty,
       t1.qty * t4.PRICE_NEW as amount,
-      t5.IMGURL1 as imgUrl
+      t5.IMGURL1 as imgUrl,
+      t1.is_source as issource
     from V_B_MPTAPPROVE t1
     LEFT JOIN m_product t2 ON t1.m_product_id = t2.id
     LEFT JOIN M_ATTRIBUTESETINSTANCE t3 ON t1.M_ATTRIBUTESETINSTANCE_ID = t3.id
@@ -89,11 +91,11 @@
   </select>
 
   <insert id="bMptApproveSave" statementType="CALLABLE">
-    {call  B_MPTAPPROVE_save(#{jgNo},#{productName},#{sizeId},#{colorId}) }
+    {call  B_MPTAPPROVE_save1(#{jgNo},#{productName},#{sizeId},#{colorId},#{issource}) }
   </insert>
 
   <insert id="bMptApproveInsert" statementType="CALLABLE">
-    {call  B_MPTAPPROVE_INSERT(#{jgNo},#{pdtId},#{sizeId},#{colorId},#{qty}) }
+    {call  B_MPTAPPROVE_INSERT(#{jgNo},#{pdtId},#{sizeId},#{colorId},#{qty},#{issource}) }
   </insert>
 
   <select id="getBmptApproveSeq" resultType="java.lang.Long">
@@ -110,6 +112,7 @@
       M_COLOR_ID,
       M_SIZE_ID,
       QTY,
+      IS_SOURCE,
       OWNERID,
       MODIFIERID,
       CREATIONDATE,
@@ -124,6 +127,7 @@
       #{colorId},
       #{sizeId},
       #{qty},
+      #{issource},
       893,
       893,
       sysdate,

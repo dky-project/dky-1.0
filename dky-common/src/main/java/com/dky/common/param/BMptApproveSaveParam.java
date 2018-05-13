@@ -36,6 +36,8 @@ public class BMptApproveSaveParam extends SessionParameter {
 
     private Long qty;
 
+    private Integer issource;
+
     public String getProductName() {
         return productName;
     }
@@ -74,5 +76,13 @@ public class BMptApproveSaveParam extends SessionParameter {
 
     public void setPdtId(Long pdtId) {
         this.pdtId = pdtId;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

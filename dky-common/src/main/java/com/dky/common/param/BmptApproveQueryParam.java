@@ -27,6 +27,8 @@ public class BmptApproveQueryParam extends WebPageParameter {
 
     private String jgno;
 
+    private Integer issource;
+
     public String getCreateTime() {
         return createTime;
     }
@@ -65,5 +67,13 @@ public class BmptApproveQueryParam extends WebPageParameter {
 
     public void setJgno(String jgno) {
         this.jgno = jgno;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

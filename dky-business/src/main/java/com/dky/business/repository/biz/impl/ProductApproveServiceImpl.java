@@ -80,10 +80,13 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT bMptApproveSave(BMptApproveSaveParam param) {
         try {
+            if (null == param.getIssource()){
+                param.setIssource(SourceEnum.DEFALUT.getCode());
+            }
             Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
             bmptApproveMapper.bMptApproveSave(code,param.getProductName(),
-                    param.getSizeId(),param.getColorId());
+                    param.getSizeId(),param.getColorId(),param.getIssource());
         } catch (Exception e) {
             LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
@@ -97,7 +100,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
             String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
             bmptApproveMapper.bMptApproveInsert(code,param.getPdtId(),
-                    param.getSizeId(),param.getColorId(),param.getQty());
+                    param.getSizeId(),param.getColorId(),param.getQty(),param.getIssource());
         } catch (Exception e) {
             LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
@@ -242,7 +245,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 if (bmptParam.getSum() != null && bmptParam.getSum() > 0){
                     Long id = bmptApproveMapper.getBmptApproveSeq();
                     bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
-                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum());
+                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum(),bmptParam.getIssource());
                     bmptApproveMapper.bmptApproveAcm(id);
                     bmptIds.add(id);
                 }
@@ -273,7 +276,9 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJxwValue("0");
                     approve.setSjxcValue("0");
                     approve.setCustomer("样衣五");
-                    approve.setIssource(SourceEnum.WITH.getCode());
+                    if (approve.getIssource() == null){
+                        approve.setIssource(SourceEnum.WITH.getCode());
+                    }
                     Long id = mapper.getProductApproveSeq();
                     approve.setId(id);
                     Map<String,Object> map = new HashedMap();

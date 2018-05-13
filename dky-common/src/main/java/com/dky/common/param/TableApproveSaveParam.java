@@ -29,6 +29,8 @@ public class TableApproveSaveParam extends SessionParameter {
     @NotBlank(message = "款号不能为空")
     private String productName;
 
+    private Integer issource;
+
     private String itemDatas;
 
     public String getJgNo() {
@@ -61,5 +63,13 @@ public class TableApproveSaveParam extends SessionParameter {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }

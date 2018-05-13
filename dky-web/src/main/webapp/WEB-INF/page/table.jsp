@@ -40,6 +40,7 @@
 <div class="modal-footer" id="addBtn"></div>
 <input type="hidden" id="pdtId" value="" >
 <input type="hidden" id="accessToken" value="${param.accessToken}" >
+<input type="hidden" id="issource" value="${param.issource}" >
 ﻿<div id="ShowImage_Form" onclick="$('#ShowImage_Form').modal('hide')" class="modal hide">
     <div class="modal-body" style="margin-left: 150px;margin-top: 80px;">
         <div id="img_show">
@@ -151,7 +152,7 @@
             });
             return;
         }
-        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:$('#accessToken').val(),pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
+        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:$('#accessToken').val(),issource:$('#issource').val(),pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
             if(data.success){
                 $.alert({
                     title: '恭喜！',

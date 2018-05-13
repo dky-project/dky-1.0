@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.DimNewService;
 import com.dky.business.repository.biz.ProductApproveService;
 import com.dky.business.repository.biz.ProductService;
+import com.dky.common.enums.SourceEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.transform.Source;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -124,10 +126,17 @@ public class ProductApproveController {
             bMptApproveSaveParam.setColorId(json.getLong("color"));
             bMptApproveSaveParam.setSizeId(json.getLong("size"));
             bMptApproveSaveParam.setQty(json.getLong("qty"));
+            if (null == param.getIssource()){
+                bMptApproveSaveParam.setIssource(SourceEnum.DEFALUT.getCode());
+            }else {
+                bMptApproveSaveParam.setIssource(json.getInteger("issource"));
+            }
             bMptApproveSaveParam.setSessionUser(param.getSessionUser());
-            ReturnT returnT = approveService.bMptApproveInsert(bMptApproveSaveParam);
-            if (returnT.isFailed()){
-                return returnT;
+            if (bMptApproveSaveParam.getQty() > 0){
+                ReturnT returnT = approveService.bMptApproveInsert(bMptApproveSaveParam);
+                if (returnT.isFailed()){
+                    return returnT;
+                }
             }
         }
         return new ReturnT().successDefault();

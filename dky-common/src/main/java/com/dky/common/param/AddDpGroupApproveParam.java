@@ -48,6 +48,8 @@ public class AddDpGroupApproveParam extends SessionParameter {
      */
     private Long mDim16Id;
 
+    private Integer issource;
+
     public Long getmProductId() {
         return mProductId;
     }
@@ -126,5 +128,13 @@ public class AddDpGroupApproveParam extends SessionParameter {
 
     public void setmDim16Id(Long mDim16Id) {
         this.mDim16Id = mDim16Id;
+    }
+
+    public Integer getIssource() {
+        return issource;
+    }
+
+    public void setIssource(Integer issource) {
+        this.issource = issource;
     }
 }
