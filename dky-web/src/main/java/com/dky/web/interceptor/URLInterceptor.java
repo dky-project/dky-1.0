@@ -25,7 +25,7 @@ public class URLInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        urlHandle(request,5000,20);
+        //urlHandle(request,5000,20);
         return super.preHandle(request, response, handler);
     }
 

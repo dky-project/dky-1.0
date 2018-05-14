@@ -157,13 +157,24 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT updateProductApproveList(Long[] ids) {
+        boolean isApprove = true;
         for (Long id : ids){
             ProductApprove p = mapper.getById(id);
-            if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(p.getIsapprove())){
-                return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+            if (p != null){
+                if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(p.getIsapprove())){
+                    return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+                }
+            }else{
+                isApprove = false;
+                BmptApprove bmptApprove = new BmptApprove();
+                bmptApprove.setId(id);
+                bmptApprove.setIsactive(IsActiveEnum.NO.getCode());
+                bmptApproveMapper.updateBmptApproveById(bmptApprove);
             }
         }
-        mapper.updateProductApproveList(ids);
+        if (isApprove){
+            mapper.updateProductApproveList(ids);
+        }
         return new ReturnT().successDefault();
     }
 
@@ -291,7 +302,16 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         }catch (Exception e){
                 //e.printStackTrace();
                 LOGGER.error("搭配下单出错！result:{}",e.getMessage());
-                return new ReturnT().failureData(ResultCodeEnum.SYSTEM_ERROR);
+                String msg = "";
+                String msg1 = e.getMessage().substring(
+                        e.getMessage().indexOf("ORA-") + 10,
+                        e.getMessage().length());
+                if (msg1.indexOf("ORA-") > -1)
+                    msg = msg1.substring(0, msg1.indexOf("ORA-"));
+                else {
+                    msg = msg1;
+                }
+                return new ReturnT().failureData(msg);
             }
         DpGroupReturnView view = new DpGroupReturnView();
         if (bmptIds.size() > 0){
