@@ -187,6 +187,36 @@
       </if>
   </select>
 
+  <!--加盟订单分页查询 -->
+  <select id="queryByPageJmTotalGroup" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="com.dky.common.response.view.ProductApproveTotalView">
+      SELECT *
+     FROM (
+      SELECT t.*,ROWNUM RN FROM (
+        <include refid="queryTmplJmTotalGroup"></include>
+      ) t WHERE 1=1
+      <if test="null!=requestOffset">
+          AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+      </if>  ) A WHERE 1=1
+      <if test="null!=requestOffset">
+          AND RN <![CDATA[ > ]]> #{requestOffset}
+      </if>
+  </select>
+
+  <!--订货会订单分页查询 -->
+  <select id="queryByPageDHHTotalGroup" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="com.dky.common.response.view.ProductApproveTotalView">
+      SELECT *
+     FROM (
+      SELECT t.*,ROWNUM RN FROM (
+        <include refid="queryTmplDHHTotalGroup"></include>
+      ) t WHERE 1=1
+      <if test="null!=requestOffset">
+          AND ROWNUM <![CDATA[ <= ]]>#{requestCount}
+      </if>  ) A WHERE 1=1
+      <if test="null!=requestOffset">
+          AND RN <![CDATA[ > ]]> #{requestOffset}
+      </if>
+  </select>
+
   <sql id="queryTmpl">
   SELECT
     t1.ID,
@@ -235,6 +265,45 @@
     ORDER BY t1.CZ_DATE DESC
   </sql>
 
+  <sql id="queryTmplJmTotalGroup">
+    SELECT
+      t1.no1,
+      t1.jgno,
+      t1.PDT,
+      t1.CUSTOMER,
+      t1.CZ_DATE as czDate,
+      t1.sizeName,
+      t1.isapprove,
+      t1.qty,
+      t1.totalAmount,
+      t1.colorName,
+      t1.imgUrl
+    FROM V_JM_TOTAL_GROUP t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+    ORDER BY t1.CZ_DATE DESC
+  </sql>
+
+  <sql id="queryTmplDHHTotalGroup">
+    SELECT
+      t1.no1,
+      t1.jgno,
+      t1.PDT,
+      t1.CUSTOMER,
+      t1.CZ_DATE as czDate,
+      t1.sizeName,
+      t1.isapprove,
+      t1.qty,
+      t1.totalAmount,
+      t1.colorName,
+      t1.imgUrl,
+      t1.is_source as issource
+    FROM V_DHH_TOTAL_GROUP t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+    ORDER BY t1.CZ_DATE DESC
+  </sql>
+
   <sql id="whereClause">
     <if test="null!=czDate and ''!=czDate">AND t1.CZ_DATE = #{czDate}</if>
     <if test="null!=pdt and ''!=pdt">AND t1.pdt like '%'||#{pdt}||'%' </if>
@@ -267,8 +336,36 @@
 
   <select id="queryGroupTotalMap" parameterType="com.dky.common.bean.ProductApprove" resultType="java.util.HashMap">
     SELECT sum(sum) as totalCount,sum(totalAmount) as totalAmount
-    from v_m_product_approve_group t1
+    FROM v_m_product_approve_group t1
     WHERE t1.ISACTIVE = 'Y'
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="countJmTotalGroup" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="int">
+    SELECT count(1)
+    FROM V_JM_TOTAL_GROUP t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="queryJmGroupTotalMap" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="java.util.HashMap">
+    SELECT sum(qty) as totalCount,sum(totalAmount) as totalAmount
+    FROM V_JM_TOTAL_GROUP t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="countDHHTotalGroup" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="int">
+    SELECT count(1)
+    FROM V_DHH_TOTAL_GROUP t1
+    WHERE 1=1
+    <include refid="whereClause"></include>
+  </select>
+
+  <select id="queryDHHGroupTotalMap" parameterType="com.dky.common.param.ProductApproveMergeQueryParam" resultType="java.util.HashMap">
+    SELECT sum(qty) as totalCount,sum(totalAmount) as totalAmount
+    FROM V_DHH_TOTAL_GROUP t1
+    WHERE 1=1
     <include refid="whereClause"></include>
   </select>
 

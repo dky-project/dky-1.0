@@ -1,7 +1,9 @@
 package com.dky.business.repository.repository;
 
 import com.dky.common.bean.ProductApprove;
+import com.dky.common.param.ProductApproveMergeQueryParam;
 import com.dky.common.response.view.ProductApproveInfoView;
+import com.dky.common.response.view.ProductApproveTotalView;
 import com.dky.common.response.view.ProductApproveView;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,4 +49,16 @@ public interface ProductApproveMapper {
     Map<Object,Object> queryGroupTotalMap(ProductApprove productApprove);
 
     ProductApprove getById(Long id);
+
+    List<ProductApproveTotalView> queryByPageJmTotalGroup(ProductApproveMergeQueryParam param);
+
+    int countJmTotalGroup(ProductApproveMergeQueryParam param);
+
+    Map<Object,Object> queryJmGroupTotalMap(ProductApproveMergeQueryParam param);
+
+    List<ProductApproveTotalView> queryByPageDHHTotalGroup(ProductApproveMergeQueryParam param);
+
+    int countDHHTotalGroup(ProductApproveMergeQueryParam param);
+
+    Map<Object,Object> queryDHHGroupTotalMap(ProductApproveMergeQueryParam param);
 }

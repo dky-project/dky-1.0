@@ -119,8 +119,22 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve){
-        return new PageList<BmptApproveView>(
+        return new PageList<>(
                 bmptApproveMapper.queryByPage(approve),bmptApproveMapper.count(approve),approve.getPageNo(),approve.getPageSize(),bmptApproveMapper.queryTotalMap(approve));
+    }
+
+    @Override
+    public ReturnT<PageList> mergePage(ProductApproveMergeQueryParam param) {
+        String email = param.getSessionUser().getEmail();
+        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
+        param.setJgno(map!=null?map.get("CODE"):email);
+        PageList pageList;
+        if (param.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || param.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())){
+            pageList = new PageList<>(mapper.queryByPageDHHTotalGroup(param),mapper.countDHHTotalGroup(param),param.getPageNo(),param.getPageSize(),mapper.queryDHHGroupTotalMap(param));
+        }else{
+            pageList = new PageList<>(mapper.queryByPageJmTotalGroup(param),mapper.countJmTotalGroup(param),param.getPageNo(),param.getPageSize(),mapper.queryJmGroupTotalMap(param));
+        }
+        return new ReturnT<>().sucessData(pageList);
     }
 
     @Override

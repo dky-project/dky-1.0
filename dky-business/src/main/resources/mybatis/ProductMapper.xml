@@ -682,4 +682,10 @@
         from m_product
         where id = #{mProductId}
     </select>
+
+    <select id="getColorGwList" parameterType="java.lang.Long" resultType="Product">
+        select t.*
+        from m_gw t
+        where t.m_product_id = #{mProductId}
+    </select>
 </mapper>

@@ -59,7 +59,6 @@ public class ProductServiceImpl implements ProductService {
             }
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
-            String img = productInfoView.getImgUrl1()+"?random="+new Random().nextInt(100);
             ConverImagePathUtils.convertProductView(productInfoView,isBuy);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());

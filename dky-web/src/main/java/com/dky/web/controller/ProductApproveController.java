@@ -52,6 +52,7 @@ public class ProductApproveController {
     public ReturnT<PageList> page(ProductApproveQueryParam param){
         return approveService.findByPage(param);
     }
+
     /**
      * 查询大货订单，分页
      * @param param
@@ -60,6 +61,16 @@ public class ProductApproveController {
     @RequestMapping(value = "bmptPage",name = "订单分页查询")
     public ReturnT<PageList> page(BmptApproveQueryParam param){
         return approveService.findByPage(param);
+    }
+
+    /**
+     * 订单查询合并
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "mergePage",name = "订单分页合并查询")
+    public ReturnT<PageList> mergePage(ProductApproveMergeQueryParam param){
+        return approveService.mergePage(param);
     }
 
     @RequestMapping(value = "productApproveInfoList",name = "查询订单详情")

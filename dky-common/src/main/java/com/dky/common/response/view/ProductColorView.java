@@ -33,6 +33,11 @@ public class ProductColorView extends ResultObjectBase {
      */
     private String colorDesc;
 
+    /**
+     * 是否默认显示
+     */
+    private String isDefault;
+
     public Long getmDimNew14Id() {
         return mDimNew14Id;
     }
@@ -79,5 +84,13 @@ public class ProductColorView extends ResultObjectBase {
 
     public void setmDimNew14Text(String mDimNew14Text) {
         this.mDimNew14Text = mDimNew14Text;
+    }
+
+    public String getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault;
     }
 }

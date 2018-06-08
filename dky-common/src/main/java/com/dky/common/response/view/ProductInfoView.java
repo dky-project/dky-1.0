@@ -117,6 +117,8 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String gw;
 
+    private List<ProductColorGWView> list;
+
     public String getName() {
         return name;
     }
@@ -324,5 +326,13 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setmDim16Text(String mDim16Text) {
         this.mDim16Text = mDim16Text;
+    }
+
+    public List<ProductColorGWView> getList() {
+        return list;
+    }
+
+    public void setList(List<ProductColorGWView> list) {
+        this.list = list;
     }
 }
