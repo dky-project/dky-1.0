@@ -140,7 +140,7 @@ public class ProductApproveController {
             if (null == param.getIssource()){
                 bMptApproveSaveParam.setIssource(SourceEnum.DEFALUT.getCode());
             }else {
-                bMptApproveSaveParam.setIssource(json.getInteger("issource"));
+                bMptApproveSaveParam.setIssource(param.getIssource());
             }
             bMptApproveSaveParam.setSessionUser(param.getSessionUser());
             if (bMptApproveSaveParam.getQty() > 0){
