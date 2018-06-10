@@ -690,7 +690,8 @@
     </select>
 
     <select id="getColorGwList" parameterType="java.lang.Long" resultType="ProductGwView">
-        select t.*
+        select t.m_product_id as mProductId,t.m_color as m_color1,t.gw as gw1,
+        t.m_color2,t.gw2,t.m_color3,t.gw3,t.m_color4,t.gw4,t.m_color5,t.gw5
         from m_gw t
         where t.m_product_id = #{mProductId}
     </select>
