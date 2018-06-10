@@ -60,6 +60,8 @@ public class ProductServiceImpl implements ProductService {
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
             ConverImagePathUtils.convertProductView(productInfoView,isBuy);
+            ProductGwView gwView = mapper.getColorGwList(id);
+            productInfoView.setGwView(gwView);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
@@ -299,28 +301,26 @@ public class ProductServiceImpl implements ProductService {
             return new ReturnT<>().failureData("无数据！");
         }
         ClGroupView clGroupView = dpList.get(0);
-        List<Long> ids = new ArrayList<>();
-        ids.add(clGroupView.getNo1ProductId());
-        ids.add(clGroupView.getNo2ProductId());
-        ids.add(clGroupView.getNo3ProductId());
-        ids.add(clGroupView.getNo4ProductId());
-        ids.add(clGroupView.getNo5ProductId());
-        ids.add(clGroupView.getNo6ProductId());
-        ids.add(clGroupView.getNo7ProductId());
-        ids.add(clGroupView.getNo8ProductId());
-        ids.add(clGroupView.getNo9ProductId());
-        ids.add(clGroupView.getNo10ProductId());
-        ids.add(clGroupView.getNo11ProductId());
-        ids.add(clGroupView.getNo12ProductId());
-        ids.add(clGroupView.getNo13ProductId());
-        ids.add(clGroupView.getNo14ProductId());
-        ids.add(clGroupView.getNo15ProductId());
-        List<Long> e = new ArrayList<>(1);
-        e.add(null);
+        List<CLDPView> ids = new ArrayList<>();
+        ids.add(new CLDPView(clGroupView.getNo1ProductId(),clGroupView.getGroupNo1()));
+        ids.add(new CLDPView(clGroupView.getNo2ProductId(),clGroupView.getGroupNo2()));
+        ids.add(new CLDPView(clGroupView.getNo3ProductId(),clGroupView.getGroupNo3()));
+        ids.add(new CLDPView(clGroupView.getNo4ProductId(),clGroupView.getGroupNo4()));
+        ids.add(new CLDPView(clGroupView.getNo5ProductId(),clGroupView.getGroupNo5()));
+        ids.add(new CLDPView(clGroupView.getNo6ProductId(),clGroupView.getGroupNo6()));
+        List<CLDPView> e = new ArrayList<>(1);
+        e.add(new CLDPView(null,null));
         ids.removeAll(e);
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
         List<ClGroupResultView> list = mapper.getClProductListByIds(ids,code);
+        for (ClGroupResultView view : list){
+            for (CLDPView cldp : ids){
+                if (cldp.getmProductId().equals(view.getmProductId())){
+                    view.setGroupNo(cldp.getGroupNo());
+                }
+            }
+        }
         ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize());
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
         return new ReturnT<>().sucessData(page);

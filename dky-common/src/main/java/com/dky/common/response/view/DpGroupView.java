@@ -90,6 +90,10 @@ public class DpGroupView extends ResultObjectBase {
     private Integer iscollect;
 
     private BigDecimal price;
+    /**
+     * 品类默认值
+     */
+    private Long mDim16Id;
 
     public String getImgUrl() {
         if (this.imgUrl != null){
@@ -244,5 +248,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setColorRangeViewList(List<ProductColorView> colorRangeViewList) {
         this.colorRangeViewList = colorRangeViewList;
+    }
+
+    public Long getmDim16Id() {
+        return mDim16Id;
+    }
+
+    public void setmDim16Id(Long mDim16Id) {
+        this.mDim16Id = mDim16Id;
     }
 }

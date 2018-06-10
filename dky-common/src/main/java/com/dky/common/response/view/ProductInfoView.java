@@ -91,6 +91,18 @@ public class ProductInfoView extends ResultObjectBase {
      */
     private String mDimNew16Text;
     /**
+     * 波段
+     */
+    private String mDim14Text;
+    /**
+     * 系列
+     */
+    private String mDim13Text;
+    /**
+     * 上货时间
+     */
+    private String marketDate;
+    /**
      * 颜色
      */
     private String clrRange;
@@ -116,6 +128,10 @@ public class ProductInfoView extends ResultObjectBase {
      * 杆位
      */
     private String gw;
+    /**
+     * 杆位颜色
+     */
+    private ProductGwView gwView;
 
     private List<ProductColorGWView> list;
 
@@ -334,5 +350,37 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setList(List<ProductColorGWView> list) {
         this.list = list;
+    }
+
+    public ProductGwView getGwView() {
+        return gwView;
+    }
+
+    public void setGwView(ProductGwView gwView) {
+        this.gwView = gwView;
+    }
+
+    public String getmDim14Text() {
+        return mDim14Text;
+    }
+
+    public void setmDim14Text(String mDim14Text) {
+        this.mDim14Text = mDim14Text;
+    }
+
+    public String getmDim13Text() {
+        return mDim13Text;
+    }
+
+    public void setmDim13Text(String mDim13Text) {
+        this.mDim13Text = mDim13Text;
+    }
+
+    public String getMarketDate() {
+        return marketDate;
+    }
+
+    public void setMarketDate(String marketDate) {
+        this.marketDate = marketDate;
     }
 }

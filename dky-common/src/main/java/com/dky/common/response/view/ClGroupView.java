@@ -27,6 +27,12 @@ public class ClGroupView extends ResultObjectBase {
     private Long no13ProductId;
     private Long no14ProductId;
     private Long no15ProductId;
+    private String groupNo1;
+    private String groupNo2;
+    private String groupNo3;
+    private String groupNo4;
+    private String groupNo5;
+    private String groupNo6;
     private Date modifieddate;
 
     private String clImgUrl;
@@ -173,5 +179,53 @@ public class ClGroupView extends ResultObjectBase {
     public void setModifieddate(Date modifieddate) {
         this.clImgUrl = GlobConts.IMAGE_ROOT_URL+"/CL_SL/"+this.gh+".jpg?modifieddate="+ modifieddate.getTime();
         this.modifieddate = modifieddate;
+    }
+
+    public String getGroupNo1() {
+        return groupNo1;
+    }
+
+    public void setGroupNo1(String groupNo1) {
+        this.groupNo1 = groupNo1;
+    }
+
+    public String getGroupNo2() {
+        return groupNo2;
+    }
+
+    public void setGroupNo2(String groupNo2) {
+        this.groupNo2 = groupNo2;
+    }
+
+    public String getGroupNo3() {
+        return groupNo3;
+    }
+
+    public void setGroupNo3(String groupNo3) {
+        this.groupNo3 = groupNo3;
+    }
+
+    public String getGroupNo4() {
+        return groupNo4;
+    }
+
+    public void setGroupNo4(String groupNo4) {
+        this.groupNo4 = groupNo4;
+    }
+
+    public String getGroupNo5() {
+        return groupNo5;
+    }
+
+    public void setGroupNo5(String groupNo5) {
+        this.groupNo5 = groupNo5;
+    }
+
+    public String getGroupNo6() {
+        return groupNo6;
+    }
+
+    public void setGroupNo6(String groupNo6) {
+        this.groupNo6 = groupNo6;
     }
 }

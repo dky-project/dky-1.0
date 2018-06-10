@@ -286,13 +286,13 @@
 
   <sql id="queryTmplDHHTotalGroup">
     SELECT
+      t1.id,
       t1.no1,
       t1.jgno,
       t1.PDT,
       t1.CUSTOMER,
       t1.CZ_DATE as czDate,
       t1.sizeName,
-      t1.isapprove,
       t1.qty,
       t1.totalAmount,
       t1.colorName,

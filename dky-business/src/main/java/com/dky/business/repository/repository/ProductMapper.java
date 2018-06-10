@@ -90,7 +90,7 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @param ids
      * @return
      */
-    List<ClGroupResultView> getClProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
+    List<ClGroupResultView> getClProductListByIds(@Param("ids") List<CLDPView> ids,@Param("code")String code);
 
     String getProductImgUrl(Long mProductId);
 
@@ -98,5 +98,5 @@ public interface ProductMapper extends BaseDao<Product,Long> {
 
     BigDecimal getMpdtProductPrice(Long mProductId);
 
-    List<ProductColorGWView> getColorGwList(Long mProductId);
+    ProductGwView getColorGwList(Long mProductId);
 }

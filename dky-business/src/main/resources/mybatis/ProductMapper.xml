@@ -377,6 +377,11 @@
         t2.ISACTIVE = 'Y') as mDimNew13Text,
         (SELECT t.attribname FROM M_DIM t
         WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM16' AND t.id = t1.M_DIM16_ID) as mDim16Text,
+        (SELECT t.attribname FROM M_DIM t
+        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM14' AND t.id = t1.M_DIM14_ID) as mDim14Text,
+        (SELECT t.attribname FROM M_DIM t
+        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM13' AND t.id = t1.M_DIM13_ID) as mDim13Text,
+        MARKETDATE AS marketDate,
         t5.IMGURL1,
         t5.IMGURL2,
         t5.IMGURL3,
@@ -620,7 +625,8 @@
         GET_PZSJSON(1,a.id,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS pzJsonstr,
         GET_PZSJSON(3,a.id,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS zxJsonstr,
         decode(d.code,null,1,2) as iscollect,
-        b.IMGURL1 as imgUrl
+        b.IMGURL1 as imgUrl,
+        a.M_DIM16_ID as mDim16Id
         FROM M_PRODUCT a
         LEFT JOIN B_PDT_MEDIA b ON a.ID = b.M_PRODUCT_ID
         LEFT JOIN (select
@@ -671,7 +677,7 @@
         a.id
         WHERE a.ID in
         <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
-            #{item}
+            #{item.mProductId}
         </foreach>
         and a.isactive = 'Y'
         and b.isactive = 'Y'
@@ -683,7 +689,7 @@
         where id = #{mProductId}
     </select>
 
-    <select id="getColorGwList" parameterType="java.lang.Long" resultType="Product">
+    <select id="getColorGwList" parameterType="java.lang.Long" resultType="ProductGwView">
         select t.*
         from m_gw t
         where t.m_product_id = #{mProductId}

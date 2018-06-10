@@ -60,14 +60,22 @@
 
   <sql id="queryClTmpl">
     SELECT
-      GH AS gh, NO1_PRODUCT_ID AS no1ProductId,
-      NO2_PRODUCT_ID AS no2ProductId, NO3_PRODUCT_ID AS no3ProductId,
-      NO4_PRODUCT_ID AS no4ProductId, NO5_PRODUCT_ID AS no5ProductId,
-      NO6_PRODUCT_ID AS no6ProductId, NO7_PRODUCT_ID AS no7ProductId,
-      NO8_PRODUCT_ID AS no8ProductId, NO9_PRODUCT_ID AS no9ProductId,
-      NO10_PRODUCT_ID AS no10ProductId, NO11_PRODUCT_ID AS no11ProductId,
-      NO12_PRODUCT_ID AS no12ProductId, NO13_PRODUCT_ID AS no13ProductId,
-      NO14_PRODUCT_ID AS no14ProductId, NO15_PRODUCT_ID AS no15ProductId,
+      GH AS gh,
+      NO1_DP as groupNo1,
+      NO2_DP as groupNo2,
+      NO3_DP as groupNo3,
+      NO4_DP as groupNo4,
+      NO5_DP as groupNo5,
+      NO6_DP as groupNo6,
+      NO7_PRODUCT_ID AS no1ProductId,
+      NO8_PRODUCT_ID AS no2ProductId,
+      NO9_PRODUCT_ID AS no3ProductId,
+      NO10_PRODUCT_ID AS no4ProductId,
+      NO11_PRODUCT_ID AS no5ProductId,
+      NO12_PRODUCT_ID AS no6ProductId,
+      NO13_PRODUCT_ID AS no7ProductId,
+      NO14_PRODUCT_ID AS no8ProductId,
+      NO15_PRODUCT_ID AS no9ProductId,
       MODIFIEDDATE AS modifieddate
     FROM CL WHERE 1=1
     <include refid="whereClClause" />

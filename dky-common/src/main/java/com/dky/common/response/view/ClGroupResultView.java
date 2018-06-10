@@ -30,6 +30,10 @@ public class ClGroupResultView extends ResultObjectBase {
      * 图片
      */
     private String imgUrl;
+    /**
+     * 搭配组号
+     */
+    private String groupNo;
 
     public Long getmProductId() {
         return mProductId;
@@ -72,5 +76,13 @@ public class ClGroupResultView extends ResultObjectBase {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
     }
 }
