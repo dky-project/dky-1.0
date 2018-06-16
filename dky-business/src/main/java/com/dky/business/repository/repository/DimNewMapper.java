@@ -2,11 +2,13 @@ package com.dky.business.repository.repository;
 
 import com.dky.common.bean.DimNew;
 import com.dky.common.param.PzsJsonQueryParam;
+import com.dky.common.response.view.DataAnalysisView;
 import com.dky.common.response.view.DimNewView;
 import com.dky.common.response.view.ProductColorView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @MyBatisRepository
 public interface DimNewMapper {
@@ -35,4 +37,8 @@ public interface DimNewMapper {
     String getSizeData(@Param("pdt")String pdt,@Param("xwValue")String xwValue);
 
     List<ProductColorView> getColorListByDimIdAndProductId(@Param("mProductId")Long mProductId, @Param("mDimNew14Id")Long mDimNew14Id);
+
+    List<DataAnalysisView> getDataAnalysisList(@Param("tableName")String tableName,@Param("code")String code);
+
+    Map<String,Object> getDataAnalysisMap(@Param("code")String code);
 }

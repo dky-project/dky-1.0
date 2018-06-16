@@ -289,4 +289,20 @@
       AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
       and t.isactive = 'Y'
     </select>
+
+    <select id="getDataAnalysisList" resultType="DataAnalysisView">
+      SELECT *
+      FROM ${tableName} t
+      WHERE t.code =  #{code}
+    </select>
+
+    <select id="getDataAnalysisMap" resultType="map">
+      select nvl(a.totalAmount,0) totalAmount,nvl(a.qty,0) as qty,b.GH_PRICE as ghPrice,b.FL_PRICE as flPrice,c.c_storetype_jz_id as storeType,
+      decode(c.c_storetype_jz_id,8,a.totalAmount - nvl(b.fl_price,0),7,a.totalAmount*nvl(b.gh_price,0)) as afterAmount
+      from V_DATA_ANALYSIS a, M_RANGE b, c_store c
+     where a.jgno = c.code
+       and c.id = b.c_store_id
+       and a.qty between b.star_sum and b.end_sum
+       and a.jgno = #{code}
+    </select>
 </mapper>

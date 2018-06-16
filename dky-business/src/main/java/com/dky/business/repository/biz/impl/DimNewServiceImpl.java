@@ -8,13 +8,11 @@ import com.dky.business.repository.repository.ProductApproveMapper;
 import com.dky.business.repository.repository.ProductMapper;
 import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.constats.GlobConts;
+import com.dky.common.enums.DataTableEnum;
 import com.dky.common.enums.FlagEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.ReturnT;
-import com.dky.common.response.view.DimNewView;
-import com.dky.common.response.view.ProductApproveTitleView;
-import com.dky.common.response.view.ProductColorView;
-import com.dky.common.response.view.PzJsonResultView;
+import com.dky.common.response.view.*;
 import com.dky.common.utils.DateUtils;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -27,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,6 +200,20 @@ public class DimNewServiceImpl implements DimNewService {
         }
         ReturnT returnT = new ReturnT();
         returnT.setData(price);
+        return returnT.successDefault();
+    }
+
+    @Override
+    public ReturnT getDataAnalysisList(DataAnalysisParam param) {
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+        ReturnT returnT = new ReturnT();
+        HashMap<String,Object> map = new HashMap<>();
+        for (DataTableEnum type : DataTableEnum.values()){
+            map.put(type.getCode(),mapper.getDataAnalysisList(type.getMessage(),code));
+        }
+        map.put("total",mapper.getDataAnalysisMap(code));
+        returnT.setData(map);
         return returnT.successDefault();
     }
 }

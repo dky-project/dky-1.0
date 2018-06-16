@@ -159,6 +159,11 @@ public class ProductApproveController {
         return approveService.addProductDpGroup(param);
     }
 
+    @RequestMapping(value = "getDataAnalysisList",name = "数据分析")
+    public ReturnT getDataAnalysisList(DataAnalysisParam param){
+        return dimNewService.getDataAnalysisList(param);
+    }
+
     public boolean judgeContainsStr(String no) {
         //String regex=".*[a-zA-Z]+.*";
         String regex="^\\d+$";

@@ -29,4 +29,6 @@ public interface DimNewService {
     ReturnT getSizeData(SizeDataQueryParam param);
 
     ReturnT getProductPrice(ProductPriceQueryParam param);
+
+    ReturnT getDataAnalysisList(DataAnalysisParam param);
 }
