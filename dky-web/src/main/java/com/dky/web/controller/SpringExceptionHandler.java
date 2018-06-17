@@ -99,6 +99,7 @@ public class SpringExceptionHandler {
 
     private void printLog(Exception e, HttpServletRequest request, HttpServletResponse response){
         SessionUser sessionUser = DkyUtils.getCurrentUser();//获取当前登陆
+        e.printStackTrace();
         if(sessionUser != null){
             LOGGER.error("『授权』用户[{}]访问路径[{}],异常信息【{}】",sessionUser.getEmail(),request.getRequestURL(),e.getMessage());
         }else {

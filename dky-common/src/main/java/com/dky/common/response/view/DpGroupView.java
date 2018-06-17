@@ -77,7 +77,7 @@ public class DpGroupView extends ResultObjectBase {
      */
     private List<ProductColorView> colorViewList;
     /**
-     * 颜色列表
+     * 设计师推荐颜色列表
      */
     private List<ProductColorView> colorRangeViewList;
     /**

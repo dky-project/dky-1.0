@@ -262,7 +262,7 @@ public class ProductServiceImpl implements ProductService {
                 view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
             }else{
                 view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
-                view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id()));
+                view.setColorRangeViewList(dimNewMapper.getColorListByGroupNo(param.getGroupNo(),view.getmProductId(),view.getmDimNew14Id()));
                 Map<String,Object> map = new HashedMap();
                 map.put("V_PZ",view.getmDimNew14Id());
                 map.put("V_ZX",view.getmDimNew16Id());
@@ -301,26 +301,26 @@ public class ProductServiceImpl implements ProductService {
             return new ReturnT<>().failureData("无数据！");
         }
         ClGroupView clGroupView = dpList.get(0);
-        List<CLDPView> ids = new ArrayList<>();
-        ids.add(new CLDPView(clGroupView.getNo1ProductId(),clGroupView.getGroupNo1()));
-        ids.add(new CLDPView(clGroupView.getNo2ProductId(),clGroupView.getGroupNo2()));
-        ids.add(new CLDPView(clGroupView.getNo3ProductId(),clGroupView.getGroupNo3()));
-        ids.add(new CLDPView(clGroupView.getNo4ProductId(),clGroupView.getGroupNo4()));
-        ids.add(new CLDPView(clGroupView.getNo5ProductId(),clGroupView.getGroupNo5()));
-        ids.add(new CLDPView(clGroupView.getNo6ProductId(),clGroupView.getGroupNo6()));
-        List<CLDPView> e = new ArrayList<>(1);
-        e.add(new CLDPView(null,null));
-        ids.removeAll(e);
-        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-        List<ClGroupResultView> list = mapper.getClProductListByIds(ids,code);
-        for (ClGroupResultView view : list){
-            for (CLDPView cldp : ids){
-                if (cldp.getmProductId().equals(view.getmProductId())){
-                    view.setGroupNo(cldp.getGroupNo());
-                }
-            }
+        List<ClGroupResultView> list = new ArrayList<>();
+        if (!"".equals(clGroupView.getGroupNo1())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo1()));
         }
+        if (!"".equals(clGroupView.getGroupNo2())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo2()));
+        }
+        if (!"".equals(clGroupView.getGroupNo3())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo3()));
+        }
+        if (!"".equals(clGroupView.getGroupNo4())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo4()));
+        }
+        if (!"".equals(clGroupView.getGroupNo5())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo5()));
+        }
+        if (!"".equals(clGroupView.getGroupNo6())){
+            list.add(new ClGroupResultView(clGroupView.getGroupNo6()));
+        }
+
         ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize());
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
         return new ReturnT<>().sucessData(page);

@@ -1,5 +1,6 @@
 package com.dky.common.response.view;
 
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
 
 import java.util.Random;
@@ -25,7 +26,7 @@ public class ClGroupResultView extends ResultObjectBase {
     /**
      * 收藏状体：1-未收藏，2-已收藏
      */
-    private Integer iscollect;
+    private Integer iscollect = 1;
     /**
      * 图片
      */
@@ -34,6 +35,12 @@ public class ClGroupResultView extends ResultObjectBase {
      * 搭配组号
      */
     private String groupNo;
+
+    public ClGroupResultView(String groupNo) {
+        this.productName = groupNo;
+        this.groupNo = groupNo;
+        this.imgUrl = GlobConts.IMAGE_ROOT_URL+"/DP_SL/"+groupNo+".jpg?random="+ new Random().nextInt(100);
+    }
 
     public Long getmProductId() {
         return mProductId;

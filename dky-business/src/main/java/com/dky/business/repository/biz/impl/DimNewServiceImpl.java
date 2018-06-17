@@ -212,7 +212,8 @@ public class DimNewServiceImpl implements DimNewService {
         for (DataTableEnum type : DataTableEnum.values()){
             map.put(type.getCode(),mapper.getDataAnalysisList(type.getMessage(),code));
         }
-        map.put("total",mapper.getDataAnalysisMap(code));
+        Map<String, Object> dataAnalysisMap = mapper.getDataAnalysisMap(code);
+        map.put("total",dataAnalysisMap == null?null:dataAnalysisMap);
         returnT.setData(map);
         return returnT.successDefault();
     }

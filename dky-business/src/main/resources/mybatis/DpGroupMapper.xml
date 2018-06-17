@@ -61,6 +61,7 @@
   <sql id="queryClTmpl">
     SELECT
       GH AS gh,
+      HALLNAME as hallName,
       NO1_DP as groupNo1,
       NO2_DP as groupNo2,
       NO3_DP as groupNo3,

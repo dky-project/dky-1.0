@@ -12,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -98,6 +95,9 @@ public class ConverImagePathUtils {
 
 
     private static void processNormalBean(Object object){
+        if (object instanceof ArrayList || object == null){
+            return;
+        }
         boolean flag = object instanceof ProductInfoView;
         Class clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();

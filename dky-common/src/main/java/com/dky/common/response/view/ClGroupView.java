@@ -12,6 +12,7 @@ import java.util.Date;
 public class ClGroupView extends ResultObjectBase {
 
     private String gh;
+    private String hallName;
     private Long no1ProductId;
     private Long no2ProductId;
     private Long no3ProductId;
@@ -42,6 +43,14 @@ public class ClGroupView extends ResultObjectBase {
 
     public void setGh(String gh) {
         this.gh = gh;
+    }
+
+    public String getHallName() {
+        return hallName;
+    }
+
+    public void setHallName(String hallName) {
+        this.hallName = hallName;
     }
 
     public Long getNo1ProductId() {
