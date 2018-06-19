@@ -2,6 +2,7 @@ package com.dky.common.response.view;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dky.common.constats.GlobConts;
 import com.dky.common.response.ResultObjectBase;
 
 import java.math.BigDecimal;
@@ -104,14 +105,13 @@ public class DpGroupView extends ResultObjectBase {
     private Long mDim16Id;
 
     public String getImgUrl() {
-        if (this.imgUrl != null){
-            this.imgUrl =this.imgUrl+"?random="+ new Random().nextInt(100);
-        }
         return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+        if (imgUrl != null){
+            this.imgUrl = GlobConts.IMAGE_ROOT_URL+imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
+        }
     }
 
     public Long getmProductId() {
