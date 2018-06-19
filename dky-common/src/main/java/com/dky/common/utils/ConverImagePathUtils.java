@@ -3,6 +3,7 @@ package com.dky.common.utils;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
+import com.dky.common.response.view.ClGroupResultView;
 import com.dky.common.response.view.ProductInfoView;
 import com.dky.common.response.view.ProductView;
 import com.google.common.collect.Lists;
@@ -95,10 +96,9 @@ public class ConverImagePathUtils {
 
 
     private static void processNormalBean(Object object){
-        if (object instanceof ArrayList || object == null){
+        if (object instanceof ArrayList || object == null || object instanceof ClGroupResultView){
             return;
         }
-        boolean flag = object instanceof ProductInfoView;
         Class clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for(Field field : fields){
@@ -106,24 +106,10 @@ public class ConverImagePathUtils {
             for (String s : GlobConts.PREFIX){
                 if(name.startsWith(s) || name.endsWith(s)){
                     try {
-                        Object oldValue = PropertyUtils.getProperty(object, name);
-                        String path = oldValue == null ? "" : String.valueOf(oldValue);
-                        if(flag){//组装imgList数组
-                            String imageUrl = appendImageUrl( GlobConts.IMAGE_ROOT_URL,path);
-                            if(StringUtils.isEmpty(imageUrl)){
-                                continue;
-                            }
-                            List<String> imgList = ( List<String>) PropertyUtils.getProperty(object,GlobConts.IMAGE_LIST_COLUMN);
-                            if(imgList == null || imgList.size() == 0){
-                                imgList = Lists.newArrayList();
-                            }
-                            imgList.add(imageUrl);
-                            PropertyUtils.setProperty(object,GlobConts.IMAGE_LIST_COLUMN,imgList);
-                            PropertyUtils.setProperty(object,name,null);
-                        }else {
+                            Object oldValue = PropertyUtils.getProperty(object, name);
+                            String path = oldValue == null ? "" : String.valueOf(oldValue);
                             PropertyUtils.setProperty(object,name,appendImageUrl( GlobConts.IMAGE_ROOT_URL,path));
-                        }
-                    } catch (Exception e) {
+                        } catch (Exception e) {
                     }
                 }
             }

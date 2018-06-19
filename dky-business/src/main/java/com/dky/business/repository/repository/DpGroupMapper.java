@@ -1,6 +1,7 @@
 package com.dky.business.repository.repository;
 
 import com.dky.common.bean.DpGroup;
+import com.dky.common.param.ClGroupQueryParam;
 import com.dky.common.response.view.ClGroupView;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,8 +14,8 @@ public interface DpGroupMapper {
 
     int count(@Param("groupNo") String groupNo);
 
-    List<ClGroupView> selectByGh(@Param("hallName") String hallName, @Param("gh") String gh, @Param("requestCount")Integer requestCount, @Param("requestOffset")Integer requestOffset);
+    List<ClGroupView> selectByGh(ClGroupQueryParam param);
 
-    int clCount(@Param("gh") String gh);
+    int clCount(ClGroupQueryParam param);
 
 }

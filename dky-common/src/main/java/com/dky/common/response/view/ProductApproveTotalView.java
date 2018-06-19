@@ -134,15 +134,15 @@ public class ProductApproveTotalView extends ResultObjectBase {
     }
 
     public String getImgUrl() {
-        if (this.imgUrl != null){
-            this.bigImgUrl = GlobConts.IMAGE_ROOT_URL+this.imgUrl+"?random="+ new Random().nextInt(100);
-            this.imgUrl = this.imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
-        }
+
         return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+        if (imgUrl != null){
+            this.bigImgUrl = GlobConts.IMAGE_ROOT_URL+imgUrl+"?random="+ new Random().nextInt(100);
+            this.imgUrl = this.bigImgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
+        }
     }
 
     public String getBigImgUrl() {

@@ -296,7 +296,7 @@ public class ProductServiceImpl implements ProductService {
         param.setPageNo(1);
         param.setPageSize(1);
         param.calculatePageLimit();
-        List<ClGroupView> dpList = dpGroupMapper.selectByGh(param.getHallName(),param.getGh(),param.getRequestCount(),param.getRequestOffset());
+        List<ClGroupView> dpList = dpGroupMapper.selectByGh(param);
         if (dpList.size() == 0){
             return new ReturnT<>().failureData("无数据！");
         }
@@ -321,7 +321,7 @@ public class ProductServiceImpl implements ProductService {
             list.add(new ClGroupResultView(clGroupView.getGroupNo6()));
         }
 
-        ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param.getGh()),param.getPageNo(),param.getPageSize());
+        ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param));
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
         return new ReturnT<>().sucessData(page);
     }
@@ -333,6 +333,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListGhPage(ClGroupQueryParam param) {
-        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param.getHallName(), param.getGh(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.clCount(param.getGh()), param.getPageNo(), param.getPageSize()));
+        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param), dpGroupMapper.clCount(param)));
     }
 }

@@ -83,7 +83,7 @@
     ORDER BY gh asc
   </sql>
 
-  <select id="selectByGh" resultType="ClGroupView">
+  <select id="selectByGh" resultType="ClGroupView" parameterType="com.dky.common.param.ClGroupQueryParam">
     SELECT * FROM (
     SELECT t.*,ROWNUM RN
     from (<include refid="queryClTmpl"></include>) t
@@ -98,13 +98,13 @@
     </if>
   </select>
 
-  <select id="clCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+  <select id="clCount" resultType="java.lang.Integer" parameterType="com.dky.common.param.ClGroupQueryParam">
       select count(1) from CL WHERE ISACTIVE = 'Y'
       <include refid="whereClClause" />
   </select>
 
   <sql id="whereClClause">
+    <if test="null!=hallName">AND hallname = #{hallName,jdbcType=VARCHAR}</if>
     <if test="null!=gh">AND gh = #{gh,jdbcType=VARCHAR}</if>
-    <if test="null!=hallName">AND HALLNAME = #{hallName,jdbcType=VARCHAR}</if>
   </sql>
 </mapper>

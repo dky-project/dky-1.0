@@ -17,8 +17,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 public class DykResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
-
-
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> aClass) {
         return ReturnT.class.isAssignableFrom(returnType.getMethod()
@@ -33,8 +31,4 @@ public class DykResponseBodyAdvice implements ResponseBodyAdvice<Object> {
         }
         return body;
     }
-
-
-
-
 }
