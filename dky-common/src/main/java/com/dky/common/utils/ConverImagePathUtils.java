@@ -201,7 +201,11 @@ public class ConverImagePathUtils {
                         if(imgList == null || imgList.size() == 0){
                             imgList = Lists.newArrayList();
                         }
-                        imgList.add(imageUrl);
+                        if (ImageEnableUtil.isConnect(imageUrl) != null){
+                            imgList.add(imageUrl);
+                        }else{
+                            imgList.remove(imageUrl);
+                        }
                         PropertyUtils.setProperty(object,GlobConts.IMAGE_LIST_COLUMN,imgList);
                         PropertyUtils.setProperty(object,name,null);
                     } catch (Exception e) {

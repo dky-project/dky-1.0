@@ -52,7 +52,7 @@
 		<!-- 项目属性 -->
 		<jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
 		<jdbc.driver.artifactId>ojdbc14</jdbc.driver.artifactId>
-		<jdbc.driver.version>10.2.0.1.0</jdbc.driver.version>
+		<jdbc.driver.version>10.2.0.4.0</jdbc.driver.version>
 		<poi.version>3.9</poi.version>
 		<freemarker.version>2.3.20</freemarker.version>
 	</properties>

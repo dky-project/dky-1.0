@@ -75,9 +75,6 @@ public class ClGroupResultView extends ResultObjectBase {
     }
 
     public String getImgUrl() {
-        if (this.imgUrl != null){
-            this.imgUrl =this.imgUrl+"?random="+ new Random().nextInt(100);
-        }
         return imgUrl;
     }
 

@@ -619,6 +619,8 @@
         c.XC_VALUE AS xcValue,
         c.M_DIM_NEW14_ID AS mDimNew14Id,
         c.M_DIM_NEW16_ID AS mDimNew16Id,
+        c.M_DIM_NEW22_ID AS mDimNew22Id,
+        c.HZXC_VALUE AS hzxcValue,
         (select '[' || WM_CONCAT('{''value'':''' || t2.xw_value || ''' }') || ']' from B_CUSMPTCATE t1,B_CUSMPTCATEITEM
         t2 WHERE t2.B_CUSMPTCATE_ID = t1.id and t1.M_PRODUCT_ID = a.id) as xwArrayJson,
         (select t1.IS_YCAFFIX from B_CUSMPTCATE t1 WHERE t1.M_PRODUCT_ID = a.id) AS isYcAffix,
@@ -630,7 +632,7 @@
         FROM M_PRODUCT a
         LEFT JOIN B_PDT_MEDIA b ON a.ID = b.M_PRODUCT_ID
         LEFT JOIN (select
-        c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.XC_VALUE,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID FROM
+        c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.HZXC_VALUE,c.XC_VALUE,c.M_DIM_NEW14_ID,c.M_DIM_NEW22_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID FROM
         M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
         LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID =
         a.id

@@ -15,8 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 /**
  * Created by wonpera on 2017/1/7.
  */
-@Order(Integer.MAX_VALUE)
-@ControllerAdvice(basePackages = "com.dky.web.controller")
 public class DykResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
 

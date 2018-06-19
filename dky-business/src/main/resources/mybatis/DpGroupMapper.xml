@@ -105,5 +105,6 @@
 
   <sql id="whereClClause">
     <if test="null!=gh">AND gh = #{gh,jdbcType=VARCHAR}</if>
+    <if test="null!=hallName">AND HALLNAME = #{hallName,jdbcType=VARCHAR}</if>
   </sql>
 </mapper>

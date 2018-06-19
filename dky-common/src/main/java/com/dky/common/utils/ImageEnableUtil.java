@@ -35,7 +35,7 @@ public class ImageEnableUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(ImageEnableUtil.isConnect("http://60.190.63.14:99/pdt_imges/37.jpg"));
+        System.out.println(ImageEnableUtil.isConnect("http://60.190.63.14:90/img/2847.jpg"));
     }
 }
 

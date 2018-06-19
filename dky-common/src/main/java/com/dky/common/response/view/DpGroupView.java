@@ -44,6 +44,10 @@ public class DpGroupView extends ResultObjectBase {
      */
     private String ycValue;
     /**
+     * 工艺袖长
+     */
+    private String hzxcValue;
+    /**
      * 是否配置衣长
      * 值为“Y”时，请选择收腰下拉框下面的长[文本框]不可编辑
      */
@@ -60,6 +64,10 @@ public class DpGroupView extends ResultObjectBase {
      * 针型默认值
      */
     private Long mDimNew16Id;
+    /**
+     * 肩型
+     */
+    private Long mDimNew22Id;
     /**
      * 品种列表
      */
@@ -256,5 +264,21 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setmDim16Id(Long mDim16Id) {
         this.mDim16Id = mDim16Id;
+    }
+
+    public Long getmDimNew22Id() {
+        return mDimNew22Id;
+    }
+
+    public void setmDimNew22Id(Long mDimNew22Id) {
+        this.mDimNew22Id = mDimNew22Id;
+    }
+
+    public String getHzxcValue() {
+        return hzxcValue;
+    }
+
+    public void setHzxcValue(String hzxcValue) {
+        this.hzxcValue = hzxcValue;
     }
 }

@@ -274,7 +274,7 @@
     </select>
 
     <select id="getSizeData" resultType="java.lang.String">
-      SELECT '{''yc'':'''||t.yc_value||''',''jk'':'''||t.jk_value||''',''xc'':'''||t.xc_value||'''}' as jsonstr
+      SELECT '{''yc'':'''||t.yc_value||''',''jk'':'''||t.jk_value||''',''xc'':'''||t.xc_value||''',''hzxcValue'':'''||t.hzxc_value||'''}' as jsonstr
       FROM B_CUSMPTCATEITEM t,B_CUSMPTCATE a,m_product b
       WHERE t.b_cusmptcate_id = a.id AND a.m_product_id = b.id AND b.name = #{pdt}
       AND t.xw_value = #{xwValue}

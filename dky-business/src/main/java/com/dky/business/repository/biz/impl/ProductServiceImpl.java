@@ -296,7 +296,7 @@ public class ProductServiceImpl implements ProductService {
         param.setPageNo(1);
         param.setPageSize(1);
         param.calculatePageLimit();
-        List<ClGroupView> dpList = dpGroupMapper.selectByGh(param.getGh(),param.getRequestCount(),param.getRequestOffset());
+        List<ClGroupView> dpList = dpGroupMapper.selectByGh(param.getHallName(),param.getGh(),param.getRequestCount(),param.getRequestOffset());
         if (dpList.size() == 0){
             return new ReturnT<>().failureData("无数据！");
         }
@@ -333,6 +333,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListGhPage(ClGroupQueryParam param) {
-        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param.getGh(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.clCount(param.getGh()), param.getPageNo(), param.getPageSize()));
+        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param.getHallName(), param.getGh(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.clCount(param.getGh()), param.getPageNo(), param.getPageSize()));
     }
 }

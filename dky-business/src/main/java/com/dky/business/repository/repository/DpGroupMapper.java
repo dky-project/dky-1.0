@@ -13,7 +13,7 @@ public interface DpGroupMapper {
 
     int count(@Param("groupNo") String groupNo);
 
-    List<ClGroupView> selectByGh(@Param("gh") String gh, @Param("requestCount")Integer requestCount, @Param("requestOffset")Integer requestOffset);
+    List<ClGroupView> selectByGh(@Param("hallName") String hallName, @Param("gh") String gh, @Param("requestCount")Integer requestCount, @Param("requestOffset")Integer requestOffset);
 
     int clCount(@Param("gh") String gh);
 
