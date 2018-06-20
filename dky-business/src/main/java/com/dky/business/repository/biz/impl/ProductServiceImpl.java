@@ -278,7 +278,7 @@ public class ProductServiceImpl implements ProductService {
                     }
                     view.setPinList(jsonArray);
                 }
-                view.setOrderNum(list.indexOf(view.getmProductId()));
+                view.setOrderNum(ids.indexOf(view.getmProductId()));
             }
         }
         Collections.sort(list, new Comparator<DpGroupView>() {
