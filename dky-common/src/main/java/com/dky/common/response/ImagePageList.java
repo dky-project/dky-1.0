@@ -9,6 +9,10 @@ public class ImagePageList extends PageList{
 
     private String bigImageUrl;
 
+    private List<String> groupNoList;
+
+    private List<String> ghList;
+
     public ImagePageList(List items, Integer total, Integer pageNo, Integer pageSize) {
         super(items, total, pageNo, pageSize);
     }
@@ -27,5 +31,21 @@ public class ImagePageList extends PageList{
 
     public void setBigImageUrl(String bigImageUrl) {
         this.bigImageUrl = bigImageUrl;
+    }
+
+    public List<String> getGroupNoList() {
+        return groupNoList;
+    }
+
+    public void setGroupNoList(List<String> groupNoList) {
+        this.groupNoList = groupNoList;
+    }
+
+    public List<String> getGhList() {
+        return ghList;
+    }
+
+    public void setGhList(List<String> ghList) {
+        this.ghList = ghList;
     }
 }

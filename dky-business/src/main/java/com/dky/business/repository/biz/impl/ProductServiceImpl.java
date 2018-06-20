@@ -285,6 +285,7 @@ public class ProductServiceImpl implements ProductService {
         }
         ImagePageList page = new ImagePageList(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize());
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/DP/"+param.getGroupNo()+".jpg?random="+ new Random().nextInt(100));
+        page.setGroupNoList(dpGroupMapper.getGroupNoList());
         return new ReturnT<>().sucessData(page);
     }
 
@@ -323,6 +324,7 @@ public class ProductServiceImpl implements ProductService {
 
         ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param));
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
+        page.setGhList(dpGroupMapper.getGhList());
         return new ReturnT<>().sucessData(page);
     }
 

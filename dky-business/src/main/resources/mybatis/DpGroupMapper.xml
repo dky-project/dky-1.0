@@ -107,4 +107,14 @@
     <if test="null!=hallName">AND hallname = #{hallName,jdbcType=VARCHAR}</if>
     <if test="null!=gh">AND gh = #{gh,jdbcType=VARCHAR}</if>
   </sql>
+
+  <select id="getGroupNoList" resultType="java.lang.String">
+    select group_no from DP_GROUP where ISACTIVE = 'Y' order by group_no asc
+  </select>
+
+  <select id="getGhList" resultType="java.lang.String">
+    select Gh from CL where ISACTIVE = 'Y' order by Gh asc
+  </select>
+
+
 </mapper>

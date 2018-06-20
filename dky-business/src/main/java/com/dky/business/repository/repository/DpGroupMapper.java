@@ -18,4 +18,7 @@ public interface DpGroupMapper {
 
     int clCount(ClGroupQueryParam param);
 
+    List<String> getGroupNoList();
+
+    List<String> getGhList();
 }
