@@ -103,6 +103,10 @@ public class DpGroupView extends ResultObjectBase {
      * 品类默认值
      */
     private Long mDim16Id;
+    /**
+     * 排序字段
+     */
+    private int orderNum;
 
     public String getImgUrl() {
         return imgUrl;
@@ -280,5 +284,13 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setHzxcValue(String hzxcValue) {
         this.hzxcValue = hzxcValue;
+    }
+
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
     }
 }

@@ -23,10 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 样衣查询服务
@@ -281,8 +278,15 @@ public class ProductServiceImpl implements ProductService {
                     }
                     view.setPinList(jsonArray);
                 }
+                view.setOrderNum(list.indexOf(view.getmProductId()));
             }
         }
+        Collections.sort(list, new Comparator<DpGroupView>() {
+            @Override
+            public int compare(DpGroupView o1, DpGroupView o2) {
+                return o1.getOrderNum() - o2.getOrderNum();
+            }
+        });
         ImagePageList page = new ImagePageList(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize());
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/DP/"+param.getGroupNo()+".jpg?random="+ new Random().nextInt(100));
         page.setGroupNoList(dpGroupMapper.getGroupNoList());
