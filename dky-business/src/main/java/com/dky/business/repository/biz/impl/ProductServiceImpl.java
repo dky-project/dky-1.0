@@ -248,11 +248,17 @@ public class ProductServiceImpl implements ProductService {
         ids.removeAll(e);
 
         List<DimNewView> dimList = dimNewMapper.queryDimByDimText(DimFlagEnum.PIN_FLAG.getCode());
-
+        JSONArray jsonArray = new JSONArray();
+        if (dimList.size() > 0){
+            for (DimNewView dim : dimList){
+                jsonArray.add(dim);
+            }
+        }
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
         List<DpGroupView> list = mapper.getProductListByIds(ids,code);
         for (DpGroupView view : list){
+            view.setPinList(jsonArray);
             if ("C".equals(view.getMptbelongtype())){
                 view.setColorViewList(mapper.getProductColorListByProductId(view.getmProductId()));
                 view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
@@ -271,13 +277,6 @@ public class ProductServiceImpl implements ProductService {
                 mapper.getProductPrice(map);
                 BigDecimal price = new BigDecimal(map.get("v_price_out").toString());
                 view.setPrice(price);
-                if (dimList.size() > 0){
-                    JSONArray jsonArray = new JSONArray();
-                    for (DimNewView dim : dimList){
-                        jsonArray.add(dim);
-                    }
-                    view.setPinList(jsonArray);
-                }
                 view.setOrderNum(ids.indexOf(view.getmProductId()));
             }
         }

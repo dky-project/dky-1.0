@@ -12,6 +12,11 @@ public class ProductSizeView extends ResultObjectBase {
 
     private String sizeName;
 
+    /**
+     * 是否默认显示
+     */
+    private String isDefault;
+
     public Long getSizeId() {
         return sizeId;
     }
@@ -26,5 +31,13 @@ public class ProductSizeView extends ResultObjectBase {
 
     public void setSizeName(String sizeName) {
         this.sizeName = sizeName;
+    }
+
+    public String getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(String isDefault) {
+        this.isDefault = isDefault;
     }
 }

@@ -283,7 +283,7 @@
     <select id="getColorListByDimIdAndProductId" resultType="ProductColorView">
       SELECT DISTINCT
         t.m_color as colorName,
-        t.ISDEFAULT as isDefault
+        NVL(t.ISDEFAULT,'N') as isDefault
       FROM M_COLOR_2 t
       WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
       AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
@@ -293,7 +293,7 @@
     <select id="getColorListByGroupNo" resultType="ProductColorView">
       SELECT
         t.m_color as colorName,
-        t.ISDEFAULT as isDefault
+        NVL(t.ISDEFAULT,'N') as isDefault
       FROM M_COLOR_2 t
       WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
       AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}

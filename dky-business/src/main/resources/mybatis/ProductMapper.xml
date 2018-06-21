@@ -513,7 +513,7 @@
     </select>
 
     <select id="getProductColorListByProductId" parameterType="java.lang.Long" resultType="ProductColorView">
-        select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, nvl(b.DESCRIPTION,'') AS colorDesc
+        select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, nvl(b.DESCRIPTION,'') AS colorDesc, NVL(t.ISDEFAULT,'N') as isDefault
         from m_product_alias t, m_product a, m_color b, m_attributesetinstance c
         where t.m_product_id = a.ID
         and a.ID = #{mProductId,jdbcType=DECIMAL}
@@ -548,13 +548,12 @@
     </select>
 
     <select id="getProductSizeList" parameterType="java.lang.Long" resultType="ProductSizeView">
-        select b.NAME AS sizeName, b.id AS sizeId
+        select b.NAME AS sizeName, b.id AS sizeId, NVL(t.ISDEFAULT,'N') as isDefault
         from m_product_alias t, m_product a, m_size b, m_attributesetinstance c
         where t.m_product_id = a.ID
         and a.ID = #{mProductId,jdbcType=DECIMAL}
         and t.m_attributesetinstance_id = c.id
         and c.value2_id = b.ID
-        group by b.NAME, b.id
     </select>
 
     <select id="getProductCusmptcateInfo" parameterType="java.lang.Long" resultType="ProductCusmptcateView">
