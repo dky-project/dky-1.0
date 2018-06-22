@@ -38,7 +38,9 @@ public interface DimNewMapper {
 
     List<ProductColorView> getColorListByDimIdAndProductId(@Param("mProductId")Long mProductId, @Param("mDimNew14Id")Long mDimNew14Id);
 
-    List<ProductColorView> getColorListByGroupNo(@Param("groupNo")String groupNo, @Param("mProductId")Long mProductId, @Param("mDimNew14Id")Long mDimNew14Id);
+    List<ProductColorView> getColorListByGroupNo(@Param("groupNo")String groupNo, @Param("mProductId")Long mProductId);
+
+    String getColorDefaultByGroupNo(@Param("groupNo")String groupNo, @Param("mProductId")Long mProductId);
 
     List<DataAnalysisView> getDataAnalysisList(@Param("tableName")String tableName,@Param("code")String code);
 

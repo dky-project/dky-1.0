@@ -147,6 +147,7 @@ public class ProductServiceImpl implements ProductService {
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
             view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
+            view.getColorRangeViewList().get(0).setIsDefault("Y");
         } else if ("B".equals(product.getMptbelongtype())){
             ProductCusmptcateView productCusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
             view.setProductCusmptcateView(productCusmptcateView);
@@ -157,6 +158,7 @@ public class ProductServiceImpl implements ProductService {
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
             view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
+            view.getColorRangeViewList().get(0).setIsDefault("Y");
         }
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
@@ -265,7 +267,14 @@ public class ProductServiceImpl implements ProductService {
                 view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
             }else{
                 view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
-                view.setColorRangeViewList(dimNewMapper.getColorListByGroupNo(param.getGroupNo(),view.getmProductId(),view.getmDimNew14Id()));
+                List<ProductColorView> rangeList = dimNewMapper.getColorListByGroupNo(param.getGroupNo(), view.getmProductId());
+                String colorName = dimNewMapper.getColorDefaultByGroupNo(param.getGroupNo(), view.getmProductId());
+                for (ProductColorView colorView : rangeList){
+                    if (colorView.getColorName().equals(colorName)){
+                        colorView.setIsDefault("Y");
+                    }
+                }
+                view.setColorRangeViewList(rangeList);
                 Map<String,Object> map = new HashedMap();
                 map.put("V_PZ",view.getmDimNew14Id());
                 map.put("V_ZX",view.getmDimNew16Id());

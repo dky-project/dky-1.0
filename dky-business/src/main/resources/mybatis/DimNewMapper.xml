@@ -277,9 +277,9 @@
       SELECT '{''yc'':'''||t.yc_value||''',''jk'':'''||t.jk_value||''',''xc'':'''||
       case
          when nvl(c.m_dim_new22_id, 0) != 131 then
-          t.xc_value
+          NVL(t.xc_value,'-')
          else
-          t.hzxc_value
+          NVL(t.hzxc_value,'-')
        end ||''',''hzxcValue'':'''||t.hzxc_value||'''}' as jsonstr
       FROM B_CUSMPTCATEITEM t,B_CUSMPTCATE a,m_product b, m_product_dim c
       WHERE t.b_cusmptcate_id = a.id
@@ -292,9 +292,7 @@
     </select>
 
     <select id="getColorListByDimIdAndProductId" resultType="ProductColorView">
-      SELECT DISTINCT
-        t.m_color as colorName,
-        NVL(t.ISDEFAULT,'N') as isDefault
+      SELECT DISTINCT t.m_color as colorName,'N' as isDefault
       FROM M_COLOR_2 t
       WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
       AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
@@ -303,16 +301,20 @@
 
     <select id="getColorListByGroupNo" resultType="ProductColorView">
       SELECT
-        t.m_color as colorName,
-        CASE
-         WHEN t.group_no = #{groupNo,jdbcType=VARCHAR} THEN
-          T.ISDEFAULT
-         ELSE
-          'N'
-        END as isDefault
+         DISTINCT t.m_color as colorName,'N' as isDefault
       FROM M_COLOR_2 t
       WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
       AND t.isactive = 'Y'
+    </select>
+
+    <select id="getColorDefaultByGroupNo" resultType="java.lang.String">
+      SELECT
+        distinct t.m_color as colorName
+      FROM M_COLOR_2 t
+      WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      AND t.group_no = #{groupNo,jdbcType=VARCHAR}
+      AND t.isactive = 'Y' AND t.isdefault = 'Y'
+      AND ROWNUM = 1
     </select>
 
     <select id="getDataAnalysisList" resultType="DataAnalysisView">
@@ -322,12 +324,12 @@
     </select>
 
     <select id="getDataAnalysisMap" resultType="map">
-      select nvl(a.totalAmount,0) totalAmount,nvl(a.qty,0) as qty,b.GH_PRICE as ghPrice,b.FL_PRICE as flPrice,c.c_storetype_jz_id as storeType,
+      SELECT nvl(a.totalAmount,0) totalAmount,nvl(a.qty,0) as qty,b.GH_PRICE as ghPrice,b.FL_PRICE as flPrice,c.c_storetype_jz_id as storeType,
       decode(c.c_storetype_jz_id,8,a.totalAmount - nvl(b.fl_price,0),7,a.totalAmount*nvl(b.gh_price,0)) as afterAmount
-      from V_DATA_ANALYSIS a, M_RANGE b, c_store c
-     where a.jgno = c.code
-       and c.id = b.c_store_id
-       and a.qty between b.star_sum and b.end_sum
-       and a.jgno = #{code}
+      FROM V_DATA_ANALYSIS a, M_RANGE b, c_store c
+     WHERE a.jgno = c.code
+       AND c.id = b.c_store_id
+       AND a.qty between b.star_sum and b.end_sum
+       AND a.jgno = #{code}
     </select>
 </mapper>
