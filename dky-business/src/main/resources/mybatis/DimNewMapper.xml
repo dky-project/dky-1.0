@@ -297,7 +297,7 @@
          WHEN t.group_no = #{groupNo,jdbcType=VARCHAR} THEN
           T.ISDEFAULT
          ELSE
-          NVL(t.ISDEFAULT, 'N')
+          'N'
         END as isDefault
       FROM M_COLOR_2 t
       WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}

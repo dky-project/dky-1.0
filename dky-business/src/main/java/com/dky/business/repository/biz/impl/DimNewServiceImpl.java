@@ -213,7 +213,7 @@ public class DimNewServiceImpl implements DimNewService {
             map.put(type.getCode(),mapper.getDataAnalysisList(type.getMessage(),code));
         }
         Map<String, Object> dataAnalysisMap = mapper.getDataAnalysisMap(code);
-        map.put("total",dataAnalysisMap == null?null:dataAnalysisMap);
+        map.put("total",dataAnalysisMap);
         returnT.setData(map);
         return returnT.successDefault();
     }
