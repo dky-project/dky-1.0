@@ -146,8 +146,14 @@ public class ProductServiceImpl implements ProductService {
             view.setProductCusmptcateView(productCusmptcateView);
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
-            view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
-            view.getColorRangeViewList().get(0).setIsDefault("Y");
+            List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(product.getId(), madeInfoView.getmDimNew14Id());
+            String colorName = dimNewMapper.getColorRangeDefault(product.getId(), madeInfoView.getmDimNew14Id());
+            for (ProductColorView rangeView : rangeList){
+                if (rangeView.getColorName().equals(colorName)){
+                    rangeView.setIsDefault("Y");
+                }
+            }
+            view.setColorRangeViewList(rangeList);
         } else if ("B".equals(product.getMptbelongtype())){
             ProductCusmptcateView productCusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
             view.setProductCusmptcateView(productCusmptcateView);
@@ -157,8 +163,14 @@ public class ProductServiceImpl implements ProductService {
             }
             List<ProductColorView> colorList = mapper.getProductColorListByDimId(madeInfoView.getmDimNew14Id());
             view.setColorViewList(colorList);
-            view.setColorRangeViewList(dimNewMapper.getColorListByDimIdAndProductId(product.getId(),madeInfoView.getmDimNew14Id()));
-            view.getColorRangeViewList().get(0).setIsDefault("Y");
+            List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(product.getId(), madeInfoView.getmDimNew14Id());
+            String colorName = dimNewMapper.getColorRangeDefault(product.getId(), madeInfoView.getmDimNew14Id());
+            for (ProductColorView rangeView : rangeList){
+                if (rangeView.getColorName().equals(colorName)){
+                    rangeView.setIsDefault("Y");
+                }
+            }
+            view.setColorRangeViewList(rangeList);
         }
         madeInfoView.setProductId(product.getId());
         madeInfoView.setMptbelongtype(product.getMptbelongtype());
@@ -258,7 +270,7 @@ public class ProductServiceImpl implements ProductService {
         }
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-        List<DpGroupView> list = mapper.getProductListByIds(ids,code);
+        List<DpGroupView> list = mapper.getProductListByIds(ids,code,param.getGroupNo());
         for (DpGroupView view : list){
             view.setPinList(jsonArray);
             if ("C".equals(view.getMptbelongtype())){
@@ -267,8 +279,8 @@ public class ProductServiceImpl implements ProductService {
                 view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
             }else{
                 view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
-                List<ProductColorView> rangeList = dimNewMapper.getColorListByGroupNo(param.getGroupNo(), view.getmProductId());
-                String colorName = dimNewMapper.getColorDefaultByGroupNo(param.getGroupNo(), view.getmProductId());
+                List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id());
+                String colorName = dimNewMapper.getColorDefaultByGroupNo(param.getGroupNo(), view.getmProductId(),view.getmDimNew14Id());
                 for (ProductColorView colorView : rangeList){
                     if (colorView.getColorName().equals(colorName)){
                         colorView.setIsDefault("Y");

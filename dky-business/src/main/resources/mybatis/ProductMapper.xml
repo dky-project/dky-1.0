@@ -433,7 +433,7 @@
         t.M_DIM_NEW13_ID AS mDimNew13Id,
         t.ct,
         t.c as ct1,
-        t.M_DIM_NEW14_ID AS mDimNew14Id,
+        NVL(b.M_DIM_NEW14_ID,t.M_DIM_NEW14_ID) AS mDimNew14Id,
         t.M_DIM_NEW15_ID AS mDimNew15Id,
         t.M_DIM_NEW16_ID AS mDimNew16Id,
         t.M_DIM_NEW17_ID AS mDimNew17Id,
@@ -502,12 +502,14 @@
         (select nvl(max(g.attribname),'') from M_DIM_NEW g
         where g.id = t.M_DIM_NEW29_ID) as huax,
         t.MJZZ_REMARK AS mjzzRemark,
-        GET_PZSJSON(1,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
-        GET_PZSJSON(2,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
-        GET_PZSJSON(3,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
-        GET_PZSJSON(4,a.id,t.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
+        GET_PZSJSON(1,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
+        GET_PZSJSON(2,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
+        GET_PZSJSON(3,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
+        GET_PZSJSON(4,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
         FROM M_PRODUCT_DIM t, M_PRODUCT a
-        WHERE T.M_PRODUCT_ID = a.ID
+        LEFT JOIN (select M_PRODUCT_ID,M_DIM_NEW14_ID from M_COLOR_2 t WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL} AND t.ISDEFAULT = 'Y' and rownum = 1) b
+        ON b.M_PRODUCT_ID = a.ID
+        WHERE t.M_PRODUCT_ID = a.ID
         and a.ID = #{mProductId,jdbcType=DECIMAL}
         AND ROWNUM = 1 and t.isactive = 'Y' and ISDEFAULT = 'Y'
     </select>
@@ -617,7 +619,7 @@
         c.XW_VALUE AS xwValue,
         c.YC_VALUE AS ycValue,
         NVL(c.XC_VALUE,'-') AS xcValue,
-        c.M_DIM_NEW14_ID AS mDimNew14Id,
+        (select M_DIM_NEW14_ID from M_COLOR_2 t WHERE t.group_no = #{groupNo} and t.M_PRODUCT_ID = a.id and rownum = 1) AS mDimNew14Id,
         c.M_DIM_NEW16_ID AS mDimNew16Id,
         c.M_DIM_NEW22_ID AS mDimNew22Id,
         NVL(c.HZXC_VALUE,'-') AS hzxcValue,

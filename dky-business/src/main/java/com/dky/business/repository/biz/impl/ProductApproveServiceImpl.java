@@ -300,7 +300,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setAdOrgId(27l);
                     approve.setJxwValue("0");
                     approve.setSjxcValue("0");
-                    approve.setCustomer("样衣五");
+                    approve.setCustomer("YYW");
                     if (approve.getIssource() == null){
                         approve.setIssource(SourceEnum.WITH.getCode());
                     }

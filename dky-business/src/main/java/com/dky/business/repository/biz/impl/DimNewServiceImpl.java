@@ -158,16 +158,22 @@ public class DimNewServiceImpl implements DimNewService {
     }
 
     @Override
-    public ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param) {
-        List<ProductColorView> colorList;
-        if (param.getmDimNew14Id() != null){
-            colorList = mapper.getColorListByDimIdAndProductId(param.getmProductId(),param.getmDimNew14Id());
-        }else{
-            colorList = productMapper.getColorDimListByProductId(param.getmProductId());
+    public ReturnT getColorDimList(ColorDimQueryParam param) {
+        List<ProductColorView> colorRangeList = mapper.getColorListByDimIdAndProductId(param.getmProductId(),param.getmDimNew14Id());
+        if (!"".equals(param.getGroupNo())){
+            String colorName = mapper.getColorDefaultByGroupNo(param.getGroupNo(), param.getmProductId(),param.getmDimNew14Id());
+            for (ProductColorView colorView : colorRangeList){
+                if (colorView.getColorName().equals(colorName)){
+                    colorView.setIsDefault("Y");
+                }
+            }
         }
-
-        ReturnT<List<ProductColorView>> returnT = new ReturnT<>();
-        returnT.setData(colorList);
+        List<ProductColorView> colorList = productMapper.getProductColorListByDimId(param.getmDimNew14Id());
+        ReturnT returnT = new ReturnT<>();
+        Map<String,Object> map = new HashMap<>();
+        map.put("colorRangeViewList",colorRangeList);
+        map.put("colorViewList",colorList);
+        returnT.setData(map);
         return returnT.successDefault();
     }
 

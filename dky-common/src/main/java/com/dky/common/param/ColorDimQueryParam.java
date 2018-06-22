@@ -15,6 +15,9 @@ public class ColorDimQueryParam extends BaseParameter {
 
     private Long mDimNew14Id;
 
+
+    private String groupNo;
+
     public Long getmProductId() {
         return mProductId;
     }
@@ -29,5 +32,13 @@ public class ColorDimQueryParam extends BaseParameter {
 
     public void setmDimNew14Id(Long mDimNew14Id) {
         this.mDimNew14Id = mDimNew14Id;
+    }
+
+    public String getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
     }
 }

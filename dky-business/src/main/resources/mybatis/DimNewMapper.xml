@@ -299,19 +299,21 @@
       and t.isactive = 'Y'
     </select>
 
-    <select id="getColorListByGroupNo" resultType="ProductColorView">
-      SELECT
-         DISTINCT t.m_color as colorName,'N' as isDefault
+    <select id="getColorRangeDefault" resultType="java.lang.String">
+      SELECT t.m_color as colorName
       FROM M_COLOR_2 t
-      WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
-      AND t.isactive = 'Y'
+      WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
+      AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      AND t.isactive = 'Y' AND t.isdefault = 'Y'
+      AND ROWNUM = 1
     </select>
 
     <select id="getColorDefaultByGroupNo" resultType="java.lang.String">
       SELECT
         distinct t.m_color as colorName
       FROM M_COLOR_2 t
-      WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
+      AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
       AND t.group_no = #{groupNo,jdbcType=VARCHAR}
       AND t.isactive = 'Y' AND t.isdefault = 'Y'
       AND ROWNUM = 1

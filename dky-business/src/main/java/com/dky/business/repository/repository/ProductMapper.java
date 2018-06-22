@@ -83,7 +83,7 @@ public interface ProductMapper extends BaseDao<Product,Long> {
      * @param ids
      * @return
      */
-    List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code);
+    List<DpGroupView> getProductListByIds(@Param("ids") List<Long> ids,@Param("code")String code,@Param("groupNo")String groupNo);
 
     /**
      * 陈列款号列表

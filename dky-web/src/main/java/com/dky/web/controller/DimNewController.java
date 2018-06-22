@@ -60,7 +60,7 @@ public class DimNewController {
     }
 
     @RequestMapping(value = "getColorDimList",name = "选择颜色品种列表")
-    public ReturnT<List<ProductColorView>> getColorDimList(ColorDimQueryParam param){
+    public ReturnT getColorDimList(ColorDimQueryParam param){
         return dimNewService.getColorDimList(param);
     }
 

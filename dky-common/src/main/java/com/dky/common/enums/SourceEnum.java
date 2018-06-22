@@ -5,8 +5,8 @@ package com.dky.common.enums;
  */
 public enum SourceEnum {
     DEFALUT(1,"单品下单"),
-    DISPLAY(2,"FAB下单"),
-    WITH(3,"FAB下单"),
+    DISPLAY(2,"套系下单"),
+    WITH(3,"套系下单"),
     ;
 
     SourceEnum() {
