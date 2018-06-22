@@ -519,7 +519,7 @@
         and a.ID = #{mProductId,jdbcType=DECIMAL}
         and t.m_attributesetinstance_id = c.id
         and c.value1_id = b.ID
-        group by b.NAME, b.id, b.value, b.DESCRIPTION
+        group by b.NAME, b.id, b.value, b.DESCRIPTION, t.ISDEFAULT
     </select>
 
     <select id="getProductColorListByDimId" parameterType="java.lang.Long" resultType="ProductColorView">

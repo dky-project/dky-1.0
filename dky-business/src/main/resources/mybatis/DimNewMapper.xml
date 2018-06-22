@@ -293,12 +293,15 @@
     <select id="getColorListByGroupNo" resultType="ProductColorView">
       SELECT
         t.m_color as colorName,
-        NVL(t.ISDEFAULT,'N') as isDefault
+        CASE
+         WHEN t.group_no = #{groupNo,jdbcType=VARCHAR} THEN
+          T.ISDEFAULT
+         ELSE
+          NVL(t.ISDEFAULT, 'N')
+        END as isDefault
       FROM M_COLOR_2 t
-      WHERE t.m_dim_new14_id = #{mDimNew14Id,jdbcType=DECIMAL}
-      AND t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
-      AND t.GROUP_NO = #{groupNo,jdbcType=VARCHAR}
-      and t.isactive = 'Y'
+      WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      AND t.isactive = 'Y'
     </select>
 
     <select id="getDataAnalysisList" resultType="DataAnalysisView">
