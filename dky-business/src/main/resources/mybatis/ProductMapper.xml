@@ -380,7 +380,7 @@
         (SELECT t.attribname FROM M_DIM t
         WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM14' AND t.id = t1.M_DIM14_ID) as mDim14Text,
         (SELECT t.attribname FROM M_DIM t
-        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM13' AND t.id = t1.M_DIM13_ID) as mDim13Text,
+        WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM3' AND t.id = t1.M_DIM3_ID) as mDim13Text,
         MARKETDATE AS marketDate,
         t5.IMGURL1,
         t5.IMGURL2,
@@ -515,13 +515,13 @@
     </select>
 
     <select id="getProductColorListByProductId" parameterType="java.lang.Long" resultType="ProductColorView">
-        select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, nvl(b.DESCRIPTION,'') AS colorDesc, NVL(t.ISDEFAULT,'N') as isDefault
+        select b.NAME AS colorName, b.id AS colorId, b.value AS colorValue, nvl(b.DESCRIPTION,'') AS colorDesc, NVL(MAX(t.ISDEFAULT),'N') as isDefault
         from m_product_alias t, m_product a, m_color b, m_attributesetinstance c
         where t.m_product_id = a.ID
         and a.ID = #{mProductId,jdbcType=DECIMAL}
         and t.m_attributesetinstance_id = c.id
         and c.value1_id = b.ID
-        group by b.NAME, b.id, b.value, b.DESCRIPTION, t.ISDEFAULT
+        group by b.NAME, b.id, b.value, b.DESCRIPTION
     </select>
 
     <select id="getProductColorListByDimId" parameterType="java.lang.Long" resultType="ProductColorView">

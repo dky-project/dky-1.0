@@ -57,8 +57,13 @@ public class ProductServiceImpl implements ProductService {
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
             ConverImagePathUtils.convertProductView(productInfoView,isBuy);
-            ProductGwView gwView = mapper.getColorGwList(id);
-            productInfoView.setGwView(gwView);
+            List<ProductGwView> list = mapper.getColorGwList(id);
+            if (list.size() > 1) {
+                return new ReturnT<>().failureData("重复杆位管理！");
+            }
+            if (list.size() > 0){
+                productInfoView.setGwView(list.get(0));
+            }
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             return new ReturnT<>().failureData(e.getMessage());
@@ -215,7 +220,7 @@ public class ProductServiceImpl implements ProductService {
         resultView.setColorList(colorList);
         resultView.setSizeList(sizeList);
         resultView.setmProductId(product.getId());
-        resultView.setImgUrl(mapper.getProductImgUrl(product.getId()));
+        resultView.setImgUrl(GlobConts.IMAGE_ROOT_URL+"/img_pad/"+product.getName()+".jpg?random="+new Random().nextInt(100));
         result.setData(resultView);
         return result.successDefault();
     }
@@ -260,7 +265,9 @@ public class ProductServiceImpl implements ProductService {
         List<Long> e = new ArrayList<>(1);
         e.add(null);
         ids.removeAll(e);
-
+        if (ids.size() == 0){
+            return new ReturnT().failureData(param.getGroupNo()+"没有搭配！");
+        }
         List<DimNewView> dimList = dimNewMapper.queryDimByDimText(DimFlagEnum.PIN_FLAG.getCode());
         JSONArray jsonArray = new JSONArray();
         if (dimList.size() > 0){

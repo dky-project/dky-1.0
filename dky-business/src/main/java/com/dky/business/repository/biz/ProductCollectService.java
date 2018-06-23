@@ -1,5 +1,6 @@
 package com.dky.business.repository.biz;
 
+import com.dky.common.param.AddProductBatchCollectParam;
 import com.dky.common.param.AddProductCollectParam;
 import com.dky.common.param.ProductCollectQueryParam;
 import com.dky.common.response.PageList;
@@ -12,6 +13,8 @@ import com.dky.common.response.view.ProductView;
 public interface ProductCollectService {
 
     ReturnT mergeIntoProductCollect(AddProductCollectParam param);
+
+    ReturnT addProductBatchCollect(AddProductBatchCollectParam param);
 
     ReturnT delProductCollect(AddProductCollectParam param);
 

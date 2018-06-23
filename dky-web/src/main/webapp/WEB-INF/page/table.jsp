@@ -89,7 +89,7 @@
                     return;
                 }
                 var result = data.data;
-                var html = "<thead><tr><th>#</th>";
+                var html = "<thead><tr><th width=100px>颜色/尺寸</th>";
                 for(var i = 0;i<result.sizeList.length;i++){
                     html += "<th>"+result.sizeList[i].value+"</th>";
                 }

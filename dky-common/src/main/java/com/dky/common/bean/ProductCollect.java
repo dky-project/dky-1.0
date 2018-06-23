@@ -23,6 +23,8 @@ public class ProductCollect {
 
     private String code;
 
+    private Long[] ids;
+
     public Long getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class ProductCollect {
 
     public void setCode(String code) {
         this.code = code == null ? null : code.trim();
+    }
+
+    public Long[] getIds() {
+        return ids;
+    }
+
+    public void setIds(Long[] ids) {
+        this.ids = ids;
     }
 }

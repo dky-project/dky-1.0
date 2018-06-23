@@ -6,6 +6,7 @@ import com.dky.business.repository.repository.UsersMapper;
 import com.dky.common.bean.ProductCollect;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.enums.IsActiveEnum;
+import com.dky.common.param.AddProductBatchCollectParam;
 import com.dky.common.param.AddProductCollectParam;
 import com.dky.common.param.ProductCollectQueryParam;
 import com.dky.common.response.PageList;
@@ -41,6 +42,22 @@ public class ProductCollectServiceImpl implements ProductCollectService {
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         productCollect.setCode(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
         mapper.mergeIntoProductCollect(productCollect);
+        return new ReturnT().successDefault();
+    }
+
+    @Override
+    public ReturnT addProductBatchCollect(AddProductBatchCollectParam param) {
+        ProductCollect productCollect = new ProductCollect();
+        Long userId = param.getSessionUser().getUserId();
+        productCollect.setOwnerid(userId);
+        productCollect.setModifierid(userId);
+        productCollect.setAdClientId(37l);
+        productCollect.setAdOrgId(27l);
+        productCollect.setIds(param.getProductIds());
+        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        productCollect.setCode(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
+        productCollect.setIsactive(param.getCancel());
+        mapper.addProductBatchCollect(productCollect);
         return new ReturnT().successDefault();
     }
 

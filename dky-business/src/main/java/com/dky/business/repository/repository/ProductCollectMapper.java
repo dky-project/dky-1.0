@@ -25,4 +25,6 @@ public interface ProductCollectMapper {
     List<ProductView> queryByPage(ProductCollectQueryParam param);
 
     int count(ProductCollectQueryParam param);
+
+    int addProductBatchCollect(ProductCollect record);
 }

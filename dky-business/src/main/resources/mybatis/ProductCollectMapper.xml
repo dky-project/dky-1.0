@@ -164,6 +164,19 @@
     sysdate, #{isactive,jdbcType=CHAR}, #{mProductId,jdbcType=DECIMAL},#{code,jdbcType=VARCHAR})
   </insert>
 
+  <insert id="addProductBatchCollect" parameterType="com.dky.common.bean.ProductCollect">
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+      merge into M_PRODUCT_COLLECT p  USING DUAL
+      ON(p.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL} and  p.CODE = #{code,jdbcType=VARCHAR})
+      when matched then
+      update set p.ISACTIVE = #{isactive,jdbcType=CHAR},p.MODIFIEDDATE = sysdate
+      when not matched then
+      insert values(SEQ_PRODUCT_COLLECT.nextval, #{adClientId,jdbcType=DECIMAL}, #{adOrgId,jdbcType=DECIMAL},
+      #{ownerid,jdbcType=DECIMAL}, #{modifierid,jdbcType=DECIMAL}, sysdate,
+      sysdate, #{isactive,jdbcType=CHAR}, #{item},#{code,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
   <sql id="queryTmpl">
     SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate
     FROM v_query_collect t1

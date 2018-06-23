@@ -1,11 +1,13 @@
 package com.dky.web.controller;
 
 import com.dky.business.repository.biz.ProductCollectService;
+import com.dky.common.param.AddProductBatchCollectParam;
 import com.dky.common.param.AddProductCollectParam;
 import com.dky.common.param.ProductCollectQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductView;
+import com.dky.common.utils.DkyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,11 @@ public class ProductCollectController {
     @RequestMapping(value = "addProductCollect",name = "收藏")
     public ReturnT addProductCollect(AddProductCollectParam param){
         return productCollectService.mergeIntoProductCollect(param);
+    }
+
+    @RequestMapping(value = "addProductBatchCollect",name = "批量收藏")
+    public ReturnT addProductAllCollect(AddProductBatchCollectParam param){
+        return productCollectService.addProductBatchCollect(param);
     }
 
     @RequestMapping(value = "delProductCollect",name = "取消收藏")
