@@ -48,16 +48,18 @@ public class ProductCollectServiceImpl implements ProductCollectService {
     @Override
     public ReturnT addProductBatchCollect(AddProductBatchCollectParam param) {
         ProductCollect productCollect = new ProductCollect();
-        Long userId = param.getSessionUser().getUserId();
-        productCollect.setOwnerid(userId);
-        productCollect.setModifierid(userId);
-        productCollect.setAdClientId(37l);
-        productCollect.setAdOrgId(27l);
-        productCollect.setIds(param.getProductIds());
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-        productCollect.setCode(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
-        productCollect.setIsactive(param.getCancel());
-        mapper.addProductBatchCollect(productCollect);
+        for (Long productId : param.getProductIds()){
+            Long userId = param.getSessionUser().getUserId();
+            productCollect.setOwnerid(userId);
+            productCollect.setModifierid(userId);
+            productCollect.setAdClientId(37l);
+            productCollect.setAdOrgId(27l);
+            productCollect.setmProductId(productId);
+            productCollect.setCode(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
+            productCollect.setIsactive(param.getCancel());
+            mapper.mergeIntoProductCollect(productCollect);
+        }
         return new ReturnT().successDefault();
     }
 

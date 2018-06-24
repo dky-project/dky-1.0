@@ -45,4 +45,6 @@ public interface DimNewMapper {
     List<DataAnalysisView> getDataAnalysisList(@Param("tableName")String tableName,@Param("code")String code);
 
     Map<String,Object> getDataAnalysisMap(@Param("code")String code);
+
+    Map<String,Object> getDataAnalysisMapTotal(@Param("code")String code);
 }

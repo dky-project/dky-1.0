@@ -225,8 +225,12 @@ public class DimNewServiceImpl implements DimNewService {
         for (DataTableEnum type : DataTableEnum.values()){
             map.put(type.getCode(),mapper.getDataAnalysisList(type.getMessage(),code));
         }
+        Map<String, Object> totalMap = mapper.getDataAnalysisMapTotal(code);
         Map<String, Object> dataAnalysisMap = mapper.getDataAnalysisMap(code);
-        map.put("total",dataAnalysisMap);
+        totalMap.put("GHPRICE",dataAnalysisMap.get("GHPRICE") == null ? 0:dataAnalysisMap.get("GHPRICE"));
+        totalMap.put("FLPRICE",dataAnalysisMap.get("FLPRICE") == null ? 0:dataAnalysisMap.get("FLPRICE"));
+        totalMap.put("AFTERAMOUNT",dataAnalysisMap.get("AFTERAMOUNT") == null ? 0:dataAnalysisMap.get("AFTERAMOUNT"));
+        map.put("total",totalMap);
         returnT.setData(map);
         return returnT.successDefault();
     }

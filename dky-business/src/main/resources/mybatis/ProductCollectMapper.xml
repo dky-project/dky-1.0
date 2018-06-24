@@ -165,9 +165,9 @@
   </insert>
 
   <insert id="addProductBatchCollect" parameterType="com.dky.common.bean.ProductCollect">
-    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+    <foreach collection="ids" item="item" index="index" separator=";">
       merge into M_PRODUCT_COLLECT p  USING DUAL
-      ON(p.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL} and  p.CODE = #{code,jdbcType=VARCHAR})
+      ON(p.M_PRODUCT_ID = #{item} and  p.CODE = #{code,jdbcType=VARCHAR})
       when matched then
       update set p.ISACTIVE = #{isactive,jdbcType=CHAR},p.MODIFIEDDATE = sysdate
       when not matched then

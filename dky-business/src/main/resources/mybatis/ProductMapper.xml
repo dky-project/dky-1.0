@@ -381,7 +381,7 @@
         WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM14' AND t.id = t1.M_DIM14_ID) as mDim14Text,
         (SELECT t.attribname FROM M_DIM t
         WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM3' AND t.id = t1.M_DIM3_ID) as mDim13Text,
-        MARKETDATE AS marketDate,
+        MARKETDATE2 AS marketDate,
         t5.IMGURL1,
         t5.IMGURL2,
         t5.IMGURL3,

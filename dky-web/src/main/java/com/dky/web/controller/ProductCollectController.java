@@ -7,7 +7,6 @@ import com.dky.common.param.ProductCollectQueryParam;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.ProductView;
-import com.dky.common.utils.DkyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
