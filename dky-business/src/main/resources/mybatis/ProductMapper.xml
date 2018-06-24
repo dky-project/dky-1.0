@@ -327,7 +327,7 @@
         <if test="null!=mDimNew9Id">AND t1.M_DIM_NEW9_ID = #{mDimNew9Id}</if>
         <if test="null!=mDim13Id">AND t1.M_DIM13_ID = #{mDim13Id}</if>
         <if test="null!=mDim16Id">AND t1.M_DIM16_ID = #{mDim16Id}</if>
-        <if test="null!=name and ''!=name">AND t1.name = #{name}</if>
+        <if test="null!=name and ''!=name">AND t1.name like '%'||#{name}||'%' </if>
         <if test="null!=isRecommend">AND nvl(t1.IS_RECOMMEND,'N') = #{isRecommend}</if>
     </sql>
 
@@ -502,10 +502,10 @@
         (select nvl(max(g.attribname),'') from M_DIM_NEW g
         where g.id = t.M_DIM_NEW29_ID) as huax,
         t.MJZZ_REMARK AS mjzzRemark,
-        GET_PZSJSON(1,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
-        GET_PZSJSON(2,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
-        GET_PZSJSON(3,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
-        GET_PZSJSON(4,a.id,b.M_DIM_NEW14_ID,t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
+        GET_PZSJSON(1,a.id,NVL(b.M_DIM_NEW14_ID,t.M_DIM_NEW14_ID),t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS pzJsonstr,
+        GET_PZSJSON(2,a.id,NVL(b.M_DIM_NEW14_ID,t.M_DIM_NEW14_ID),t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zzJsonstr,
+        GET_PZSJSON(3,a.id,NVL(b.M_DIM_NEW14_ID,t.M_DIM_NEW14_ID),t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zxJsonstr,
+        GET_PZSJSON(4,a.id,NVL(b.M_DIM_NEW14_ID,t.M_DIM_NEW14_ID),t.M_DIM_NEW15_ID,t.M_DIM_NEW16_ID) AS zbJsonstr
         FROM M_PRODUCT_DIM t, M_PRODUCT a
         LEFT JOIN (select M_PRODUCT_ID,M_DIM_NEW14_ID from M_COLOR_2 t WHERE t.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL} AND t.ISDEFAULT = 'Y' and rownum = 1) b
         ON b.M_PRODUCT_ID = a.ID
@@ -619,15 +619,15 @@
         c.XW_VALUE AS xwValue,
         c.YC_VALUE AS ycValue,
         NVL(c.XC_VALUE,'-') AS xcValue,
-        (select M_DIM_NEW14_ID from M_COLOR_2 t WHERE t.group_no = #{groupNo} and t.M_PRODUCT_ID = a.id and rownum = 1) AS mDimNew14Id,
+        NVL(f.M_DIM_NEW14_ID,c.M_DIM_NEW14_ID) AS mDimNew14Id,
         c.M_DIM_NEW16_ID AS mDimNew16Id,
         c.M_DIM_NEW22_ID AS mDimNew22Id,
         NVL(c.HZXC_VALUE,'-') AS hzxcValue,
         (select '[' || WM_CONCAT('{''value'':''' || t2.xw_value || ''' }') || ']' from B_CUSMPTCATE t1,B_CUSMPTCATEITEM
         t2 WHERE t2.B_CUSMPTCATE_ID = t1.id and t1.M_PRODUCT_ID = a.id) as xwArrayJson,
         (select t1.IS_YCAFFIX from B_CUSMPTCATE t1 WHERE t1.M_PRODUCT_ID = a.id) AS isYcAffix,
-        GET_PZSJSON(1,a.id,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS pzJsonstr,
-        GET_PZSJSON(3,a.id,c.M_DIM_NEW14_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS zxJsonstr,
+        GET_PZSJSON(1,a.id,NVL(f.M_DIM_NEW14_ID,c.M_DIM_NEW14_ID),c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS pzJsonstr,
+        GET_PZSJSON(3,a.id,NVL(f.M_DIM_NEW14_ID,c.M_DIM_NEW14_ID),c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID) AS zxJsonstr,
         decode(d.code,null,1,2) as iscollect,
         b.IMGURL1 as imgUrl,
         a.M_DIM16_ID as mDim16Id
@@ -637,6 +637,7 @@
         c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.HZXC_VALUE,c.XC_VALUE,c.M_DIM_NEW14_ID,c.M_DIM_NEW22_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID FROM
         M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
         LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID =
+        LEFT JOIN (select M_DIM_NEW14_ID,M_PRODUCT_ID from M_COLOR_2 t WHERE t.group_no = #{groupNo} and rownum = 1) f on f.M_PRODUCT_ID = a.id
         a.id
         WHERE a.ID in
         <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">

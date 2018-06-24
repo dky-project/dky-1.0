@@ -117,6 +117,12 @@
             //var y=parseInt($(inp).attr("y"),10);
             var cl=$(inp).attr("cl");
             var sz=$(inp).attr("sz");
+            var reg = /^[0-9]*$/;
+            if (!reg.test($(inp).val())) {
+                alert("请输入正确数量！");
+                $(inp).val('');
+                return;
+            }
             var count=parseInt($(inp).val(),10);
             count=isNaN(count)?0:count;
             if(objJson.length == 0){

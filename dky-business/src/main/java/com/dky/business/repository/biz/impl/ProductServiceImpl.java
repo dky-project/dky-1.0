@@ -106,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductView> list = mapper.queryByPage(product);
         for (ProductView view : list){
             if (view.getImgUrl1() != null){
-                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1()+ "?modifieddate=" + view.getModifieddate().getTime());
+                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("#","")+ "?modifieddate=" + view.getModifieddate().getTime());
                 view.setImgUrl1(productQueryParam.getIsBuy().equals("Y")?view.getBigImgUrl().replace("img", "img_s2"):view.getBigImgUrl().replace("img", "img_sl"));
             }
         }

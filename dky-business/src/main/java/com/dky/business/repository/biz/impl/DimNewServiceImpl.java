@@ -227,9 +227,20 @@ public class DimNewServiceImpl implements DimNewService {
         }
         Map<String, Object> totalMap = mapper.getDataAnalysisMapTotal(code);
         Map<String, Object> dataAnalysisMap = mapper.getDataAnalysisMap(code);
-        totalMap.put("GHPRICE",dataAnalysisMap.get("GHPRICE") == null ? 0:dataAnalysisMap.get("GHPRICE"));
-        totalMap.put("FLPRICE",dataAnalysisMap.get("FLPRICE") == null ? 0:dataAnalysisMap.get("FLPRICE"));
-        totalMap.put("AFTERAMOUNT",dataAnalysisMap.get("AFTERAMOUNT") == null ? 0:dataAnalysisMap.get("AFTERAMOUNT"));
+        if (dataAnalysisMap != null){
+            totalMap.put("GHPRICE",dataAnalysisMap.get("GHPRICE") == null ? 0:dataAnalysisMap.get("GHPRICE"));
+            totalMap.put("FLPRICE",dataAnalysisMap.get("FLPRICE") == null ? 0:dataAnalysisMap.get("FLPRICE"));
+            totalMap.put("AFTERAMOUNT",dataAnalysisMap.get("AFTERAMOUNT") == null ? 0:dataAnalysisMap.get("AFTERAMOUNT"));
+        }else{
+            if (totalMap == null){
+                totalMap = new HashMap<>();
+                totalMap.put("QTY",0);
+                totalMap.put("TOTALAMOUNT",0);
+            }
+            totalMap.put("GHPRICE",0);
+            totalMap.put("FLPRICE",0);
+            totalMap.put("AFTERAMOUNT",0);
+        }
         map.put("total",totalMap);
         returnT.setData(map);
         return returnT.successDefault();
