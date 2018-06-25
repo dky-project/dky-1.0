@@ -636,9 +636,8 @@
         LEFT JOIN (select
         c.M_PRODUCT_ID,c.XW_VALUE,c.YC_VALUE,c.HZXC_VALUE,c.XC_VALUE,c.M_DIM_NEW14_ID,c.M_DIM_NEW22_ID,c.M_DIM_NEW15_ID,c.M_DIM_NEW16_ID FROM
         M_PRODUCT_DIM c where c.isactive = 'Y'and c.ISDEFAULT = 'Y') c ON a.ID = c.M_PRODUCT_ID
-        LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID =
+        LEFT JOIN (select * from m_product_collect t where t.isactive = 'Y' and t.code = #{code}) d on d.M_PRODUCT_ID = a.id
         LEFT JOIN (select M_DIM_NEW14_ID,M_PRODUCT_ID from M_COLOR_2 t WHERE t.group_no = #{groupNo} and rownum = 1) f on f.M_PRODUCT_ID = a.id
-        a.id
         WHERE a.ID in
         <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
             #{item}
