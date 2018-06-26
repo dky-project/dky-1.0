@@ -69,6 +69,8 @@ public class ProductApproveTotalView extends ResultObjectBase {
 
     private String issourceText;
 
+    private String jgno;
+
     public Long getNo1() {
         return no1;
     }
@@ -195,5 +197,13 @@ public class ProductApproveTotalView extends ResultObjectBase {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getJgno() {
+        return jgno;
+    }
+
+    public void setJgno(String jgno) {
+        this.jgno = jgno;
     }
 }

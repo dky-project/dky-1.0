@@ -275,7 +275,7 @@
 
     <select id="getSizeData" resultType="java.lang.String">
       SELECT '{''yc'':'''||t.yc_value||''',''jk'':'''||t.jk_value||''',''xc'':'''||
-      NVL(t.xc_value,'-') ||''',''hzxcValue'':'''||NVL(t.hzxc_value,'-')||'''}' as jsonstr
+      t.xc_value ||''',''hzxcValue'':'''||t.hzxc_value||'''}' as jsonstr
       FROM B_CUSMPTCATEITEM t,B_CUSMPTCATE a,m_product b, m_product_dim c
       WHERE t.b_cusmptcate_id = a.id
       AND a.m_product_id = b.id

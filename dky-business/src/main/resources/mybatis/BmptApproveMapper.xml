@@ -143,4 +143,20 @@
     update B_MPTAPPROVE t set t.ISACTIVE= #{isactive,jdbcType=CHAR}
     where t.ID = #{id,jdbcType=DECIMAL}
   </update>
+
+  <update id="delById" parameterType="java.lang.Long" >
+    update B_MPTAPPROVE t set t.ISACTIVE = &apos;N&apos;,t.MODIFIEDDATE = sysdate
+    WHERE t.ISAPPROVE = 1 and t.ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <select id="selectByView" resultType="com.dky.common.bean.BmptApprove" parameterType="com.dky.common.response.view.ProductApproveTotalView">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM B_MPTAPPROVE t
+    WHERE EXISTS (SELECT 1 FROM M_PRODUCT a WHERE a.id = t.m_product_id AND a.name = #{pdt})
+    AND EXISTS (SELECT 1 FROM M_ATTRIBUTESETINSTANCE b WHERE b.value2_code = #{sizeName} AND b.value1 = #{colorName} AND b.id = t.m_attributesetinstance_id)
+    AND EXISTS (SELECT 1 FROM C_STORE c WHERE c.id = t.c_store_id AND c.code = #{jgno})
+    AND to_char(t.creationdate, 'YYYY-MM-DD') =  #{czDate}
+    AND t.is_source = #{issource}
+    AND t.isactive = 'Y'
+  </select>
 </mapper>

@@ -171,23 +171,28 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT updateProductApproveList(Long[] ids) {
-        boolean isApprove = true;
         for (Long id : ids){
-            ProductApprove p = mapper.getById(id);
-            if (p != null){
-                if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(p.getIsapprove())){
-                    return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+            ProductApproveTotalView view = mapper.getByPageDHHTotalGroup(id);
+            if (view != null){
+                List<ProductApprove> list = mapper.selectByView(view);
+                if (list != null && list.size() > 0){
+                    for (ProductApprove approve : list){
+                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())){
+                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+                        }
+                        mapper.delById(approve.getId());
+                    }
                 }
-            }else{
-                isApprove = false;
-                BmptApprove bmptApprove = new BmptApprove();
-                bmptApprove.setId(id);
-                bmptApprove.setIsactive(IsActiveEnum.NO.getCode());
-                bmptApproveMapper.updateBmptApproveById(bmptApprove);
+                List<BmptApprove> bmptList = bmptApproveMapper.selectByView(view);
+                if (bmptList != null && bmptList.size() > 0){
+                    for (BmptApprove approve : bmptList){
+                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())){
+                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+                        }
+                        bmptApproveMapper.delById(approve.getId());
+                    }
+                }
             }
-        }
-        if (isApprove){
-            mapper.updateProductApproveList(ids);
         }
         return new ReturnT().successDefault();
     }
@@ -210,6 +215,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setAdOrgId(27l);
         approve.setJxwValue("0");
         approve.setSjxcValue("0");
+        approve.setIssource(SourceEnum.DEFALUT.getCode());
         Long id = mapper.getProductApproveSeq();
         approve.setId(id);
         Map<String,Object> map = new HashedMap();
@@ -270,7 +276,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 if (bmptParam.getSum() != null && bmptParam.getSum() > 0){
                     Long id = bmptApproveMapper.getBmptApproveSeq();
                     bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
-                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum(),bmptParam.getIssource());
+                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum(),SourceEnum.WITH.getCode());
                     bmptApproveMapper.bmptApproveAcm(id);
                     bmptIds.add(id);
                 }
@@ -301,9 +307,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJxwValue("0");
                     approve.setSjxcValue("0");
                     approve.setCustomer("YYW");
-                    if (approve.getIssource() == null){
-                        approve.setIssource(SourceEnum.WITH.getCode());
-                    }
+                    approve.setIssource(SourceEnum.WITH.getCode());
                     Long id = mapper.getProductApproveSeq();
                     approve.setId(id);
                     Map<String,Object> map = new HashedMap();

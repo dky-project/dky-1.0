@@ -1,6 +1,7 @@
 package com.dky.business.repository.biz.impl;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.ProductService;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.DpGroup;
@@ -250,7 +251,7 @@ public class ProductServiceImpl implements ProductService {
         param.calculatePageLimit();
         List<DpGroup> dGroupList = dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset());
         if (dGroupList.size() == 0){
-            return new ReturnT<>().failureData("无数据！");
+            return new ReturnT<>().failureData("无数据!");
         }
         DpGroup dpGroup = dGroupList.get(0);
         List<Long> ids = new ArrayList<>();
@@ -322,6 +323,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListByGh(ClGroupQueryParam param) {
+        param.setHallName(null);
         if ("".equals(param.getGh()) || param.getGh()== null){
             return new ReturnT().failureData("杆号不能为空！");
         }

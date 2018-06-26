@@ -1840,4 +1840,40 @@
     select <include refid="Base_Column_List"></include>
     from m_product_approve where id = #{id}
   </select>
+
+  <select id="getByPageDHHTotalGroup" parameterType="java.lang.Long" resultType="com.dky.common.response.view.ProductApproveTotalView">
+    SELECT
+      t1.id,
+      t1.no1,
+      t1.jgno,
+      t1.PDT,
+      t1.CUSTOMER,
+      t1.CZ_DATE as czDate,
+      t1.sizeName,
+      t1.qty,
+      t1.totalAmount,
+      t1.colorName,
+      t1.imgUrl,
+      t1.is_source as issource
+    FROM V_DHH_TOTAL_GROUP t1
+    WHERE id = #{id}
+  </select>
+
+  <select id="selectByView" resultType="com.dky.common.bean.ProductApprove" parameterType="com.dky.common.response.view.ProductApproveTotalView">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM m_product_approve t
+    WHERE t.isactive = 'Y'
+    AND t.colorvalue = (select id from M_COLOR a where a.name = #{colorName})
+    AND t.pdt = #{pdt}
+    AND t.customer = #{customer}
+    AND t.cz_date = #{czDate}
+    AND t.yc_value = #{sizeName}
+    AND t.jgno = #{jgno}
+    AND t.is_source = #{issource}
+  </select>
+
+  <update id="delById" parameterType="java.lang.Long">
+    update M_PRODUCT_APPROVE t set t.ISACTIVE = &apos;N&apos;,t.MODIFIEDDATE = sysdate
+    WHERE t.ISAPPROVE = 1 and t.ID = #{id}
+  </update>
 </mapper>

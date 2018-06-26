@@ -10,7 +10,7 @@
     <title>大货下单</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/assets/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .table td, .table th{ padding:0px;text-align:center;vertical-align:middle;}
         img {
@@ -20,8 +20,8 @@
             max-height: 70%;;
         }
     </style>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="${ctx}/assets/js/jquery.min.js"></script>
+    <script src="${ctx}/assets/js/bootstrap.min.js"></script>
     <link href="${ctx}/assets/css/jquery-confirm.css?" rel="stylesheet" />
     <script src="${ctx}/assets/js/jquery-confirm.js?"></script>
 </head>
