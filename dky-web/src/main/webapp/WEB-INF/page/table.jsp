@@ -158,7 +158,11 @@
             });
             return;
         }
-        jQuery.post("${ctx}/productApprove/tableApproveSave",{accessToken:$('#accessToken').val(),issource:$('#issource').val(),pdtId:$("#pdtId").val(),productName:$("#productName").val(),jgNo:$("#customer").val(),itemDatas:JSON.stringify(objJson)},function(data){
+        jQuery.post("${ctx}/productApprove/tableApproveSave",
+            {accessToken:$('#accessToken').val(),
+            issource:$('#issource').val(),pdtId:$("#pdtId").val(),
+            productName:$("#productName").val(),jgNo:$("#customer").val(),
+            itemDatas:JSON.stringify(objJson)},function(data){
             if(data.success){
                 $.alert({
                     title: '恭喜！',

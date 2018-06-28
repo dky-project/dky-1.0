@@ -171,6 +171,10 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT updateProductApproveList(Long[] ids) {
+        //return new ReturnT().failureData("删除功能暂时关闭，有疑问请联系工作人员！");
+        if (ids.length == 0){
+            return new ReturnT().failureData("请选择订单！");
+        }
         for (Long id : ids){
             ProductApproveTotalView view = mapper.getByPageDHHTotalGroup(id);
             if (view != null){

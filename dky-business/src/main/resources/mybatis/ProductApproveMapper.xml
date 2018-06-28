@@ -281,7 +281,7 @@
     FROM V_JM_TOTAL_GROUP t1
     WHERE 1=1
     <include refid="whereClause"></include>
-    ORDER BY t1.CZ_DATE DESC
+    ORDER BY t1.CZ_DATE DESC,t1.CREATIONDATE DESC
   </sql>
 
   <sql id="queryTmplDHHTotalGroup">
@@ -301,7 +301,7 @@
     FROM V_DHH_TOTAL_GROUP t1
     WHERE 1=1
     <include refid="whereClause"></include>
-    ORDER BY t1.CZ_DATE DESC
+    ORDER BY t1.CZ_DATE DESC,t1.CREATIONDATE DESC
   </sql>
 
   <sql id="whereClause">
@@ -1823,7 +1823,7 @@
   </insert>
 
   <select id="getMaxNo" resultType="java.lang.String">
-    <![CDATA[ select NVL(max(to_number(NO)),0)+1 from m_product_approve
+    <![CDATA[ select NVL(max(no1),0)+1 from m_product_approve
     where  CZ_DATE = #{czDate}
     AND jgno = #{code} AND ISACTIVE = 'Y' ]]>
   </select>
