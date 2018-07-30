@@ -89,7 +89,7 @@ public class DimNewServiceImpl implements DimNewService {
         view.setCode(map!=null?map.get("CODE"):param.getSessionUser().getEmail());
         view.setUserName(map!=null?map.get("USERNAME"):"");
         view.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-        view.setOrderNo("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+        view.setOrderNo(productApproveMapper.getProductApproveDocno());
         view.setDimList(mapper.getDimClob());
         view.setStaticDimList(GlobConts.dimList);
         view.setNo(productApproveMapper.getMaxNo(view.getCode(),view.getCzDate()));

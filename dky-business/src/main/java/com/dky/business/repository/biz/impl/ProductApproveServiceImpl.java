@@ -209,7 +209,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         approve.setJgno(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-        approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+        //approve.setDocno(mapper.getProductApproveDocno());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();
@@ -300,7 +300,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJgno(code);
                     approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
                     approve.setNo(mapper.getMaxNo(code,approve.getCzDate()));
-                    approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+                    //approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
                     approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
                     approve.setIsactive(IsActiveEnum.NO.getCode());
                     Long userId = param.getSessionUser().getUserId();

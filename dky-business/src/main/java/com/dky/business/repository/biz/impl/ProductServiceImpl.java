@@ -111,7 +111,7 @@ public class ProductServiceImpl implements ProductService {
                 view.setImgUrl1(productQueryParam.getIsBuy().equals("Y")?view.getBigImgUrl().replace("img", "img_s2"):view.getBigImgUrl().replace("img", "img_sl"));
             }
         }
-        return new PageList<ProductView>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
+        return new PageList<>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
     private PageList<ProductView> findPage(ProductQueryBaseParam productQueryParam) {
         Product product = new Product();
@@ -123,7 +123,7 @@ public class ProductServiceImpl implements ProductService {
                 view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1()+ "?modifieddate=" + view.getModifieddate().getTime());
             }
         }
-        return new PageList<ProductView>(list, mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
+        return new PageList<>(list, mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
 
     @Override
@@ -363,11 +363,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductGroupPage(DpGroupQueryParam param) {
-        return new ReturnT().sucessData(new PageList<DpGroup>(dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.count(param.getGroupNo()), param.getPageNo(), param.getPageSize()));
+        return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.count(param.getGroupNo()), param.getPageNo(), param.getPageSize()));
     }
 
     @Override
     public ReturnT getProductListGhPage(ClGroupQueryParam param) {
-        return new ReturnT().sucessData(new PageList<ClGroupView>(dpGroupMapper.selectByGh(param), dpGroupMapper.clCount(param)));
+        return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGh(param), dpGroupMapper.clCount(param)));
     }
 }

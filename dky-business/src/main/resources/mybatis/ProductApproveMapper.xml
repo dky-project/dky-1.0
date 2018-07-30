@@ -406,6 +406,10 @@
     SELECT SEQ_M_PRODUCT_APPROVE.NEXTVAL FROM DUAL
   </select>
 
+  <select id="getProductApproveDocno" resultType="java.lang.String">
+    SELECT GET_SEQUENCENO('PAD', 37) FROM DUAL
+  </select>
+
   <insert id="insertProductApprove" parameterType="com.dky.common.bean.ProductApprove" >
     insert into M_PRODUCT_APPROVE
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -1794,7 +1798,7 @@
         #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="docno != null" >
-        #{docno,jdbcType=VARCHAR},
+        GET_SEQUENCENO('PAD', 37),
       </if>
       <if test="isapprove != null" >
         #{isapprove,jdbcType=DECIMAL},

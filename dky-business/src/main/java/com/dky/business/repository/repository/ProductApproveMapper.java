@@ -67,4 +67,6 @@ public interface ProductApproveMapper {
     List<ProductApprove> selectByView(ProductApproveTotalView view);
 
     void delById(@Param("id")Long id);
+
+    String getProductApproveDocno();
 }
