@@ -25,6 +25,8 @@ public interface ProductApproveService {
 
     ReturnT<List<ProductApproveInfoView>>  queryProductApproveInfoList(Long[] ids);
 
+    ReturnT<List<ProductApproveInfoView>>  productApproveMergeInfoList(ProductApproveMergeInfoQueryParam param);
+
     ReturnT bMptApproveSave(BMptApproveSaveParam param);
 
     ReturnT bMptApproveInsert(BMptApproveSaveParam param);

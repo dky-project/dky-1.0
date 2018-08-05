@@ -22,10 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by wonpera on 2017/1/6.
@@ -48,19 +45,19 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT<PageList> findByPage(Object param) {
-        if (param instanceof ProductApproveQueryParam){
+        if (param instanceof ProductApproveQueryParam) {
             ProductApproveQueryParam queryParam = (ProductApproveQueryParam) param;
             String email = queryParam.getSessionUser().getEmail();
             ProductApprove approve = new ProductApprove();
-            BeanUtils.copyProperties(queryParam,approve);
-            Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
-            approve.setJgno(map!=null?map.get("CODE"):email);
+            BeanUtils.copyProperties(queryParam, approve);
+            Map<String, String> map = usersMapper.getStoreCodeByEmail(email);
+            approve.setJgno(map != null ? map.get("CODE") : email);
             return new ReturnT<>().sucessData(findPage(approve));
-        }else if (param instanceof BmptApproveQueryParam){
+        } else if (param instanceof BmptApproveQueryParam) {
             BmptApproveQueryParam queryParam = (BmptApproveQueryParam) param;
             String email = queryParam.getSessionUser().getEmail();
-            Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
-            queryParam.setJgno(map!=null?map.get("CODE"):email);
+            Map<String, String> map = usersMapper.getStoreCodeByEmail(email);
+            queryParam.setJgno(map != null ? map.get("CODE") : email);
             return new ReturnT<>().sucessData(findPage(queryParam));
         }
         return null;
@@ -74,21 +71,22 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     /**
      * 下单保存大货类型订单
+     *
      * @param param
      * @return
      */
     @Override
     public ReturnT bMptApproveSave(BMptApproveSaveParam param) {
         try {
-            if (null == param.getIssource()){
+            if (null == param.getIssource()) {
                 param.setIssource(SourceEnum.DEFALUT.getCode());
             }
-            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-            bmptApproveMapper.bMptApproveSave(code,param.getProductName(),
-                    param.getSizeId(),param.getColorId(),param.getIssource());
+            Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail();
+            bmptApproveMapper.bMptApproveSave(code, param.getProductName(),
+                    param.getSizeId(), param.getColorId(), param.getIssource());
         } catch (Exception e) {
-            LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
+            LOGGER.error("大货订单保存失败 error:{}", e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
         }
         return new ReturnT().successDefault();
@@ -97,42 +95,42 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT bMptApproveInsert(BMptApproveSaveParam param) {
         try {
-            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-            bmptApproveMapper.bMptApproveInsert(code,param.getPdtId(),
-                    param.getSizeId(),param.getColorId(),param.getQty(),param.getIssource());
+            Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail();
+            bmptApproveMapper.bMptApproveInsert(code, param.getPdtId(),
+                    param.getSizeId(), param.getColorId(), param.getQty(), param.getIssource());
         } catch (Exception e) {
-            LOGGER.error("大货订单保存失败 error:{}",e.getMessage());
+            LOGGER.error("大货订单保存失败 error:{}", e.getMessage());
             return new ReturnT().failureData("保存大货类型订单失败");
         }
         return new ReturnT().successDefault();
     }
 
-    private PageList<ProductApproveView> findPage(ProductApprove approve){
-        if (approve.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || approve.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())){
+    private PageList<ProductApproveView> findPage(ProductApprove approve) {
+        if (approve.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || approve.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())) {
             return new PageList<>(
-                    mapper.queryByPageGroup(approve),mapper.countGroup(approve),approve.getPageNo(),approve.getPageSize(),mapper.queryGroupTotalMap(approve));
-        }else{
+                    mapper.queryByPageGroup(approve), mapper.countGroup(approve), approve.getPageNo(), approve.getPageSize(), mapper.queryGroupTotalMap(approve));
+        } else {
             return new PageList<>(
-                    mapper.queryByPage(approve),mapper.count(approve),approve.getPageNo(),approve.getPageSize(),mapper.queryTotalMap(approve));
+                    mapper.queryByPage(approve), mapper.count(approve), approve.getPageNo(), approve.getPageSize(), mapper.queryTotalMap(approve));
         }
     }
 
-    private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve){
+    private PageList<BmptApproveView> findPage(BmptApproveQueryParam approve) {
         return new PageList<>(
-                bmptApproveMapper.queryByPage(approve),bmptApproveMapper.count(approve),approve.getPageNo(),approve.getPageSize(),bmptApproveMapper.queryTotalMap(approve));
+                bmptApproveMapper.queryByPage(approve), bmptApproveMapper.count(approve), approve.getPageNo(), approve.getPageSize(), bmptApproveMapper.queryTotalMap(approve));
     }
 
     @Override
     public ReturnT<PageList> mergePage(ProductApproveMergeQueryParam param) {
         String email = param.getSessionUser().getEmail();
-        Map<String,String> map = usersMapper.getStoreCodeByEmail(email);
-        param.setJgno(map!=null?map.get("CODE"):email);
+        Map<String, String> map = usersMapper.getStoreCodeByEmail(email);
+        param.setJgno(map != null ? map.get("CODE") : email);
         PageList pageList;
-        if (param.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || param.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())){
-            pageList = new PageList<>(mapper.queryByPageDHHTotalGroup(param),mapper.countDHHTotalGroup(param),param.getPageNo(),param.getPageSize(),mapper.queryDHHGroupTotalMap(param));
-        }else{
-            pageList = new PageList<>(mapper.queryByPageJmTotalGroup(param),mapper.countJmTotalGroup(param),param.getPageNo(),param.getPageSize(),mapper.queryJmGroupTotalMap(param));
+        if (param.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || param.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())) {
+            pageList = new PageList<>(mapper.queryByPageDHHTotalGroup(param), mapper.countDHHTotalGroup(param), param.getPageNo(), param.getPageSize(), mapper.queryDHHGroupTotalMap(param));
+        } else {
+            pageList = new PageList<>(mapper.queryByPageJmTotalGroup(param), mapper.countJmTotalGroup(param), param.getPageNo(), param.getPageSize(), mapper.queryJmGroupTotalMap(param));
         }
         return new ReturnT<>().sucessData(pageList);
     }
@@ -140,7 +138,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT<ProductApproveReturnView> insertProductApprove(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
-        BeanUtils.copyProperties(param,approve);
+        BeanUtils.copyProperties(param, approve);
         approve.setQtxbzzValue1(param.getQtxbzzValue());
         approve.setDocno(param.getOrderNo());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
@@ -155,16 +153,16 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             approve.setId(id);
             mapper.insertProductApprove(approve);
             mapper.productApproveAc(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return new ReturnT().failureData(e.getMessage());
         }
-        Map<String,Object> map = new HashedMap();
-        map.put("id",id);
+        Map<String, Object> map = new HashedMap();
+        map.put("id", id);
         mapper.getScorder(map);
         ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());
         view.setProductApproveId(id);
-        ReturnT<ProductApproveReturnView>  returnT = new ReturnT<>();
+        ReturnT<ProductApproveReturnView> returnT = new ReturnT<>();
         returnT.setData(view);
         return returnT.successDefault();
     }
@@ -172,26 +170,26 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT updateProductApproveList(Long[] ids) {
         //return new ReturnT().failureData("删除功能暂时关闭，有疑问请联系工作人员！");
-        if (ids.length == 0){
+        if (ids.length == 0) {
             return new ReturnT().failureData("请选择订单！");
         }
-        for (Long id : ids){
+        for (Long id : ids) {
             ProductApproveTotalView view = mapper.getByPageDHHTotalGroup(id);
-            if (view != null){
+            if (view != null) {
                 List<ProductApprove> list = mapper.selectByView(view);
-                if (list != null && list.size() > 0){
-                    for (ProductApprove approve : list){
-                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())){
-                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+                if (list != null && list.size() > 0) {
+                    for (ProductApprove approve : list) {
+                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())) {
+                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号：" + id + "！");
                         }
                         mapper.delById(approve.getId());
                     }
                 }
                 List<BmptApprove> bmptList = bmptApproveMapper.selectByView(view);
-                if (bmptList != null && bmptList.size() > 0){
-                    for (BmptApprove approve : bmptList){
-                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())){
-                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号："+id+"！");
+                if (bmptList != null && bmptList.size() > 0) {
+                    for (BmptApprove approve : bmptList) {
+                        if (IsApproveEnum.APPROVE_SUCCESS.getCode().equals(approve.getIsapprove())) {
+                            return new ReturnT().failureData("已审核的订单不能删除！ 订单序号：" + id + "！");
                         }
                         bmptApproveMapper.delById(approve.getId());
                     }
@@ -204,10 +202,10 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT<ProductApproveReturnView> addProductDefault(AddProductApproveParam param) {
         ProductApprove approve = new ProductApprove();
-        BeanUtils.copyProperties(param,approve);
+        BeanUtils.copyProperties(param, approve);
         approve.setFhDate(dimNewMapper.getSendDate());
-        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-        approve.setJgno(userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail());
+        Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        approve.setJgno(userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail());
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         //approve.setDocno(mapper.getProductApproveDocno());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
@@ -222,8 +220,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setIssource(SourceEnum.DEFALUT.getCode());
         Long id = mapper.getProductApproveSeq();
         approve.setId(id);
-        Map<String,Object> map = new HashedMap();
-        map.put("id",id);
+        Map<String, Object> map = new HashedMap();
+        map.put("id", id);
         mapper.addProductDefault(approve);
         mapper.addProductDefaultAc(map);
         ProductApproveReturnView view = new ProductApproveReturnView(map.get("R_MESSAGE").toString());
@@ -236,14 +234,14 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     @Override
     public ReturnT confirmProductApprove(UpdateProductApproveParam param) {
         ProductApprove productApprove = new ProductApprove();
-        if (param.getId() != null){
+        if (param.getId() != null) {
             productApprove.setId(param.getId());
             productApprove.setIsactive(IsActiveEnum.YES.getCode());
             mapper.updateProductApproveById(productApprove);
             mapper.updateProductApproveByApproveId(productApprove);
         }
-        if (param.getApproveIds() != null && param.getApproveIds().length > 0){
-            for (Long id : param.getApproveIds()){
+        if (param.getApproveIds() != null && param.getApproveIds().length > 0) {
+            for (Long id : param.getApproveIds()) {
                 productApprove = new ProductApprove();
                 productApprove.setIsactive(IsActiveEnum.YES.getCode());
                 productApprove.setId(id);
@@ -251,8 +249,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 mapper.updateProductApproveByApproveId(productApprove);
             }
         }
-        if (param.getBmptIds() != null && param.getBmptIds().length > 0){
-            for (Long id : param.getBmptIds()){
+        if (param.getBmptIds() != null && param.getBmptIds().length > 0) {
+            for (Long id : param.getBmptIds()) {
                 BmptApprove bmptApprove = new BmptApprove();
                 bmptApprove.setIsactive(IsActiveEnum.YES.getCode());
                 bmptApprove.setId(id);
@@ -269,18 +267,18 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         List<Long> approveIds = new ArrayList<>();
         try {
             //大货下单
-            Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-            String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
+            Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+            String code = userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail();
             JSONArray bmptArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupBmptParamList");
             Iterator<Object> it = bmptArray.iterator();
             while (it.hasNext() && bmptArray.size() > 0) {
                 String jsonStr = it.next().toString();
                 Gson gson = new Gson();
-                AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr,AddDpGroupBmptParam.class);
-                if (bmptParam.getSum() != null && bmptParam.getSum() > 0){
+                AddDpGroupBmptParam bmptParam = gson.fromJson(jsonStr, AddDpGroupBmptParam.class);
+                if (bmptParam.getSum() != null && bmptParam.getSum() > 0) {
                     Long id = bmptApproveMapper.getBmptApproveSeq();
-                    bmptApproveMapper.insertBmptApprove(id,code,bmptParam.getmProductId(),
-                            bmptParam.getSizeId(),bmptParam.getColorId(),bmptParam.getSum(),SourceEnum.WITH.getCode());
+                    bmptApproveMapper.insertBmptApprove(id, code, bmptParam.getmProductId(),
+                            bmptParam.getSizeId(), bmptParam.getColorId(), bmptParam.getSum(), SourceEnum.WITH.getCode());
                     bmptApproveMapper.bmptApproveAcm(id);
                     bmptIds.add(id);
                 }
@@ -289,17 +287,17 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             JSONArray approveArray = JSONObject.parseObject(param.getParamJson()).getJSONArray("addDpGroupApproveParamList");
             Iterator<Object> iterator = approveArray.iterator();
             while (iterator.hasNext() && approveArray.size() > 0) {
-                String json =  iterator.next().toString();
+                String json = iterator.next().toString();
                 Gson gson = new Gson();
-                AddDpGroupApproveParam approveParam = gson.fromJson(json,AddDpGroupApproveParam.class);
-                if (approveParam.getSum() != null && approveParam.getSum() > 0){
+                AddDpGroupApproveParam approveParam = gson.fromJson(json, AddDpGroupApproveParam.class);
+                if (approveParam.getSum() != null && approveParam.getSum() > 0) {
                     ProductApprove approve = new ProductApprove();
-                    BeanUtils.copyProperties(approveParam,approve);
-                    buildDimNew(approveParam,approve);
+                    BeanUtils.copyProperties(approveParam, approve);
+                    buildDimNew(approveParam, approve);
                     approve.setFhDate(dimNewMapper.getSendDate());
                     approve.setJgno(code);
                     approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-                    approve.setNo(mapper.getMaxNo(code,approve.getCzDate()));
+                    approve.setNo(mapper.getMaxNo(code, approve.getCzDate()));
                     //approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
                     approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
                     approve.setIsactive(IsActiveEnum.NO.getCode());
@@ -314,32 +312,32 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setIssource(SourceEnum.WITH.getCode());
                     Long id = mapper.getProductApproveSeq();
                     approve.setId(id);
-                    Map<String,Object> map = new HashedMap();
-                    map.put("id",id);
+                    Map<String, Object> map = new HashedMap();
+                    map.put("id", id);
                     mapper.addProductDefault(approve);
                     mapper.add_product_dp_group(map);
                     approveIds.add(id);
                 }
             }
-        }catch (Exception e){
-                //e.printStackTrace();
-                LOGGER.error("搭配下单出错！result:{}",e.getMessage());
-                String msg = "";
-                String msg1 = e.getMessage().substring(
-                        e.getMessage().indexOf("ORA-") + 10,
-                        e.getMessage().length());
-                if (msg1.indexOf("ORA-") > -1)
-                    msg = msg1.substring(0, msg1.indexOf("ORA-"));
-                else {
-                    msg = msg1;
-                }
-                return new ReturnT().failureData(msg);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            LOGGER.error("搭配下单出错！result:{}", e.getMessage());
+            String msg = "";
+            String msg1 = e.getMessage().substring(
+                    e.getMessage().indexOf("ORA-") + 10,
+                    e.getMessage().length());
+            if (msg1.indexOf("ORA-") > -1)
+                msg = msg1.substring(0, msg1.indexOf("ORA-"));
+            else {
+                msg = msg1;
             }
+            return new ReturnT().failureData(msg);
+        }
         DpGroupReturnView view = new DpGroupReturnView();
-        if (bmptIds.size() > 0){
+        if (bmptIds.size() > 0) {
             view.setBmptIds(bmptIds);
         }
-        if (approveIds.size() > 0){
+        if (approveIds.size() > 0) {
             view.setApproveIds(approveIds);
         }
         ReturnT returnT = new ReturnT();
@@ -347,25 +345,58 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         return returnT.successDefault();
     }
 
-    public void buildDimNew(AddDpGroupApproveParam approveParam,ProductApprove productApprove){
+    public void buildDimNew(AddDpGroupApproveParam approveParam, ProductApprove productApprove) {
         PzsJsonQueryParam pzsJsonQueryParam = new PzsJsonQueryParam();
         pzsJsonQueryParam.setFlag("2");
         pzsJsonQueryParam.setProductId(approveParam.getmProductId());
         pzsJsonQueryParam.setmDimNew14Id(approveParam.getmDimNew14Id());
         String result = dimNewMapper.getpzsJson(pzsJsonQueryParam);
-        if(StringUtils.isNoneEmpty(result)){
-            result = result.replaceAll("'","\"");
-            JSONObject zzJson = (JSONObject)JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
+        if (StringUtils.isNoneEmpty(result)) {
+            result = result.replaceAll("'", "\"");
+            JSONObject zzJson = (JSONObject) JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
             productApprove.setmDimNew15Id(Long.valueOf(zzJson.get("id").toString()));
         }
         pzsJsonQueryParam.setFlag("4");
         pzsJsonQueryParam.setmDimNew15Id(productApprove.getmDimNew15Id());
         pzsJsonQueryParam.setmDimNew16Id(approveParam.getmDimNew16Id());
         result = dimNewMapper.getpzsJson(pzsJsonQueryParam);
-        if(StringUtils.isNoneEmpty(result)){
-            result = result.replaceAll("'","\"");
-            JSONObject zzJson = (JSONObject)JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
+        if (StringUtils.isNoneEmpty(result)) {
+            result = result.replaceAll("'", "\"");
+            JSONObject zzJson = (JSONObject) JSONObject.parseArray(JSONObject.parseObject(result).getString("value")).get(0);
             productApprove.setmDimNew17Id(Long.valueOf(zzJson.get("id").toString()));
         }
+    }
+
+    @Override
+    public ReturnT productApproveMergeInfoList(ProductApproveMergeInfoQueryParam param) {
+        if (param.getIds().length == 0) {
+            return new ReturnT().failureData("请选择订单！");
+        }
+        Map<String, Object> result = new HashMap<>();
+        List<ProductApprove> list = new ArrayList<>();
+        List<BmptApprove> bmptList = new ArrayList<>();
+        for (Long id : param.getIds()) {
+            ProductApproveTotalView view = null;
+            if (param.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || param.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())) {
+                view = mapper.getByPageDHHTotalGroup(id);
+            } else {
+                view = mapper.getByPageJMTotalGroup(id);
+            }
+            if (view != null) {
+                List<ProductApprove> templist = mapper.selectByView(view);
+                List<BmptApprove> tempbmptList = bmptApproveMapper.selectByView(view);
+                if (templist.size() > 0) {
+                    list.addAll(templist);
+                }
+                if (tempbmptList.size() > 0){
+                    bmptList.addAll(tempbmptList);
+                }
+            }
+        }
+        result.put("product", list);
+        result.put("bmpt", bmptList);
+        ReturnT returnT = new ReturnT();
+        returnT.setData(result);
+        return returnT;
     }
 }

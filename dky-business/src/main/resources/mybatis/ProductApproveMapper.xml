@@ -267,6 +267,7 @@
 
   <sql id="queryTmplJmTotalGroup">
     SELECT
+      t1.id,
       t1.no1,
       t1.jgno,
       t1.PDT,
@@ -1860,6 +1861,24 @@
       t1.imgUrl,
       t1.is_source as issource
     FROM V_DHH_TOTAL_GROUP t1
+    WHERE id = #{id}
+  </select>
+
+  <select id="getByPageJMTotalGroup" parameterType="java.lang.Long" resultType="com.dky.common.response.view.ProductApproveTotalView">
+    SELECT
+      t1.id,
+      t1.no1,
+      t1.jgno,
+      t1.PDT,
+      t1.CUSTOMER,
+      t1.CZ_DATE as czDate,
+      t1.sizeName,
+      t1.qty,
+      t1.totalAmount,
+      t1.colorName,
+      t1.imgUrl,
+      t1.isapprove
+    FROM V_JM_TOTAL_GROUP t1
     WHERE id = #{id}
   </select>
 

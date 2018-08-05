@@ -74,8 +74,13 @@ public class ProductApproveController {
     }
 
     @RequestMapping(value = "productApproveInfoList",name = "查询订单详情")
-    public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids){
+    public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids) {
         return approveService.queryProductApproveInfoList(ids);
+    }
+
+    @RequestMapping(value = "productApproveMergeInfoList",name = "查询订单合并详情")
+    public ReturnT<List<ProductApproveInfoView>> productApproveMergeInfoList(ProductApproveMergeInfoQueryParam param){
+        return approveService.productApproveMergeInfoList(param);
     }
 
     @RequestMapping(value = "updateProductApprove",name = "删除订单")

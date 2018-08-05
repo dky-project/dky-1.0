@@ -64,6 +64,8 @@ public interface ProductApproveMapper {
 
     ProductApproveTotalView getByPageDHHTotalGroup(@Param("id")Long id);
 
+    ProductApproveTotalView getByPageJMTotalGroup(@Param("id")Long id);
+
     List<ProductApprove> selectByView(ProductApproveTotalView view);
 
     void delById(@Param("id")Long id);
