@@ -2,6 +2,7 @@ package com.dky.business.repository.repository;
 
 import com.dky.common.bean.BmptApprove;
 import com.dky.common.param.BmptApproveQueryParam;
+import com.dky.common.response.view.BmptApproveInfoView;
 import com.dky.common.response.view.BmptApproveView;
 import com.dky.common.response.view.ProductApproveTotalView;
 import org.apache.ibatis.annotations.Param;
@@ -48,4 +49,6 @@ public interface BmptApproveMapper {
     void delById(@Param("id")Long id);
 
     List<BmptApprove> selectByView(ProductApproveTotalView view);
+
+    List<BmptApproveInfoView> queryBmptApproveInfoList(@Param("ids") Long[] ids);
 }

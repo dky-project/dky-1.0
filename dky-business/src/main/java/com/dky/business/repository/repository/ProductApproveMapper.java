@@ -62,9 +62,9 @@ public interface ProductApproveMapper {
 
     Map<Object,Object> queryDHHGroupTotalMap(ProductApproveMergeQueryParam param);
 
-    ProductApproveTotalView getByPageDHHTotalGroup(@Param("id")Long id);
+    List<ProductApproveTotalView> getByPageDHHTotalGroup(@Param("id")Long id);
 
-    ProductApproveTotalView getByPageJMTotalGroup(@Param("id")Long id);
+    List<ProductApproveTotalView> getByPageJMTotalGroup(@Param("id")Long id);
 
     List<ProductApprove> selectByView(ProductApproveTotalView view);
 

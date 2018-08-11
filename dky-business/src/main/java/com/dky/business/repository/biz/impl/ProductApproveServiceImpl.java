@@ -174,8 +174,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             return new ReturnT().failureData("请选择订单！");
         }
         for (Long id : ids) {
-            ProductApproveTotalView view = mapper.getByPageDHHTotalGroup(id);
-            if (view != null) {
+            List<ProductApproveTotalView> viewList = mapper.getByPageDHHTotalGroup(id);
+            for (ProductApproveTotalView view : viewList) {
                 List<ProductApprove> list = mapper.selectByView(view);
                 if (list != null && list.size() > 0) {
                     for (ProductApprove approve : list) {
@@ -376,27 +376,42 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         List<ProductApprove> list = new ArrayList<>();
         List<BmptApprove> bmptList = new ArrayList<>();
         for (Long id : param.getIds()) {
-            ProductApproveTotalView view = null;
+            List<ProductApproveTotalView> viewList = null;
             if (param.getVersion().equals(VesionEnum.INNER_ORDER.getCode()) || param.getVersion().equals(VesionEnum.OUTER_ORDER.getCode())) {
-                view = mapper.getByPageDHHTotalGroup(id);
+                viewList = mapper.getByPageDHHTotalGroup(id);
             } else {
-                view = mapper.getByPageJMTotalGroup(id);
+                viewList = mapper.getByPageJMTotalGroup(id);
             }
-            if (view != null) {
+            for (ProductApproveTotalView view : viewList) {
                 List<ProductApprove> templist = mapper.selectByView(view);
                 List<BmptApprove> tempbmptList = bmptApproveMapper.selectByView(view);
                 if (templist.size() > 0) {
                     list.addAll(templist);
                 }
-                if (tempbmptList.size() > 0){
+                if (tempbmptList.size() > 0) {
                     bmptList.addAll(tempbmptList);
                 }
             }
         }
-        result.put("product", list);
-        result.put("bmpt", bmptList);
+        if (list.size() > 0) {
+            Long[] approveIds = new Long[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                approveIds[i] = list.get(i).getId();
+            }
+            List<ProductApproveInfoView> productResultList = mapper.queryProductApproveInfoList(approveIds);
+            result.put("product", productResultList);
+        }
+
+        if (bmptList.size() > 0) {
+            Long[] bmptIds = new Long[bmptList.size()];
+            for (int i = 0; i < bmptList.size(); i++) {
+                bmptIds[i] = bmptList.get(i).getId();
+            }
+            List<BmptApproveInfoView> bmptResultList = bmptApproveMapper.queryBmptApproveInfoList(bmptIds);
+            result.put("bmpt", bmptResultList);
+        }
         ReturnT returnT = new ReturnT();
         returnT.setData(result);
-        return returnT;
+        return returnT.successDefault();
     }
 }

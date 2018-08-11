@@ -79,7 +79,7 @@ public class ProductApproveController {
     }
 
     @RequestMapping(value = "productApproveMergeInfoList",name = "查询订单合并详情")
-    public ReturnT<List<ProductApproveInfoView>> productApproveMergeInfoList(ProductApproveMergeInfoQueryParam param){
+    public ReturnT productApproveMergeInfoList(ProductApproveMergeInfoQueryParam param){
         return approveService.productApproveMergeInfoList(param);
     }
 

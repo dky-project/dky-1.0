@@ -150,13 +150,34 @@
   </update>
 
   <select id="selectByView" resultType="com.dky.common.bean.BmptApprove" parameterType="com.dky.common.response.view.ProductApproveTotalView">
-    SELECT <include refid="Base_Column_List"></include>
+    SELECT t.id,t.isapprove
     FROM B_MPTAPPROVE t
     WHERE EXISTS (SELECT 1 FROM M_PRODUCT a WHERE a.id = t.m_product_id AND a.name = #{pdt})
     AND EXISTS (SELECT 1 FROM M_ATTRIBUTESETINSTANCE b WHERE b.value2_code = #{sizeName} AND b.value1 = #{colorName} AND b.id = t.m_attributesetinstance_id)
     AND EXISTS (SELECT 1 FROM C_STORE c WHERE c.id = t.c_store_id AND c.code = #{jgno})
     AND to_char(t.creationdate, 'YYYY-MM-DD') =  #{czDate}
-    AND t.is_source = #{issource}
+    <if test="null != issource">
+      AND t.is_source = #{issource}
+    </if>
     AND t.isactive = 'Y'
+  </select>
+
+  <select id="queryBmptApproveInfoList" resultType="BmptApproveInfoView" >
+    SELECT
+      (select t.description from AD_LIMITVALUE t where t.ad_limitvalue_group_id = 10090 and t.value = a.IS_FAIR) as fair,
+      b.code as jgNo,
+      c.name as productName,
+      d.VALUE1 as colorName,
+      d.VALUE2_CODE as sizeName,
+      a.qty,
+      a.PRICELIST
+    FROM B_MPTAPPROVE a
+    LEFT JOIN C_STORE b ON  b.id = a.C_STORE_ID
+    LEFT JOIN M_PRODUCT c ON c.id = a.m_product_id
+    LEFT JOIN M_ATTRIBUTESETINSTANCE d ON d.id = a.M_ATTRIBUTESETINSTANCE_ID
+    WHERE a.ID IN
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
 </mapper>

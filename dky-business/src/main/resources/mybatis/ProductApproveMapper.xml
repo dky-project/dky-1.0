@@ -1883,7 +1883,7 @@
   </select>
 
   <select id="selectByView" resultType="com.dky.common.bean.ProductApprove" parameterType="com.dky.common.response.view.ProductApproveTotalView">
-    SELECT <include refid="Base_Column_List"></include>
+    SELECT t.id,t.is_approve isapprove
     FROM m_product_approve t
     WHERE t.isactive = 'Y'
     AND t.colorvalue = (select id from M_COLOR a where a.name = #{colorName})
@@ -1892,7 +1892,9 @@
     AND t.cz_date = #{czDate}
     AND t.yc_value = #{sizeName}
     AND t.jgno = #{jgno}
-    AND t.is_source = #{issource}
+    <if test="null != issource">
+      AND t.is_source = #{issource}
+    </if>
   </select>
 
   <update id="delById" parameterType="java.lang.Long">
