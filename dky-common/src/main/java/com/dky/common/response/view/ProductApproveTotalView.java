@@ -71,6 +71,8 @@ public class ProductApproveTotalView extends ResultObjectBase {
 
     private String jgno;
 
+    private String sexName;
+
     public Long getNo1() {
         return no1;
     }
@@ -205,5 +207,13 @@ public class ProductApproveTotalView extends ResultObjectBase {
 
     public void setJgno(String jgno) {
         this.jgno = jgno;
+    }
+
+    public String getSexName() {
+        return sexName;
+    }
+
+    public void setSexName(String sexName) {
+        this.sexName = sexName;
     }
 }

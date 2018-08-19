@@ -15,6 +15,10 @@ public class ClGroupQueryParam extends WebPageParameter {
      * 厅位
      */
     private String hallName;
+    /**
+     * 系列
+     */
+    private String attribname;
 
     public String getGh() {
         return gh;
@@ -30,5 +34,13 @@ public class ClGroupQueryParam extends WebPageParameter {
 
     public void setHallName(String hallName) {
         this.hallName = hallName;
+    }
+
+    public String getAttribname() {
+        return attribname;
+    }
+
+    public void setAttribname(String attribname) {
+        this.attribname = attribname;
     }
 }

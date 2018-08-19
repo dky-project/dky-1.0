@@ -245,4 +245,11 @@ public class DimNewServiceImpl implements DimNewService {
         returnT.setData(map);
         return returnT.successDefault();
     }
+
+    @Override
+    public ReturnT getAttribnameList() {
+        ReturnT returnT = new ReturnT();
+        returnT.setData(mapper.getAttribnameList());
+        return returnT.successDefault();
+    }
 }

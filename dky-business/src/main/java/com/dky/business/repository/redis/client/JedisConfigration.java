@@ -13,6 +13,7 @@ import redis.clients.jedis.ShardedJedisPool;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Random;
 
 /**
  * redis客户端
@@ -22,6 +23,15 @@ import java.util.List;
 public class JedisConfigration {
 
     private ShardedJedisPool shardedJedisPool;
+
+    public static final long ONE_MILLI_NANOS = 1000000L;
+    //加锁标志
+    public static final String LOCKED = "TRUE";
+    //锁状态标志
+    private boolean locked = false;
+
+    public static final Random r = new Random();
+
 
     @PostConstruct
     public void init(){
@@ -136,6 +146,30 @@ public class JedisConfigration {
 
     public void close(ShardedJedis jedis){
         shardedJedisPool.returnBrokenResource(jedis);
+    }
+
+    public boolean lock(Object key,long timeout) {
+        long nano = System.nanoTime();
+        timeout *= ONE_MILLI_NANOS;
+        try {
+            while ((System.nanoTime() - nano) < timeout) {
+                if (put(key,timeout,LOCKED)) {
+                    locked = true;
+                    return locked;
+                }
+                // 短暂休眠，nano避免出现活锁
+                Thread.sleep(3, r.nextInt(500));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // 无论是否加锁成功，必须调用
+    public void unlock(Object key) {
+        if (locked)
+            remove(key);
     }
 
 }

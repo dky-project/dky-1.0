@@ -68,4 +68,8 @@ public class DimNewController {
     public ReturnT getSizeData(SizeDataQueryParam param){
         return dimNewService.getSizeData(param);
     }
+    @RequestMapping(value = "getAttribnameList",name = "获取系列")
+    public ReturnT getAttribnameList(){
+        return dimNewService.getAttribnameList();
+    }
 }

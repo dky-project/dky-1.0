@@ -178,7 +178,9 @@
   </insert>
 
   <sql id="queryTmpl">
-    SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate
+    SELECT t1.M_PRODUCT_ID AS mProductId,t1.name,t1.IMGURL1 AS imgUrl1,t1.modifieddate,
+    (SELECT t.attribname FROM M_DIM t
+    WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM16' AND t.id = t1.M_DIM16_ID) as mDim16Text
     FROM v_query_collect t1
     WHERE 1=1
     <include refid="whereClause"></include>
@@ -201,8 +203,8 @@
 
   <!--样衣列表查询 -->
   <select id="queryByPage" resultType="com.dky.common.response.view.ProductView" parameterType="com.dky.common.param.ProductCollectQueryParam">
-    SELECT mProductId,name,imgUrl1,modifieddate FROM (
-    SELECT mProductId,name,imgUrl1,modifieddate,ROWNUM RN
+    SELECT mProductId,name,imgUrl1,modifieddate,mDim16Text FROM (
+    SELECT mProductId,name,imgUrl1,modifieddate,mDim16Text,ROWNUM RN
     from (<include refid="queryTmpl"></include> )
     WHERE 1=1
     <if test="null!=requestOffset">

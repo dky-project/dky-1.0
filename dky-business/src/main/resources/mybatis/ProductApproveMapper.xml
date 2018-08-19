@@ -278,7 +278,8 @@
       t1.qty,
       t1.totalAmount,
       t1.colorName,
-      t1.imgUrl
+      t1.imgUrl,
+      t1.sexName
     FROM V_JM_TOTAL_GROUP t1
     WHERE 1=1
     <include refid="whereClause"></include>
@@ -375,6 +376,7 @@
       t1.NO1 as no1,
       t1.JGNO as jgNo,
       t1.FH_DATE as fhDate,
+      t1.pdt,
       t2.VALUE as productValue,
       t1.CUSTOMER as customer,
       t1.COLORARR as colorArr,
@@ -385,8 +387,12 @@
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW10_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW10' and t2.ISACTIVE = 'Y') as mDimNew10Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW32_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW32' and t2.ISACTIVE = 'Y') as mDimNew32Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW12_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW12' and t2.ISACTIVE = 'Y') as mDimNew12Text,
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW22_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW22' and t2.ISACTIVE = 'Y') as mDimNew22Text,
       t1.LING_VALUE as lingValue,
       t1.FUJ as fuj,
+      t1.huax,
+      t1.L_TXT as lTxt,
       t1.XX_TXT as xxTxt,
       t1.D_TXT as dTxt,
       t1.HD_TXT as hdTxt,

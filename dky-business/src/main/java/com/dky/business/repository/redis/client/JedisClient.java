@@ -55,4 +55,14 @@ public class JedisClient {
         return (String)get(key);
     }
 
+    public boolean lock(Object key,Long expireIn){
+        return jedisConfigration.lock(key,expireIn);
+    }
+
+    public void unlock(Object key){
+        if(hasKey(key)){
+            jedisConfigration.unlock(key);
+        }
+    }
+
 }

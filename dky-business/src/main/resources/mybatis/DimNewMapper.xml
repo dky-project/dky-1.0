@@ -342,4 +342,8 @@
        AND c.isactive = 'Y'
        AND ROWNUM = 1
     </select>
+
+    <select id="getAttribnameList" resultType="string">
+      SELECT DISTINCT ATTRIBNAME FROM CL WHERE ISACTIVE = 'Y'
+    </select>
 </mapper>

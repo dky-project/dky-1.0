@@ -3,6 +3,7 @@ package com.dky.business.repository.biz.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dky.business.repository.biz.ProductApproveService;
+import com.dky.business.repository.cache.RedisCacheManager;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.BmptApprove;
 import com.dky.common.bean.ProductApprove;
@@ -42,6 +43,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     private DimNewMapper dimNewMapper;
     @Autowired
     private ProductCollectMapper productCollectMapper;
+    @Autowired
+    private RedisCacheManager redisCacheManager;
 
     @Override
     public ReturnT<PageList> findByPage(Object param) {
@@ -207,7 +210,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
         approve.setJgno(userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail());
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
-        //approve.setDocno(mapper.getProductApproveDocno());
+        //加锁设置单据编号
+        //setDocno(approve);
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();
@@ -298,7 +302,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJgno(code);
                     approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
                     approve.setNo(mapper.getMaxNo(code, approve.getCzDate()));
-                    //approve.setDocno("PAD"+DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDDHHMMSS));
+                    //setDocno(approve);
                     approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
                     approve.setIsactive(IsActiveEnum.NO.getCode());
                     Long userId = param.getSessionUser().getUserId();
@@ -343,6 +347,18 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         ReturnT returnT = new ReturnT();
         returnT.setData(view);
         return returnT.successDefault();
+    }
+
+    private void setDocno(ProductApprove approve){
+        try {
+            if (redisCacheManager.lock("docno",5000L)){
+                approve.setDocno(mapper.getProductApproveDocno());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            redisCacheManager.unlock("docno");
+        }
     }
 
     public void buildDimNew(AddDpGroupApproveParam approveParam, ProductApprove productApprove) {

@@ -60,5 +60,11 @@ public class RedisCacheManager {
     }
 
 
+    public boolean lock(Object key,Long expireTime){
+        return jedisClient.lock(key,expireTime);
+    }
 
+    public void unlock(Object key){
+        jedisClient.unlock(key);
+    }
 }

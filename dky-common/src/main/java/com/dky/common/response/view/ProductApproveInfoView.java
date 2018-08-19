@@ -25,6 +25,10 @@ public class ProductApproveInfoView extends ResultObjectBase {
      */
     private String productValue;
     /**
+     * 款号
+     */
+    private String pdt;
+    /**
      * 客户
      */
     private String customer;
@@ -57,6 +61,18 @@ public class ProductApproveInfoView extends ResultObjectBase {
      */
     private String mDimNew32Text;
     /**
+     * 针型
+     */
+    private String mDimNew16Text;
+    /**
+     * 肩型
+     */
+    private String mDimNew22Text;
+    /**
+     * 花型
+     */
+    private String huax;
+    /**
      * 领
      */
     private String lingValue;
@@ -80,6 +96,10 @@ public class ProductApproveInfoView extends ResultObjectBase {
      * 后道
      */
     private String hdTxt;
+    /**
+     * 领txt
+     */
+    private String lTxt;
     /**
      * 净胸围
      */
@@ -259,5 +279,45 @@ public class ProductApproveInfoView extends ResultObjectBase {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getPdt() {
+        return pdt;
+    }
+
+    public void setPdt(String pdt) {
+        this.pdt = pdt;
+    }
+
+    public String getmDimNew16Text() {
+        return mDimNew16Text;
+    }
+
+    public void setmDimNew16Text(String mDimNew16Text) {
+        this.mDimNew16Text = mDimNew16Text;
+    }
+
+    public String getmDimNew22Text() {
+        return mDimNew22Text;
+    }
+
+    public void setmDimNew22Text(String mDimNew22Text) {
+        this.mDimNew22Text = mDimNew22Text;
+    }
+
+    public String getHuax() {
+        return huax;
+    }
+
+    public void setHuax(String huax) {
+        this.huax = huax;
+    }
+
+    public String getlTxt() {
+        return lTxt;
+    }
+
+    public void setlTxt(String lTxt) {
+        this.lTxt = lTxt;
     }
 }

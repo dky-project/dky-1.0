@@ -14,6 +14,10 @@ import java.util.Random;
 public class BmptApproveInfoView extends ResultObjectBase {
 
     /**
+     * 机构号
+     */
+    private String jgNo;
+    /**
      * 款号
      */
     private String productName;
@@ -29,10 +33,22 @@ public class BmptApproveInfoView extends ResultObjectBase {
      * 数量
      */
     private Long qty;
-
+    /**
+     * 性质
+     */
     private String fair;
-
+    /**
+     * 标准价
+     */
     private String pricelist;
+
+    public String getJgNo() {
+        return jgNo;
+    }
+
+    public void setJgNo(String jgNo) {
+        this.jgNo = jgNo;
+    }
 
     public String getProductName() {
         return productName;

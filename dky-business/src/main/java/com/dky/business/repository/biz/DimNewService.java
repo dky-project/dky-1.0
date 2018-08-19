@@ -31,4 +31,6 @@ public interface DimNewService {
     ReturnT getProductPrice(ProductPriceQueryParam param);
 
     ReturnT getDataAnalysisList(DataAnalysisParam param);
+
+    ReturnT getAttribnameList();
 }

@@ -47,4 +47,6 @@ public interface DimNewMapper {
     Map<String,Object> getDataAnalysisMap(@Param("code")String code);
 
     Map<String,Object> getDataAnalysisMapTotal(@Param("code")String code);
+
+    List<String> getAttribnameList();
 }
