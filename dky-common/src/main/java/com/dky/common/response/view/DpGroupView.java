@@ -114,8 +114,7 @@ public class DpGroupView extends ResultObjectBase {
 
     public void setImgUrl(String imgUrl) {
         if (imgUrl != null){
-            //this.imgUrl = GlobConts.IMAGE_ROOT_URL+imgUrl.replace("img","img_sl")+"?random="+ new Random().nextInt(100);
-            this.imgUrl = GlobConts.IMAGE_ROOT_URL+imgUrl+"?random="+ new Random().nextInt(100);
+            this.imgUrl = GlobConts.IMAGE_ROOT_URL+imgUrl.replace("img","DP_XQ")+"?random="+ new Random().nextInt(100);
         }
     }
 

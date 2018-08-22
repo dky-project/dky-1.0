@@ -32,6 +32,8 @@ public interface DimNewMapper {
 
     List<DimNewView> queryDimByDimText(@Param(value = "dimText")String dimText);
 
+    List<DimNewView> queryDefaultDimByDimText(@Param(value = "dimText")String dimText);
+
     String getpzsJson(PzsJsonQueryParam param);
 
     String getSizeData(@Param("pdt")String pdt,@Param("xwValue")String xwValue);

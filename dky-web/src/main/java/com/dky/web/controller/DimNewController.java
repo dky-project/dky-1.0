@@ -34,7 +34,7 @@ public class DimNewController {
         view.setSyList(dimNewService.queryByDimFlag(DimFlagEnum.SY_FLAG.getCode()).getData());
         view.setLxList(dimNewService.queryByDimFlag(DimFlagEnum.LX_FLAG.getCode()).getData());
         view.setXxList(dimNewService.queryByDimFlag(DimFlagEnum.XX_FLAG.getCode()).getData());
-        view.setYearList(dimNewService.queryByDimText(DimFlagEnum.YEAR_FLAG.getCode()).getData());
+        view.setYearList(dimNewService.queryDefaultDimByDimText(DimFlagEnum.YEAR_FLAG.getCode()).getData());
         view.setPinList(dimNewService.queryByDimText(DimFlagEnum.PIN_FLAG.getCode()).getData());
         result.setData(view);
         return result.successDefault();

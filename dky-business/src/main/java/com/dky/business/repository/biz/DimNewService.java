@@ -18,6 +18,8 @@ public interface DimNewService {
 
     ReturnT<List<DimNewView>> queryByDimText(String dimText);
 
+    ReturnT<List<DimNewView>> queryDefaultDimByDimText(String dimText);
+
     ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param);
 
     ReturnT<PzJsonResultView> getpzsJson(PzsJsonQueryParam param);

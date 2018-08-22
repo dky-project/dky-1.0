@@ -37,6 +37,12 @@
     ORDER BY ORDERNO DESC
   </select>
 
+  <select id="queryDefaultDimByDimText" resultType="DimNewView">
+    SELECT id,attribcode,attribname FROM M_DIM
+    WHERE ISACTIVE = 'Y' AND DIMFLAG = #{dimText} and I_DEFAULT = 'Y'
+    ORDER BY ORDERNO DESC
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

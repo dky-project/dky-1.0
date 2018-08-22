@@ -82,6 +82,11 @@ public class DimNewServiceImpl implements DimNewService {
     }
 
     @Override
+    public ReturnT<List<DimNewView>> queryDefaultDimByDimText(String dimText) {
+        return new ReturnT<List<DimNewView>>().sucessData(mapper.queryDefaultDimByDimText(dimText));
+    }
+
+    @Override
     public ReturnT<ProductApproveTitleView> getProductApproveTitle(ProductApproveDetailParam param) {
         ProductApproveTitleView view = new ProductApproveTitleView();
         view.setSendDate(mapper.getSendDate());
