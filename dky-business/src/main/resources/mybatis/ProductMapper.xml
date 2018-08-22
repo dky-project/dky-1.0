@@ -620,7 +620,7 @@
         a.mptbelongtype,
         c.XW_VALUE AS xwValue,
         c.YC_VALUE AS ycValue,
-        c.XC_VALUE AS xcValue,
+        NVL(c.XC_VALUE,'-') AS xcValue,
         NVL(f.M_DIM_NEW14_ID,c.M_DIM_NEW14_ID) AS mDimNew14Id,
         c.M_DIM_NEW16_ID AS mDimNew16Id,
         c.M_DIM_NEW22_ID AS mDimNew22Id,

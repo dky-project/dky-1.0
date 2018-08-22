@@ -9,6 +9,7 @@ import com.dky.common.bean.Product;
 import com.dky.common.constats.GlobConts;
 import com.dky.common.enums.DimFlagEnum;
 import com.dky.common.enums.IsActiveEnum;
+import com.dky.common.enums.VesionEnum;
 import com.dky.common.param.*;
 import com.dky.common.response.ImagePageList;
 import com.dky.common.response.PageList;
@@ -368,6 +369,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListGhPage(ClGroupQueryParam param) {
+        if (param.getVersion().equals(VesionEnum.JM_ORDER.getCode()) || param.getVersion().equals(VesionEnum.JM_ORDER.getCode())) {
+            param.setAttribname(param.getHallName());
+            param.setHallName(null);
+        }
         return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGh(param), dpGroupMapper.clCount(param)));
+
     }
 }

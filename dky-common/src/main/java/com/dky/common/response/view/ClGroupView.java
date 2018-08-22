@@ -13,6 +13,7 @@ public class ClGroupView extends ResultObjectBase {
 
     private String gh;
     private String hallName;
+    private String attribname;
     private Long no1ProductId;
     private Long no2ProductId;
     private Long no3ProductId;
@@ -236,5 +237,13 @@ public class ClGroupView extends ResultObjectBase {
 
     public void setGroupNo6(String groupNo6) {
         this.groupNo6 = groupNo6;
+    }
+
+    public String getAttribname() {
+        return attribname;
+    }
+
+    public void setAttribname(String attribname) {
+        this.attribname = attribname;
     }
 }
