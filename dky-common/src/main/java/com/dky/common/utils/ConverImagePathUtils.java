@@ -178,7 +178,7 @@ public class ConverImagePathUtils {
                     try {
                         Object oldValue = PropertyUtils.getProperty(object, name);
                         String path = oldValue == null ? "" : String.valueOf(oldValue);
-                        String imageUrl = appendImageUrl( GlobConts.IMAGE_ROOT_URL,path);
+                        String imageUrl = appendImageUrl( GlobConts.IMAGE_ROOT_URL,path).replace("#","");
                         if(StringUtils.isEmpty(imageUrl)){
                             continue;
                         }
@@ -188,7 +188,7 @@ public class ConverImagePathUtils {
                             imgList = Lists.newArrayList();
                         }
                         if (ImageEnableUtil.isConnect(imageUrl) != null){
-                            imgList.add(imageUrl);
+                            imgList.add(imageUrl+"?random="+new Random().nextInt(100));
                         }else{
                             imgList.remove(imageUrl);
                         }

@@ -26,6 +26,8 @@ public class LogAspect implements Ordered {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
     private static final String HTTP_SERVLET_RESPONSE = "javax.servlet.http.HttpServletResponse";
     private static final String HTTP_SERVLET_REQUEST = "javax.servlet.http.HttpServletRequest";
+    private static final String HTTP_JETTY_REQUEST = "org.eclipse.jetty.server.Request";
+    private static final String ValidatorException = "com.dky.common.exception.ValidatorException";
     public static final String FORMAT_KV = "kv";
     public static final String FORMAT_JSON = "json";
 
@@ -39,12 +41,12 @@ public class LogAspect implements Ordered {
     @Around("aspectjMethod()")
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
 
-        //logBeforeSafe(pjp);
+        logBeforeSafe(pjp);
         Object result = null;
         try {
             result = pjp.proceed();
         } finally {
-            //logAfterSafe(pjp, result);
+            logAfterSafe(pjp, result);
         }
         return result;
     }
@@ -97,6 +99,12 @@ public class LogAspect implements Ordered {
                         continue;
                     }
                     if (args[i].getClass().getName().equals(HTTP_SERVLET_REQUEST)) {
+                        continue;
+                    }
+                    if (args[i].getClass().getName().equals(ValidatorException)) {
+                        continue;
+                    }
+                    if (args[i].getClass().getName().equals(HTTP_JETTY_REQUEST)) {
                         continue;
                     }
                     paramMap.put(paramName, args[i]);

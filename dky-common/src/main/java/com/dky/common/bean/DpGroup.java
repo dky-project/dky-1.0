@@ -41,6 +41,8 @@ public class DpGroup extends PojoObjectBase{
 
     private String dpImgUrl;
 
+    private String isDefalut;
+
     public Long getId() {
         return id;
     }
@@ -184,5 +186,13 @@ public class DpGroup extends PojoObjectBase{
 
     public void setDpImgUrl(String dpImgUrl) {
         this.dpImgUrl = dpImgUrl;
+    }
+
+    public String getIsDefalut() {
+        return isDefalut;
+    }
+
+    public void setIsDefalut(String isDefalut) {
+        this.isDefalut = isDefalut;
     }
 }

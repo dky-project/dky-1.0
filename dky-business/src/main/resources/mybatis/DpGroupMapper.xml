@@ -23,7 +23,7 @@
   <sql id="Base_Column_List" >
     ID, AD_CLIENT_ID, AD_ORG_ID, OWNERID, MODIFIERID, CREATIONDATE, MODIFIEDDATE, GROUP_NO, 
     SY_PRODUCT_ID, WT_PRODUCT_ID, XZ_PRODUCT_ID, YD_PRODUCT_ID, SP_PRODUCT_ID, SHOES_PRODUCT_ID, 
-    BAO_PRODUCT_ID, WJ_PRODUCT_ID, ISACTIVE
+    BAO_PRODUCT_ID, WJ_PRODUCT_ID, ISACTIVE, I_DEFAULT
   </sql>
 
   <sql id="whereClause">
@@ -58,6 +58,12 @@
       <include refid="whereClause" />
   </select>
 
+  <select id="countByDefault" resultType="java.lang.Integer">
+      select count(1) from DP_GROUP WHERE ISACTIVE = 'Y'
+      AND group_no = #{groupNo,jdbcType=VARCHAR}
+      AND I_DEFAULT = #{isDefault,jdbcType=VARCHAR}
+  </select>
+
   <sql id="queryClTmpl">
     SELECT
       GH AS gh,
@@ -79,7 +85,7 @@
       NO14_PRODUCT_ID AS no8ProductId,
       NO15_PRODUCT_ID AS no9ProductId,
       MODIFIEDDATE AS modifieddate
-    FROM CL WHERE 1=1
+    FROM CL WHERE ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y'
     <include refid="whereClClause" />
     ORDER BY gh asc
   </sql>
@@ -100,7 +106,7 @@
   </select>
 
   <select id="clCount" resultType="java.lang.Integer" parameterType="com.dky.common.param.ClGroupQueryParam">
-      select count(1) from CL WHERE ISACTIVE = 'Y'
+      select count(1) from CL WHERE ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y'
       <include refid="whereClClause" />
   </select>
 
@@ -111,11 +117,11 @@
   </sql>
 
   <select id="getGroupNoList" resultType="java.lang.String">
-    select group_no from DP_GROUP where ISACTIVE = 'Y' order by group_no asc
+    select group_no from DP_GROUP where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y' order by group_no asc
   </select>
 
   <select id="getGhList" resultType="java.lang.String">
-    select Gh from CL where ISACTIVE = 'Y' order by Gh asc
+    select Gh from CL where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y' order by Gh asc
   </select>
 
 

@@ -108,8 +108,10 @@ public class ProductServiceImpl implements ProductService {
         List<ProductView> list = mapper.queryByPage(product);
         for (ProductView view : list){
             if (view.getImgUrl1() != null){
-                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("#","")+ "?modifieddate=" + view.getModifieddate().getTime());
-                view.setImgUrl1(productQueryParam.getIsBuy().equals("Y")?view.getBigImgUrl().replace("img", "img_s2"):view.getBigImgUrl().replace("img", "img_sl"));
+                String url = GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("#","")+ "?modifieddate=" + view.getModifieddate().getTime();
+                String imgurl = productQueryParam.getIsBuy().equals("Y")?url.replace("img", "img_s2"):url.replace("img", "img_sl");
+                view.setBigImgUrl(url);
+                view.setImgUrl1(imgurl);
             }
         }
         return new PageList<>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
@@ -337,26 +339,33 @@ public class ProductServiceImpl implements ProductService {
         }
         ClGroupView clGroupView = dpList.get(0);
         List<ClGroupResultView> list = new ArrayList<>();
-        if (!"".equals(clGroupView.getGroupNo1())){
+        if (!"".equals(clGroupView.getGroupNo1()) && null != clGroupView.getGroupNo1()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo1()));
         }
-        if (!"".equals(clGroupView.getGroupNo2())){
+        if (!"".equals(clGroupView.getGroupNo2()) && null != clGroupView.getGroupNo2()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo2()));
         }
-        if (!"".equals(clGroupView.getGroupNo3())){
+        if (!"".equals(clGroupView.getGroupNo3()) && null != clGroupView.getGroupNo3()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo3()));
         }
-        if (!"".equals(clGroupView.getGroupNo4())){
+        if (!"".equals(clGroupView.getGroupNo4()) && null != clGroupView.getGroupNo4()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo4()));
         }
-        if (!"".equals(clGroupView.getGroupNo5())){
+        if (!"".equals(clGroupView.getGroupNo5()) && null != clGroupView.getGroupNo5()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo5()));
         }
-        if (!"".equals(clGroupView.getGroupNo6())){
+        if (!"".equals(clGroupView.getGroupNo6()) && null != clGroupView.getGroupNo6()){
             list.add(new ClGroupResultView(clGroupView.getGroupNo6()));
         }
 
-        ImagePageList page = new ImagePageList(list,dpGroupMapper.clCount(param));
+        List<ClGroupResultView> returnList = new ArrayList<>();
+        for (ClGroupResultView view : list){
+            int count = dpGroupMapper.countByDefault(view.getGroupNo(),"N");
+            if (count == 0){
+                returnList.add(view);
+            }
+        }
+        ImagePageList page = new ImagePageList(returnList,dpGroupMapper.clCount(param));
         page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
         page.setGhList(dpGroupMapper.getGhList());
         return new ReturnT<>().sucessData(page);
