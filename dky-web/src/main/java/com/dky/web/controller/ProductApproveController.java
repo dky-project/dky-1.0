@@ -133,29 +133,33 @@ public class ProductApproveController {
     @RequestMapping(value = "tableApproveSave",name = "下单保存大货类型订单接口")
     public ReturnT tableApproveSave(TableApproveSaveParam param){
         LOGGER.info("<<<<<<<<<<<<<<<<<<<<<param:{}", JSON.toJSONString(param));
-        JSONArray array = JSON.parseArray(param.getItemDatas());
-        for(int i = 0;i<array.size();i++){
-            JSONObject json = (JSONObject) array.get(i);
-            BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
-            bMptApproveSaveParam.setProductName(param.getProductName().trim());
-            bMptApproveSaveParam.setPdtId(param.getPdtId());
-            bMptApproveSaveParam.setColorId(json.getLong("color"));
-            bMptApproveSaveParam.setSizeId(json.getLong("size"));
-            bMptApproveSaveParam.setQty(json.getLong("qty"));
-            if (null == param.getIssource()){
-                bMptApproveSaveParam.setIssource(SourceEnum.DEFALUT.getCode());
-            }else {
-                bMptApproveSaveParam.setIssource(param.getIssource());
-            }
-            bMptApproveSaveParam.setSessionUser(param.getSessionUser());
-            if (bMptApproveSaveParam.getQty() > 0){
-                ReturnT returnT = approveService.bMptApproveInsert(bMptApproveSaveParam);
-                if (returnT.isFailed()){
-                    return returnT;
+        if (param.getItemDatas() != null && !"".equals(param.getItemDatas())){
+            JSONArray array = JSON.parseArray(param.getItemDatas());
+            for(int i = 0;i<array.size();i++){
+                JSONObject json = (JSONObject) array.get(i);
+                BMptApproveSaveParam bMptApproveSaveParam = new BMptApproveSaveParam();
+                bMptApproveSaveParam.setProductName(param.getProductName().trim());
+                bMptApproveSaveParam.setPdtId(param.getPdtId());
+                bMptApproveSaveParam.setColorId(json.getLong("color"));
+                bMptApproveSaveParam.setSizeId(json.getLong("size"));
+                bMptApproveSaveParam.setQty(json.getLong("qty"));
+                if (null == param.getIssource()){
+                    bMptApproveSaveParam.setIssource(SourceEnum.DEFALUT.getCode());
+                }else {
+                    bMptApproveSaveParam.setIssource(param.getIssource());
+                }
+                bMptApproveSaveParam.setSessionUser(param.getSessionUser());
+                if (bMptApproveSaveParam.getQty() > 0){
+                    ReturnT returnT = approveService.bMptApproveInsert(bMptApproveSaveParam);
+                    if (returnT.isFailed()){
+                        return returnT;
+                    }
                 }
             }
+            return new ReturnT().successDefault();
+        }else {
+            return new ReturnT().failureData("无数据保存！");
         }
-        return new ReturnT().successDefault();
     }
 
     @RequestMapping(value = "addProductDpGroup",name = "搭配款号下单")

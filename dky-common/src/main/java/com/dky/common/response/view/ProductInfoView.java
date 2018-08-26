@@ -135,6 +135,18 @@ public class ProductInfoView extends ResultObjectBase {
 
     private List<ProductColorGWView> list;
 
+    private String dlValue;
+
+    private List<String> sizeList;
+
+    public List<String> getSizeList() {
+        return sizeList;
+    }
+
+    public void setSizeList(List<String> sizeList) {
+        this.sizeList = sizeList;
+    }
+
     public String getName() {
         return name;
     }
@@ -382,5 +394,13 @@ public class ProductInfoView extends ResultObjectBase {
 
     public void setMarketDate(String marketDate) {
         this.marketDate = marketDate;
+    }
+
+    public String getDlValue() {
+        return dlValue;
+    }
+
+    public void setDlValue(String dlValue) {
+        this.dlValue = dlValue;
     }
 }

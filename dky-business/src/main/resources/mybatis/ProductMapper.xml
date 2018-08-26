@@ -313,7 +313,7 @@
         where t.isactive = 'Y' and t.code = #{code}) t2 on t1.M_PRODUCT_ID = t2.m_product_id
         WHERE 1=1
         <include refid="whereClause"></include>
-        order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO1,0) asc,NVL(t1.ORDERNO2,0) asc,t1.name asc
+        order by <if test="isRank != &quot;N&quot;">t1.sumQty desc,</if>NVL(t1.ORDERNO,0) desc,NVL(t1.ORDERNO2,0) desc,NVL(t1.ORDERNO1,0) desc,t1.name asc
     </sql>
 
     <sql id="whereClause">
@@ -368,6 +368,7 @@
         select
         t1.id,
         t1.name,
+        t1.dl as dlValue,
         t1.DESCRIPTION3,
         t1.DESCRIPTION4,
         t1.DESCRIPTION5,
@@ -499,7 +500,16 @@
         t.XC_VALUE AS xcValue,
         t.XKCC_VALUE AS xkccValue,
         t.XBCC_VALUE AS xbccValue,
-        t.CLR_RANGE AS clrRange,
+        GET_CLR_RANGE(t.CLR_RANGE) AS clrRange,
+        (select CASE
+        WHEN orderno <![CDATA[ < ]]>14 THEN
+        'Y'
+        ELSE
+        'N'
+        END
+        from M_DIM t2
+        where t2.id = a.m_dim13_id
+        and t2.dimflag = 'DIM13') as colorDefault,
         t.QTL_REMARK AS qtlRemark,
         (select nvl(max(g.attribname),'') from M_DIM_NEW g
         where g.id = t.M_DIM_NEW29_ID) as huax,
@@ -606,6 +616,19 @@
         WHERE c.name = #{productName,jdbcType=VARCHAR}
         AND a.id = b.m_attributesetinstance_id
         AND b.m_product_id=c.id
+        and c.m_sizegroup_id=d.M_ATTRIBUTE_ID
+        and a.value2_id=d.ID
+        and d.id not in (1371,1372)
+        and b.id not in(38970,35276)
+        order by d.MARTIXCOL
+    </select>
+
+    <select id="getSizeList" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT DISTINCT d.VALUE,d.MARTIXCOL
+        FROM m_attributesetinstance a, m_product_alias b,m_product c,m_size d
+        WHERE a.id = b.m_attributesetinstance_id
+        AND b.m_product_id=c.id
+        AND c.id = #{mProductId}
         and c.m_sizegroup_id=d.M_ATTRIBUTE_ID
         and a.value2_id=d.ID
         and d.id not in (1371,1372)

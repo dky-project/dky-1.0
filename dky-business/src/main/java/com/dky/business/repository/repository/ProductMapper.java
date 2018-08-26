@@ -99,4 +99,6 @@ public interface ProductMapper extends BaseDao<Product,Long> {
     BigDecimal getMpdtProductPrice(Long mProductId);
 
     List<ProductGwView> getColorGwList(Long mProductId);
+
+    List<String> getSizeList(Long mProductId);
 }

@@ -59,12 +59,16 @@ public class ProductServiceImpl implements ProductService {
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
             ConverImagePathUtils.convertProductView(productInfoView,isBuy);
-            List<ProductGwView> list = mapper.getColorGwList(id);
-            if (list.size() > 1) {
-                return new ReturnT<>().failureData("重复杆位管理！");
-            }
-            if (list.size() > 0){
-                productInfoView.setGwView(list.get(0));
+            if (productInfoView.getDlValue().equals("DH")){
+                productInfoView.setSizeList(mapper.getSizeList(id));
+            }else {
+                List<ProductGwView> list = mapper.getColorGwList(id);
+                if (list.size() > 1) {
+                    return new ReturnT<>().failureData("重复杆位管理！");
+                }
+                if (list.size() > 0){
+                    productInfoView.setGwView(list.get(0));
+                }
             }
         } catch (Exception e) {
             LOGGER.error(e.getMessage());

@@ -384,24 +384,34 @@
       t1.YC_VALUE as ycValue,
       t1.JK_VALUE as jkValue,
       t1.XC_VALUE as xcValue,
+      t1.HZXC_VALUE as hzxcValue,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW10_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW10' and t2.ISACTIVE = 'Y') as mDimNew10Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW32_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW32' and t2.ISACTIVE = 'Y') as mDimNew32Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW12_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW12' and t2.ISACTIVE = 'Y') as mDimNew12Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW16_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW16' and t2.ISACTIVE = 'Y') as mDimNew16Text,
       (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW22_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW22' and t2.ISACTIVE = 'Y') as mDimNew22Text,
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW13_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW13' and t2.ISACTIVE = 'Y') as mDimNew13Text,
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW9_ID = t2.id and t2.DIMFLAG='DIMFLAG_NEW9' and t2.ISACTIVE = 'Y')||','||
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW9_ID1 = t2.id and t2.DIMFLAG='DIMFLAG_NEW9' and t2.ISACTIVE = 'Y')||','||
+      (SELECT t2.ATTRIBNAME FROM M_DIM_NEW t2 WHERE t1.M_DIM_NEW9_ID2 = t2.id and t2.DIMFLAG='DIMFLAG_NEW9' and t2.ISACTIVE = 'Y') as xxTxt,
+      t1.M_DIM_NEW22_ID as mDimNew22Id,
+      t1.M_DIM_NEW12_ID as mDimNew12Id,
       t1.LING_VALUE as lingValue,
       t1.FUJ as fuj,
       t1.huax,
       t1.L_TXT as lTxt,
-      t1.XX_TXT as xxTxt,
+      --t1.XX_TXT as xxTxt,
       t1.D_TXT as dTxt,
       t1.HD_TXT as hdTxt,
+      t1.XB_TXT as xbTxt,
+      t1.XK_TXT as xkTxt,
+      t1.X_TXT as xTxt,
       t1.JXW_VALUE as jxwValue,
       t1.SJXC_VALUE as sjxcValue,
       t1.REMARK as remark
     from M_PRODUCT_APPROVE t1
     LEFT JOIN M_PRODUCT t2 ON t1.M_PRODUCT_ID = t2.id
-    WHERE t1.ISACTIVE = 'Y'
+    WHERE t1.ISACTIVE = 'Y' AND t1.JGNO = #{code}
     AND t1.ID IN
     <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
       #{item}
@@ -1805,7 +1815,7 @@
         #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="docno != null" >
-        GET_SEQUENCENO('PAD', 37),
+        GET_SEQUENCENO_LOCK('PAD', 37),
       </if>
       <if test="isapprove != null" >
         #{isapprove,jdbcType=DECIMAL},

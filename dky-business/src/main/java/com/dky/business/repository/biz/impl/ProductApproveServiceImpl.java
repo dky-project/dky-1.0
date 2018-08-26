@@ -7,12 +7,14 @@ import com.dky.business.repository.cache.RedisCacheManager;
 import com.dky.business.repository.repository.*;
 import com.dky.common.bean.BmptApprove;
 import com.dky.common.bean.ProductApprove;
+import com.dky.common.bean.SessionUser;
 import com.dky.common.enums.*;
 import com.dky.common.param.*;
 import com.dky.common.response.PageList;
 import com.dky.common.response.ReturnT;
 import com.dky.common.response.view.*;
 import com.dky.common.utils.DateUtils;
+import com.dky.common.utils.DkyUtils;
 import com.google.gson.Gson;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
@@ -68,7 +70,8 @@ public class ProductApproveServiceImpl implements ProductApproveService {
 
     @Override
     public ReturnT<List<ProductApproveInfoView>> queryProductApproveInfoList(Long[] ids) {
-        return new ReturnT<>().sucessData(mapper.queryProductApproveInfoList(ids));
+        SessionUser user = DkyUtils.getCurrentUser();
+        return new ReturnT<>().sucessData(mapper.queryProductApproveInfoList(ids,user.getEmail()));
     }
 
 
@@ -409,12 +412,27 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 }
             }
         }
+        Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail();
         if (list.size() > 0) {
             Long[] approveIds = new Long[list.size()];
             for (int i = 0; i < list.size(); i++) {
                 approveIds[i] = list.get(i).getId();
             }
-            List<ProductApproveInfoView> productResultList = mapper.queryProductApproveInfoList(approveIds);
+            List<ProductApproveInfoView> productResultList = mapper.queryProductApproveInfoList(approveIds,code);
+            for (ProductApproveInfoView view :productResultList){
+                view.setViewType(1);
+                Long[] mDimNew22Ids = {56L,57L,58L,59L,355L};
+                if (view.getmDimNew12Id() != null && Arrays.binarySearch(mDimNew22Ids, view.getmDimNew12Id()) > 0){
+                    view.setViewType(2);
+                }
+                if (view.getmDimNew22Id() != null && view.getmDimNew22Id().equals(131L)){
+                    view.setViewType(3);
+                }
+                if (view.getmDimNew12Id() != null && view.getmDimNew12Id().equals(55L)){
+                    view.setViewType(4);
+                }
+            }
             result.put("product", productResultList);
         }
 
@@ -423,7 +441,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
             for (int i = 0; i < bmptList.size(); i++) {
                 bmptIds[i] = bmptList.get(i).getId();
             }
-            List<BmptApproveInfoView> bmptResultList = bmptApproveMapper.queryBmptApproveInfoList(bmptIds);
+            List<BmptApproveInfoView> bmptResultList = bmptApproveMapper.queryBmptApproveInfoList(bmptIds,code);
             result.put("bmpt", bmptResultList);
         }
         ReturnT returnT = new ReturnT();

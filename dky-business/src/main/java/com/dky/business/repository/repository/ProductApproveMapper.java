@@ -20,7 +20,7 @@ public interface ProductApproveMapper {
 
     int countGroup(ProductApprove productApprove);
 
-    List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids);
+    List<ProductApproveInfoView> queryProductApproveInfoList(@Param("ids") Long[] ids,@Param("code")String code);
 
     void insertProductApprove(ProductApprove productApprove);
 

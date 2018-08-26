@@ -327,6 +327,10 @@ public class ProductMadeInfoView extends ResultObjectBase {
      * 图片地址
      */
     private List<String> imgUrlList;
+    /**
+     * 2018秋冬以前为Y 否则为N
+     */
+    private String colorDefault;
 
     public Long getProductId() {
         return productId;
@@ -958,5 +962,13 @@ public class ProductMadeInfoView extends ResultObjectBase {
 
     public void setImgUrlList(List<String> imgUrlList) {
         this.imgUrlList = imgUrlList;
+    }
+
+    public String getColorDefault() {
+        return colorDefault;
+    }
+
+    public void setColorDefault(String colorDefault) {
+        this.colorDefault = colorDefault;
     }
 }

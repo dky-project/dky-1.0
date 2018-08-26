@@ -50,5 +50,5 @@ public interface BmptApproveMapper {
 
     List<BmptApprove> selectByView(ProductApproveTotalView view);
 
-    List<BmptApproveInfoView> queryBmptApproveInfoList(@Param("ids") Long[] ids);
+    List<BmptApproveInfoView> queryBmptApproveInfoList(@Param("ids") Long[] ids,@Param("code")String code);
 }

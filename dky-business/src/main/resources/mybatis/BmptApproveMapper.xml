@@ -175,7 +175,7 @@
     LEFT JOIN C_STORE b ON  b.id = a.C_STORE_ID
     LEFT JOIN M_PRODUCT c ON c.id = a.m_product_id
     LEFT JOIN M_ATTRIBUTESETINSTANCE d ON d.id = a.M_ATTRIBUTESETINSTANCE_ID
-    WHERE a.ID IN
+    WHERE b.code = #{code} AND a.ID IN
     <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
       #{item}
     </foreach>

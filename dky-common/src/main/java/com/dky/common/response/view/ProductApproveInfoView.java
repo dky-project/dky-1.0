@@ -37,11 +37,11 @@ public class ProductApproveInfoView extends ResultObjectBase {
      */
     private String colorArr;
     /**
-     * 大
+     * 胸围
      */
     private String xwValue;
     /**
-     * 长
+     * 衣长
      */
     private String ycValue;
     /**
@@ -49,7 +49,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
      */
     private String jkValue;
     /**
-     * 袖
+     * 袖长
      */
     private String xcValue;
     /**
@@ -68,6 +68,10 @@ public class ProductApproveInfoView extends ResultObjectBase {
      * 肩型
      */
     private String mDimNew22Text;
+    /**
+     * 性别
+     */
+    private String mDimNew13Text;
     /**
      * 花型
      */
@@ -101,6 +105,18 @@ public class ProductApproveInfoView extends ResultObjectBase {
      */
     private String lTxt;
     /**
+     * 袖边
+     */
+    private String xTxt;
+    /**
+     * 袖口txt
+     */
+    private String xkTxt;
+    /**
+     * 下边txt
+     */
+    private String xbTxt;
+    /**
      * 净胸围
      */
     private String jxwValue;
@@ -112,6 +128,23 @@ public class ProductApproveInfoView extends ResultObjectBase {
      * 备注
      */
     private String remark;
+    /**
+     * 肩型ID
+     */
+    private Long mDimNew22Id;
+    /**
+     * 式样ID
+     */
+    private Long mDimNew12Id;
+    /**
+     * 工艺袖长
+     */
+    private String hzxcValue;
+
+    /**
+     * 类型样式
+     */
+    private int viewType;
 
     public Long getNo1() {
         return no1;
@@ -319,5 +352,69 @@ public class ProductApproveInfoView extends ResultObjectBase {
 
     public void setlTxt(String lTxt) {
         this.lTxt = lTxt;
+    }
+
+    public Long getmDimNew22Id() {
+        return mDimNew22Id;
+    }
+
+    public void setmDimNew22Id(Long mDimNew22Id) {
+        this.mDimNew22Id = mDimNew22Id;
+    }
+
+    public String getmDimNew13Text() {
+        return mDimNew13Text;
+    }
+
+    public void setmDimNew13Text(String mDimNew13Text) {
+        this.mDimNew13Text = mDimNew13Text;
+    }
+
+    public Long getmDimNew12Id() {
+        return mDimNew12Id;
+    }
+
+    public void setmDimNew12Id(Long mDimNew12Id) {
+        this.mDimNew12Id = mDimNew12Id;
+    }
+
+    public String getxTxt() {
+        return xTxt;
+    }
+
+    public void setxTxt(String xTxt) {
+        this.xTxt = xTxt;
+    }
+
+    public String getHzxcValue() {
+        return hzxcValue;
+    }
+
+    public void setHzxcValue(String hzxcValue) {
+        this.hzxcValue = hzxcValue;
+    }
+
+    public int getViewType() {
+        return viewType;
+    }
+
+    public void setViewType(int viewType) {
+        this.viewType = viewType;
+    }
+
+    public String getXkTxt() {
+        return xkTxt;
+    }
+
+    public void setXkTxt(String xkTxt) {
+        this.xkTxt = xkTxt;
+    }
+
+    public String getXbTxt() {
+        return xbTxt;
+    }
+
+    public void setXbTxt(String xbTxt) {
+        this.xbTxt = xbTxt;
     }
 }
