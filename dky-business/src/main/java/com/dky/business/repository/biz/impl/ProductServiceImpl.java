@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
             ConverImagePathUtils.convertProductView(productInfoView,isBuy);
-            if (productInfoView.getDlValue().equals("DH")){
+            if (productInfoView.getDlValue() != null && "DH".equals(productInfoView.getDlValue())){
                 productInfoView.setSizeList(mapper.getSizeList(id));
             }else {
                 List<ProductGwView> list = mapper.getColorGwList(id);

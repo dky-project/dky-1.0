@@ -271,7 +271,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setXxTxt(String xxTxt) {
-        this.xxTxt = xxTxt;
+        this.xxTxt = replaceE(xxTxt);
     }
 
     public String getdTxt() {
@@ -287,7 +287,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setHdTxt(String hdTxt) {
-        this.hdTxt = hdTxt;
+        this.hdTxt = replaceE(hdTxt);
     }
 
     public String getJxwValue() {
@@ -343,7 +343,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setHuax(String huax) {
-        this.huax = huax;
+        this.huax = replaceE(huax);;
     }
 
     public String getlTxt() {
@@ -351,7 +351,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setlTxt(String lTxt) {
-        this.lTxt = lTxt;
+        this.lTxt = replaceE(lTxt);
     }
 
     public Long getmDimNew22Id() {
@@ -383,7 +383,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setxTxt(String xTxt) {
-        this.xTxt = xTxt;
+        this.xTxt = replaceE(xTxt);
     }
 
     public String getHzxcValue() {
@@ -407,7 +407,7 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setXkTxt(String xkTxt) {
-        this.xkTxt = xkTxt;
+        this.xkTxt = replaceE(xkTxt);;
     }
 
     public String getXbTxt() {
@@ -415,6 +415,17 @@ public class ProductApproveInfoView extends ResultObjectBase {
     }
 
     public void setXbTxt(String xbTxt) {
-        this.xbTxt = xbTxt;
+        this.xbTxt = replaceE(xbTxt);
+    }
+
+    private String replaceE(String src) {
+        if (src.contains(",,")){
+            src = src.replace(",,",",");
+            replaceE(src);
+        }
+        if (src.replace(",","").length() == 0){
+            return "";
+        }
+        return src;
     }
 }

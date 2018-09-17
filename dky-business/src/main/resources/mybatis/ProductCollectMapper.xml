@@ -184,7 +184,7 @@
     FROM v_query_collect t1
     WHERE 1=1
     <include refid="whereClause"></include>
-    order by NVL(t1.ORDERNO,0) desc,t1.name asc
+    order by t1.creationdate desc,NVL(t1.ORDERNO,0) desc,t1.name asc
   </sql>
 
   <sql id="whereClause">

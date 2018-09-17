@@ -21,6 +21,11 @@ public class ProductView extends ResultObjectBase {
      * 款号
      */
     private String name;
+
+    /**
+     * 类型
+     */
+    private String dlValue;
     /**
      * 大类
      */
@@ -119,5 +124,13 @@ public class ProductView extends ResultObjectBase {
 
     public void setmDim16Text(String mDim16Text) {
         this.mDim16Text = mDim16Text;
+    }
+
+    public String getDlValue() {
+        return dlValue;
+    }
+
+    public void setDlValue(String dlValue) {
+        this.dlValue = dlValue;
     }
 }
