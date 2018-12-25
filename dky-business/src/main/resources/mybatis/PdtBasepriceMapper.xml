@@ -45,7 +45,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
-    AND t1.FLOAT_RATE = 1
+    AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
@@ -54,7 +54,7 @@
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
       t4.ATTRIBNAME as mDimNew16Text,
-      t1.PRICE AS price,
+      t1.PRICE6 AS price,
       t1.FLOAT_RATE as floatRate
     FROM M_TZ_BASEPRICE1 t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
@@ -66,7 +66,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
-    AND t1.FLOAT_RATE = 1
+    AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
@@ -75,7 +75,7 @@
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
       t4.ATTRIBNAME as mDimNew16Text,
-      t1.PRICE AS price,
+      t1.PRICE6 AS price,
       t1.FLOAT_RATE as floatRate
     FROM M_YE_BASEPRICE1 t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
@@ -87,7 +87,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
-    AND t1.FLOAT_RATE = 1
+    AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
 
@@ -98,5 +98,10 @@
     WHERE t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
     AND ROWNUM = 1
     ORDER BY t1.CREATIONDATE DESC
+  </select>
+
+  <select id="getFloatRateByCode" resultType="java.math.BigDecimal" parameterType="java.lang.String" >
+    select NVL(pricerate,1) from B_PRICEUPSET a
+    where exists (select 1 from c_store t where t.isactive = 'Y' and t.b_priceupset_id = a.id and t.code = #{code,jdbcType=VARCHAR})
   </select>
 </mapper>

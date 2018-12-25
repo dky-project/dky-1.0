@@ -12,6 +12,7 @@ import com.dky.common.utils.DkyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -34,12 +35,14 @@ public class PdtBasepriceServiceImpl implements PdtBasepriceService {
         Map<String,String> userMap = usersMapper.getStoreCodeByEmail(user.getEmail());
         String code = userMap!=null?userMap.get("CODE"):user.getEmail();
         Product product = productMapper.getById(mProductId);
+
+        BigDecimal floatRate = mapper.getFloatRateByCode(code);
         if (product.getmDimNew13Id() == 21 || product.getmDimNew13Id() == 20){
-            return new ReturnT<>().sucessData(mapper.queryPriceListByProductId(mProductId,code));
+            return new ReturnT<>().sucessData(mapper.queryPriceListByProductId(mProductId,floatRate));
         } else if (product.getmDimNew13Id() == 249 || product.getmDimNew13Id() == 250){
-            return new ReturnT<>().sucessData(mapper.queryChildPriceListByProductId(mProductId,code));
+            return new ReturnT<>().sucessData(mapper.queryChildPriceListByProductId(mProductId,floatRate));
         } else {
-            return new ReturnT<>().sucessData(mapper.queryBabyPriceListByProductId(mProductId,code));
+            return new ReturnT<>().sucessData(mapper.queryBabyPriceListByProductId(mProductId,floatRate));
         }
 
     }
