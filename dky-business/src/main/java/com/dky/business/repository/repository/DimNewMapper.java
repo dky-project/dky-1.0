@@ -51,4 +51,6 @@ public interface DimNewMapper {
     Map<String,Object> getDataAnalysisMapTotal(@Param("code")String code);
 
     List<String> getAttribnameList();
+
+    String getDiffDHHImg(@Param("customer")String customer);
 }

@@ -28,6 +28,7 @@
 
   <sql id="whereClause">
     <if test="null!=groupNo">AND group_no = #{groupNo,jdbcType=VARCHAR}</if>
+    <if test="null!=customer">AND customer = #{customer,jdbcType=VARCHAR}</if>
   </sql>
 
   <sql id="queryTmpl">
@@ -70,11 +71,17 @@
       ATTRIBNAME as attribname,
       HALLNAME as hallName,
       NO1_DP as groupNo1,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO1_DP) as count1,
       NO2_DP as groupNo2,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO2_DP) as count2,
       NO3_DP as groupNo3,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO3_DP) as count3,
       NO4_DP as groupNo4,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO4_DP) as count4,
       NO5_DP as groupNo5,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO5_DP) as count5,
       NO6_DP as groupNo6,
+      (SELECT count(1) FROM DP_GROUP WHERE ISACTIVE = 'Y' AND CUSTOMER = #{customer,jdbcType=VARCHAR} AND GROUP_NO = NO6_DP) as count6,
       NO7_PRODUCT_ID AS no1ProductId,
       NO8_PRODUCT_ID AS no2ProductId,
       NO9_PRODUCT_ID AS no3ProductId,
@@ -114,14 +121,19 @@
     <if test="null!=hallName">AND hallname = #{hallName,jdbcType=VARCHAR}</if>
     <if test="null!=attribname">AND attribname = #{attribname,jdbcType=VARCHAR}</if>
     <if test="null!=gh">AND gh = #{gh,jdbcType=VARCHAR}</if>
+    <if test="null!=customer">AND customer = #{customer,jdbcType=VARCHAR}</if>
   </sql>
 
-  <select id="getGroupNoList" resultType="java.lang.String">
-    select group_no from DP_GROUP where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y' order by group_no asc
+  <select id="getGroupNoList" resultType="java.lang.String" parameterType="java.lang.String">
+    select group_no from DP_GROUP where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y'
+    and customer = #{customer,jdbcType=VARCHAR}
+    order by group_no asc
   </select>
 
-  <select id="getGhList" resultType="java.lang.String">
-    select Gh from CL where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y' order by Gh asc
+  <select id="getGhList" resultType="java.lang.String" parameterType="java.lang.String">
+    select Gh from CL where ISACTIVE = 'Y' AND NVL(I_DEFAULT,'Y') = 'Y'
+    and customer = #{customer,jdbcType=VARCHAR}
+    order by Gh asc
   </select>
 
 

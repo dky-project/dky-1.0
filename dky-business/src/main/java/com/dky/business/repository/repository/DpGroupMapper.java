@@ -12,9 +12,9 @@ import java.util.List;
 @MyBatisRepository
 public interface DpGroupMapper {
 
-    List<DpGroup> selectByGroupNo(@Param("groupNo") String groupNo,@Param("requestCount")Integer requestCount,@Param("requestOffset")Integer requestOffset);
+    List<DpGroup> selectByGroupNo(@Param("customer") String customer,@Param("groupNo") String groupNo,@Param("requestCount")Integer requestCount,@Param("requestOffset")Integer requestOffset);
 
-    int count(@Param("groupNo") String groupNo);
+    int count(@Param("customer") String customer,@Param("groupNo") String groupNo);
 
     int countByDefault(@Param("groupNo") String groupNo,@Param("isDefault") String isDefault);
 
@@ -22,7 +22,7 @@ public interface DpGroupMapper {
 
     int clCount(ClGroupQueryParam param);
 
-    List<String> getGroupNoList();
+    List<String> getGroupNoList(@Param("customer")String customer);
 
-    List<String> getGhList();
+    List<String> getGhList(@Param("customer")String customer);
 }

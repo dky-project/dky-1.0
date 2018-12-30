@@ -42,13 +42,13 @@ public class LogAspect implements Ordered {
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
 
         logBeforeSafe(pjp);
-        Object result = null;
-        try {
-            result = pjp.proceed();
-        } finally {
-            logAfterSafe(pjp, result);
-        }
-        return result;
+//        Object result = null;
+//        try {
+//            result = pjp.proceed();
+//        } finally {
+//            logAfterSafe(pjp, result);
+//        }
+        return pjp.proceed();
     }
 
     @Before("aspectjMethod()")

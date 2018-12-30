@@ -722,11 +722,12 @@
         where id = #{mProductId}
     </select>
 
-    <select id="getColorGwList" parameterType="java.lang.Long" resultType="ProductGwView">
+    <select id="getColorGwList" resultType="ProductGwView">
         select t.m_product_id as mProductId,t.M_COLORDESCRIPTION1 as m_color1,t.gw as gw1,
         t.M_COLORDESCRIPTION2 as m_color2,t.gw2,t.M_COLORDESCRIPTION3 as m_color3,
         t.gw3,t.M_COLORDESCRIPTION4 m_color4,t.gw4,t.M_COLORDESCRIPTION5 m_color5,t.gw5
         from m_gw t
         where t.isactive = 'Y' and t.m_product_id = #{mProductId}
+        and t.customer = #{customer}
     </select>
 </mapper>

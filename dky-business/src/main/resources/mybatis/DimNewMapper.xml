@@ -352,4 +352,8 @@
     <select id="getAttribnameList" resultType="java.lang.String">
       SELECT DISTINCT ATTRIBNAME FROM CL WHERE ISACTIVE = 'Y' AND ATTRIBNAME IS NOT NULL
     </select>
+
+    <select id="getDiffDHHImg" resultType="java.lang.String">
+      select comments from AD_LIMITVALUE	where ad_limitvalue_group_id = 10222 and value = #{customer}
+    </select>
 </mapper>

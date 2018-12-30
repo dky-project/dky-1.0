@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public ReturnT<ProductInfoView> getProductInfo(Long id,String isBuy) {
+    public ReturnT<ProductInfoView> getProductInfo(Long id, String isBuy, String versionNo) {
         ProductInfoView productInfoView = null;
         try {
             productInfoView = mapper.getProductInfo(id);
@@ -58,15 +58,15 @@ public class ProductServiceImpl implements ProductService {
             }
             String pdtPrice = pdtBasepriceMapper.getDhPrice(id);
             productInfoView.setPdtPrice(pdtPrice == null ? "" : pdtPrice);
-            ConverImagePathUtils.convertProductView(productInfoView,isBuy);
-            if (productInfoView.getDlValue() != null && "DH".equals(productInfoView.getDlValue())){
+            ConverImagePathUtils.convertProductView(productInfoView, isBuy);
+            if (productInfoView.getDlValue() != null && "DH".equals(productInfoView.getDlValue())) {
                 productInfoView.setSizeList(mapper.getSizeList(id));
-            }else {
-                List<ProductGwView> list = mapper.getColorGwList(id);
+            } else {
+                List<ProductGwView> list = mapper.getColorGwList(id, VesionEnum.getByCodePage(versionNo).getVersoinStatus());
                 if (list.size() > 1) {
                     return new ReturnT<>().failureData("重复杆位管理！");
                 }
-                if (list.size() > 0){
+                if (list.size() > 0) {
                     productInfoView.setGwView(list.get(0));
                 }
             }
@@ -101,33 +101,34 @@ public class ProductServiceImpl implements ProductService {
     private PageList<ProductView> findPage(ProductQueryParam productQueryParam) {
         Product product = new Product();
         BeanUtils.copyProperties(productQueryParam, product);
-        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(productQueryParam.getSessionUser().getEmail());
-        product.setCode(userMap!=null?userMap.get("CODE"):productQueryParam.getSessionUser().getEmail());
+        Map<String, String> userMap = usersMapper.getStoreCodeByEmail(productQueryParam.getSessionUser().getEmail());
+        product.setCode(userMap != null ? userMap.get("CODE") : productQueryParam.getSessionUser().getEmail());
         int count = 0;
-        if (IsActiveEnum.YES.getCode().equals(productQueryParam.getIsRank())){
+        if (IsActiveEnum.YES.getCode().equals(productQueryParam.getIsRank())) {
             count = mapper.rankCount(product);
-        }else {
+        } else {
             count = mapper.count(product);
         }
         List<ProductView> list = mapper.queryByPage(product);
-        for (ProductView view : list){
-            if (view.getImgUrl1() != null){
-                String url = GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("#","")+ "?modifieddate=" + view.getModifieddate().getTime();
-                String imgurl = productQueryParam.getIsBuy().equals("Y")?url.replace("img", "img_s2"):url.replace("img", "img_sl");
+        for (ProductView view : list) {
+            if (view.getImgUrl1() != null) {
+                String url = GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("#", "") + "?modifieddate=" + view.getModifieddate().getTime();
+                String imgurl = productQueryParam.getIsBuy().equals("Y") ? url.replace("img", "img_s2") : url.replace("img", "img_sl");
                 view.setBigImgUrl(url);
                 view.setImgUrl1(imgurl);
             }
         }
         return new PageList<>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
     }
+
     private PageList<ProductView> findPage(ProductQueryBaseParam productQueryParam) {
         Product product = new Product();
         BeanUtils.copyProperties(productQueryParam, product);
         product.setCode("99999");
         List<ProductView> list = mapper.queryByPage(product);
-        for (ProductView view : list){
-            if (view.getImgUrl1() != null){
-                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1()+ "?modifieddate=" + view.getModifieddate().getTime());
+        for (ProductView view : list) {
+            if (view.getImgUrl1() != null) {
+                view.setBigImgUrl(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1() + "?modifieddate=" + view.getModifieddate().getTime());
             }
         }
         return new PageList<>(list, mapper.count(product), productQueryParam.getPageNo(), productQueryParam.getPageSize());
@@ -161,13 +162,13 @@ public class ProductServiceImpl implements ProductService {
             view.setColorViewList(colorList);
             List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(product.getId(), madeInfoView.getmDimNew14Id());
             String colorName = dimNewMapper.getColorRangeDefault(product.getId(), madeInfoView.getmDimNew14Id());
-            for (ProductColorView rangeView : rangeList){
-                if (rangeView.getColorName().equals(colorName)){
+            for (ProductColorView rangeView : rangeList) {
+                if (rangeView.getColorName().equals(colorName)) {
                     rangeView.setIsDefault("Y");
                 }
             }
             view.setColorRangeViewList(rangeList);
-        } else if ("B".equals(product.getMptbelongtype())){
+        } else if ("B".equals(product.getMptbelongtype())) {
             ProductCusmptcateView productCusmptcateView = mapper.getProductCusmptcateInfo(product.getId());
             view.setProductCusmptcateView(productCusmptcateView);
             madeInfoView = mapper.getMadeInfoByProductId(product.getId());
@@ -178,8 +179,8 @@ public class ProductServiceImpl implements ProductService {
             view.setColorViewList(colorList);
             List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(product.getId(), madeInfoView.getmDimNew14Id());
             String colorName = dimNewMapper.getColorRangeDefault(product.getId(), madeInfoView.getmDimNew14Id());
-            for (ProductColorView rangeView : rangeList){
-                if (rangeView.getColorName().equals(colorName)){
+            for (ProductColorView rangeView : rangeList) {
+                if (rangeView.getColorName().equals(colorName)) {
                     rangeView.setIsDefault("Y");
                 }
             }
@@ -208,39 +209,39 @@ public class ProductServiceImpl implements ProductService {
             return new ReturnT<>().failureData("没有查到该款号");
         }
         List<ColorSizeView> list = mapper.getColorSizeList(param.getProductName());
-        if (list.size() == 0){
+        if (list.size() == 0) {
             return new ReturnT<>().failureData("该款无可用尺寸颜色！");
         }
         List<ColorSizeView> colorList = new ArrayList<>();
         List<ColorSizeView> sizeList = new ArrayList<>();
-        int index=0;
-        while(index<list.size()) {
-            if (distinct(list,index,Boolean.TRUE)){
+        int index = 0;
+        while (index < list.size()) {
+            if (distinct(list, index, Boolean.TRUE)) {
                 colorList.add(list.get(index));
             }
-            if (distinct(list,index,Boolean.FALSE)){
+            if (distinct(list, index, Boolean.FALSE)) {
                 sizeList.add(list.get(index));
             }
-            index ++;
+            index++;
         }
         ReturnT<ColorSizeListView> result = new ReturnT<>();
         ColorSizeListView resultView = new ColorSizeListView();
         resultView.setColorList(colorList);
         resultView.setSizeList(sizeList);
         resultView.setmProductId(product.getId());
-        resultView.setImgUrl(GlobConts.IMAGE_ROOT_URL+"/img_pad/"+product.getName()+".jpg?random="+new Random().nextInt(100));
+        resultView.setImgUrl(GlobConts.IMAGE_ROOT_URL + "/img_pad/" + product.getName() + ".jpg?random=" + new Random().nextInt(100));
         result.setData(resultView);
         return result.successDefault();
     }
 
-    public boolean distinct(List<ColorSizeView> list,int index,boolean colorOrSize){
+    public boolean distinct(List<ColorSizeView> list, int index, boolean colorOrSize) {
         boolean isSame = true;
-        for(int i=index+1;i<list.size();i++){
-            if (list.get(i).getValue1Code().equals(list.get(index).getValue1Code()) && colorOrSize){
-                isSame =  false;
+        for (int i = index + 1; i < list.size(); i++) {
+            if (list.get(i).getValue1Code().equals(list.get(index).getValue1Code()) && colorOrSize) {
+                isSame = false;
                 break;
             }
-            if (list.get(i).getValue().equals(list.get(index).getValue()) && !colorOrSize){
+            if (list.get(i).getValue().equals(list.get(index).getValue()) && !colorOrSize) {
                 isSame = false;
                 break;
             }
@@ -250,14 +251,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ReturnT getProductListByGroupNo(DpGroupQueryParam param) {
-        if ("".equals(param.getGroupNo()) || param.getGroupNo()== null){
-            return  new ReturnT().failureData("组号不能为空！");
+        if ("".equals(param.getGroupNo()) || param.getGroupNo() == null) {
+            return new ReturnT().failureData("组号不能为空！");
         }
         param.setPageNo(1);
         param.setPageSize(1);
         param.calculatePageLimit();
-        List<DpGroup> dGroupList = dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset());
-        if (dGroupList.size() == 0){
+
+        String customer = VesionEnum.getByCodePage(param.getVersion()).getVersoinStatus();
+        List<DpGroup> dGroupList = dpGroupMapper.selectByGroupNo(customer, param.getGroupNo(), param.getRequestCount(), param.getRequestOffset());
+        if (dGroupList.size() == 0) {
             return new ReturnT<>().failureData("无数据!");
         }
         DpGroup dpGroup = dGroupList.get(0);
@@ -273,48 +276,55 @@ public class ProductServiceImpl implements ProductService {
         List<Long> e = new ArrayList<>(1);
         e.add(null);
         ids.removeAll(e);
-        if (ids.size() == 0){
-            return new ReturnT().failureData(param.getGroupNo()+"没有搭配！");
+        if (ids.size() == 0) {
+            return new ReturnT().failureData(param.getGroupNo() + "没有搭配！");
         }
         List<DimNewView> dimList = dimNewMapper.queryDimByDimText(DimFlagEnum.PIN_FLAG.getCode());
         JSONArray jsonArray = new JSONArray();
-        if (dimList.size() > 0){
-            for (DimNewView dim : dimList){
+        if (dimList.size() > 0) {
+            for (DimNewView dim : dimList) {
                 jsonArray.add(dim);
             }
         }
-        Map<String,String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
-        String code = userMap!=null?userMap.get("CODE"):param.getSessionUser().getEmail();
-        List<DpGroupView> list = mapper.getProductListByIds(ids,code,param.getGroupNo());
-        for (DpGroupView view : list){
+        Map<String, String> userMap = usersMapper.getStoreCodeByEmail(param.getSessionUser().getEmail());
+        String code = userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail();
+        List<DpGroupView> list = mapper.getProductListByIds(ids, code, param.getGroupNo());
+        String imgDiff = dimNewMapper.getDiffDHHImg(customer);
+        for (DpGroupView view : list) {
             view.setPinList(jsonArray);
-            if ("C".equals(view.getMptbelongtype())){
+            if ("C".equals(view.getMptbelongtype())) {
                 view.setColorViewList(mapper.getProductColorListByProductId(view.getmProductId()));
                 view.setSizeViewList(mapper.getProductSizeList(view.getmProductId()));
                 view.setPrice(mapper.getMpdtProductPrice(view.getmProductId()));
-            }else{
+            } else {
                 view.setColorViewList(mapper.getProductColorListByDimId(view.getmDimNew14Id()));
-                List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(),view.getmDimNew14Id());
-                String colorName = dimNewMapper.getColorDefaultByGroupNo(param.getGroupNo(), view.getmProductId(),view.getmDimNew14Id());
-                for (ProductColorView colorView : rangeList){
-                    if (colorView.getColorName().equals(colorName)){
+                List<ProductColorView> rangeList = dimNewMapper.getColorListByDimIdAndProductId(view.getmProductId(), view.getmDimNew14Id());
+                String colorName = dimNewMapper.getColorDefaultByGroupNo(param.getGroupNo(), view.getmProductId(), view.getmDimNew14Id());
+                for (ProductColorView colorView : rangeList) {
+                    if (colorView.getColorName().equals(colorName)) {
                         colorView.setIsDefault("Y");
                     }
                 }
                 view.setColorRangeViewList(rangeList);
-                Map<String,Object> map = new HashedMap();
-                map.put("V_PZ",view.getmDimNew14Id());
-                map.put("V_ZX",view.getmDimNew16Id());
-                map.put("V_XW_VALUE",view.getXwValue());
-                map.put("V_XC_VALUE",view.getXcValue());
-                map.put("V_YC_VALUE1",view.getYcValue());
-                map.put("V_JGNO",code);
-                map.put("V_PDT",view.getProductName());
+                Map<String, Object> map = new HashedMap();
+                map.put("V_PZ", view.getmDimNew14Id());
+                map.put("V_ZX", view.getmDimNew16Id());
+                map.put("V_XW_VALUE", view.getXwValue());
+                map.put("V_XC_VALUE", view.getXcValue());
+                map.put("V_YC_VALUE1", view.getYcValue());
+                map.put("V_JGNO", code);
+                map.put("V_PDT", view.getProductName());
                 mapper.getProductPrice(map);
                 BigDecimal price = new BigDecimal(map.get("v_price_out").toString());
                 view.setPrice(price);
                 view.setOrderNum(ids.indexOf(view.getmProductId()));
             }
+            /**
+            String imgUrl = view.getImgUrl().replace("img","DP_XQ").replace("#","");
+            String[] imgarr = imgUrl.split("[.]");
+            imgUrl = GlobConts.IMAGE_ROOT_URL+imgarr[0]+imgDiff+imgarr[1]+"?random="+ new Random().nextInt(100);
+            view.setImgUrl(imgUrl);
+             **/
         }
         Collections.sort(list, new Comparator<DpGroupView>() {
             @Override
@@ -322,62 +332,67 @@ public class ProductServiceImpl implements ProductService {
                 return o1.getOrderNum() - o2.getOrderNum();
             }
         });
-        ImagePageList page = new ImagePageList(list,dpGroupMapper.count(param.getGroupNo()),param.getPageNo(),param.getPageSize());
-        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/DP/"+param.getGroupNo()+".jpg?random="+ new Random().nextInt(100));
-        page.setGroupNoList(dpGroupMapper.getGroupNoList());
+        ImagePageList page = new ImagePageList(list, dpGroupMapper.count(customer,param.getGroupNo()), param.getPageNo(), param.getPageSize());
+        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL + "/DP/" + param.getGroupNo() + imgDiff + ".jpg?random=" + new Random().nextInt(100));
+        page.setGroupNoList(dpGroupMapper.getGroupNoList(customer));
         return new ReturnT<>().sucessData(page);
     }
 
     @Override
     public ReturnT getProductListByGh(ClGroupQueryParam param) {
         param.setHallName(null);
-        if ("".equals(param.getGh()) || param.getGh()== null){
+        if ("".equals(param.getGh()) || param.getGh() == null) {
             return new ReturnT().failureData("杆号不能为空！");
         }
         param.setPageNo(1);
         param.setPageSize(1);
         param.calculatePageLimit();
+
+        param.setCustomer(VesionEnum.getByCodePage(param.getVersion()).getVersoinStatus());
         List<ClGroupView> dpList = dpGroupMapper.selectByGh(param);
-        if (dpList.size() == 0){
+        if (dpList.size() == 0) {
             return new ReturnT<>().failureData("无数据！");
         }
         ClGroupView clGroupView = dpList.get(0);
         List<ClGroupResultView> list = new ArrayList<>();
-        if (!"".equals(clGroupView.getGroupNo1()) && null != clGroupView.getGroupNo1()){
+        if (!"".equals(clGroupView.getGroupNo1()) && null != clGroupView.getGroupNo1() && clGroupView.getCount1() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo1()));
         }
-        if (!"".equals(clGroupView.getGroupNo2()) && null != clGroupView.getGroupNo2()){
+        if (!"".equals(clGroupView.getGroupNo2()) && null != clGroupView.getGroupNo2() && clGroupView.getCount2() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo2()));
         }
-        if (!"".equals(clGroupView.getGroupNo3()) && null != clGroupView.getGroupNo3()){
+        if (!"".equals(clGroupView.getGroupNo3()) && null != clGroupView.getGroupNo3() && clGroupView.getCount3() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo3()));
         }
-        if (!"".equals(clGroupView.getGroupNo4()) && null != clGroupView.getGroupNo4()){
+        if (!"".equals(clGroupView.getGroupNo4()) && null != clGroupView.getGroupNo4() && clGroupView.getCount4() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo4()));
         }
-        if (!"".equals(clGroupView.getGroupNo5()) && null != clGroupView.getGroupNo5()){
+        if (!"".equals(clGroupView.getGroupNo5()) && null != clGroupView.getGroupNo5() && clGroupView.getCount5() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo5()));
         }
-        if (!"".equals(clGroupView.getGroupNo6()) && null != clGroupView.getGroupNo6()){
+        if (!"".equals(clGroupView.getGroupNo6()) && null != clGroupView.getGroupNo6() && clGroupView.getCount6() > 0) {
             list.add(new ClGroupResultView(clGroupView.getGroupNo6()));
         }
 
+        String imgDiff = dimNewMapper.getDiffDHHImg(param.getCustomer());
         List<ClGroupResultView> returnList = new ArrayList<>();
-        for (ClGroupResultView view : list){
-            int count = dpGroupMapper.countByDefault(view.getGroupNo(),"N");
-            if (count == 0){
+        for (ClGroupResultView view : list) {
+            int count = dpGroupMapper.countByDefault(view.getGroupNo(), "N");
+            if (count == 0) {
+                view.setImgUrl(GlobConts.IMAGE_ROOT_URL+"/DP_SL/"+view.getGroupNo()+imgDiff+".jpg?random="+ new Random().nextInt(100));
                 returnList.add(view);
             }
         }
-        ImagePageList page = new ImagePageList(returnList,dpGroupMapper.clCount(param));
-        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL+"/CL/"+param.getGh()+".jpg?random="+ new Random().nextInt(100));
-        page.setGhList(dpGroupMapper.getGhList());
+        ImagePageList page = new ImagePageList(returnList, dpGroupMapper.clCount(param));
+        page.setBigImageUrl(GlobConts.IMAGE_ROOT_URL + "/CL/" + param.getGh() + imgDiff + ".jpg?random=" + new Random().nextInt(100));
+        page.setGhList(dpGroupMapper.getGhList(param.getCustomer()));
         return new ReturnT<>().sucessData(page);
     }
 
     @Override
     public ReturnT getProductGroupPage(DpGroupQueryParam param) {
-        return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGroupNo(param.getGroupNo(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.count(param.getGroupNo()), param.getPageNo(), param.getPageSize()));
+        String customer = VesionEnum.getByCodePage(param.getVersion()).getVersoinStatus();
+        return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGroupNo(customer,param.getGroupNo(), param.getRequestCount(), param.getRequestOffset()), dpGroupMapper.count(customer,param.getGroupNo()), param.getPageNo(), param.getPageSize()));
     }
 
     @Override
@@ -386,7 +401,16 @@ public class ProductServiceImpl implements ProductService {
             param.setAttribname(param.getHallName());
             param.setHallName(null);
         }
-        return new ReturnT().sucessData(new PageList<>(dpGroupMapper.selectByGh(param), dpGroupMapper.clCount(param)));
+        param.setCustomer(VesionEnum.getByCodePage(param.getVersion()).getVersoinStatus());
+
+        String imgDiff = dimNewMapper.getDiffDHHImg(param.getCustomer());
+
+        List<ClGroupView> list = dpGroupMapper.selectByGh(param);
+        for(ClGroupView view : list){
+            String clImgUrl = GlobConts.IMAGE_ROOT_URL+"/CL_SL/"+view.getGh()+imgDiff+".jpg?modifieddate="+ view.getModifieddate().getTime();
+            view.setClImgUrl(clImgUrl);
+        }
+        return new ReturnT().sucessData(new PageList<>(list, dpGroupMapper.clCount(param)));
 
     }
 }

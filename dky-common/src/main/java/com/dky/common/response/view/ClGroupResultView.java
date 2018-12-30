@@ -39,7 +39,6 @@ public class ClGroupResultView extends ResultObjectBase {
     public ClGroupResultView(String groupNo) {
         this.productName = groupNo;
         this.groupNo = groupNo;
-        this.imgUrl = GlobConts.IMAGE_ROOT_URL+"/DP_SL/"+groupNo+".jpg?random="+ new Random().nextInt(100);
     }
 
     public Long getmProductId() {

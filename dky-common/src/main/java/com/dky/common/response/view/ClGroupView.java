@@ -30,11 +30,17 @@ public class ClGroupView extends ResultObjectBase {
     private Long no14ProductId;
     private Long no15ProductId;
     private String groupNo1;
+    private int count1;
     private String groupNo2;
+    private int count2;
     private String groupNo3;
+    private int count3;
     private String groupNo4;
+    private int count4;
     private String groupNo5;
+    private int count5;
     private String groupNo6;
+    private int count6;
     private Date modifieddate;
 
     private String clImgUrl;
@@ -187,7 +193,6 @@ public class ClGroupView extends ResultObjectBase {
     }
 
     public void setModifieddate(Date modifieddate) {
-        this.clImgUrl = GlobConts.IMAGE_ROOT_URL+"/CL_SL/"+this.gh+".jpg?modifieddate="+ modifieddate.getTime();
         this.modifieddate = modifieddate;
     }
 
@@ -245,5 +250,53 @@ public class ClGroupView extends ResultObjectBase {
 
     public void setAttribname(String attribname) {
         this.attribname = attribname;
+    }
+
+    public int getCount1() {
+        return count1;
+    }
+
+    public void setCount1(int count1) {
+        this.count1 = count1;
+    }
+
+    public int getCount2() {
+        return count2;
+    }
+
+    public void setCount2(int count2) {
+        this.count2 = count2;
+    }
+
+    public int getCount3() {
+        return count3;
+    }
+
+    public void setCount3(int count3) {
+        this.count3 = count3;
+    }
+
+    public int getCount4() {
+        return count4;
+    }
+
+    public void setCount4(int count4) {
+        this.count4 = count4;
+    }
+
+    public int getCount5() {
+        return count5;
+    }
+
+    public void setCount5(int count5) {
+        this.count5 = count5;
+    }
+
+    public int getCount6() {
+        return count6;
+    }
+
+    public void setCount6(int count6) {
+        this.count6 = count6;
     }
 }

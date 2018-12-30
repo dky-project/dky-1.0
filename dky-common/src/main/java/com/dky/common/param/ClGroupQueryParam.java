@@ -19,6 +19,10 @@ public class ClGroupQueryParam extends WebPageParameter {
      * 系列
      */
     private String attribname;
+    /**
+     * 订货会名称
+     */
+    private String customer;
 
     public String getGh() {
         return gh;
@@ -42,5 +46,13 @@ public class ClGroupQueryParam extends WebPageParameter {
 
     public void setAttribname(String attribname) {
         this.attribname = attribname;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 }
