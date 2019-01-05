@@ -327,7 +327,6 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
             LOGGER.error("搭配下单出错！result:{}", e.getMessage());
             String msg = "";
             String msg1 = e.getMessage().substring(

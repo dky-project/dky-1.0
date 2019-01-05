@@ -63,6 +63,7 @@
       select count(1) from DP_GROUP WHERE ISACTIVE = 'Y'
       AND group_no = #{groupNo,jdbcType=VARCHAR}
       AND I_DEFAULT = #{isDefault,jdbcType=VARCHAR}
+      AND customer = #{customer,jdbcType=VARCHAR}
   </select>
 
   <sql id="queryClTmpl">

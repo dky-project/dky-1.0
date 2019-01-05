@@ -16,7 +16,7 @@ public interface DpGroupMapper {
 
     int count(@Param("customer") String customer,@Param("groupNo") String groupNo);
 
-    int countByDefault(@Param("groupNo") String groupNo,@Param("isDefault") String isDefault);
+    int countByDefault(@Param("groupNo") String groupNo,@Param("isDefault") String isDefault,@Param("customer") String customer);
 
     List<ClGroupView> selectByGh(ClGroupQueryParam param);
 

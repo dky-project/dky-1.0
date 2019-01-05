@@ -377,7 +377,7 @@ public class ProductServiceImpl implements ProductService {
         String imgDiff = dimNewMapper.getDiffDHHImg(param.getCustomer());
         List<ClGroupResultView> returnList = new ArrayList<>();
         for (ClGroupResultView view : list) {
-            int count = dpGroupMapper.countByDefault(view.getGroupNo(), "N");
+            int count = dpGroupMapper.countByDefault(view.getGroupNo(), "N",param.getCustomer());
             if (count == 0) {
                 view.setImgUrl(GlobConts.IMAGE_ROOT_URL+"/DP_SL/"+view.getGroupNo()+imgDiff+".jpg?random="+ new Random().nextInt(100));
                 returnList.add(view);
