@@ -61,14 +61,13 @@ public class ProductServiceImpl implements ProductService {
             ConverImagePathUtils.convertProductView(productInfoView, isBuy);
             if (productInfoView.getDlValue() != null && "DH".equals(productInfoView.getDlValue())) {
                 productInfoView.setSizeList(mapper.getSizeList(id));
-            } else {
-                List<ProductGwView> list = mapper.getColorGwList(id, VesionEnum.getByCodePage(versionNo).getVersoinStatus());
-                if (list.size() > 1) {
-                    return new ReturnT<>().failureData("重复杆位管理！");
-                }
-                if (list.size() > 0) {
-                    productInfoView.setGwView(list.get(0));
-                }
+            }
+            List<ProductGwView> list = mapper.getColorGwList(id, VesionEnum.getByCodePage(versionNo).getVersoinStatus());
+            if (list.size() > 1) {
+                return new ReturnT<>().failureData("重复杆位管理！");
+            }
+            if (list.size() > 0) {
+                productInfoView.setGwView(list.get(0));
             }
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
