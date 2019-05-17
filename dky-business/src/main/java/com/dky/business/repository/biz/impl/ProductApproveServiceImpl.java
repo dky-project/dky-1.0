@@ -214,7 +214,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         approve.setJgno(userMap != null ? userMap.get("CODE") : param.getSessionUser().getEmail());
         approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
         //加锁设置单据编号
-        //setDocno(approve);
+        //approve.setDocno(mapper.getProductApproveDocno());
         approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
         approve.setIsactive(IsActiveEnum.NO.getCode());
         Long userId = param.getSessionUser().getUserId();
@@ -305,7 +305,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
                     approve.setJgno(code);
                     approve.setCzDate(DateUtils.formatNowDate(DateUtils.FORMAT_YYYYMMDD));
                     approve.setNo(mapper.getMaxNo(code, approve.getCzDate()));
-                    //setDocno(approve);
+                    //approve.setDocno(mapper.getProductApproveDocno());
                     approve.setIsapprove(IsApproveEnum.DEFAULT.getCode());
                     approve.setIsactive(IsActiveEnum.NO.getCode());
                     Long userId = param.getSessionUser().getUserId();
@@ -349,18 +349,6 @@ public class ProductApproveServiceImpl implements ProductApproveService {
         ReturnT returnT = new ReturnT();
         returnT.setData(view);
         return returnT.successDefault();
-    }
-
-    private void setDocno(ProductApprove approve){
-        try {
-            if (redisCacheManager.lock("docno",5000L)){
-                approve.setDocno(mapper.getProductApproveDocno());
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            redisCacheManager.unlock("docno");
-        }
     }
 
     public void buildDimNew(AddDpGroupApproveParam approveParam, ProductApprove productApprove) {

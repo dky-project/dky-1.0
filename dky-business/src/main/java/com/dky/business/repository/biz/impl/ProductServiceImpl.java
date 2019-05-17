@@ -115,6 +115,7 @@ public class ProductServiceImpl implements ProductService {
                 String imgurl = productQueryParam.getIsBuy().equals("Y") ? url.replace("img", "img_s2") : url.replace("img", "img_sl");
                 view.setBigImgUrl(url);
                 view.setImgUrl1(imgurl);
+                view.setJgno(product.getCode());
             }
         }
         return new PageList<>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());
@@ -406,7 +407,12 @@ public class ProductServiceImpl implements ProductService {
 
         List<ClGroupView> list = dpGroupMapper.selectByGh(param);
         for(ClGroupView view : list){
-            String clImgUrl = GlobConts.IMAGE_ROOT_URL+"/CL_SL/"+view.getGh()+imgDiff+".jpg?modifieddate="+ view.getModifieddate().getTime();
+            String clImgUrl = "";
+            if (!"".equals(imgDiff) && imgDiff != null) {
+                clImgUrl = GlobConts.IMAGE_ROOT_URL + "/CL_SL/" + view.getGh() + imgDiff + ".jpg?modifieddate=" + view.getModifieddate().getTime();
+            }else{
+                clImgUrl = GlobConts.IMAGE_ROOT_URL + "/CL_SL/" + view.getGh() + ".jpg?modifieddate=" + view.getModifieddate().getTime();
+            }
             view.setClImgUrl(clImgUrl);
         }
         return new ReturnT().sucessData(new PageList<>(list, dpGroupMapper.clCount(param)));

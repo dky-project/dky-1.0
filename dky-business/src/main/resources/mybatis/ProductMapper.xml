@@ -292,7 +292,7 @@
     </sql>
 
     <sql id="queryTmpl">
-        SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,
+        SELECT decode(t2.code,null,1,2) as iscollect,t1.M_PRODUCT_ID AS mProductId,t1.M_DIM_NEW13_ID as mDimNew13Id,
         t1.name,t1.dlValue,t1.IMGURL1 AS imgUrl1,t1.modifieddate,nvl(t1.is_recommend,'N') as isRecommend,
         (SELECT t.attribname FROM M_DIM t
         WHERE t.ISACTIVE = 'Y' AND t.DIMFLAG = 'DIM16' AND t.id = t1.M_DIM16_ID) as mDim16Text
@@ -334,9 +334,9 @@
     <!--样衣列表查询 -->
     <select id="queryByPage" resultType="com.dky.common.response.view.ProductView"
             parameterType="com.dky.common.bean.Product">
-        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,mDim16Text,dlValue FROM (
-        SELECT iscollect,mProductId,name,imgUrl1,modifieddate,isRecommend,mDim16Text,dlValue,ROWNUM RN
-        from (<include refid="queryTmpl"></include>)
+        SELECT A.* FROM (
+        SELECT t.*,ROWNUM RN
+        from (<include refid="queryTmpl"></include>) t
         WHERE 1=1
         <if test="null!=requestOffset">
             AND ROWNUM <![CDATA[ <= ]]>#{requestCount}

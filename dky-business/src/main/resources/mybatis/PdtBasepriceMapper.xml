@@ -54,8 +54,17 @@
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
       t4.ATTRIBNAME as mDimNew16Text,
-      t1.PRICE6 AS price,
-      t1.FLOAT_RATE as floatRate
+      t1.PRICE AS price,
+      t1.FLOAT_RATE as floatRate,
+      t1.PRICE1,
+      t1.PRICE2,
+      t1.PRICE3,
+      t1.PRICE4,
+      t1.PRICE5,
+      t1.PRICE6,
+      t1.PRICE7,
+      t1.PRICE8,
+      t1.PRICE9
     FROM M_TZ_BASEPRICE1 t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id
@@ -75,8 +84,14 @@
       t2.ATTRIBNAME as mDimNew13Text,
       t3.ATTRIBNAME as mDimNew14Text,
       t4.ATTRIBNAME as mDimNew16Text,
-      t1.PRICE6 AS price,
-      t1.FLOAT_RATE as floatRate
+      t1.PRICE AS price,
+      t1.FLOAT_RATE as floatRate,
+      t1.PRICE1,
+      t1.PRICE2,
+      t1.PRICE3,
+      t1.PRICE4,
+      t1.PRICE5,
+      t1.PRICE6
     FROM M_YE_BASEPRICE1 t1
     LEFT JOIN M_DIM_NEW t2 on t1.M_DIM_NEW13_ID = t2.id
     LEFT JOIN M_DIM_NEW t3 on t1.M_DIM_NEW14_ID = t3.id

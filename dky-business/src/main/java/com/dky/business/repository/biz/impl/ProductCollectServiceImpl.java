@@ -87,6 +87,7 @@ public class ProductCollectServiceImpl implements ProductCollectService {
             if (view.getImgUrl1() != null){
                 view.setImgUrl1(GlobConts.IMAGE_ROOT_URL + view.getImgUrl1().replace("img", "img_sl") + "?modifieddate=" + view.getModifieddate().getTime());
             }
+            view.setJgno(param.getCode());
         }
         return new PageList<ProductView>(list, mapper.count(param), param.getPageNo(), param.getPageSize());
     }

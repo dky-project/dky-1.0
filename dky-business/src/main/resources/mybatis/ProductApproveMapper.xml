@@ -424,7 +424,7 @@
   </select>
 
   <select id="getProductApproveDocno" resultType="java.lang.String">
-    SELECT GET_SEQUENCENO('PAD', 37) FROM DUAL
+    SELECT GET_SEQUENCENO_LOCK('PAD', 37) FROM DUAL
   </select>
 
   <insert id="insertProductApprove" parameterType="com.dky.common.bean.ProductApprove" >
@@ -1815,7 +1815,7 @@
         #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="docno != null" >
-        GET_SEQUENCENO_LOCK('PAD', 37),
+        #{docno,jdbcType=VARCHAR},
       </if>
       <if test="isapprove != null" >
         #{isapprove,jdbcType=DECIMAL},
@@ -1899,14 +1899,14 @@
   </select>
 
   <select id="selectByView" resultType="com.dky.common.bean.ProductApprove" parameterType="com.dky.common.response.view.ProductApproveTotalView">
-    SELECT t.id,t.is_approve isapprove
+    SELECT t.id,t.ISAPPROVE isapprove
     FROM m_product_approve t
     WHERE t.isactive = 'Y'
-    AND t.colorvalue = (select id from M_COLOR a where a.name = #{colorName})
+    AND t.colorvalue = (select id from M_COLOR a where a.name = #{colorName} and isactive = 'Y')
     AND t.pdt = #{pdt}
     AND t.customer = #{customer}
     AND t.cz_date = #{czDate}
-    AND t.yc_value = #{sizeName}
+    AND t.xw_value = #{sizeName}
     AND t.jgno = #{jgno}
     <if test="null != issource">
       AND t.is_source = #{issource}
