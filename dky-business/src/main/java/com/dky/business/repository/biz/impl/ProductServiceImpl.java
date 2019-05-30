@@ -115,7 +115,6 @@ public class ProductServiceImpl implements ProductService {
                 String imgurl = productQueryParam.getIsBuy().equals("Y") ? url.replace("img", "img_s2") : url.replace("img", "img_sl");
                 view.setBigImgUrl(url);
                 view.setImgUrl1(imgurl);
-                view.setJgno(product.getCode());
             }
         }
         return new PageList<>(list, count, productQueryParam.getPageNo(), productQueryParam.getPageSize());

@@ -53,8 +53,6 @@ public class ProductView extends ResultObjectBase {
 
     private String bigImgUrl;
 
-    private String jgno;
-
     private Long mDimNew13Id;
 
     public String getName() {
@@ -136,14 +134,6 @@ public class ProductView extends ResultObjectBase {
 
     public void setDlValue(String dlValue) {
         this.dlValue = dlValue;
-    }
-
-    public String getJgno() {
-        return jgno;
-    }
-
-    public void setJgno(String jgno) {
-        this.jgno = jgno;
     }
 
     public Long getmDimNew13Id() {

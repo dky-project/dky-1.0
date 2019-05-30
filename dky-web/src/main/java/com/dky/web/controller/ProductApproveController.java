@@ -84,8 +84,8 @@ public class ProductApproveController {
     }
 
     @RequestMapping(value = "updateProductApprove",name = "删除订单")
-    public ReturnT updateProductApprove(Long[] ids){
-        return approveService.updateProductApproveList(ids);
+    public ReturnT updateProductApprove(UpdateProductApproveParam param){
+        return approveService.updateProductApproveList(param.getIds());
     }
 
     @RequestMapping(value = "getProductApproveTitle",name = "定制页面第一步")
@@ -133,6 +133,9 @@ public class ProductApproveController {
     @RequestMapping(value = "tableApproveSave",name = "下单保存大货类型订单接口")
     public ReturnT tableApproveSave(TableApproveSaveParam param){
         LOGGER.info("<<<<<<<<<<<<<<<<<<<<<param:{}", JSON.toJSONString(param));
+        if (param.getItemDatas().equals("{}")){
+            return new ReturnT().failureData("无数据保存！");
+        }
         if (param.getItemDatas() != null && !"".equals(param.getItemDatas())){
             JSONArray array = JSON.parseArray(param.getItemDatas());
             for(int i = 0;i<array.size();i++){
@@ -178,5 +181,11 @@ public class ProductApproveController {
         String regex="^\\d+$";
         Matcher m= Pattern.compile(regex).matcher(no);
         return m.matches();
+    }
+
+    public static void main(String[] args) {
+        String item = "{}";
+        JSONObject jsonObject = JSONObject.parseObject(item);
+        JSONArray arr = JSONObject.parseArray(item);
     }
 }

@@ -97,7 +97,7 @@
                 for(var i = 0;i<result.colorList.length;i++){
                     html += "<tr><th scope='row'>"+result.colorList[i].value1+"</th>";
                     for(var j = 0;j<result.sizeList.length;j++){
-                        html += '<td><input type="text" onblur="changeData(this);" cl="'+result.colorList[i].colorId+'" sz="'+result.sizeList[j].sizeId+'" x="'+j+'" y="'+i+'" class="form-control"></td>';
+                        html += '<td><input type="text" onpropertychange="changeData(this);" cl="'+result.colorList[i].colorId+'" sz="'+result.sizeList[j].sizeId+'" x="'+j+'" y="'+i+'" class="form-control"></td>';
                     }
                     html += "</tr>";
                 }

@@ -59,8 +59,8 @@
 	        <property name="password" value="${jdbc.password}"/>
 	        <property name="driverClassName" value="${jdbc.driver}"/>
 	        <property name="filters" value="stat"/>
-	        <property name="maxActive" value="50"/>
-	        <property name="initialSize" value="1"/>
+	        <property name="maxActive" value="150"/>
+	        <property name="initialSize" value="10"/>
 	        <property name="maxWait" value="60000"/>
 	        <property name="minIdle" value="1"/>
 	        <property name="timeBetweenEvictionRunsMillis" value="60000"/>

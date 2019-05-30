@@ -45,6 +45,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
+    AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
@@ -75,6 +76,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
+    AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>
@@ -102,6 +104,7 @@
     AND t3.ISACTIVE = 'Y'
     AND t4.DIMFLAG='DIMFLAG_NEW16'
     AND t4.ISACTIVE = 'Y'
+    AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
   </select>

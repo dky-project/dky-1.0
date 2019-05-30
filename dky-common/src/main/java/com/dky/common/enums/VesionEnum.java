@@ -4,10 +4,10 @@ package com.dky.common.enums;
  * Created by hang on 2017/1/4.
  */
 public enum VesionEnum {
-    INNER_ORDER("1.0.0","订货会内网版本","2"),
-    OUTER_ORDER("2.0.0","订货会外网版本","2"),
-    JM_ORDER("3.0.0","加盟店版本","1"),
-    ZM_ORDER("4.0.0","专卖店版本","1"),
+    INNER_ORDER("1.0.0","订货会内网版本","3"),
+    OUTER_ORDER("2.0.0","订货会外网版本","3"),
+    JM_ORDER("3.0.0","加盟店版本","2"),
+    ZM_ORDER("4.0.0","专卖店版本","2"),
     ;
 
     VesionEnum() {

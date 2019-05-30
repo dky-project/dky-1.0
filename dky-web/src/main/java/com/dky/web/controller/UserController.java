@@ -50,7 +50,8 @@ public class UserController {
             sessionUser.setcStoreId(store.getId());
         }
         String token = sessionProcess.login(sessionUser, response, 60 * 60 * 24 * 7 * 1000L);
-        return new ReturnT().sucessData(token);
+        returnT.setJgno(param.getEmail());
+        return returnT.sucessData(token);
     }
 
 

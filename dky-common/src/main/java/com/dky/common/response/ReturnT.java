@@ -16,6 +16,7 @@ public class ReturnT<T> implements Serializable {
     private String msg;
     private T data;
     private boolean success;
+    private String jgno;
 
     public ReturnT() {
     }
@@ -123,5 +124,13 @@ public class ReturnT<T> implements Serializable {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public String getJgno() {
+        return jgno;
+    }
+
+    public void setJgno(String jgno) {
+        this.jgno = jgno;
     }
 }

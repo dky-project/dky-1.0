@@ -327,17 +327,18 @@
     </select>
 
     <select id="getDataAnalysisMap" resultType="map">
-      SELECT nvl(a.totalAmount,0) totalAmount,
+      select * from (SELECT nvl(a.totalAmount,0) totalAmount,
       nvl(a.qty,0) as qty,
-      b.GH_PRICE as ghPrice,
+      b.GH_PRICE*10 as ghPrice,
       b.FL_PRICE as flPrice,
       c.c_storetype_jz_id as storeType,
-      decode(c.c_storetype_jz_id,8,a.totalAmount*b.gh_price - nvl(b.fl_price,0)*nvl(a.qty,0),7,a.totalAmount*nvl(b.gh_price,0)) as afterAmount      FROM V_DATA_ANALYSIS a, M_RANGE b, c_store c
+      decode(c.c_storetype_jz_id,8,a.totalAmount*b.gh_price - nvl(b.fl_price,0)*nvl(a.qty,0),7,a.totalAmount*nvl(b.gh_price,0)) as afterAmount
+      FROM V_DATA_ANALYSIS a, M_RANGE b, c_store c
      WHERE a.jgno = c.code
        AND c.id = b.c_store_id
        AND a.qty between b.star_sum and b.end_sum
        AND a.jgno = #{code}
-       AND ROWNUM = 1
+      order by b.modifieddate desc) where ROWNUM = 1
     </select>
 
     <select id="getDataAnalysisMapTotal" resultType="map">
