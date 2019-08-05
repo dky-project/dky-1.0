@@ -31,7 +31,7 @@ public interface ProductApproveService {
 
     ReturnT bMptApproveInsert(BMptApproveSaveParam param);
 
-    ReturnT confirmProductApprove(UpdateProductApproveParam param);
+    ReturnT confirmProductApprove(ConfirmProductApproveParam param);
 
     ReturnT addProductDpGroup(AddDpGroupParam param);
 }

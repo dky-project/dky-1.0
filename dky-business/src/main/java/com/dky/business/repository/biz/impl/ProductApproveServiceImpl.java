@@ -239,7 +239,7 @@ public class ProductApproveServiceImpl implements ProductApproveService {
     }
 
     @Override
-    public ReturnT confirmProductApprove(UpdateProductApproveParam param) {
+    public ReturnT confirmProductApprove(ConfirmProductApproveParam param) {
         ProductApprove productApprove = new ProductApprove();
         if (param.getId() != null) {
             productApprove.setId(param.getId());

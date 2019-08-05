@@ -126,7 +126,7 @@ public class ProductApproveController {
     }
 
     @RequestMapping(value = "confirmProductApprove",name = "确认下单")
-    public ReturnT confirmProductApprove(UpdateProductApproveParam param){
+    public ReturnT confirmProductApprove(ConfirmProductApproveParam param){
         return approveService.confirmProductApprove(param);
     }
 
@@ -181,11 +181,5 @@ public class ProductApproveController {
         String regex="^\\d+$";
         Matcher m= Pattern.compile(regex).matcher(no);
         return m.matches();
-    }
-
-    public static void main(String[] args) {
-        String item = "{}";
-        JSONObject jsonObject = JSONObject.parseObject(item);
-        JSONArray arr = JSONObject.parseArray(item);
     }
 }

@@ -48,6 +48,7 @@
     AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    AND t1.RETAIL_TYPE_ID = #{retailTypeId,jdbcType=VARCHAR}
   </select>
 
   <select id="queryChildPriceListByProductId" resultType="PdtPriceView" parameterType="map" >
@@ -79,6 +80,7 @@
     AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    AND t1.RETAIL_TYPE_ID = #{retailTypeId,jdbcType=VARCHAR}
   </select>
 
   <select id="queryBabyPriceListByProductId" resultType="PdtPriceView" parameterType="map" >
@@ -107,19 +109,25 @@
     AND t1.close_status = 1
     AND t1.FLOAT_RATE = #{floatRate,jdbcType=DECIMAL}
     AND t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+    AND t1.RETAIL_TYPE_ID = #{retailTypeId,jdbcType=VARCHAR}
   </select>
 
   <select id="getDhPrice" resultType="java.lang.String" parameterType="java.lang.Long" >
-    SELECT
-      t1.PRICE_NEW
-    FROM M_BULKEDIT_PRICEITEM t1
-    WHERE t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
-    AND ROWNUM = 1
-    ORDER BY t1.CREATIONDATE DESC
+    SELECT * FROM (
+      SELECT
+        t1.PRICE_NEW
+      FROM M_BULKEDIT_PRICEITEM t1
+      WHERE t1.M_PRODUCT_ID = #{mProductId,jdbcType=DECIMAL}
+      ORDER BY t1.CREATIONDATE DESC
+    ) WHERE ROWNUM = 1
   </select>
 
   <select id="getFloatRateByCode" resultType="java.math.BigDecimal" parameterType="java.lang.String" >
     select NVL(pricerate,1) from B_PRICEUPSET a
     where exists (select 1 from c_store t where t.isactive = 'Y' and t.b_priceupset_id = a.id and t.code = #{code,jdbcType=VARCHAR})
+  </select>
+
+  <select id="getRetailTypeIdByCode" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select RETAIL_TYPE_ID as retailTypeId from c_store t where t.isactive = 'Y' and t.code = #{code,jdbcType=VARCHAR}
   </select>
 </mapper>

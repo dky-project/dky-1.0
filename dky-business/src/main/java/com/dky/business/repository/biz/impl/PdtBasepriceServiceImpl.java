@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,12 +38,17 @@ public class PdtBasepriceServiceImpl implements PdtBasepriceService {
         Product product = productMapper.getById(mProductId);
 
         BigDecimal floatRate = mapper.getFloatRateByCode(code);
+        Integer retailTypeId = mapper.getRetailTypeIdByCode(code);
+        Map<String,Object> paramMap = new HashMap<>();
+        paramMap.put("mProductId",mProductId);
+        paramMap.put("floatRate",floatRate);
+        paramMap.put("retailTypeId",retailTypeId);
         if (product.getmDimNew13Id() == 21 || product.getmDimNew13Id() == 20){
-            return new ReturnT<>().sucessData(mapper.queryPriceListByProductId(mProductId,floatRate));
+            return new ReturnT<>().sucessData(mapper.queryPriceListByProductId(paramMap));
         } else if (product.getmDimNew13Id() == 249 || product.getmDimNew13Id() == 250){
-            return new ReturnT<>().sucessData(mapper.queryChildPriceListByProductId(mProductId,floatRate));
+            return new ReturnT<>().sucessData(mapper.queryChildPriceListByProductId(paramMap));
         } else {
-            return new ReturnT<>().sucessData(mapper.queryBabyPriceListByProductId(mProductId,floatRate));
+            return new ReturnT<>().sucessData(mapper.queryBabyPriceListByProductId(paramMap));
         }
 
     }
